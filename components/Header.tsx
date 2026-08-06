@@ -11,9 +11,8 @@ export default function Header() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="flex flex-col items-center justify-center"
+                className="flex items-center justify-between md:justify-center md:gap-12"
             >
-                <div className="flex items-center justify-between md:justify-center md:gap-12">
                     <div className="flex items-center gap-2">
                         <img src={gerb.src} alt="Герб ліцею" className="h-16" />
                         <h1 className="hidden md:flex text-primary text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">Природничо-науковий ліцей №145</h1>
@@ -30,7 +29,6 @@ export default function Header() {
                         </ul>
                         <Menu size={28} color="black" className="md:hidden cursor-pointer" />
                     </nav>
-                </div>
             </motion.div>
         </header>
     )
