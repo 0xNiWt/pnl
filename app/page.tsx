@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="bg-[#FBF6E9] min-h-screen flex flex-col">
       <Header />
-      {/* <Hero /> */}
+      <Hero />
       <Footer />
     </div>
   );

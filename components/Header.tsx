@@ -21,7 +21,7 @@ export default function Header() {
                         <ul className="hidden space-x-4 md:flex">
                             {['Головна', 'Ліцей', 'Вступ', 'Педагоги', 'Навчання', 'Новини'].map((item) => (
                                 <li key={item}>
-                                    <a href="#" className="text-primary/60 hover:text-primary font-inter font-bold text-base tracking-wide transition-colors">
+                                    <a href="#" className="relative inline-block text-primary/60 hover:text-primary font-inter font-bold text-base tracking-wide transition-colors before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-primary before:transition-all before:duration-300 hover:before:w-full">
                                         {item}
                                     </a>
                                 </li>
