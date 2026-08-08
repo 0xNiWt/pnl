@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Menu } from 'lucide-react'
 import gerb from '@/public/gerb.png'
@@ -15,8 +16,8 @@ export default function Header() {
                     className="flex items-center justify-between md:gap-12"
                 >
                         <div className="flex items-center gap-2">
-                            <img src={gerb.src} alt="Герб ліцею" className="h-16" />
-                            <h1 className="hidden md:flex text-primary text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">Природничо-науковий ліцей №145</h1>
+                            <Image src={gerb} alt="Герб ліцею" className="h-16 w-auto" priority />
+                            <h1 className="text-primary text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">Природничо-науковий ліцей №145</h1>
                         </div>
                         <nav>
                             <ul className="hidden space-x-4 md:flex">
