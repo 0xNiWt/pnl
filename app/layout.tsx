@@ -4,7 +4,7 @@ import "./globals.css";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
 });
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="uk"
       className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
