@@ -11,21 +11,46 @@ export default function RegisterPage() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
 
-    // Перевірка чи email належить до домену ліцею (наприклад, @pnl.kiev.ua або будь-який pnl)
-    const isPnlEmail = email.toLowerCase().includes('@pnl');
+    const isPnlEmail = email.toLowerCase().includes('kpnl145.kyiv.ua');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!isPnlEmail) {
             setError('Реєстрація дозволена тільки для корпоративних пошт ліцею (наприклад, user@pnl.kiev.ua)');
             return;
         }
 
         setError('');
-        // Тут буде ваша логіка реєстрації на бекенд
-        console.log({ fullName, email, password });
+        setLoading(true);
+
+        try {
+            const res = await fetch('/api/v1/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password, fullName }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error ?? 'Помилка реєстрації');
+                return;
+            }
+
+            setSuccess(true);
+
+            if (!data.needsEmailConfirmation) {
+                window.location.href = '/';
+            }
+        } catch {
+            setError('Не вдалося з\'єднатися з сервером');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -34,7 +59,6 @@ export default function RegisterPage() {
 
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
-                    {/* Заголовок та бейдж */}
                     <div className="text-center mb-8">
                         <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                             <span className="w-5 h-px bg-secondary" />
@@ -49,13 +73,18 @@ export default function RegisterPage() {
                         </p>
                     </div>
 
-                    {/* Картка форми */}
                     <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-sm">
 
                         {error && (
                             <div className="mb-6 p-3.5 rounded-xl bg-accent/10 border border-accent/30 flex items-center gap-2.5 text-xs font-medium text-accent">
                                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
                                 <span>{error}</span>
+                            </div>
+                        )}
+
+                        {success && (
+                            <div className="mb-6 p-3.5 rounded-xl bg-secondary/10 border border-secondary/30 text-xs font-medium text-secondary">
+                                Реєстрація успішна! Перевірте пошту, щоб підтвердити акаунт.
                             </div>
                         )}
 
@@ -72,7 +101,7 @@ export default function RegisterPage() {
                                         required
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
-                                        placeholder="Шевченко Тарас"
+                                        placeholder="Нікіта Літовченко"
                                         className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
                                     />
                                 </div>
@@ -93,7 +122,7 @@ export default function RegisterPage() {
                                             setEmail(e.target.value);
                                             if (error) setError('');
                                         }}
-                                        placeholder="student@pnl.kiev.ua"
+                                        placeholder="student@kpnl145.kyiv.ua"
                                         className={`w-full rounded-xl border pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:bg-white focus:ring-2 ${
                                             email && !isPnlEmail 
                                                 ? 'border-accent/50 bg-accent/5 focus:border-accent focus:ring-accent/20' 
@@ -137,10 +166,11 @@ export default function RegisterPage() {
                             {/* Кнопка відправки */}
                             <button
                                 type="submit"
-                                className="w-full mt-2 rounded-xl bg-primary py-3 px-4 text-sm font-bold text-background tracking-wide hover:bg-primary/90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                                disabled={loading}
+                                className="w-full mt-2 rounded-xl bg-primary py-3 px-4 text-sm font-bold text-background tracking-wide hover:bg-primary/90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                             >
-                                Зареєструватися
-                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                {loading ? 'Зачекайте...' : 'Зареєструватися'}
+                                {!loading && <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                             </button>
                         </form>
 

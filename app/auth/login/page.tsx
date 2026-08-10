@@ -3,16 +3,40 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from "@/components/Header";
-import { Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log({ email, password });
+        setError('');
+        setLoading(true);
+
+        try {
+            const res = await fetch('/api/v1/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setError(data.error ?? 'Не вдалося увійти');
+                return;
+            }
+
+            window.location.href = '/profile';
+        } catch {
+            setError('Не вдалося з\'єднатися з сервером');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -38,6 +62,14 @@ export default function LoginPage() {
 
                     {/* Картка форми */}
                     <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-sm">
+
+                        {error && (
+                            <div className="mb-6 p-3.5 rounded-xl bg-accent/10 border border-accent/30 flex items-center gap-2.5 text-xs font-medium text-accent">
+                                <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                                <span>{error}</span>
+                            </div>
+                        )}
+
                         <form onSubmit={handleSubmit} className="space-y-4">
                             {/* Email */}
                             <div>
@@ -51,7 +83,7 @@ export default function LoginPage() {
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="user@pnl.kiev.ua"
+                                        placeholder="student@pnl.kiev.ua"
                                         className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
                                     />
                                 </div>
@@ -102,10 +134,10 @@ export default function LoginPage() {
                             {/* Кнопка Увійти */}
                             <button
                                 type="submit"
-                                className="w-full mt-2 rounded-xl bg-primary py-3 px-4 text-sm font-bold text-background tracking-wide hover:bg-primary/90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                                disabled={loading}
+                                className="w-full mt-2 rounded-xl bg-primary py-3 px-4 text-sm font-bold text-background tracking-wide hover:bg-primary/90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                             >
-                                Увійти
-                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                {loading ? 'Зачекайте...' : 'Увійти'}
                             </button>
                         </form>
 
