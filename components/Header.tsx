@@ -9,7 +9,7 @@ import gerb from '@/public/gerb.png';
 import BurgerMenu from './BurgerMenu';
 
 const LINKS = [
-    { label: 'Ліцей', href: '/#hero' },
+    { label: 'Ліцей', href: '/litsey' },
     { label: 'Вступ', href: '/vstup' },
     { label: 'Педагоги', href: '/pedagogy' },
     { label: 'Рейтинг', href: '/rating' },

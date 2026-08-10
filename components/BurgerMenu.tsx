@@ -11,6 +11,8 @@ type BurgerMenuProps = {
     onLinkClick: () => void;
 };
 
+const smoothOut = [0.16, 1, 0.3, 1] as const;
+
 export default function BurgerMenu({ isOpen, links, onLinkClick }: BurgerMenuProps) {
     return (
         <AnimatePresence>
@@ -19,27 +21,51 @@ export default function BurgerMenu({ isOpen, links, onLinkClick }: BurgerMenuPro
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="md:hidden overflow-hidden"
+                    transition={{ duration: 0.3, ease: smoothOut }}
+                    className="md:hidden overflow-hidden border-t border-primary/10 mt-4"
                 >
-                    <ul className="flex flex-col gap-1 pt-6 pb-2">
-                        {links.map((item, i) => (
-                            <motion.li
-                                key={item.label}
-                                initial={{ opacity: 0, x: -12 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.04, duration: 0.2 }}
-                            >
-                                <Link
-                                    href={item.href}
-                                    onClick={onLinkClick}
-                                    className="block py-2.5 text-primary font-inter font-bold text-lg border-b border-primary/5 last:border-none"
+                    <div className="py-4 flex flex-col gap-4">
+                        <ul className="flex flex-col gap-1">
+                            {links.map((item, i) => (
+                                <motion.li
+                                    key={item.label}
+                                    initial={{ opacity: 0, x: -12 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.035, duration: 0.25, ease: smoothOut }}
                                 >
-                                    {item.label}
-                                </Link>
-                            </motion.li>
-                        ))}
-                    </ul>
+                                    <Link
+                                        href={item.href}
+                                        onClick={onLinkClick}
+                                        className="block px-3 py-2.5 rounded-xl text-primary font-inter font-bold text-base hover:bg-primary/5 active:bg-primary/10 transition-colors"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </motion.li>
+                            ))}
+                        </ul>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: links.length * 0.035 + 0.05, duration: 0.25, ease: smoothOut }}
+                            className="pt-3 border-t border-primary/10 flex flex-col gap-2 px-1"
+                        >
+                            <Link
+                                href="/auth/login"
+                                onClick={onLinkClick}
+                                className="w-full text-center rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
+                            >
+                                Вхід
+                            </Link>
+                            <Link
+                                href="/auth/register"
+                                onClick={onLinkClick}
+                                className="w-full text-center rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
+                            >
+                                Реєстрація
+                            </Link>
+                        </motion.div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
