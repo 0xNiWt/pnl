@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Header from "@/components/Header";
 import { Mail, Lock, User, Eye, EyeOff, AlertCircle, ArrowRight } from 'lucide-react';
 
 export default function RegisterPage() {
@@ -20,7 +19,7 @@ export default function RegisterPage() {
         e.preventDefault();
 
         if (!isPnlEmail) {
-            setError('Реєстрація дозволена тільки для корпоративних пошт ліцею (наприклад, user@pnl.kiev.ua)');
+            setError('Реєстрація дозволена тільки для корпоративних пошт ліцею (наприклад, user@kpnl145.kyiv.ua)');
             return;
         }
 
@@ -44,7 +43,7 @@ export default function RegisterPage() {
             setSuccess(true);
 
             if (!data.needsEmailConfirmation) {
-                window.location.href = '/';
+                window.location.href = '/auth/login';
             }
         } catch {
             setError('Не вдалося з\'єднатися з сервером');
@@ -55,8 +54,6 @@ export default function RegisterPage() {
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter selection:bg-primary selection:text-background">
-            <Header />
-
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
@@ -89,7 +86,6 @@ export default function RegisterPage() {
                         )}
 
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            {/* ПІБ */}
                             <div>
                                 <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Повне ім&apos;я <span className="text-accent">*</span>
@@ -101,13 +97,12 @@ export default function RegisterPage() {
                                         required
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
-                                        placeholder="Нікіта Літовченко"
+                                        placeholder="Нікіта Литовченко"
                                         className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
                                     />
                                 </div>
                             </div>
 
-                            {/* PNL Email */}
                             <div>
                                 <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Шкільна пошта <span className="text-accent">*</span>
@@ -132,12 +127,11 @@ export default function RegisterPage() {
                                 </div>
                                 {email && !isPnlEmail && (
                                     <p className="mt-1 text-[11px] text-accent">
-                                        Email має містити домен ліцею (@pnl...)
+                                        Email має містити домен ліцею (@kpnl.kyiv.ua)
                                     </p>
                                 )}
                             </div>
 
-                            {/* Пароль */}
                             <div>
                                 <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Пароль <span className="text-accent">*</span>
@@ -163,7 +157,6 @@ export default function RegisterPage() {
                                 </div>
                             </div>
 
-                            {/* Кнопка відправки */}
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -174,7 +167,6 @@ export default function RegisterPage() {
                             </button>
                         </form>
 
-                        {/* Посилання на вхід */}
                         <div className="mt-6 pt-5 border-t border-primary/10 text-center">
                             <p className="text-sm text-primary/70">
                                 Вже є акаунт?{' '}

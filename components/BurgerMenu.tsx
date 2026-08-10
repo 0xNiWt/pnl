@@ -8,12 +8,13 @@ type LinkItem = { label: string; href: string };
 type BurgerMenuProps = {
     isOpen: boolean;
     links: LinkItem[];
+    isLoggedIn: boolean;
     onLinkClick: () => void;
 };
 
 const smoothOut = [0.16, 1, 0.3, 1] as const;
 
-export default function BurgerMenu({ isOpen, links, onLinkClick }: BurgerMenuProps) {
+export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: BurgerMenuProps) {
     return (
         <AnimatePresence>
             {isOpen && (
@@ -22,7 +23,7 @@ export default function BurgerMenu({ isOpen, links, onLinkClick }: BurgerMenuPro
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: smoothOut }}
-                    className="md:hidden overflow-hidden border-t border-primary/10 mt-4"
+                    className="md:hidden overflow-hidden border-t border-primary/10 mt-4 w-full basis-full"
                 >
                     <div className="py-4 flex flex-col gap-4">
                         <ul className="flex flex-col gap-1">
@@ -50,20 +51,32 @@ export default function BurgerMenu({ isOpen, links, onLinkClick }: BurgerMenuPro
                             transition={{ delay: links.length * 0.035 + 0.05, duration: 0.25, ease: smoothOut }}
                             className="pt-3 border-t border-primary/10 flex flex-col gap-2 px-1"
                         >
-                            <Link
-                                href="/auth/login"
-                                onClick={onLinkClick}
-                                className="w-full text-center rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
-                            >
-                                Вхід
-                            </Link>
-                            <Link
-                                href="/auth/register"
-                                onClick={onLinkClick}
-                                className="w-full text-center rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
-                            >
-                                Реєстрація
-                            </Link>
+                            {isLoggedIn ? (
+                                <Link
+                                    href="/profile"
+                                    onClick={onLinkClick}
+                                    className="w-full text-center rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
+                                >
+                                    Кабінет
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link
+                                        href="/auth/login"
+                                        onClick={onLinkClick}
+                                        className="w-full text-center rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
+                                    >
+                                        Вхід
+                                    </Link>
+                                    <Link
+                                        href="/auth/register"
+                                        onClick={onLinkClick}
+                                        className="w-full text-center rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
+                                    >
+                                        Реєстрація
+                                    </Link>
+                                </>
+                            )}
                         </motion.div>
                     </div>
                 </motion.div>

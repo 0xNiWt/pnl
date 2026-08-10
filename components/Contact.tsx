@@ -1,10 +1,13 @@
 "use client";
 
+import { motion } from "motion/react";
 import { User, Mail, Phone } from 'lucide-react';
 
 export default function Contact() {
+    const smoothOut = [0.16, 1, 0.3, 1] as const;
+
     return (
-        <section className="w-full max-w-7xl mx-auto flex flex-col items-center md:items-start gap-8 md:gap-12 px-5 md:px-6 py-10 md:py-24" id="contact">
+        <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: smoothOut }} className="w-full max-w-7xl mx-auto flex flex-col items-center md:items-start gap-8 md:gap-12 px-5 md:px-6 py-10 md:py-24" id="contact">
             <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                 <span className="w-6 h-px bg-secondary" />
                 Контакти
@@ -106,6 +109,6 @@ export default function Contact() {
                     </form>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Header from "@/components/Header";
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 export default function LoginPage() {
@@ -41,11 +40,8 @@ export default function LoginPage() {
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter selection:bg-primary selection:text-background">
-            <Header />
-
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
-                    {/* Заголовок та бейдж */}
                     <div className="text-center mb-8">
                         <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                             <span className="w-5 h-px bg-secondary" />
@@ -60,7 +56,6 @@ export default function LoginPage() {
                         </p>
                     </div>
 
-                    {/* Картка форми */}
                     <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-sm">
 
                         {error && (
@@ -71,7 +66,6 @@ export default function LoginPage() {
                         )}
 
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            {/* Email */}
                             <div>
                                 <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Електронна пошта
@@ -83,13 +77,12 @@ export default function LoginPage() {
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="student@pnl.kiev.ua"
+                                        placeholder="student@kpnl145.kyiv.ua"
                                         className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
                                     />
                                 </div>
                             </div>
 
-                            {/* Пароль */}
                             <div>
                                 <div className="flex items-center justify-between mb-1.5">
                                     <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70">
@@ -119,7 +112,6 @@ export default function LoginPage() {
                                 </div>
                             </div>
 
-                            {/* Чекбокс Пам'ятати мене */}
                             <div className="flex items-center gap-2 pt-1">
                                 <input
                                     type="checkbox"
@@ -131,7 +123,6 @@ export default function LoginPage() {
                                 </label>
                             </div>
 
-                            {/* Кнопка Увійти */}
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -141,7 +132,6 @@ export default function LoginPage() {
                             </button>
                         </form>
 
-                        {/* Посилання на реєстрацію */}
                         <div className="mt-6 pt-5 border-t border-primary/10 text-center">
                             <p className="text-sm text-primary/70">
                                 Ще немає акаунту?{' '}

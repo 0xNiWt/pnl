@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/server'
+import { translateAuthError } from '@/lib/authErrors'
 
 export async function POST(request: NextRequest) {
   try {
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       return NextResponse.json(
-        { error: error.message },
+        { error: translateAuthError(error.message) },
         { status: error.status ?? 400 }
       )
     }
@@ -56,8 +57,8 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     console.error('Register error:', err)
     return NextResponse.json(
-      { error: 'Внутрішня помилка сервера' },
-      { status: 500 }
+        { error: 'Внутрішня помилка сервера' },
+        { status: 500 }
     )
   }
 }

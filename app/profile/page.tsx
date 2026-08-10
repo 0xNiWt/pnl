@@ -1,20 +1,17 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/server';
-import Header from "@/components/Header";
 import { User, Mail, ShieldCheck, Calendar } from 'lucide-react';
+import LogoutButton from '@/components/LogoutButton';
 
 export default async function ProfilePage() {
     const supabase = await createClient();
 
-    // middleware вже захищає цей роут, але дублюємо перевірку
-    // на випадок прямого виклику Server Component / зміни middleware
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
         redirect('/auth/login');
     }
 
-    // Дані з таблиці profiles (full_name, role і тд)
     const { data: profile } = await supabase
         .from('profiles')
         .select('full_name, role, created_at')
@@ -31,8 +28,6 @@ export default async function ProfilePage() {
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter selection:bg-primary selection:text-background">
-            <Header />
-
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
@@ -54,6 +49,8 @@ export default async function ProfilePage() {
                             <ProfileRow icon={<Calendar className="w-4 h-4" />} label="Дата реєстрації" value={joinedDate} />
                         )}
                     </div>
+
+                    <LogoutButton />
                 </div>
             </div>
         </main>

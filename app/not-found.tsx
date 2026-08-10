@@ -11,7 +11,6 @@ export default function NotFound() {
 
     return (
         <div className="relative flex flex-col items-center justify-center min-h-dvh bg-background overflow-hidden px-5">
-            {/* фоновий glow — та сама фірмова деталь, що в hero-картці */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
