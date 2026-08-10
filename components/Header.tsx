@@ -9,11 +9,10 @@ import gerb from '@/public/gerb.png';
 import BurgerMenu from './BurgerMenu';
 
 const LINKS = [
-    { label: 'Головна', href: '/' },
     { label: 'Ліцей', href: '/#hero' },
     { label: 'Вступ', href: '/vstup' },
     { label: 'Педагоги', href: '/pedagogy' },
-    { label: 'Навчання', href: '/navchannya' },
+    { label: 'Рейтинг', href: '/rating' },
     { label: 'Новини', href: '/news' },
 ];
 
@@ -32,9 +31,7 @@ export default function Header() {
             <div className="md:max-w-7xl mx-auto">
                 <div className="flex items-center justify-between md:gap-12">
                     <Link href="/" className="flex items-center gap-2 group">
-                        <motion.div whileHover={{ rotate: -4, scale: 1.04 }} transition={{ type: "spring", stiffness: 300, damping: 15 }}>
-                            <Image src={gerb} alt="Герб ліцею" className="h-16 w-auto" priority />
-                        </motion.div>
+                        <Image src={gerb} alt="Герб ліцею" className="h-16 w-auto" priority />
                         <h1 className="text-primary text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">
                             Природничо-науковий ліцей №145
                         </h1>
@@ -73,6 +70,15 @@ export default function Header() {
                             </motion.span>
                         </button>
                     </nav>
+
+                    <div className="hidden md:flex items-center gap-2">
+                        <Link href="/auth/login" className="hidden md:block rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2 px-4 hover:bg-primary hover:text-background active:scale-95 transition-all">
+                            Вхід
+                        </Link>
+                        <Link href="/auth/register" className="hidden md:block rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2 px-4 active:scale-95 transition-transform">
+                            Реєстрація
+                        </Link>
+                    </div>
                 </div>
 
                 <BurgerMenu
