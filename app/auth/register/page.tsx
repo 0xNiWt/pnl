@@ -14,7 +14,7 @@ export default function RegisterPage() {
     const [success, setSuccess] = useState(false);
 
     const isPnlEmail = email.toLowerCase().includes('kpnl145.kyiv.ua');
-
+// kpnl145.kyiv.ua
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -127,7 +127,7 @@ export default function RegisterPage() {
                                 </div>
                                 {email && !isPnlEmail && (
                                     <p className="mt-1 text-[11px] text-accent">
-                                        Email має містити домен ліцею (@kpnl.kyiv.ua)
+                                        Email має містити домен ліцею (@kpnl145.kyiv.ua)
                                     </p>
                                 )}
                             </div>
