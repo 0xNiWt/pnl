@@ -4,7 +4,7 @@ import Values from "@/components/Values";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-export default function RegisterPage() {
+export default function LitseyPage() {
     return (
         <main className="bg-background min-h-screen flex flex-col">
             <AboutHero />
@@ -13,6 +13,5 @@ export default function RegisterPage() {
             <Contact />
             <Footer />
         </main>
-      
-    )
+    );
 }
