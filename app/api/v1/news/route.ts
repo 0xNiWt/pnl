@@ -3,6 +3,7 @@ import { getCurrentUserWithRoles, canManageNews } from '@/lib/roles';
 
 function slugify(input: string) {
   return input
+    .normalize('NFC')
     .trim()
     .toLowerCase()
     .replace(/['"]/g, '')
