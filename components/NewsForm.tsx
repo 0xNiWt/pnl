@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { AlertCircle, Image as ImageIcon, Type, AlignLeft } from 'lucide-react';
+import { AlertCircle, Image as ImageIcon, Type, AlignLeft, Plus, X } from 'lucide-react';
 
 type NewsFormProps = {
     mode: 'create' | 'edit';
@@ -12,6 +12,7 @@ type NewsFormProps = {
         excerpt: string | null;
         content: string;
         cover_url: string | null;
+        images: string[] | null;
         published: boolean;
     };
 };
@@ -19,13 +20,31 @@ type NewsFormProps = {
 export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
     const router = useRouter();
 
+    const startingImages = initialData?.images && initialData.images.length > 0
+        ? initialData.images
+        : initialData?.cover_url
+            ? [initialData.cover_url]
+            : [''];
+
     const [title, setTitle] = useState(initialData?.title ?? '');
     const [excerpt, setExcerpt] = useState(initialData?.excerpt ?? '');
     const [content, setContent] = useState(initialData?.content ?? '');
-    const [coverUrl, setCoverUrl] = useState(initialData?.cover_url ?? '');
+    const [images, setImages] = useState<string[]>(startingImages);
     const [published, setPublished] = useState(initialData?.published ?? false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const updateImage = (index: number, value: string) => {
+        setImages((prev) => prev.map((img, i) => (i === index ? value : img)));
+    };
+
+    const addImageField = () => {
+        setImages((prev) => [...prev, '']);
+    };
+
+    const removeImageField = (index: number) => {
+        setImages((prev) => (prev.length === 1 ? [''] : prev.filter((_, i) => i !== index)));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -36,6 +55,8 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             const url = mode === 'create' ? '/api/v1/news' : `/api/v1/news/${newsId}`;
             const method = mode === 'create' ? 'POST' : 'PATCH';
 
+            const cleanImages = images.map((img) => img.trim()).filter(Boolean);
+
             const res = await fetch(url, {
                 method,
                 headers: { 'Content-Type': 'application/json' },
@@ -43,7 +64,8 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                     title,
                     excerpt,
                     content,
-                    coverUrl,
+                    coverUrl: cleanImages[0] ?? null,
+                    images: cleanImages,
                     published,
                 }),
             });
@@ -121,19 +143,48 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             </div>
 
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
-                    Обкладинка (URL)
-                </label>
-                <div className="relative">
-                    <ImageIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
-                    <input
-                        type="url"
-                        value={coverUrl}
-                        onChange={(e) => setCoverUrl(e.target.value)}
-                        placeholder="https://..."
-                        className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
-                    />
+                <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70">
+                        Фото (перше — обкладинка картки)
+                    </label>
+                    <button
+                        type="button"
+                        onClick={addImageField}
+                        className="flex items-center gap-1 text-xs font-semibold text-secondary hover:text-primary transition-colors"
+                    >
+                        <Plus size={14} />
+                        Додати фото
+                    </button>
                 </div>
+
+                <div className="flex flex-col gap-2">
+                    {images.map((img, index) => (
+                        <div key={index} className="relative flex items-center gap-2">
+                            <div className="relative flex-1">
+                                <ImageIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
+                                <input
+                                    type="url"
+                                    value={img}
+                                    onChange={(e) => updateImage(index, e.target.value)}
+                                    placeholder={index === 0 ? 'https://... (пряме посилання на фото)' : 'https://...'}
+                                    className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
+                                />
+                            </div>
+                            {images.length > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={() => removeImageField(index)}
+                                    className="w-9 h-9 flex-shrink-0 rounded-lg bg-accent/5 hover:bg-accent/10 flex items-center justify-center text-accent transition-colors"
+                                >
+                                    <X size={16} />
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                </div>
+                <p className="mt-1.5 text-xs text-primary/40">
+                    Посилання має вести напряму на файл зображення (.jpg, .png, .webp)
+                </p>
             </div>
 
             <label className="flex items-center gap-2 cursor-pointer select-none">

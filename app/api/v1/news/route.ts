@@ -44,11 +44,12 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { title, excerpt, content, coverUrl, published } = body as {
+  const { title, excerpt, content, coverUrl, images, published } = body as {
     title?: string;
     excerpt?: string;
     content?: string;
     coverUrl?: string;
+    images?: string[];
     published?: boolean;
   };
 
@@ -80,6 +81,7 @@ export async function POST(request: NextRequest) {
       excerpt: excerpt ?? null,
       content,
       cover_url: coverUrl ?? null,
+      images: images ?? [],
       author_id: user.id,
       published: Boolean(published),
       published_at: published ? new Date().toISOString() : null,
