@@ -1,0 +1,24 @@
+import { createClient } from './server';
+
+export type Role = 'student' | 'teacher' | 'editor' | 'owner';
+
+export async function getCurrentUserWithRoles() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { supabase, user: null, roles: [] as Role[] };
+  }
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('roles')
+    .eq('id', user.id)
+    .single();
+
+  return { supabase, user, roles: (profile?.roles ?? []) as Role[] };
+}
+
+export function canManageNews(roles: Role[]) {
+  return roles.includes('editor') || roles.includes('owner');
+}
