@@ -113,7 +113,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                 )}
 
                 <div className="flex flex-col gap-3.5 md:gap-4 text-[15px] md:text-base text-primary/80 leading-relaxed">
-                    {paragraphs.map((paragraph, i) => (
+                    {paragraphs.map((paragraph: string, i: number) => (
                         <p key={i}>{paragraph}</p>
                     ))}
                 </div>
