@@ -1,6 +1,6 @@
 import { createClient } from './server';
 
-export type Role = 'student' | 'teacher' | 'editor' | 'owner';
+export type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
 
 export async function getCurrentUserWithRoles() {
   const supabase = await createClient();
@@ -27,4 +27,26 @@ export function canManageNews(roles: Role[]) {
 // в місцях, не пов'язаних з новинами (наприклад, нарахування балів).
 export function canManagePoints(roles: Role[]) {
   return roles.includes('editor') || roles.includes('owner');
+}
+
+// Хто може заходити на сторінку керування користувачами та ролями.
+export function canManageUsers(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
+// Ролі, які можна видати іншому користувачу.
+// Овнер може видати будь-яку роль, включно з moderator та owner.
+// Модератор може видати всі ролі, окрім owner і moderator.
+export function assignableRoles(actingRoles: Role[]): Role[] {
+  if (actingRoles.includes('owner')) {
+    return ['student', 'teacher', 'editor', 'moderator', 'owner'];
+  }
+  if (actingRoles.includes('moderator')) {
+    return ['student', 'teacher', 'editor'];
+  }
+  return [];
+}
+
+export function canAssignRole(actingRoles: Role[], targetRole: Role): boolean {
+  return assignableRoles(actingRoles).includes(targetRole);
 }

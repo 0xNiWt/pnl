@@ -8,12 +8,13 @@ import {
     BarChart3, ClipboardList,
 } from 'lucide-react';
 
-type Role = 'student' | 'teacher' | 'editor' | 'owner';
+type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
 
 const ROLE_LABELS: Record<Role, string> = {
     student: 'Учень',
     teacher: 'Педагог',
     editor: 'Редактор новин',
+    moderator: 'Модератор',
     owner: 'Адміністрація',
 };
 
@@ -71,7 +72,7 @@ export default async function ProfilePage() {
                         {roles.includes('student') && <StudentSection />}
                         {roles.includes('teacher') && <TeacherSection />}
                         {roles.includes('editor') && <EditorSection />}
-                        {roles.includes('owner') && <OwnerSection />}
+                        {(roles.includes('owner') || roles.includes('moderator')) && <OwnerSection />}
                     </div>
 
                     <div className="flex flex-col gap-6">
