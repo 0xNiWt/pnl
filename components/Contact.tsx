@@ -3,7 +3,9 @@
 import { motion } from "motion/react";
 import { User, Mail, Phone } from 'lucide-react';
 
-export default function Contact() {
+type Vacancy = { id: string; title: string; url: string };
+
+export default function Contact({ vacancies = [] }: { vacancies?: Vacancy[] }) {
     const smoothOut = [0.16, 1, 0.3, 1] as const;
 
     return (
@@ -24,8 +26,18 @@ export default function Contact() {
                                 <User size={18} className="text-primary" />
                             </span>
                             <p className="text-sm text-primary/70 text-left leading-6">
-                                <a href="/vacancies/organizator" className="hover:text-primary transition-colors">1. Педагог - організатор</a><br />
-                                <a href="/vacancies/social" className="hover:text-primary transition-colors">2. Соціальний педагог</a>
+                                {vacancies.length > 0 ? (
+                                    vacancies.map((v, i) => (
+                                        <span key={v.id}>
+                                            <a href={v.url} className="hover:text-primary transition-colors">
+                                                {i + 1}. {v.title}
+                                            </a>
+                                            {i < vacancies.length - 1 && <br />}
+                                        </span>
+                                    ))
+                                ) : (
+                                    <span className="text-primary/40">Наразі вакансій немає</span>
+                                )}
                             </p>
                         </div>
                     </div>

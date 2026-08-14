@@ -114,51 +114,28 @@ export default async function ProfilePage() {
 
 function StudentSection() {
     return (
-        <>
-            <SectionCard title="Мій рейтинг" icon={<TrendingUp size={16} />}>
-                <div className="flex items-center justify-between py-2">
-                    <div>
-                        <p className="text-3xl font-grotesk font-bold text-primary">—</p>
-                        <p className="text-sm text-primary/50 mt-1">місце в рейтингу школи</p>
-                    </div>
-                    <Link
-                        href="/rating"
-                        className="text-sm font-semibold text-secondary hover:text-primary transition-colors"
-                    >
-                        Переглянути →
-                    </Link>
+        <SectionCard title="Мій рейтинг" icon={<TrendingUp size={16} />}>
+            <div className="flex items-center justify-between py-2">
+                <div>
+                    <p className="text-3xl font-grotesk font-bold text-primary">—</p>
+                    <p className="text-sm text-primary/50 mt-1">місце в рейтингу школи</p>
                 </div>
-                <div className="pt-3 mt-1 border-t border-primary/10">
-                    <QuickAction label="За що нараховано бали" href="/profile/rating/history" />
-                </div>
-            </SectionCard>
-
-            <SectionCard title="Оцінки за останній тиждень" icon={<GraduationCap size={16} />}>
-                <p className="text-sm text-primary/50 py-4 text-center">
-                    Дані з&apos;являться після підключення журналу оцінок
-                </p>
-            </SectionCard>
-        </>
+                <Link
+                    href="/rating"
+                    className="text-sm font-semibold text-secondary hover:text-primary transition-colors"
+                >
+                    Переглянути →
+                </Link>
+            </div>
+            <div className="pt-3 mt-1 border-t border-primary/10">
+                <QuickAction label="За що нараховано бали" href="/profile/rating/history" />
+            </div>
+        </SectionCard>
     );
 }
 
 function TeacherSection() {
-    return (
-        <>
-            <SectionCard title="Мої класи" icon={<Users size={16} />}>
-                <p className="text-sm text-primary/50 py-4 text-center">
-                    Список класів з&apos;явиться після налаштування журналу
-                </p>
-            </SectionCard>
-
-            <SectionCard title="Швидкі дії" icon={<ClipboardList size={16} />}>
-                <div className="flex flex-col gap-2">
-                    <QuickAction label="Виставити оцінки" href="/profile/grades" />
-                    <QuickAction label="Розклад дзвінків" href="/profile/schedule" />
-                </div>
-            </SectionCard>
-        </>
-    );
+    return null;
 }
 
 function EditorSection() {
@@ -192,7 +169,6 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Користувачі та ролі" href="/profile/users" icon={<Users size={15} />} />
                     <QuickAction label="Налаштування рейтингу" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
-                    <QuickAction label="Педагоги" href="/profile/staff" icon={<Settings size={15} />} />
                 </div>
             </SectionCard>
         </>
