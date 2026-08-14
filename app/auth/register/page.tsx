@@ -8,10 +8,16 @@ export default function RegisterPage() {
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [classGrade, setClassGrade] = useState('');
+    const [classLetter, setClassLetter] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
+
+    const CLASS_GRADES = ['7', '8', '9', '10', '11', '12'];
+    const CLASS_LETTERS = ['А', 'Б', 'В'];
+    const studentClass = classGrade && classLetter ? `${classGrade}-${classLetter}` : '';
 
     const isPnlEmail = email.toLowerCase().includes('kpnl145.kyiv.ua');
 // kpnl145.kyiv.ua
@@ -23,6 +29,11 @@ export default function RegisterPage() {
             return;
         }
 
+        if (!studentClass) {
+            setError('Оберіть клас зі списку');
+            return;
+        }
+
         setError('');
         setLoading(true);
 
@@ -30,7 +41,7 @@ export default function RegisterPage() {
             const res = await fetch('/api/v1/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, fullName }),
+                body: JSON.stringify({ email, password, fullName, studentClass }),
             });
 
             const data = await res.json();
@@ -130,6 +141,36 @@ export default function RegisterPage() {
                                         Email має містити домен ліцею (@kpnl145.kyiv.ua)
                                     </p>
                                 )}
+                            </div>
+
+                            <div>
+                                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                    Клас <span className="text-accent">*</span>
+                                </label>
+                                <div className="flex gap-3">
+                                    <select
+                                        required
+                                        value={classGrade}
+                                        onChange={(e) => setClassGrade(e.target.value)}
+                                        className="w-1/2 rounded-xl border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
+                                    >
+                                        <option value="" disabled>Клас</option>
+                                        {CLASS_GRADES.map((g) => (
+                                            <option key={g} value={g}>{g} клас</option>
+                                        ))}
+                                    </select>
+                                    <select
+                                        required
+                                        value={classLetter}
+                                        onChange={(e) => setClassLetter(e.target.value)}
+                                        className="w-1/2 rounded-xl border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
+                                    >
+                                        <option value="" disabled>Літера</option>
+                                        {CLASS_LETTERS.map((l) => (
+                                            <option key={l} value={l}>{l}</option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
 
                             <div>
