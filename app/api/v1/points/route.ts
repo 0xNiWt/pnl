@@ -98,10 +98,22 @@ export async function POST(request: NextRequest) {
 
   const createdAt = new Date().toISOString();
 
-  const rows =
+  type PointTransactionInsert = {
+    target: 'student' | 'class';
+    student_id: string | null;
+    class_name: string | null;
+    category: string;
+    points: number;
+    explanation: string;
+    situation_id: string | null;
+    created_by: string;
+    created_at: string;
+  };
+
+  const rows: PointTransactionInsert[] =
     target === 'student'
       ? ids.map((id) => ({
-          target: 'student' as const,
+          target: 'student',
           student_id: id,
           class_name: null,
           category,
@@ -113,9 +125,9 @@ export async function POST(request: NextRequest) {
         }))
       : [
           {
-            target: 'class' as const,
+            target: 'class',
             student_id: null,
-            class_name: className,
+            class_name: className ?? null,
             category,
             points,
             explanation: explanation.trim(),
