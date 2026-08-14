@@ -36,6 +36,21 @@ export default async function ProfilePage() {
         ? new Date(profile.created_at).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
         : null;
 
+    let ownerStats: { students: number; teachers: number; news: number } | null = null;
+    if (roles.includes('owner') || roles.includes('moderator')) {
+        const [studentsRes, teachersRes, newsRes] = await Promise.all([
+            supabase.from('profiles').select('id', { count: 'exact', head: true }).contains('roles', ['student']),
+            supabase.from('profiles').select('id', { count: 'exact', head: true }).contains('roles', ['teacher']),
+            supabase.from('news').select('id', { count: 'exact', head: true }).eq('published', true),
+        ]);
+
+        ownerStats = {
+            students: studentsRes.count ?? 0,
+            teachers: teachersRes.count ?? 0,
+            news: newsRes.count ?? 0,
+        };
+    }
+
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-5xl mx-auto px-5 py-10 md:py-16">
@@ -72,7 +87,7 @@ export default async function ProfilePage() {
                         {roles.includes('student') && <StudentSection />}
                         {roles.includes('teacher') && <TeacherSection />}
                         {roles.includes('editor') && <EditorSection />}
-                        {(roles.includes('owner') || roles.includes('moderator')) && <OwnerSection />}
+                        {(roles.includes('owner') || roles.includes('moderator')) && <OwnerSection stats={ownerStats} />}
                     </div>
 
                     <div className="flex flex-col gap-6">
@@ -160,14 +175,14 @@ function EditorSection() {
     );
 }
 
-function OwnerSection() {
+function OwnerSection({ stats }: { stats: { students: number; teachers: number; news: number } | null }) {
     return (
         <>
             <SectionCard title="Огляд системи" icon={<BarChart3 size={16} />}>
                 <div className="grid grid-cols-3 gap-4 py-2">
-                    <MiniStat value="—" label="учнів" />
-                    <MiniStat value="—" label="вчителів" />
-                    <MiniStat value="—" label="новин" />
+                    <MiniStat value={stats ? String(stats.students) : "—"} label="учнів" />
+                    <MiniStat value={stats ? String(stats.teachers) : "—"} label="вчителів" />
+                    <MiniStat value={stats ? String(stats.news) : "—"} label="новин" />
                 </div>
             </SectionCard>
 
