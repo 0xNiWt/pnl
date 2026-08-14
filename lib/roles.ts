@@ -22,3 +22,9 @@ export async function getCurrentUserWithRoles() {
 export function canManageNews(roles: Role[]) {
   return roles.includes('editor') || roles.includes('owner');
 }
+
+// Той самий набір прав, що й canManageNews — окрема назва для читабельності
+// в місцях, не пов'язаних з новинами (наприклад, нарахування балів).
+export function canManagePoints(roles: Role[]) {
+  return roles.includes('editor') || roles.includes('owner');
+}

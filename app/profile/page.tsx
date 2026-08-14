@@ -171,7 +171,7 @@ function OwnerSection() {
                 <div className="flex flex-col gap-2">
                     <QuickAction label="Керування новинами" href="/profile/news" icon={<Newspaper size={15} />} />
                     <QuickAction label="Користувачі та ролі" href="/profile/users" icon={<Users size={15} />} />
-                    <QuickAction label="Налаштування рейтингу" href="/profile/rating-settings" icon={<TrendingUp size={15} />} />
+                    <QuickAction label="Налаштування рейтингу" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
                     <QuickAction label="Педагоги" href="/profile/staff" icon={<Settings size={15} />} />
                 </div>
