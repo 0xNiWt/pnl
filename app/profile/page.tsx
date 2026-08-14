@@ -112,6 +112,9 @@ function StudentSection() {
                         Переглянути →
                     </Link>
                 </div>
+                <div className="pt-3 mt-1 border-t border-primary/10">
+                    <QuickAction label="За що нараховано бали" href="/profile/rating/history" />
+                </div>
             </SectionCard>
 
             <SectionCard title="Оцінки за останній тиждень" icon={<GraduationCap size={16} />}>
