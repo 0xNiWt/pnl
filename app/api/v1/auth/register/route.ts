@@ -63,15 +63,22 @@ export async function POST(request: NextRequest) {
     }
 
     // Профіль створюється автоматично тригером бази даних одразу після
-    // реєстрації в auth.users, тож тут його вже можна оновити класом.
+    // реєстрації в auth.users. Клас записуємо через окрему SQL-функцію
+    // (а не прямим update), бо одразу після signUp сесії користувача ще
+    // може не бути (якщо потрібне підтвердження пошти) — а без сесії RLS
+    // не дозволив би прямий update.
     if (data.user) {
-      const { error: classError } = await supabase
-        .from('profiles')
-        .update({ class: studentClass })
-        .eq('id', data.user.id)
+      const { error: classError } = await supabase.rpc('set_profile_class', {
+        p_user_id: data.user.id,
+        p_class: studentClass,
+      })
 
       if (classError) {
         console.error('Failed to set class on profile:', classError)
+        return NextResponse.json(
+          { error: 'Акаунт створено, але не вдалося зберегти клас. Зверніться до адміністратора.' },
+          { status: 500 }
+        )
       }
     }
 
