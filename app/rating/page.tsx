@@ -1,4 +1,4 @@
-import Contact from "@/components/Contact";
+import ContactWithData from "@/components/ContactWithData";
 import Footer from "@/components/Footer";
 import RatingBoard from "@/components/RatingBoard";
 
@@ -23,7 +23,7 @@ export default function RatingPage() {
             <RatingBoard />
 
             <div className="mt-auto">
-                <Contact />
+                <ContactWithData />
                 <Footer />
             </div>
         </main>

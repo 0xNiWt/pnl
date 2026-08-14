@@ -36,6 +36,17 @@ export default async function ProfilePage() {
         ? new Date(profile.created_at).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
         : null;
 
+    let pointsBalance = 0;
+    if (roles.includes('student')) {
+        const { data: transactions } = await supabase
+            .from('point_transactions')
+            .select('points')
+            .eq('target', 'student')
+            .eq('student_id', user.id);
+
+        pointsBalance = (transactions ?? []).reduce((sum, t) => sum + (t.points ?? 0), 0);
+    }
+
     let ownerStats: { students: number; teachers: number; news: number } | null = null;
     if (roles.includes('owner') || roles.includes('moderator')) {
         const [studentsRes, teachersRes, newsRes] = await Promise.all([
@@ -75,7 +86,7 @@ export default async function ProfilePage() {
                                 Баланс
                             </p>
                             <p className="text-lg font-grotesk font-bold text-primary leading-none mt-0.5">
-                                0 <span className="text-sm font-normal text-primary/50">балів</span>
+                                {pointsBalance} <span className="text-sm font-normal text-primary/50">балів</span>
                             </p>
                         </div>
                     </div>

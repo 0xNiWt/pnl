@@ -1,8 +1,10 @@
 import AboutHero from "@/components/AboutHero";
 import History from "@/components/History";
 import Values from "@/components/Values";
-import Contact from "@/components/Contact";
+import ContactWithData from "@/components/ContactWithData";
 import Footer from "@/components/Footer";
+
+export const dynamic = 'force-dynamic';
 
 export default function RegisterPage() {
     return (
@@ -10,7 +12,7 @@ export default function RegisterPage() {
             <AboutHero />
             <History />
             <Values />
-            <Contact />
+            <ContactWithData />
             <Footer />
         </main>
       

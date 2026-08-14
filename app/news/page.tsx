@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/server';
 import NewsHero from '@/components/NewsHero';
 import NewsListWithFilter from '@/components/NewsListWithFilter';
-import Contact from '@/components/Contact';
+import ContactWithData from '@/components/ContactWithData';
 import Footer from '@/components/Footer';
 
 export const dynamic = 'force-dynamic';
@@ -23,7 +23,7 @@ export default async function NewsPage() {
                 <NewsListWithFilter initialNews={news ?? []} />
             </section>
 
-            <Contact />
+            <ContactWithData />
             <Footer />
         </main>
     );

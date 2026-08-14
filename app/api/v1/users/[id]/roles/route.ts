@@ -64,15 +64,15 @@ export async function PATCH(
     newRoles = currentRoles.filter((r) => r !== role);
   }
 
-  const { error: updateError } = await supabase
-    .from('profiles')
-    .update({ roles: newRoles })
-    .eq('id', targetUserId);
+  const { data: updatedRoles, error: updateError } = await supabase.rpc('set_user_roles', {
+    p_target_user_id: targetUserId,
+    p_new_roles: newRoles,
+  });
 
   if (updateError) {
     console.error('Role update error:', updateError);
-    return NextResponse.json({ error: 'Не вдалося оновити ролі' }, { status: 500 });
+    return NextResponse.json({ error: `Не вдалося оновити ролі: ${updateError.message}` }, { status: 500 });
   }
 
-  return NextResponse.json({ roles: newRoles }, { status: 200 });
+  return NextResponse.json({ roles: updatedRoles }, { status: 200 });
 }
