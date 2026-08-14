@@ -26,6 +26,9 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
             const res = await fetch(`/api/v1/news/${id}`, { method: 'DELETE' });
             if (res.ok) {
                 router.refresh();
+            } else {
+                const data = await res.json().catch(() => null);
+                alert(data?.error ?? `Не вдалося видалити новину (код ${res.status})`);
             }
         } finally {
             setPendingId(null);

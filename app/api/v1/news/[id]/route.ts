@@ -91,10 +91,21 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
     return NextResponse.json({ error: 'Недостатньо прав' }, { status: 403 });
   }
 
-  const { error } = await supabase.from('news').delete().eq('id', id);
+  const { data: deleted, error } = await supabase
+    .from('news')
+    .delete()
+    .eq('id', id)
+    .select('id');
 
   if (error) {
-    return NextResponse.json({ error: 'Не вдалося видалити новину' }, { status: 500 });
+    return NextResponse.json({ error: `Не вдалося видалити новину: ${error.message}` }, { status: 500 });
+  }
+
+  if (!deleted || deleted.length === 0) {
+    return NextResponse.json(
+      { error: 'Видалення заблоковано правами доступу або новину вже видалено' },
+      { status: 403 }
+    );
   }
 
   return NextResponse.json({ ok: true });
