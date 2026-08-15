@@ -3,10 +3,12 @@ import Link from 'next/link';
 import { createClient } from '@/lib/server';
 import LogoutButton from '@/components/LogoutButton';
 import { positionLabel } from '@/lib/positions';
+import { canCreatePolls } from '@/lib/voting';
 import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
     Coins, TrendingUp, FileEdit, Settings,
     BarChart3, ClipboardList, Award, GraduationCap, Trophy,
+    Vote, Plus,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -33,6 +35,9 @@ export default async function ProfilePage() {
 
     const roles = (profile?.roles ?? ['student']) as Role[];
     const positions = (profile?.positions ?? []) as string[];
+    // Право створювати голосування дають посади (староста, представник РСЛ, ПРСЛ),
+    // а не окремі ролі — див. lib/voting.ts.
+    const mayCreatePolls = canCreatePolls(positions, roles);
     const roleLabelText = roles.map((r) => ROLE_LABELS[r]).join(' · ');
     const joinedDate = profile?.created_at
         ? new Date(profile.created_at).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -98,6 +103,9 @@ export default async function ProfilePage() {
 
                     <div className="flex flex-col gap-6">
                         {roles.includes('student') && <StudentSection />}
+                        {(roles.includes('student') || mayCreatePolls) && (
+                            <VotesSection mayCreate={mayCreatePolls} />
+                        )}
                         {roles.includes('teacher') && <TeacherSection />}
                         {roles.includes('editor') && <EditorSection />}
                         {(roles.includes('owner') || roles.includes('moderator')) && <OwnerSection stats={ownerStats} />}
@@ -156,6 +164,31 @@ function StudentSection() {
 
             <div className="pt-3 mt-1 border-t border-primary/10">
                 <QuickAction label="За що нараховано бали" href="/profile/rating/history" />
+            </div>
+        </SectionCard>
+    );
+}
+
+function VotesSection({ mayCreate }: { mayCreate: boolean }) {
+    return (
+        <SectionCard title="Голосування" icon={<Vote size={16} />}>
+            <p className="text-sm text-primary/60 mb-4">
+                Голосування класу та ліцею. Створювати їх можуть староста, представник РСЛ
+                і ПРСЛ.
+            </p>
+            <div className="flex flex-col gap-2">
+                <QuickAction
+                    label="Переглянути голосування"
+                    href="/profile/votes"
+                    icon={<Vote size={15} />}
+                />
+                {mayCreate && (
+                    <QuickAction
+                        label="Створити голосування"
+                        href="/profile/votes/new"
+                        icon={<Plus size={15} />}
+                    />
+                )}
             </div>
         </SectionCard>
     );
