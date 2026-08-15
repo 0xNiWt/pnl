@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scrollbar-gutter: stable;
+}
+
 @theme {
   --font-bebas: var(--font-bebas-neue);
   --font-grotesk: var(--font-space-grotesk);
