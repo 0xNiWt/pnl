@@ -3,23 +3,25 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles, canManageUsers } from '@/lib/roles';
-import UsersRoleManager from '@/components/UsersRoleManager';
+import ClassRoster from '@/components/ClassRoster';
 
-export default async function UsersEdit() {
+export default async function StudentsListPage() {
     const { user, roles } = await getCurrentUserWithRoles();
 
     if (!user) redirect('/auth/login');
     if (!canManageUsers(roles)) redirect('/profile');
 
     const supabase = await createClient();
-    const { data: profiles } = await supabase
+    const { data: profiles, error } = await supabase
         .from('profiles')
-        .select('id, full_name, roles, created_at')
-        .order('created_at', { ascending: false });
+        .select('id, full_name, class, positions')
+        .contains('roles', ['student'])
+        .order('full_name', { ascending: true });
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-5xl mx-auto px-5 py-10 md:py-16">
+
                 <Link
                     href="/profile"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
@@ -34,20 +36,22 @@ export default async function UsersEdit() {
                         Огляд системи
                     </span>
                     <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
-                        Управління ролями
+                        Весь список учнів
                     </h1>
                     <p className="text-sm text-primary/50 mt-2 max-w-2xl">
-                        Ролі відповідають за права доступу в системі. Посади активу
-                        (староста, фізорг, ПРСЛ тощо) призначаються окремо — на сторінці
-                        «Учні та посади».
+                        Учні згруповані за класами. Біля імені — посада в активі, якщо вона є.
+                        Щоб призначити або зняти посаду, відкрий «Учні та посади» в блоці
+                        «Керування».
                     </p>
                 </div>
 
-                <UsersRoleManager
-                    currentUserId={user.id}
-                    actingRoles={roles}
-                    initialProfiles={profiles ?? []}
-                />
+                {error ? (
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                        Не вдалося завантажити список: {error.message}
+                    </div>
+                ) : (
+                    <ClassRoster profiles={profiles ?? []} />
+                )}
             </div>
         </main>
     );

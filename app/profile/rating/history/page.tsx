@@ -21,7 +21,7 @@ export default async function MyPointsHistoryPage() {
 
     const { data: transactions, error } = await supabase
         .from('point_transactions')
-        .select('id, category, points, explanation, created_at')
+        .select('id, category, points, explanation, coefficient, event_title, event_budget, created_at')
         .eq('target', 'student')
         .eq('student_id', user.id)
         .order('created_at', { ascending: false });
@@ -81,12 +81,32 @@ export default async function MyPointsHistoryPage() {
                                 className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5 flex items-start justify-between gap-4"
                             >
                                 <div>
-                                    <span className="inline-block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-secondary mb-1.5">
-                                        {CATEGORY_LABELS[t.category as PointCategory] ?? t.category}
-                                    </span>
+                                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                                        <span className="inline-block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-secondary">
+                                            {CATEGORY_LABELS[t.category as PointCategory] ?? t.category}
+                                        </span>
+                                        {t.event_title && (
+                                            <span className="inline-block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/45">
+                                                · {t.event_title}
+                                            </span>
+                                        )}
+                                        {t.coefficient && (
+                                            <span
+                                                title="Рівень залученості за п. 12.2.3.3 Статуту"
+                                                className="inline-block rounded-full bg-accent/15 text-accent text-[11px] font-grotesk font-bold px-2 py-0.5"
+                                            >
+                                                К = {t.coefficient}
+                                            </span>
+                                        )}
+                                    </div>
                                     <p className="text-sm font-medium text-primary">
                                         {t.explanation}
                                     </p>
+                                    {t.event_budget !== null && t.event_budget !== undefined && (
+                                        <p className="text-xs text-primary/40 mt-1">
+                                            Із загального бюджету заходу — {t.event_budget} балів
+                                        </p>
+                                    )}
                                     <p className="text-xs text-primary/40 mt-1.5">
                                         {new Date(t.created_at).toLocaleDateString('uk-UA', {
                                             day: 'numeric',

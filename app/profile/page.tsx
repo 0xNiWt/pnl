@@ -2,10 +2,11 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/server';
 import LogoutButton from '@/components/LogoutButton';
+import { positionLabel } from '@/lib/positions';
 import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
-    GraduationCap, Coins, TrendingUp, FileEdit, Settings,
-    BarChart3, ClipboardList,
+    Coins, TrendingUp, FileEdit, Settings,
+    BarChart3, ClipboardList, Award,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -26,11 +27,12 @@ export default async function ProfilePage() {
 
     const { data: profile } = await supabase
         .from('profiles')
-        .select('full_name, roles, created_at')
+        .select('full_name, roles, positions, created_at')
         .eq('id', user.id)
         .single();
 
     const roles = (profile?.roles ?? ['student']) as Role[];
+    const positions = (profile?.positions ?? []) as string[];
     const roleLabelText = roles.map((r) => ROLE_LABELS[r]).join(' · ');
     const joinedDate = profile?.created_at
         ? new Date(profile.created_at).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -110,6 +112,19 @@ export default async function ProfilePage() {
                                 <ProfileRow icon={<User className="w-4 h-4" />} label="Повне ім'я" value={profile?.full_name || '—'} />
                                 <ProfileRow icon={<Mail className="w-4 h-4" />} label="Email" value={user.email ?? '—'} />
                                 <ProfileRow icon={<ShieldCheck className="w-4 h-4" />} label="Ролі" value={roleLabelText} />
+                                {/* Посаду показуємо учням (навіть якщо її ще нема)
+                                    та будь-кому, у кого вона є. */}
+                                {(roles.includes('student') || positions.length > 0) && (
+                                    <ProfileRow
+                                        icon={<Award className="w-4 h-4" />}
+                                        label="Посада в активі"
+                                        value={
+                                            positions.length > 0
+                                                ? positions.map((id) => positionLabel(id)).join(' · ')
+                                                : 'Немає'
+                                        }
+                                    />
+                                )}
                                 {joinedDate && (
                                     <ProfileRow icon={<Calendar className="w-4 h-4" />} label="Реєстрація" value={joinedDate} />
                                 )}
@@ -138,6 +153,7 @@ function StudentSection() {
                     Переглянути →
                 </Link>
             </div>
+
             <div className="pt-3 mt-1 border-t border-primary/10">
                 <QuickAction label="За що нараховано бали" href="/profile/rating/history" />
             </div>
@@ -172,12 +188,16 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <MiniStat value={stats ? String(stats.teachers) : "—"} label="вчителів" />
                     <MiniStat value={stats ? String(stats.news) : "—"} label="новин" />
                 </div>
+                <div className="pt-3 mt-1 border-t border-primary/10">
+                    <QuickAction label="Весь список учнів" href="/profile/students/list" icon={<Users size={15} />} />
+                </div>
             </SectionCard>
 
             <SectionCard title="Керування" icon={<Settings size={16} />}>
                 <div className="flex flex-col gap-2">
+                    <QuickAction label="Управління ролями" href="/profile/users" icon={<ShieldCheck size={15} />} />
+                    <QuickAction label="Учні та посади" href="/profile/students" icon={<Award size={15} />} />
                     <QuickAction label="Керування новинами" href="/profile/news" icon={<Newspaper size={15} />} />
-                    <QuickAction label="Користувачі та ролі" href="/profile/users" icon={<Users size={15} />} />
                     <QuickAction label="Налаштування рейтингу" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
                 </div>
