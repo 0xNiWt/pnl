@@ -170,6 +170,10 @@ export async function POST(request: NextRequest) {
     const clean: CoefficientParticipant[] = [];
     const seen = new Set<string>();
 
+    // Категорія та пояснення — свої для кожного учня. Якщо для когось
+    // не вказали, беремо загальні по заходу.
+    const meta = new Map<string, { category: string; explanation: string }>();
+
     for (const p of participants) {
       const studentId = p?.studentId;
       const coefficient = p?.coefficient;
@@ -187,8 +191,22 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Один учень доданий двічі' }, { status: 400 });
       }
 
+      const ownCategory = typeof p?.category === 'string' && p.category ? p.category : category;
+      if (!CATEGORIES.includes(ownCategory)) {
+        return NextResponse.json(
+          { error: 'Невідома категорія балів в одного з учасників' },
+          { status: 400 }
+        );
+      }
+
+      const ownExplanation =
+        typeof p?.explanation === 'string' && p.explanation.trim()
+          ? p.explanation.trim()
+          : explanation;
+
       seen.add(studentId);
       clean.push({ studentId, coefficient });
+      meta.set(studentId, { category: ownCategory, explanation: ownExplanation });
     }
 
     // Рахуємо саме тут, на сервері: те, що прислав браузер,
@@ -196,20 +214,24 @@ export async function POST(request: NextRequest) {
     const { shares } = distributeByCoefficients(eventBudget, clean);
     const budget = Math.round(eventBudget);
 
-    rows = shares.map((s) => ({
-      target: 'student' as const,
-      student_id: s.studentId,
-      class_name: null,
-      category,
-      points: s.points,
-      explanation: `${eventTitle} — ${explanation} (К = ${s.coefficient}, бюджет заходу ${budget} балів)`,
-      situation_id: situationId,
-      coefficient: s.coefficient,
-      event_title: eventTitle,
-      event_budget: budget,
-      created_by: user.id,
-      created_at: createdAt,
-    }));
+    rows = shares.map((s) => {
+      const own = meta.get(s.studentId) ?? { category, explanation };
+
+      return {
+        target: 'student' as const,
+        student_id: s.studentId,
+        class_name: null,
+        category: own.category,
+        points: s.points,
+        explanation: `${eventTitle} — ${own.explanation} (К = ${s.coefficient}, бюджет заходу ${budget} балів)`,
+        situation_id: situationId,
+        coefficient: s.coefficient,
+        event_title: eventTitle,
+        event_budget: budget,
+        created_by: user.id,
+        created_at: createdAt,
+      };
+    });
   }
 
   const { data, error } = await supabase.from('point_transactions').insert(rows).select();

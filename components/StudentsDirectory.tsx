@@ -8,6 +8,7 @@ import {
     compareClasses,
     isLyceumPosition,
     parallelOf,
+    positionIdsMatching,
     positionLabel,
     positionsByScope,
     type PositionScope,
@@ -63,11 +64,19 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
         return Array.from(set).sort(compareClasses);
     }, [profiles, parallel]);
 
+    // Посади, назви яких підходять під пошуковий запит: «старост» → Староста,
+    // Заступник старости. Завдяки цьому пошук працює і за посадою, не лише за іменем.
+    const queryPositions = useMemo(() => new Set(positionIdsMatching(query)), [query]);
+
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
 
         return profiles.filter((p) => {
-            if (q && !(p.full_name ?? '').toLowerCase().includes(q)) return false;
+            if (q) {
+                const byName = (p.full_name ?? '').toLowerCase().includes(q);
+                const byPosition = (p.positions ?? []).some((id) => queryPositions.has(id));
+                if (!byName && !byPosition) return false;
+            }
             if (parallel !== ALL && parallelOf(p.class) !== parallel) return false;
             if (className !== ALL && p.class !== className) return false;
 
@@ -77,7 +86,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
 
             return true;
         });
-    }, [profiles, query, parallel, className, position]);
+    }, [profiles, query, queryPositions, parallel, className, position]);
 
     const withPositions = useMemo(
         () => profiles.filter((p) => (p.positions ?? []).length > 0).length,
@@ -203,7 +212,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                             <input
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
-                                placeholder="Пошук за прізвищем або іменем..."
+                                placeholder="Пошук за іменем або посадою: «Іваненко», «староста», «фізорг»..."
                                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
                             />
                         </div>

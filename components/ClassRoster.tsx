@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Search, Users } from 'lucide-react';
-import { compareClasses, parallelOf, positionLabel } from '@/lib/positions';
+import { compareClasses, parallelOf, positionIdsMatching, positionLabel } from '@/lib/positions';
 
 type Profile = {
     id: string;
@@ -16,15 +16,21 @@ const NO_CLASS = 'Клас не вказано';
 export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
     const [query, setQuery] = useState('');
 
+    // Посади, назви яких підходять під запит: «старост» → Староста,
+    // Заступник старости. Пошук працює за іменем, класом і посадою.
+    const queryPositions = useMemo(() => new Set(positionIdsMatching(query)), [query]);
+
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
         if (!q) return profiles;
+
         return profiles.filter(
             (p) =>
                 (p.full_name ?? '').toLowerCase().includes(q) ||
-                (p.class ?? '').toLowerCase().includes(q)
+                (p.class ?? '').toLowerCase().includes(q) ||
+                (p.positions ?? []).some((id) => queryPositions.has(id))
         );
-    }, [profiles, query]);
+    }, [profiles, query, queryPositions]);
 
     // Групуємо за класами. Учні без класу — окремою групою в кінці.
     const groups = useMemo(() => {
@@ -69,7 +75,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                     <input
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Пошук за іменем або класом..."
+                        placeholder="Пошук за іменем, класом або посадою: «10-А», «староста»..."
                         className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
                     />
                 </div>

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { ArrowLeftRight, Search } from 'lucide-react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
+import { ArrowLeftRight, Search, Info } from 'lucide-react';
+import { RATING_LABELS, type RatingKind } from '@/lib/ratings';
 
 type Scope = 'student' | 'class';
-type View = 'points' | 'ranked';
 
 type PointCategory = 'sport' | 'creative' | 'organizational' | 'intellectual' | 'volunteer';
 
@@ -24,25 +24,49 @@ const CATEGORY_ORDER: PointCategory[] = [
     'volunteer',
 ];
 
+const RATING_ORDER: RatingKind[] = ['points', 'academic', 'olympiad', 'overall'];
+
+const RATING_HINTS: Record<RatingKind, string> = {
+    points: 'Сума балів за п\'ятьма категоріями активності (п. 10.7.2 Статуту).',
+    academic: 'За середнім навчальним балом за підсумками семестру (п. 10.7.2).',
+    olympiad: 'За сумою здобутків на предметних олімпіадах та МАН (п. 10.7.2).',
+    overall:
+        'Сума місць за трьома попередніми рейтингами. Найменша сума — найвище місце (пп. 10.7.4, 10.11.5).',
+};
+
 type CategoryPoints = Record<PointCategory, number>;
 
-type StudentRow = {
+type Places = { points: number; academic: number; olympiad: number; overall: number };
+
+type BaseRow = {
+    categories: CategoryPoints;
+    total_points: number;
+    academic_score: number | null;
+    olympiad_points: number;
+    places: Places;
+    overall_sum: number;
+};
+
+type StudentRow = BaseRow & {
     student_id: string;
     full_name: string;
     class: string | null;
-    categories: CategoryPoints;
-    total_points: number;
 };
 
-type ClassRow = {
+type ClassRow = BaseRow & {
     class_name: string;
-    categories: CategoryPoints;
-    total_points: number;
+    students_count: number;
 };
+
+type Row = StudentRow | ClassRow;
+
+function isStudent(row: Row): row is StudentRow {
+    return 'student_id' in row;
+}
 
 export default function RatingBoard() {
     const [scope, setScope] = useState<Scope>('student');
-    const [view, setView] = useState<View>('points');
+    const [rating, setRating] = useState<RatingKind>('points');
     const [search, setSearch] = useState('');
     const [studentRows, setStudentRows] = useState<StudentRow[]>([]);
     const [classRows, setClassRows] = useState<ClassRow[]>([]);
@@ -69,10 +93,22 @@ export default function RatingBoard() {
         return () => clearTimeout(timeout);
     }, [scope, search, load]);
 
-    const rows = scope === 'student' ? studentRows : classRows;
-    // У режимі "лише бали" показуємо 5 колонок категорій + разом.
-    // У режимі "рейтинг з місцем" — тільки місце + загальна сума (бо рейтинг рахується по сумі).
-    const colCount = view === 'points' ? (scope === 'student' ? 7 : 6) : 3;
+    // Місця приходять з сервера порахованими по всьому ліцею —
+    // тут лише сортуємо за обраним рейтингом.
+    const rows = useMemo<Row[]>(() => {
+        const source: Row[] = scope === 'student' ? studentRows : classRows;
+        return [...source].sort((a, b) => {
+            const diff = a.places[rating] - b.places[rating];
+            if (diff !== 0) return diff;
+            const an = isStudent(a) ? a.full_name : a.class_name;
+            const bn = isStudent(b) ? b.full_name : b.class_name;
+            return an.localeCompare(bn, 'uk');
+        });
+    }, [scope, rating, studentRows, classRows]);
+
+    // Скільки колонок займає таблиця — потрібно для рядка «Завантаження...».
+    // № + назва + (клас або к-сть учнів) = 3, далі залежить від рейтингу.
+    const colCount = rating === 'points' ? 9 : rating === 'overall' ? 7 : 4;
 
     return (
         <section className="max-w-6xl mx-auto px-5 md:px-6 py-8 md:py-12">
@@ -97,41 +133,59 @@ export default function RatingBoard() {
                 </div>
             </div>
 
-            {/* Перемикач лише бали / рейтинг з місцем */}
-            <div className="inline-flex rounded-full border border-primary/15 p-1 mb-6">
-                <button
-                    onClick={() => setView('points')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${view === 'points' ? 'bg-primary text-background' : 'text-primary/60'
-                        }`}
-                >
-                    Лише бали
-                </button>
-                <button
-                    onClick={() => setView('ranked')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${view === 'ranked' ? 'bg-primary text-background' : 'text-primary/60'
-                        }`}
-                >
-                    Рейтинг (з місцем)
-                </button>
+            {/* Чотири рейтинги за пп. 10.7 та 10.11 Статуту */}
+            <div className="flex flex-wrap gap-1.5 mb-3">
+                {RATING_ORDER.map((kind) => (
+                    <button
+                        key={kind}
+                        onClick={() => setRating(kind)}
+                        className={`px-4 py-1.5 rounded-full border text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${rating === kind
+                            ? 'bg-primary text-background border-primary'
+                            : 'border-primary/15 text-primary/60 hover:bg-primary/5'
+                            }`}
+                    >
+                        {RATING_LABELS[kind]}
+                    </button>
+                ))}
             </div>
+
+            <p className="flex items-start gap-2 text-xs text-primary/50 mb-6 max-w-2xl">
+                <Info size={14} className="shrink-0 mt-0.5 text-secondary" />
+                {RATING_HINTS[rating]}
+            </p>
 
             <div className="border border-primary/10 rounded-2xl overflow-x-auto bg-white/40">
                 <table className="w-full text-sm">
                     <thead>
                         <tr className="bg-primary/5 text-left font-grotesk text-xs uppercase tracking-wide text-primary/60">
-                            {view === 'ranked' && <th className="px-4 py-3 w-14">№</th>}
+                            <th className="px-4 py-3 w-14">№</th>
                             <th className="px-4 py-3">{scope === 'student' ? 'ПІБ' : 'Клас'}</th>
-                            {scope === 'student' && view === 'points' && (
-                                <th className="px-4 py-3 w-20">Клас</th>
-                            )}
-                            {view === 'points' &&
+                            {scope === 'student' && <th className="px-4 py-3 w-20">Клас</th>}
+                            {scope === 'class' && <th className="px-4 py-3 w-20 text-right">Учнів</th>}
+
+                            {rating === 'points' &&
                                 CATEGORY_ORDER.map((cat) => (
                                     <th key={cat} className="px-3 py-3 w-20 text-right">
                                         {CATEGORY_LABELS[cat]}
                                     </th>
                                 ))}
-                            <th className="px-4 py-3 w-24 text-right">
-                                {view === 'ranked' ? 'Σ місце' : 'Разом'}
+
+                            {rating === 'overall' && (
+                                <>
+                                    <th className="px-3 py-3 w-24 text-right">Навч.</th>
+                                    <th className="px-3 py-3 w-24 text-right">Олімп.</th>
+                                    <th className="px-3 py-3 w-24 text-right">Бали</th>
+                                </>
+                            )}
+
+                            <th className="px-4 py-3 w-28 text-right">
+                                {rating === 'points'
+                                    ? 'Разом'
+                                    : rating === 'academic'
+                                        ? 'Середній бал'
+                                        : rating === 'olympiad'
+                                            ? 'Олімп. бали'
+                                            : 'Σ місць'}
                             </th>
                         </tr>
                     </thead>
@@ -153,50 +207,72 @@ export default function RatingBoard() {
                         )}
 
                         {!loading &&
-                            scope === 'student' &&
-                            studentRows.map((row, i) => (
-                                <tr key={row.student_id} className="border-t border-primary/10">
-                                    {view === 'ranked' && (
-                                        <td className="px-4 py-3 text-primary/50">{i + 1}</td>
-                                    )}
-                                    <td className="px-4 py-3 text-primary font-medium">{row.full_name}</td>
-                                    {view === 'points' && (
-                                        <td className="px-4 py-3 text-primary/50 text-xs">{row.class ?? '—'}</td>
-                                    )}
-                                    {view === 'points' &&
-                                        CATEGORY_ORDER.map((cat) => (
-                                            <td key={cat} className="px-3 py-3 text-right text-primary/70">
-                                                {row.categories[cat]}
-                                            </td>
-                                        ))}
-                                    <td className="px-4 py-3 text-right font-grotesk font-semibold text-secondary">
-                                        {view === 'ranked' ? `${i + 1} місце` : row.total_points}
-                                    </td>
-                                </tr>
-                            ))}
+                            rows.map((row) => {
+                                const key = isStudent(row) ? row.student_id : row.class_name;
+                                const name = isStudent(row) ? row.full_name : row.class_name;
 
-                        {!loading &&
-                            scope === 'class' &&
-                            classRows.map((row, i) => (
-                                <tr key={row.class_name} className="border-t border-primary/10">
-                                    {view === 'ranked' && (
-                                        <td className="px-4 py-3 text-primary/50">{i + 1}</td>
-                                    )}
-                                    <td className="px-4 py-3 text-primary font-medium">{row.class_name}</td>
-                                    {view === 'points' &&
-                                        CATEGORY_ORDER.map((cat) => (
-                                            <td key={cat} className="px-3 py-3 text-right text-primary/70">
-                                                {row.categories[cat]}
+                                return (
+                                    <tr key={key} className="border-t border-primary/10">
+                                        <td className="px-4 py-3 text-primary/50">
+                                            {row.places[rating]}
+                                        </td>
+                                        <td className="px-4 py-3 text-primary font-medium">{name}</td>
+
+                                        {isStudent(row) && (
+                                            <td className="px-4 py-3 text-primary/50 text-xs">
+                                                {row.class ?? '—'}
                                             </td>
-                                        ))}
-                                    <td className="px-4 py-3 text-right font-grotesk font-semibold text-secondary">
-                                        {view === 'ranked' ? `${i + 1} місце` : row.total_points}
-                                    </td>
-                                </tr>
-                            ))}
+                                        )}
+                                        {!isStudent(row) && (
+                                            <td className="px-4 py-3 text-right text-primary/50 text-xs">
+                                                {row.students_count}
+                                            </td>
+                                        )}
+
+                                        {rating === 'points' &&
+                                            CATEGORY_ORDER.map((cat) => (
+                                                <td key={cat} className="px-3 py-3 text-right text-primary/70">
+                                                    {row.categories[cat]}
+                                                </td>
+                                            ))}
+
+                                        {rating === 'overall' && (
+                                            <>
+                                                <td className="px-3 py-3 text-right text-primary/60">
+                                                    {row.places.academic}
+                                                </td>
+                                                <td className="px-3 py-3 text-right text-primary/60">
+                                                    {row.places.olympiad}
+                                                </td>
+                                                <td className="px-3 py-3 text-right text-primary/60">
+                                                    {row.places.points}
+                                                </td>
+                                            </>
+                                        )}
+
+                                        <td className="px-4 py-3 text-right font-grotesk font-semibold text-secondary">
+                                            {rating === 'points' && row.total_points}
+                                            {rating === 'academic' &&
+                                                (row.academic_score === null
+                                                    ? '—'
+                                                    : row.academic_score.toFixed(2).replace('.', ','))}
+                                            {rating === 'olympiad' && row.olympiad_points}
+                                            {rating === 'overall' && row.overall_sum}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                     </tbody>
                 </table>
             </div>
+
+            {rating === 'olympiad' && (
+                <p className="text-xs text-primary/40 mt-3 max-w-2xl">
+                    Шкала балів за етапи олімпіад і МАН у Статуті поки позначена як «ДОРОБИТИ»
+                    (п. 10.7.6). Зараз діють тимчасові значення, які адміністрація може змінити
+                    в кабінеті без зміни коду.
+                </p>
+            )}
         </section>
     );
 }

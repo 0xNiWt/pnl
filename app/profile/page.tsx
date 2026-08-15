@@ -6,7 +6,7 @@ import { positionLabel } from '@/lib/positions';
 import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
     Coins, TrendingUp, FileEdit, Settings,
-    BarChart3, ClipboardList, Award,
+    BarChart3, ClipboardList, Award, GraduationCap, Trophy,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -198,7 +198,9 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Управління ролями" href="/profile/users" icon={<ShieldCheck size={15} />} />
                     <QuickAction label="Учні та посади" href="/profile/students" icon={<Award size={15} />} />
                     <QuickAction label="Керування новинами" href="/profile/news" icon={<Newspaper size={15} />} />
-                    <QuickAction label="Налаштування рейтингу" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
+                    <QuickAction label="Нарахування балів" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
+                    <QuickAction label="Навчальний рейтинг" href="/profile/rating/academic" icon={<GraduationCap size={15} />} />
+                    <QuickAction label="Олімпіадний рейтинг" href="/profile/rating/olympiads" icon={<Trophy size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
                 </div>
             </SectionCard>

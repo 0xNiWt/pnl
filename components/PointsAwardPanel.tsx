@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Check, Loader2, X, Info } from 'lucide-react';
+import { Check, Loader2, X, Info, CopyCheck } from 'lucide-react';
 import {
     COEFFICIENT_LEVELS,
     distributeByCoefficients,
@@ -24,7 +24,14 @@ type Situation = {
 
 type StudentOption = { student_id: string; full_name: string; class: string | null };
 
-type Participant = { student: StudentOption; coefficient: CoefficientLevel };
+// У кожного учасника заходу своя категорія і своє пояснення —
+// один міг малювати декорації (творча), інший прибирати після заходу (волонтерська).
+type Participant = {
+    student: StudentOption;
+    coefficient: CoefficientLevel;
+    category: string;
+    explanation: string;
+};
 
 const CATEGORY_LABELS: Record<string, string> = {
     sport: 'Спортивна',
@@ -52,7 +59,8 @@ export default function PointsAwardPanel() {
     const [eventBudget, setEventBudget] = useState<number>(0);
     const [participants, setParticipants] = useState<Participant[]>([]);
 
-    // Спільні поля форми
+    // Спільні поля форми. У режимі заходу вони працюють як значення
+    // за замовчуванням для нових учасників.
     const [category, setCategory] = useState('organizational');
     const [explanation, setExplanation] = useState('');
 
@@ -152,7 +160,12 @@ export default function PointsAwardPanel() {
             setSelectedStudents([...selectedStudents, s]);
         } else {
             if (participants.some((p) => p.student.student_id === s.student_id)) return;
-            setParticipants([...participants, { student: s, coefficient: 1 }]);
+            // Новий учасник отримує поточні категорію й пояснення як стартові,
+            // далі їх можна змінити персонально.
+            setParticipants([
+                ...participants,
+                { student: s, coefficient: 1, category, explanation },
+            ]);
         }
         setStudentQuery('');
     }
@@ -165,12 +178,14 @@ export default function PointsAwardPanel() {
         setParticipants(participants.filter((p) => p.student.student_id !== id));
     }
 
-    function setCoefficient(id: string, coefficient: CoefficientLevel) {
+    function updateParticipant(id: string, patch: Partial<Omit<Participant, 'student'>>) {
         setParticipants(
-            participants.map((p) =>
-                p.student.student_id === id ? { ...p, coefficient } : p
-            )
+            participants.map((p) => (p.student.student_id === id ? { ...p, ...patch } : p))
         );
+    }
+
+    function applyDefaultsToAll() {
+        setParticipants(participants.map((p) => ({ ...p, category, explanation })));
     }
 
     async function handleSubmit() {
@@ -209,6 +224,14 @@ export default function PointsAwardPanel() {
                 setMessage({ type: 'error', text: 'Додай хоча б одного учасника' });
                 return;
             }
+            const emptyOne = participants.find((p) => !p.explanation.trim());
+            if (emptyOne) {
+                setMessage({
+                    type: 'error',
+                    text: `Порожнє пояснення в учня: ${emptyOne.student.full_name}`,
+                });
+                return;
+            }
             payload = {
                 target: 'event',
                 eventTitle,
@@ -216,6 +239,8 @@ export default function PointsAwardPanel() {
                 participants: participants.map((p) => ({
                     studentId: p.student.student_id,
                     coefficient: p.coefficient,
+                    category: p.category,
+                    explanation: p.explanation,
                 })),
                 category,
                 explanation,
@@ -278,6 +303,7 @@ export default function PointsAwardPanel() {
                         визначається базова ставка. Далі ставка множиться на особистий коефіцієнт
                         кожного учня (п. 12.2.5 Статуту). Залишок від округлення роздається по
                         одному балу, тому сума нарахувань завжди точно дорівнює бюджету.
+                        Категорію та пояснення можна поставити кожному учаснику окремо.
                     </p>
                 </div>
             )}
@@ -406,11 +432,20 @@ export default function PointsAwardPanel() {
             {/* Таблиця учасників із коефіцієнтами */}
             {mode === 'event' && (
                 <div className="border border-primary/10 rounded-2xl overflow-hidden bg-white/40">
-                    <div className="hidden sm:grid grid-cols-[1fr_240px_90px_36px] gap-3 px-4 py-2.5 bg-primary/[0.04] text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
-                        <span>Учень</span>
-                        <span>Рівень залученості</span>
-                        <span className="text-right">Бали</span>
-                        <span />
+                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-primary/[0.04]">
+                        <span className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                            Учасники — рівень, категорія та пояснення
+                        </span>
+                        {participants.length > 0 && (
+                            <button
+                                onClick={applyDefaultsToAll}
+                                title="Поставити всім учасникам категорію та пояснення з нижньої форми"
+                                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-secondary hover:text-primary transition-colors"
+                            >
+                                <CopyCheck size={13} />
+                                Однакові для всіх
+                            </button>
+                        )}
                     </div>
 
                     {participants.length === 0 ? (
@@ -421,45 +456,85 @@ export default function PointsAwardPanel() {
                         participants.map((p) => (
                             <div
                                 key={p.student.student_id}
-                                className="grid sm:grid-cols-[1fr_240px_90px_36px] gap-3 px-4 py-3 border-t border-primary/10 items-center"
+                                className="px-4 py-3.5 border-t border-primary/10 flex flex-col gap-2.5"
                             >
-                                <div className="min-w-0">
-                                    <p className="text-sm font-medium text-primary truncate">
-                                        {p.student.full_name}
-                                    </p>
-                                    <p className="text-xs text-primary/40">{p.student.class ?? '—'}</p>
+                                {/* Рядок 1: учень, рівень залученості, бали */}
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                                    <div className="min-w-0 flex-1">
+                                        <p className="text-sm font-medium text-primary truncate">
+                                            {p.student.full_name}
+                                        </p>
+                                        <p className="text-xs text-primary/40">
+                                            {p.student.class ?? '—'}
+                                        </p>
+                                    </div>
+
+                                    <div className="flex items-center gap-1.5">
+                                        {COEFFICIENT_LEVELS.map((level) => (
+                                            <button
+                                                key={level.value}
+                                                title={`${level.title}: ${level.hint}`}
+                                                onClick={() =>
+                                                    updateParticipant(p.student.student_id, {
+                                                        coefficient: level.value,
+                                                    })
+                                                }
+                                                className={`w-9 h-9 rounded-lg text-sm font-grotesk font-bold transition-colors ${p.coefficient === level.value
+                                                    ? 'bg-primary text-background'
+                                                    : 'bg-primary/5 text-primary/50 hover:bg-primary/10'
+                                                    }`}
+                                            >
+                                                {level.value}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    <div className="w-16 text-right font-grotesk font-bold text-primary">
+                                        {pointsByStudent.get(p.student.student_id) ?? 0}
+                                    </div>
+
+                                    <button
+                                        onClick={() => removeParticipant(p.student.student_id)}
+                                        className="text-primary/30 hover:text-accent"
+                                        aria-label="Прибрати учня зі списку"
+                                    >
+                                        <X size={16} />
+                                    </button>
                                 </div>
 
-                                <div className="flex items-center gap-1.5">
-                                    {COEFFICIENT_LEVELS.map((level) => (
-                                        <button
-                                            key={level.value}
-                                            title={`${level.title}: ${level.hint}`}
-                                            onClick={() => setCoefficient(p.student.student_id, level.value)}
-                                            className={`w-9 h-9 rounded-lg text-sm font-grotesk font-bold transition-colors ${p.coefficient === level.value
-                                                ? 'bg-primary text-background'
-                                                : 'bg-primary/5 text-primary/50 hover:bg-primary/10'
-                                                }`}
-                                        >
-                                            {level.value}
-                                        </button>
-                                    ))}
-                                    <span className="text-xs text-primary/40 ml-1 truncate">
-                                        {COEFFICIENT_LEVELS.find((l) => l.value === p.coefficient)?.title}
-                                    </span>
+                                {/* Рядок 2: персональні категорія та пояснення */}
+                                <div className="grid sm:grid-cols-[190px_1fr] gap-2">
+                                    <select
+                                        value={p.category}
+                                        onChange={(e) =>
+                                            updateParticipant(p.student.student_id, {
+                                                category: e.target.value,
+                                            })
+                                        }
+                                        className="w-full px-3 py-2 rounded-lg border border-primary/15 bg-white text-xs"
+                                    >
+                                        {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
+                                            <option key={key} value={key}>
+                                                {label}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    <input
+                                        value={p.explanation}
+                                        onChange={(e) =>
+                                            updateParticipant(p.student.student_id, {
+                                                explanation: e.target.value,
+                                            })
+                                        }
+                                        placeholder="За що саме цей учень отримує бали..."
+                                        className="w-full px-3 py-2 rounded-lg border border-primary/15 bg-white text-xs focus:outline-none focus:border-secondary"
+                                    />
                                 </div>
 
-                                <div className="sm:text-right font-grotesk font-bold text-primary">
-                                    {pointsByStudent.get(p.student.student_id) ?? 0}
-                                </div>
-
-                                <button
-                                    onClick={() => removeParticipant(p.student.student_id)}
-                                    className="justify-self-start sm:justify-self-center text-primary/30 hover:text-accent"
-                                    aria-label="Прибрати учня зі списку"
-                                >
-                                    <X size={16} />
-                                </button>
+                                <p className="text-[11px] text-primary/40">
+                                    {COEFFICIENT_LEVELS.find((l) => l.value === p.coefficient)?.title}
+                                </p>
                             </div>
                         ))
                     )}
@@ -490,7 +565,7 @@ export default function PointsAwardPanel() {
                 <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                         <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
-                            Категорія
+                            {mode === 'student' ? 'Категорія' : 'Категорія за замовчуванням'}
                         </label>
                         <select
                             value={category}
@@ -522,7 +597,9 @@ export default function PointsAwardPanel() {
 
                 <div>
                     <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
-                        Пояснення (видно редактору та учню-отримувачу)
+                        {mode === 'student'
+                            ? 'Пояснення (видно редактору та учню-отримувачу)'
+                            : 'Пояснення за замовчуванням'}
                     </label>
                     <textarea
                         value={explanation}
@@ -532,8 +609,9 @@ export default function PointsAwardPanel() {
                     />
                     {mode === 'event' && (
                         <p className="text-xs text-primary/50 mt-1.5">
-                            До пояснення кожного учня автоматично додасться назва заходу, його
-                            коефіцієнт і загальний бюджет.
+                            Ці значення підставляються кожному новому учаснику. Персональні
+                            категорію та пояснення міняй у списку вище — до пояснення кожного
+                            учня автоматично додасться назва заходу, коефіцієнт і бюджет.
                         </p>
                     )}
                 </div>

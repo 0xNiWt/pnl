@@ -88,6 +88,20 @@ export function isLyceumPosition(id: string): boolean {
 }
 
 /**
+ * Пошук посад за текстом: «старост» знайде і «Староста», і «Заступник старости».
+ * Потрібно, щоб у списку учнів можна було шукати не лише за іменем.
+ * Повертає id посад, назви яких підходять під запит.
+ */
+export function positionIdsMatching(query: string): string[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+
+  return POSITIONS.filter(
+    (p) => p.label.toLowerCase().includes(q) || p.id.toLowerCase().includes(q)
+  ).map((p) => p.id);
+}
+
+/**
  * Паралель — це число з назви класу: «10-А» → «10», «11-Б» → «11».
  * Якщо число не знайшлося, повертаємо null (наприклад, для педагогів).
  */
