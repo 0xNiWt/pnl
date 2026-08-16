@@ -8,6 +8,7 @@ import {
     EyeOff,
     Loader2,
     Lock,
+    PieChart,
     TriangleAlert,
     Trophy,
     Users,
@@ -345,6 +346,12 @@ export default function PollDetail({
                 </div>
             )}
 
+            {/* Кругова діаграма — тільки організатору (та адміністрації
+                з модератором, які теж вважаються організаторами). */}
+            {isClosed && results && isOrganizer && totalVotes > 0 && (
+                <ResultsDonut results={results} totalVotes={totalVotes} />
+            )}
+
             {isClosed && poll.is_anonymous && isOrganizer && (
                 <p className="flex items-start gap-2 text-xs text-primary/50 px-1">
                     <Lock size={13} className="shrink-0 mt-0.5" />
@@ -383,6 +390,125 @@ export default function PollDetail({
                     проміжні цифри не впливають на тих, хто ще не голосував.
                 </p>
             )}
+        </div>
+    );
+}
+
+// Кольори сегментів — з палітри сайту, по колу, якщо варіантів більше шести.
+const DONUT_COLORS = ['#63A8CC', '#C79D5A', '#1C2D56', '#ECD792', '#8FB9A8', '#B07C9E'];
+
+/**
+ * Кругова діаграма розподілу голосів. Показуємо її лише організатору:
+ * поіменний список і так бачить тільки він, а тут — та сама картина
+ * у відсотках, зручна для протоколу.
+ */
+function ResultsDonut({
+    results,
+    totalVotes,
+}: {
+    results: PollOptionResult[];
+    totalVotes: number;
+}) {
+    const radius = 70;
+    const circumference = 2 * Math.PI * radius;
+
+    const counted = results.filter((r) => r.votes > 0);
+
+    const segments = counted.map((r, i) => {
+        // Скільки кола вже зайняли попередні сегменти — з цього місця
+        // починається поточний.
+        const votesBefore = counted.slice(0, i).reduce((sum, x) => sum + x.votes, 0);
+
+        return {
+            ...r,
+            color: DONUT_COLORS[i % DONUT_COLORS.length],
+            length: (r.votes / totalVotes) * circumference,
+            offset: -(votesBefore / totalVotes) * circumference,
+            percent: optionPercent(r.votes, totalVotes),
+        };
+    });
+
+    return (
+        <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5">
+            <p className="flex items-center gap-2 text-xs font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-4">
+                <PieChart size={13} />
+                Розподіл голосів
+                <span className="ml-auto normal-case tracking-normal font-medium text-primary/40">
+                    видно лише організатору
+                </span>
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+                <svg viewBox="0 0 180 180" className="w-40 h-40 shrink-0">
+                    {/* Повертаємо тільки кільце, щоб перший сегмент починався
+                        згори; підпис усередині лишається рівним. */}
+                    <g transform="rotate(-90 90 90)">
+                        <circle
+                            cx="90"
+                            cy="90"
+                            r={radius}
+                            fill="none"
+                            stroke="rgba(28,45,86,0.07)"
+                            strokeWidth="26"
+                        />
+                        {segments.map((s) => (
+                            <circle
+                                key={s.option_id}
+                                cx="90"
+                                cy="90"
+                                r={radius}
+                                fill="none"
+                                stroke={s.color}
+                                strokeWidth="26"
+                                strokeDasharray={`${s.length} ${circumference - s.length}`}
+                                strokeDashoffset={s.offset}
+                            />
+                        ))}
+                    </g>
+                    <text
+                        x="90"
+                        y="84"
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        className="fill-primary font-manrope"
+                        fontSize="26"
+                        fontWeight="700"
+                    >
+                        {totalVotes}
+                    </text>
+                    <text
+                        x="90"
+                        y="104"
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        className="fill-primary/50"
+                        fontSize="11"
+                    >
+                        голосів
+                    </text>
+                </svg>
+
+                <div className="flex flex-col gap-2 w-full min-w-0">
+                    {segments.map((s) => (
+                        <div key={s.option_id} className="flex items-center gap-2.5 min-w-0">
+                            <span
+                                className="w-3 h-3 rounded-full shrink-0"
+                                style={{ backgroundColor: s.color }}
+                            />
+                            <span className="text-sm text-primary truncate min-w-0 flex-1">
+                                {s.label}
+                            </span>
+                            <span className="text-sm shrink-0">
+                                <b className="font-manrope text-primary">{s.percent}%</b>
+                                <span className="text-primary/40">
+                                    {' · '}
+                                    {s.votes} {s.votes === 1 ? 'голос' : 'голосів'}
+                                </span>
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

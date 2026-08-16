@@ -4,11 +4,18 @@ import { createClient } from '@/lib/server';
 import LogoutButton from '@/components/profile/LogoutButton';
 import { positionLabel } from '@/lib/positions';
 import { canCreatePolls } from '@/lib/voting';
+import { getMyRatingRow, type StudentRatingRow } from '@/lib/points';
+import { getRatingVisibility } from '@/lib/ratingVisibility';
+import { canManageRatingVisibility } from '@/lib/roles';
+import {
+    NOTHING_HIDDEN, RATING_LABELS, visibleRatings,
+    type RatingKind, type RatingVisibility,
+} from '@/lib/ratings';
 import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
     Coins, TrendingUp, FileEdit, Settings,
     BarChart3, ClipboardList, Award, GraduationCap, Trophy,
-    Vote, Plus,
+    Vote, Plus, EyeOff,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -44,14 +51,23 @@ export default async function ProfilePage() {
         : null;
 
     let pointsBalance = 0;
-    if (roles.includes('student')) {
-        const { data: transactions } = await supabase
-            .from('point_transactions')
-            .select('points')
-            .eq('target', 'student')
-            .eq('student_id', user.id);
+    let myRating: StudentRatingRow | null = null;
+    let ratingHidden: RatingVisibility = NOTHING_HIDDEN;
 
-        pointsBalance = (transactions ?? []).reduce((sum, t) => sum + (t.points ?? 0), 0);
+    if (roles.includes('student')) {
+        const [transactionsRes, ratingRow, visibility] = await Promise.all([
+            supabase
+                .from('point_transactions')
+                .select('points')
+                .eq('target', 'student')
+                .eq('student_id', user.id),
+            getMyRatingRow(user.id),
+            getRatingVisibility(),
+        ]);
+
+        pointsBalance = (transactionsRes.data ?? []).reduce((sum, t) => sum + (t.points ?? 0), 0);
+        myRating = ratingRow;
+        ratingHidden = visibility;
     }
 
     let ownerStats: { students: number; teachers: number; news: number } | null = null;
@@ -102,7 +118,13 @@ export default async function ProfilePage() {
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
 
                     <div className="flex flex-col gap-6">
-                        {roles.includes('student') && <StudentSection />}
+                        {roles.includes('student') && (
+                            <StudentSection
+                                rating={myRating}
+                                hidden={ratingHidden}
+                                canSeeHidden={canManageRatingVisibility(roles)}
+                            />
+                        )}
                         {(roles.includes('student') || mayCreatePolls) && (
                             <VotesSection mayCreate={mayCreatePolls} />
                         )}
@@ -146,24 +168,77 @@ export default async function ProfilePage() {
     );
 }
 
-function StudentSection() {
+// Місця учня за чотирма рейтингами (пп. 10.7.2 та 10.7.4 Статуту).
+// Приховані адміністрацією рейтинги сюди не потрапляють.
+function StudentSection({
+    rating,
+    hidden,
+    canSeeHidden,
+}: {
+    rating: StudentRatingRow | null;
+    hidden: RatingVisibility;
+    canSeeHidden: boolean;
+}) {
+    const kinds = visibleRatings(hidden, canSeeHidden);
+    const headline: RatingKind | undefined = kinds.includes('overall') ? 'overall' : kinds[0];
+
     return (
         <SectionCard title="Мій рейтинг" icon={<TrendingUp size={16} />}>
-            <div className="flex items-center justify-between py-2">
-                <div>
-                    <p className="text-3xl font-manrope font-bold text-primary">—</p>
-                    <p className="text-sm text-primary/50 mt-1">місце в рейтингу школи</p>
-                </div>
-                <Link
-                    href="/rating"
-                    className="text-sm font-semibold text-secondary hover:text-primary transition-colors"
-                >
-                    Переглянути →
-                </Link>
-            </div>
+            {kinds.length === 0 ? (
+                <p className="flex items-center gap-2 text-sm text-primary/50 py-2">
+                    <EyeOff size={15} />
+                    Рейтинги тимчасово приховані адміністрацією.
+                </p>
+            ) : (
+                <>
+                    <div className="flex items-center justify-between gap-4 py-2">
+                        <div>
+                            <p className="text-3xl font-manrope font-bold text-primary">
+                                {rating && headline ? rating.places[headline] : '—'}
+                            </p>
+                            <p className="text-sm text-primary/50 mt-1">
+                                {headline === 'overall'
+                                    ? 'місце в загальному рейтингу ліцею'
+                                    : `місце · ${headline ? RATING_LABELS[headline].toLowerCase() : ''}`}
+                            </p>
+                        </div>
+                        <Link
+                            href="/rating"
+                            className="shrink-0 text-sm font-semibold text-secondary hover:text-primary transition-colors"
+                        >
+                            Переглянути →
+                        </Link>
+                    </div>
 
-            <div className="pt-3 mt-1 border-t border-primary/10">
-                <QuickAction label="За що нараховано бали" href="/profile/rating/history" />
+                    <div className="grid grid-cols-2 gap-2 pt-3 mt-1 border-t border-primary/10">
+                        {kinds.map((kind) => (
+                            <div
+                                key={kind}
+                                className="rounded-xl bg-primary/5 px-3.5 py-2.5"
+                            >
+                                <p className="flex items-center gap-1.5 text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
+                                    {RATING_LABELS[kind]}
+                                    {hidden[kind] && <EyeOff size={11} className="text-accent" />}
+                                </p>
+                                <p className="font-manrope font-bold text-primary mt-0.5">
+                                    {rating ? (
+                                        <>
+                                            {rating.places[kind]}
+                                            <span className="text-xs font-normal text-primary/40"> місце</span>
+                                        </>
+                                    ) : (
+                                        '—'
+                                    )}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
+
+            <div className="flex flex-col gap-2 pt-3 mt-1 border-t border-primary/10">
+                <QuickAction label="За що нараховано бали" href="/profile/rating/history" icon={<Coins size={15} />} />
+                <QuickAction label="Мої олімпіадні здобутки" href="/profile/rating/history#olympiads" icon={<Trophy size={15} />} />
             </div>
         </SectionCard>
     );
@@ -234,6 +309,7 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Нарахування балів" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Навчальний рейтинг" href="/profile/rating/academic" icon={<GraduationCap size={15} />} />
                     <QuickAction label="Олімпіадний рейтинг" href="/profile/rating/olympiads" icon={<Trophy size={15} />} />
+                    <QuickAction label="Видимість рейтингів" href="/profile/rating/visibility" icon={<EyeOff size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
                 </div>
             </SectionCard>

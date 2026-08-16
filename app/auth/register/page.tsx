@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Mail, Lock, User, Eye, EyeOff, AlertCircle, ArrowRight } from 'lucide-react';
+import { LYCEUM_EMAIL_SUFFIX, isLyceumEmail, normalizeLyceumEmail } from '@/lib/email';
 
 export default function RegisterPage() {
     const [fullName, setFullName] = useState('');
@@ -19,13 +20,17 @@ export default function RegisterPage() {
     const CLASS_LETTERS = ['А', 'Б', 'В'];
     const studentClass = classGrade && classLetter ? `${classGrade}-${classLetter}` : '';
 
-    const isPnlEmail = email.toLowerCase().includes('kpnl145.kyiv.ua');
-// kpnl145.kyiv.ua
+    // Домен ліцею дописується автоматично, тож перевіряємо вже доповнене значення.
+    const normalizedEmail = normalizeLyceumEmail(email);
+    const isPnlEmail = isLyceumEmail(normalizedEmail);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        setEmail(normalizedEmail);
+
         if (!isPnlEmail) {
-            setError('Реєстрація дозволена тільки для корпоративних пошт ліцею (наприклад, user@kpnl145.kyiv.ua)');
+            setError(`Реєстрація дозволена тільки для ліцейських пошт (${LYCEUM_EMAIL_SUFFIX})`);
             return;
         }
 
@@ -41,7 +46,7 @@ export default function RegisterPage() {
             const res = await fetch('/api/v1/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, fullName, studentClass }),
+                body: JSON.stringify({ email: normalizedEmail, password, fullName, studentClass }),
             });
 
             const data = await res.json();
@@ -121,24 +126,36 @@ export default function RegisterPage() {
                                 <div className="relative">
                                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
                                     <input
-                                        type="email"
+                                        type="text"
+                                        inputMode="email"
+                                        autoComplete="email"
                                         required
                                         value={email}
                                         onChange={(e) => {
                                             setEmail(e.target.value);
                                             if (error) setError('');
                                         }}
-                                        placeholder="student@kpnl145.kyiv.ua"
+                                        // Домен дописуємо, коли людина йде далі по формі,
+                                        // а не на кожній натиснутій літері.
+                                        onBlur={() => setEmail(normalizedEmail)}
+                                        placeholder="student"
                                         className={`w-full rounded-xl border pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:bg-white focus:ring-2 ${
-                                            email && !isPnlEmail 
-                                                ? 'border-accent/50 bg-accent/5 focus:border-accent focus:ring-accent/20' 
+                                            email && !isPnlEmail
+                                                ? 'border-accent/50 bg-accent/5 focus:border-accent focus:ring-accent/20'
                                                 : 'border-primary/10 bg-primary/5 focus:border-secondary focus:ring-secondary/20'
                                         }`}
                                     />
                                 </div>
-                                {email && !isPnlEmail && (
+                                {email && !isPnlEmail ? (
                                     <p className="mt-1 text-[11px] text-accent">
-                                        Email має містити домен ліцею (@kpnl145.kyiv.ua)
+                                        Потрібна ліцейська пошта ({LYCEUM_EMAIL_SUFFIX})
+                                    </p>
+                                ) : (
+                                    <p className="mt-1 text-[11px] text-primary/45">
+                                        Достатньо імені акаунта — <b className="font-semibold">{LYCEUM_EMAIL_SUFFIX}</b> допишемо самі
+                                        {email && email !== normalizedEmail && (
+                                            <span className="text-secondary"> · {normalizedEmail}</span>
+                                        )}
                                     </p>
                                 )}
                             </div>

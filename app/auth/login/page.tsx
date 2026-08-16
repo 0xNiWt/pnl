@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { LYCEUM_EMAIL_SUFFIX, normalizeLyceumEmail } from '@/lib/email';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -11,8 +12,12 @@ export default function LoginPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // Домен ліцею дописується автоматично — див. lib/email.ts.
+    const normalizedEmail = normalizeLyceumEmail(email);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setEmail(normalizedEmail);
         setError('');
         setLoading(true);
 
@@ -20,7 +25,7 @@ export default function LoginPage() {
             const res = await fetch('/api/v1/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email: normalizedEmail, password }),
             });
 
             const data = await res.json();
@@ -73,14 +78,23 @@ export default function LoginPage() {
                                 <div className="relative">
                                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
                                     <input
-                                        type="email"
+                                        type="text"
+                                        inputMode="email"
+                                        autoComplete="email"
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="student@kpnl145.kyiv.ua"
+                                        onBlur={() => setEmail(normalizedEmail)}
+                                        placeholder="student"
                                         className="w-full rounded-xl border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/20"
                                     />
                                 </div>
+                                <p className="mt-1 text-[11px] text-primary/45">
+                                    Достатньо імені акаунта — <b className="font-semibold">{LYCEUM_EMAIL_SUFFIX}</b> допишемо самі
+                                    {email && email !== normalizedEmail && (
+                                        <span className="text-secondary"> · {normalizedEmail}</span>
+                                    )}
+                                </p>
                             </div>
 
                             <div>

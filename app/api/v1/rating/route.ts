@@ -1,13 +1,23 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getStudentRating, getClassRating } from '@/lib/points';
+import { NextResponse } from 'next/server';
+import { getRatingSnapshot } from '@/lib/points';
+import { getRatingVisibility } from '@/lib/ratingVisibility';
+import { canManageRatingVisibility, getCurrentUserWithRoles } from '@/lib/roles';
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const type = searchParams.get('type') === 'class' ? 'class' : 'student';
-  const search = searchParams.get('search') ?? undefined;
+// Один запит віддає обидва рейтинги — і учнів, і класів. Перемикання
+// «учні ↔ класи» та пошук працюють у браузері, без походу на сервер.
+export async function GET() {
+  const [snapshot, hidden, { roles }] = await Promise.all([
+    getRatingSnapshot(),
+    getRatingVisibility(),
+    getCurrentUserWithRoles(),
+  ]);
 
-  const data =
-    type === 'class' ? await getClassRating(search) : await getStudentRating(search);
+  const canSeeHidden = canManageRatingVisibility(roles);
 
-  return NextResponse.json({ type, data });
+  return NextResponse.json({
+    students: snapshot.students,
+    classes: snapshot.classes,
+    hidden,
+    canSeeHidden,
+  });
 }

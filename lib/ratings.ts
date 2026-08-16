@@ -17,6 +17,36 @@ export const RATING_LABELS: Record<RatingKind, string> = {
   overall: 'Загальний',
 };
 
+export const RATING_KINDS: RatingKind[] = ['points', 'academic', 'olympiad', 'overall'];
+
+export function isRatingKind(value: unknown): value is RatingKind {
+  return typeof value === 'string' && (RATING_KINDS as string[]).includes(value);
+}
+
+// ---------------------------------------------------------------------
+// Видимість рейтингів
+// ---------------------------------------------------------------------
+// Кожен із чотирьох рейтингів можна приховати від учнів окремо — це роблять
+// адміністрація та модератор. Прихований рейтинг зникає зі сторінки /rating
+// і з блоку «Мій рейтинг», але продовжує рахуватися: загальний рейтинг
+// за п. 10.7.4 усе одно складається з усіх трьох базових місць.
+
+// true — рейтинг приховано.
+export type RatingVisibility = Record<RatingKind, boolean>;
+
+export const NOTHING_HIDDEN: RatingVisibility = {
+  points: false,
+  academic: false,
+  olympiad: false,
+  overall: false,
+};
+
+/** Які рейтинги показувати. Адміністрація й модератор бачать усі. */
+export function visibleRatings(hidden: RatingVisibility, canSeeHidden: boolean): RatingKind[] {
+  if (canSeeHidden) return [...RATING_KINDS];
+  return RATING_KINDS.filter((kind) => !hidden[kind]);
+}
+
 // Етапи олімпіад та МАН. Шкала балів за п. 10.7.6 Статуту ще не затверджена
 // («ДОРОБИТИ»), тому значення живуть у базі й редагуються без зміни коду.
 export const OLYMPIAD_LEVELS: { id: string; label: string; short: string }[] = [

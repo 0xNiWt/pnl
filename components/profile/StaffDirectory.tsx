@@ -122,6 +122,28 @@ function initials(fullName: string) {
     return parts.slice(0, 2).map((p) => p[0]).join('').toUpperCase();
 }
 
+// Розмір кнопки сталий на всіх екранах — як і розмір картки.
+function ArrowButton({
+    dir,
+    onClick,
+    className = '',
+}: {
+    dir: 1 | -1;
+    onClick: () => void;
+    className?: string;
+}) {
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            aria-label={dir === 1 ? 'Наступний педагог' : 'Попередній педагог'}
+            className={`w-11 h-11 shrink-0 rounded-full border border-primary/15 flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors ${className}`}
+        >
+            {dir === 1 ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+        </button>
+    );
+}
+
 export default function StaffDirectory() {
     const [deptIndex, setDeptIndex] = useState(0);
     const [memberIndex, setMemberIndex] = useState(0);
@@ -206,17 +228,17 @@ export default function StaffDirectory() {
                     Інформація про кафедру з&apos;явиться найближчим часом.
                 </div>
             ) : (
-                <div className="flex items-center justify-center gap-3 md:gap-6">
-                    <button
-                        type="button"
+                <div className="flex flex-col items-center gap-5 md:flex-row md:justify-center md:gap-6">
+                    <ArrowButton
+                        dir={-1}
                         onClick={() => goTo(-1)}
-                        aria-label="Попередній педагог"
-                        className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-primary/15 flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors shrink-0"
-                    >
-                        <ChevronLeft size={20} />
-                    </button>
+                        className="hidden md:flex"
+                    />
 
-                    <div className="relative w-full max-w-sm overflow-hidden">
+                    {/* Розмір картки фіксований: і ширина, і висота однакові
+                        для всіх педагогів, хоч би яким довгим був опис посади.
+                        Інакше блок «стрибав» під час перегортання. */}
+                    <div className="relative w-[280px] md:w-[340px] h-[440px] md:h-[470px] shrink-0 overflow-hidden">
                         <AnimatePresence mode="wait" custom={direction} initial={false}>
                             <motion.div
                                 key={`${deptIndex}-${memberIndex}`}
@@ -232,15 +254,15 @@ export default function StaffDirectory() {
                                     if (info.offset.x < -60) goTo(1);
                                     else if (info.offset.x > 60) goTo(-1);
                                 }}
-                                className="flex flex-col items-center text-center bg-white border border-primary/10 rounded-2xl px-6 py-10 cursor-grab active:cursor-grabbing"
+                                className="absolute inset-0 flex flex-col items-center text-center bg-white border border-primary/10 rounded-2xl px-6 py-9 overflow-hidden cursor-grab active:cursor-grabbing"
                             >
-                                <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden bg-primary/5 mb-6 ring-1 ring-primary/10">
+                                <div className="relative w-40 h-40 md:w-44 md:h-44 shrink-0 rounded-full overflow-hidden bg-primary/5 mb-6 ring-1 ring-primary/10">
                                     {member.photo ? (
                                         <Image
                                             src={member.photo}
                                             alt={member.name}
                                             fill
-                                            sizes="192px"
+                                            sizes="176px"
                                             className="object-cover"
                                             draggable={false}
                                         />
@@ -253,21 +275,25 @@ export default function StaffDirectory() {
                                 <h3 className="font-manrope font-bold text-primary text-lg leading-snug">
                                     {member.name}
                                 </h3>
-                                <p className="mt-2 text-sm text-primary/60 leading-snug max-w-[280px]">
+                                <p className="mt-2 w-full text-sm text-primary/60 leading-snug">
                                     {member.position}
                                 </p>
                             </motion.div>
                         </AnimatePresence>
                     </div>
 
-                    <button
-                        type="button"
+                    <ArrowButton
+                        dir={1}
                         onClick={() => goTo(1)}
-                        aria-label="Наступний педагог"
-                        className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-primary/15 flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors shrink-0"
-                    >
-                        <ChevronRight size={20} />
-                    </button>
+                        className="hidden md:flex"
+                    />
+
+                    {/* На вузьких екранах стрілки стоять під карткою: збоку
+                        вони б не влізли поруч із карткою сталої ширини. */}
+                    <div className="flex items-center gap-6 md:hidden">
+                        <ArrowButton dir={-1} onClick={() => goTo(-1)} />
+                        <ArrowButton dir={1} onClick={() => goTo(1)} />
+                    </div>
                 </div>
             )}
 
@@ -282,8 +308,9 @@ export default function StaffDirectory() {
                                 setMemberIndex(i);
                             }}
                             aria-label={`Педагог ${i + 1}`}
-                            className={`h-1.5 rounded-full transition-all ${
-                                i === memberIndex ? 'w-6 bg-primary' : 'w-1.5 bg-primary/20'
+                            // Крапки теж не змінюють розміру — активну видно за кольором.
+                            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                                i === memberIndex ? 'bg-primary' : 'bg-primary/20'
                             }`}
                         />
                     ))}

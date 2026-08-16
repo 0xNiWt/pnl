@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/server'
 import { translateAuthError } from '@/lib/authErrors'
+import { normalizeLyceumEmail } from '@/lib/email'
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,7 +18,8 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient()
 
     const { data, error } = await supabase.auth.signInWithPassword({
-      email,
+      // Дописуємо домен ліцею, якщо ввели лише ім'я акаунта.
+      email: normalizeLyceumEmail(email),
       password,
     })
 

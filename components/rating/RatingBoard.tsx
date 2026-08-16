@@ -1,8 +1,14 @@
 'use client';
 
-import { useEffect, useState, useCallback, useMemo } from 'react';
-import { ArrowLeftRight, Search, Info } from 'lucide-react';
-import { RATING_LABELS, type RatingKind } from '@/lib/ratings';
+import { useMemo, useState } from 'react';
+import { ArrowLeftRight, EyeOff, Info, Search } from 'lucide-react';
+import {
+    NOTHING_HIDDEN,
+    RATING_LABELS,
+    visibleRatings,
+    type RatingKind,
+    type RatingVisibility,
+} from '@/lib/ratings';
 
 type Scope = 'student' | 'class';
 
@@ -23,8 +29,6 @@ const CATEGORY_ORDER: PointCategory[] = [
     'intellectual',
     'volunteer',
 ];
-
-const RATING_ORDER: RatingKind[] = ['points', 'academic', 'olympiad', 'overall'];
 
 const RATING_HINTS: Record<RatingKind, string> = {
     points: 'Сума балів за п\'ятьма категоріями активності (п. 10.7.2 Статуту).',
@@ -47,13 +51,13 @@ type BaseRow = {
     overall_sum: number;
 };
 
-type StudentRow = BaseRow & {
+export type StudentRow = BaseRow & {
     student_id: string;
     full_name: string;
     class: string | null;
 };
 
-type ClassRow = BaseRow & {
+export type ClassRow = BaseRow & {
     class_name: string;
     students_count: number;
 };
@@ -64,47 +68,74 @@ function isStudent(row: Row): row is StudentRow {
     return 'student_id' in row;
 }
 
-export default function RatingBoard() {
+export default function RatingBoard({
+    students,
+    classes,
+    hidden = NOTHING_HIDDEN,
+    canSeeHidden = false,
+}: {
+    students: StudentRow[];
+    classes: ClassRow[];
+    hidden?: RatingVisibility;
+    canSeeHidden?: boolean;
+}) {
+    // Дані приходять уже порахованими з сервера, тож перемикання вкладок,
+    // масштабу й пошук працюють миттєво — без жодного запиту.
+    const available = useMemo(() => visibleRatings(hidden, canSeeHidden), [hidden, canSeeHidden]);
+
     const [scope, setScope] = useState<Scope>('student');
-    const [rating, setRating] = useState<RatingKind>('points');
+    const [rating, setRating] = useState<RatingKind>(available[0] ?? 'points');
     const [search, setSearch] = useState('');
-    const [studentRows, setStudentRows] = useState<StudentRow[]>([]);
-    const [classRows, setClassRows] = useState<ClassRow[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    const load = useCallback(async (currentScope: Scope, currentSearch: string) => {
-        setLoading(true);
-        const params = new URLSearchParams({ type: currentScope });
-        if (currentSearch) params.set('search', currentSearch);
-
-        const res = await fetch(`/api/v1/rating?${params.toString()}`);
-        const json = await res.json();
-
-        if (currentScope === 'student') {
-            setStudentRows(json.data ?? []);
-        } else {
-            setClassRows(json.data ?? []);
-        }
-        setLoading(false);
-    }, []);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => load(scope, search), 250);
-        return () => clearTimeout(timeout);
-    }, [scope, search, load]);
 
     const rows = useMemo<Row[]>(() => {
-        const source: Row[] = scope === 'student' ? studentRows : classRows;
-        return [...source].sort((a, b) => {
+        const source: Row[] = scope === 'student' ? students : classes;
+        const query = search.trim().toLowerCase();
+
+        const filtered = query
+            ? source.filter((row) =>
+                (isStudent(row) ? row.full_name : row.class_name).toLowerCase().includes(query)
+            )
+            : source;
+
+        return [...filtered].sort((a, b) => {
             const diff = a.places[rating] - b.places[rating];
             if (diff !== 0) return diff;
             const an = isStudent(a) ? a.full_name : a.class_name;
             const bn = isStudent(b) ? b.full_name : b.class_name;
             return an.localeCompare(bn, 'uk');
         });
-    }, [scope, rating, studentRows, classRows]);
+    }, [scope, rating, students, classes, search]);
 
-    const colCount = rating === 'points' ? 9 : rating === 'overall' ? 7 : 4;
+    // У загальному рейтингу не показуємо колонки з місцями за прихованими
+    // рейтингами — інакше приховане проглядалося б наскрізь.
+    const overallColumns = useMemo(
+        () =>
+            (['academic', 'olympiad', 'points'] as const).filter(
+                (kind) => canSeeHidden || !hidden[kind]
+            ),
+        [hidden, canSeeHidden]
+    );
+
+    if (available.length === 0) {
+        return (
+            <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-8 md:py-12">
+                <div className="border border-primary/10 rounded-2xl bg-white/40 px-6 py-12 text-center">
+                    <EyeOff size={22} className="mx-auto mb-3 text-primary/30" />
+                    <p className="text-sm text-primary/55">
+                        Рейтинги тимчасово приховані адміністрацією ліцею.
+                    </p>
+                </div>
+            </section>
+        );
+    }
+
+    const activeRating = available.includes(rating) ? rating : available[0];
+    const colCount =
+        activeRating === 'points'
+            ? 9
+            : activeRating === 'overall'
+                ? 4 + overallColumns.length
+                : 4;
 
     return (
         <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-8 md:py-12">
@@ -129,23 +160,31 @@ export default function RatingBoard() {
             </div>
 
             <div className="flex flex-wrap gap-1.5 mb-3">
-                {RATING_ORDER.map((kind) => (
+                {available.map((kind) => (
                     <button
                         key={kind}
                         onClick={() => setRating(kind)}
-                        className={`px-4 py-1.5 rounded-full border text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${rating === kind
+                        className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${activeRating === kind
                             ? 'bg-primary text-background border-primary'
                             : 'border-primary/15 text-primary/60 hover:bg-primary/5'
                             }`}
                     >
                         {RATING_LABELS[kind]}
+                        {hidden[kind] && <EyeOff size={12} />}
                     </button>
                 ))}
             </div>
 
+            {hidden[activeRating] && canSeeHidden && (
+                <p className="flex items-start gap-2 text-xs text-accent bg-accent/10 border border-accent/25 rounded-xl px-3.5 py-2.5 mb-3 max-w-2xl">
+                    <EyeOff size={14} className="shrink-0 mt-0.5" />
+                    Цей рейтинг приховано — його бачите тільки ви, адміністрація та модератори.
+                </p>
+            )}
+
             <p className="flex items-start gap-2 text-xs text-primary/50 mb-6 max-w-2xl">
                 <Info size={14} className="shrink-0 mt-0.5 text-secondary" />
-                {RATING_HINTS[rating]}
+                {RATING_HINTS[activeRating]}
             </p>
 
             <div className="border border-primary/10 rounded-2xl overflow-x-auto bg-white/40">
@@ -157,42 +196,33 @@ export default function RatingBoard() {
                             {scope === 'student' && <th className="px-4 py-3 w-20">Клас</th>}
                             {scope === 'class' && <th className="px-4 py-3 w-20 text-right">Учнів</th>}
 
-                            {rating === 'points' &&
+                            {activeRating === 'points' &&
                                 CATEGORY_ORDER.map((cat) => (
                                     <th key={cat} className="px-3 py-3 w-20 text-right">
                                         {CATEGORY_LABELS[cat]}
                                     </th>
                                 ))}
 
-                            {rating === 'overall' && (
-                                <>
-                                    <th className="px-3 py-3 w-24 text-right">Навч.</th>
-                                    <th className="px-3 py-3 w-24 text-right">Олімп.</th>
-                                    <th className="px-3 py-3 w-24 text-right">Бали</th>
-                                </>
-                            )}
+                            {activeRating === 'overall' &&
+                                overallColumns.map((kind) => (
+                                    <th key={kind} className="px-3 py-3 w-24 text-right">
+                                        {kind === 'academic' ? 'Навч.' : kind === 'olympiad' ? 'Олімп.' : 'Бали'}
+                                    </th>
+                                ))}
 
                             <th className="px-4 py-3 w-28 text-right">
-                                {rating === 'points'
+                                {activeRating === 'points'
                                     ? 'Разом'
-                                    : rating === 'academic'
+                                    : activeRating === 'academic'
                                         ? 'Середній бал'
-                                        : rating === 'olympiad'
+                                        : activeRating === 'olympiad'
                                             ? 'Олімп. бали'
                                             : 'Σ місць'}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        {loading && (
-                            <tr>
-                                <td colSpan={colCount} className="px-4 py-6 text-center text-primary/50">
-                                    Завантаження...
-                                </td>
-                            </tr>
-                        )}
-
-                        {!loading && rows.length === 0 && (
+                        {rows.length === 0 && (
                             <tr>
                                 <td colSpan={colCount} className="px-4 py-6 text-center text-primary/50">
                                     Нічого не знайдено
@@ -200,67 +230,58 @@ export default function RatingBoard() {
                             </tr>
                         )}
 
-                        {!loading &&
-                            rows.map((row) => {
-                                const key = isStudent(row) ? row.student_id : row.class_name;
-                                const name = isStudent(row) ? row.full_name : row.class_name;
+                        {rows.map((row) => {
+                            const key = isStudent(row) ? row.student_id : row.class_name;
+                            const name = isStudent(row) ? row.full_name : row.class_name;
 
-                                return (
-                                    <tr key={key} className="border-t border-primary/10">
-                                        <td className="px-4 py-3 text-primary/50">
-                                            {row.places[rating]}
+                            return (
+                                <tr key={key} className="border-t border-primary/10">
+                                    <td className="px-4 py-3 text-primary/50">
+                                        {row.places[activeRating]}
+                                    </td>
+                                    <td className="px-4 py-3 text-primary font-medium">{name}</td>
+
+                                    {isStudent(row) ? (
+                                        <td className="px-4 py-3 text-primary/50 text-xs">
+                                            {row.class ?? '—'}
                                         </td>
-                                        <td className="px-4 py-3 text-primary font-medium">{name}</td>
-
-                                        {isStudent(row) && (
-                                            <td className="px-4 py-3 text-primary/50 text-xs">
-                                                {row.class ?? '—'}
-                                            </td>
-                                        )}
-                                        {!isStudent(row) && (
-                                            <td className="px-4 py-3 text-right text-primary/50 text-xs">
-                                                {row.students_count}
-                                            </td>
-                                        )}
-
-                                        {rating === 'points' &&
-                                            CATEGORY_ORDER.map((cat) => (
-                                                <td key={cat} className="px-3 py-3 text-right text-primary/70">
-                                                    {row.categories[cat]}
-                                                </td>
-                                            ))}
-
-                                        {rating === 'overall' && (
-                                            <>
-                                                <td className="px-3 py-3 text-right text-primary/60">
-                                                    {row.places.academic}
-                                                </td>
-                                                <td className="px-3 py-3 text-right text-primary/60">
-                                                    {row.places.olympiad}
-                                                </td>
-                                                <td className="px-3 py-3 text-right text-primary/60">
-                                                    {row.places.points}
-                                                </td>
-                                            </>
-                                        )}
-
-                                        <td className="px-4 py-3 text-right font-manrope font-semibold text-secondary">
-                                            {rating === 'points' && row.total_points}
-                                            {rating === 'academic' &&
-                                                (row.academic_score === null
-                                                    ? '—'
-                                                    : row.academic_score.toFixed(2).replace('.', ','))}
-                                            {rating === 'olympiad' && row.olympiad_points}
-                                            {rating === 'overall' && row.overall_sum}
+                                    ) : (
+                                        <td className="px-4 py-3 text-right text-primary/50 text-xs">
+                                            {row.students_count}
                                         </td>
-                                    </tr>
-                                );
-                            })}
+                                    )}
+
+                                    {activeRating === 'points' &&
+                                        CATEGORY_ORDER.map((cat) => (
+                                            <td key={cat} className="px-3 py-3 text-right text-primary/70">
+                                                {row.categories[cat]}
+                                            </td>
+                                        ))}
+
+                                    {activeRating === 'overall' &&
+                                        overallColumns.map((kind) => (
+                                            <td key={kind} className="px-3 py-3 text-right text-primary/60">
+                                                {row.places[kind]}
+                                            </td>
+                                        ))}
+
+                                    <td className="px-4 py-3 text-right font-manrope font-semibold text-secondary">
+                                        {activeRating === 'points' && row.total_points}
+                                        {activeRating === 'academic' &&
+                                            (row.academic_score === null
+                                                ? '—'
+                                                : row.academic_score.toFixed(2).replace('.', ','))}
+                                        {activeRating === 'olympiad' && row.olympiad_points}
+                                        {activeRating === 'overall' && row.overall_sum}
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>
 
-            {rating === 'olympiad' && (
+            {activeRating === 'olympiad' && (
                 <p className="text-xs text-primary/40 mt-3 max-w-2xl">
                     Шкала балів за етапи олімпіад і МАН у Статуті поки позначена як «ДОРОБИТИ»
                     (п. 10.7.6). Зараз діють тимчасові значення, які адміністрація може змінити

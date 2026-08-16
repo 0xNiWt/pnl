@@ -19,18 +19,24 @@ export async function getCurrentUserWithRoles() {
   return { supabase, user, roles: (profile?.roles ?? []) as Role[] };
 }
 
+// Новини: редактор, модератор і адміністрація.
 export function canManageNews(roles: Role[]) {
-  return roles.includes('editor') || roles.includes('owner');
+  return roles.includes('editor') || roles.includes('moderator') || roles.includes('owner');
 }
 
-// Той самий набір прав, що й canManageNews — окрема назва для читабельності
-// в місцях, не пов'язаних з новинами (наприклад, нарахування балів).
+// Нарахування балів — окреме право: редактор і адміністрація, без модератора.
 export function canManagePoints(roles: Role[]) {
   return roles.includes('editor') || roles.includes('owner');
 }
 
 // Хто може заходити на сторінку керування користувачами та ролями.
 export function canManageUsers(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
+// Хто може ховати й повертати рейтинги на публічній сторінці /rating
+// (і, відповідно, бачить приховані рейтинги сам).
+export function canManageRatingVisibility(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');
 }
 

@@ -32,7 +32,9 @@ export default function Nav({ isLoggedIn }: { isLoggedIn: boolean }) {
                         >
                             <Link
                                 href={item.href}
-                                className="relative inline-block text-primary/60 hover:text-primary font-inter font-medium text-base tracking-wide transition-colors before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
+                                // Колір посилань не змінюється ніколи — ні при наведенні,
+                                // ні при натисканні. Єдина реакція на наведення — підкреслення.
+                                className="relative inline-block text-primary font-inter font-medium text-base tracking-wide before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
                             >
                                 {item.label}
                             </Link>

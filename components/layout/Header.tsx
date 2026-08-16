@@ -15,7 +15,7 @@ export default async function Header() {
                 <div className="flex items-center justify-between md:gap-12">
                     <Link href="/" className="flex items-center gap-2 group">
                         <Image src={gerb} alt="Герб ліцею" className="h-16 w-auto" priority />
-                        <h1 className="text-primary text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">
+                        <h1 className="text-primary/60 text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">
                             Природничо-науковий ліцей №145
                         </h1>
                     </Link>

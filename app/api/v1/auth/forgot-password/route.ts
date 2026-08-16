@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/server';
+import { normalizeLyceumEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const email = String(body.email ?? '').trim();
+    // Дописуємо домен ліцею, якщо ввели лише ім'я акаунта.
+    const email = normalizeLyceumEmail(String(body.email ?? ''));
 
     if (!email) {
       return NextResponse.json({ error: "Введіть email" }, { status: 400 });

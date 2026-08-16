@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/server'
 import { translateAuthError } from '@/lib/authErrors'
+import { LYCEUM_EMAIL_SUFFIX, isLyceumEmail, normalizeLyceumEmail } from '@/lib/email'
 
 const ALLOWED_CLASSES = [
   '7-А', '7-Б', '7-В',
@@ -28,6 +29,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Домен ліцею дописуємо й на сервері: браузерну перевірку легко обійти.
+    const lyceumEmail = normalizeLyceumEmail(email)
+
+    if (!isLyceumEmail(lyceumEmail)) {
+      return NextResponse.json(
+        { error: `Реєстрація дозволена тільки для ліцейських пошт (${LYCEUM_EMAIL_SUFFIX})` },
+        { status: 400 }
+      )
+    }
+
     if (password.length < 6) {
       return NextResponse.json(
         { error: 'Пароль має містити щонайменше 6 символів' },
@@ -45,7 +56,7 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient()
 
     const { data, error } = await supabase.auth.signUp({
-      email,
+      email: lyceumEmail,
       password,
       options: {
         data: {

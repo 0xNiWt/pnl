@@ -1,9 +1,22 @@
 import ContactWithData from "@/components/contact/ContactWithData";
 import RatingBoard from "@/components/rating/RatingBoard";
+import { getRatingSnapshot } from "@/lib/points";
+import { getRatingVisibility } from "@/lib/ratingVisibility";
+import { canManageRatingVisibility, getCurrentUserWithRoles } from "@/lib/roles";
 
-export const revalidate = 60;
+// Сторінка залежить від ролі (адміністрація та модератор бачать приховані
+// рейтинги), тому кешувати її на весь ліцей не можна.
+export const dynamic = 'force-dynamic';
 
-export default function RatingPage() {
+export default async function RatingPage() {
+    // Три запити до бази йдуть паралельно, таблиця приїжджає готовою
+    // в HTML — браузеру не треба нічого доглядати після завантаження.
+    const [snapshot, hidden, { roles }] = await Promise.all([
+        getRatingSnapshot(),
+        getRatingVisibility(),
+        getCurrentUserWithRoles(),
+    ]);
+
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 pt-10 md:pt-16">
@@ -21,7 +34,12 @@ export default function RatingPage() {
                 </div>
             </section>
 
-            <RatingBoard />
+            <RatingBoard
+                students={snapshot.students}
+                classes={snapshot.classes}
+                hidden={hidden}
+                canSeeHidden={canManageRatingVisibility(roles)}
+            />
 
             <div className="mt-auto">
                 <ContactWithData />
