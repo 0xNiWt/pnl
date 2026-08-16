@@ -19,7 +19,7 @@ export default function RegisterPage() {
     const CLASS_LETTERS = ['А', 'Б', 'В'];
     const studentClass = classGrade && classLetter ? `${classGrade}-${classLetter}` : '';
 
-    const isPnlEmail = email.toLowerCase().includes('gmail.com');
+    const isPnlEmail = email.toLowerCase().includes('kpnl145.kyiv.ua');
 // kpnl145.kyiv.ua
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
