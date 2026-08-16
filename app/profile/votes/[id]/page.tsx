@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles } from '@/lib/roles';
-import PollDetail from '@/components/PollDetail';
+import PollDetail from '@/components/polls/PollDetail';
 import type { PollScope } from '@/lib/voting';
 
 export const dynamic = 'force-dynamic';

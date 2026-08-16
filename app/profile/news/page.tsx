@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { FileEdit } from 'lucide-react';
+import { FileEdit, ArrowLeft } from 'lucide-react';
 import { getCurrentUserWithRoles, canManageNews } from '@/lib/roles';
-import NewsAdminList from '@/components/NewsAdminList';
+import NewsAdminList from '@/components/news/NewsAdminList';
  
 export default async function ProfileNewsPage() {
     const { supabase, user, roles } = await getCurrentUserWithRoles();
@@ -17,14 +17,21 @@ export default async function ProfileNewsPage() {
  
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
-            <div className="w-full max-w-4xl mx-auto px-5 py-10 md:py-16">
+            <div className="w-full max-w-7xl mx-auto px-5 py-10 md:py-16">
+                <Link
+                    href="/profile"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                >
+                    <ArrowLeft size={15} />
+                    Назад до профілю
+                </Link>
                 <div className="flex items-center justify-between gap-4 mb-8">
                     <div>
-                        <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
+                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                             <span className="w-5 h-px bg-secondary" />
                             Кабінет редактора
                         </span>
-                        <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
+                        <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             Керування новинами
                         </h1>
                     </div>

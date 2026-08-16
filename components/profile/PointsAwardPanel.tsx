@@ -281,14 +281,14 @@ export default function PointsAwardPanel() {
             <div className="inline-flex rounded-full border border-primary/15 p-1">
                 <button
                     onClick={() => switchMode('student')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${mode === 'student' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${mode === 'student' ? 'bg-primary text-background' : 'text-primary/60'
                         }`}
                 >
                     Учням
                 </button>
                 <button
                     onClick={() => switchMode('event')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${mode === 'event' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${mode === 'event' ? 'bg-primary text-background' : 'text-primary/60'
                         }`}
                 >
                     Учням за коефіцієнтами
@@ -310,7 +310,7 @@ export default function PointsAwardPanel() {
 
             {/* Ситуації зі Статуту */}
             <div>
-                <h2 className="font-grotesk font-semibold text-sm text-primary/70 uppercase tracking-wide mb-3">
+                <h2 className="font-manrope font-semibold text-sm text-primary/70 uppercase tracking-wide mb-3">
                     {mode === 'student' ? 'Ситуація зі Статуту' : 'Захід'}
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-2">
@@ -345,7 +345,7 @@ export default function PointsAwardPanel() {
             {mode === 'event' && (
                 <div className="grid sm:grid-cols-[1fr_180px] gap-4">
                     <div>
-                        <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                        <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                             Назва заходу
                         </label>
                         <input
@@ -356,7 +356,7 @@ export default function PointsAwardPanel() {
                         />
                     </div>
                     <div>
-                        <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                        <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                             Бюджет, балів
                         </label>
                         <input
@@ -371,7 +371,7 @@ export default function PointsAwardPanel() {
 
             {/* Пошук учнів */}
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     {mode === 'student' ? 'Кому нараховуємо' : 'Учасники заходу'}
                 </label>
 
@@ -433,7 +433,7 @@ export default function PointsAwardPanel() {
             {mode === 'event' && (
                 <div className="border border-primary/10 rounded-2xl overflow-hidden bg-white/40">
                     <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-primary/[0.04]">
-                        <span className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                        <span className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                             Учасники — рівень, категорія та пояснення
                         </span>
                         {participants.length > 0 && (
@@ -479,7 +479,7 @@ export default function PointsAwardPanel() {
                                                         coefficient: level.value,
                                                     })
                                                 }
-                                                className={`w-9 h-9 rounded-lg text-sm font-grotesk font-bold transition-colors ${p.coefficient === level.value
+                                                className={`w-9 h-9 rounded-lg text-sm font-manrope font-bold transition-colors ${p.coefficient === level.value
                                                     ? 'bg-primary text-background'
                                                     : 'bg-primary/5 text-primary/50 hover:bg-primary/10'
                                                     }`}
@@ -489,7 +489,7 @@ export default function PointsAwardPanel() {
                                         ))}
                                     </div>
 
-                                    <div className="w-16 text-right font-grotesk font-bold text-primary">
+                                    <div className="w-16 text-right font-manrope font-bold text-primary">
                                         {pointsByStudent.get(p.student.student_id) ?? 0}
                                     </div>
 
@@ -564,7 +564,7 @@ export default function PointsAwardPanel() {
             <div className="border border-primary/10 rounded-2xl p-5 bg-white/40 space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                        <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                             {mode === 'student' ? 'Категорія' : 'Категорія за замовчуванням'}
                         </label>
                         <select
@@ -582,7 +582,7 @@ export default function PointsAwardPanel() {
 
                     {mode === 'student' && (
                         <div>
-                            <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                            <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                                 Бали (можна від&apos;ємні — штраф)
                             </label>
                             <input
@@ -596,7 +596,7 @@ export default function PointsAwardPanel() {
                 </div>
 
                 <div>
-                    <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                    <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                         {mode === 'student'
                             ? 'Пояснення (видно редактору та учню-отримувачу)'
                             : 'Пояснення за замовчуванням'}
@@ -625,7 +625,7 @@ export default function PointsAwardPanel() {
                 <button
                     onClick={handleSubmit}
                     disabled={submitting}
-                    className="inline-flex items-center gap-2 bg-primary text-background font-grotesk font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                     {submitting ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                     {mode === 'student' ? 'Нарахувати' : 'Розподілити бали'}
@@ -638,10 +638,10 @@ export default function PointsAwardPanel() {
 function Summary({ label, value }: { label: string; value: string }) {
     return (
         <div>
-            <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+            <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                 {label}
             </p>
-            <p className="text-sm font-grotesk font-bold text-primary mt-0.5">{value}</p>
+            <p className="text-sm font-manrope font-bold text-primary mt-0.5">{value}</p>
         </div>
     );
 }

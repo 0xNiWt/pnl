@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/server';
-import LogoutButton from '@/components/LogoutButton';
+import LogoutButton from '@/components/profile/LogoutButton';
 import { positionLabel } from '@/lib/positions';
 import { canCreatePolls } from '@/lib/voting';
 import {
@@ -71,15 +71,15 @@ export default async function ProfilePage() {
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
-            <div className="w-full max-w-5xl mx-auto px-5 py-10 md:py-16">
+            <div className="w-full max-w-7xl mx-auto px-5 py-10 md:py-16">
 
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
                     <div>
-                        <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
+                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                             <span className="w-5 h-px bg-secondary" />
                             {roleLabelText}
                         </span>
-                        <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
+                        <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             {profile?.full_name || 'Профіль'}
                         </h1>
                     </div>
@@ -89,10 +89,10 @@ export default async function ProfilePage() {
                             <Coins size={18} />
                         </span>
                         <div>
-                            <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                            <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                                 Баланс
                             </p>
-                            <p className="text-lg font-grotesk font-bold text-primary leading-none mt-0.5">
+                            <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
                                 {pointsBalance} <span className="text-sm font-normal text-primary/50">балів</span>
                             </p>
                         </div>
@@ -113,7 +113,7 @@ export default async function ProfilePage() {
 
                     <div className="flex flex-col gap-6">
                         <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-6">
-                            <h3 className="font-grotesk font-bold text-primary text-sm mb-4">
+                            <h3 className="font-manrope font-bold text-primary text-sm mb-4">
                                 Дані акаунту
                             </h3>
                             <div className="flex flex-col">
@@ -151,7 +151,7 @@ function StudentSection() {
         <SectionCard title="Мій рейтинг" icon={<TrendingUp size={16} />}>
             <div className="flex items-center justify-between py-2">
                 <div>
-                    <p className="text-3xl font-grotesk font-bold text-primary">—</p>
+                    <p className="text-3xl font-manrope font-bold text-primary">—</p>
                     <p className="text-sm text-primary/50 mt-1">місце в рейтингу школи</p>
                 </div>
                 <Link
@@ -244,7 +244,7 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
 function SectionCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
     return (
         <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-6">
-            <h3 className="flex items-center gap-2 font-grotesk font-bold text-primary text-sm mb-4">
+            <h3 className="flex items-center gap-2 font-manrope font-bold text-primary text-sm mb-4">
                 <span className="text-secondary">{icon}</span>
                 {title}
             </h3>
@@ -268,7 +268,7 @@ function QuickAction({ label, href, icon }: { label: string; href: string; icon?
 function MiniStat({ value, label }: { value: string; label: string }) {
     return (
         <div className="text-center">
-            <p className="text-2xl font-grotesk font-bold text-primary">{value}</p>
+            <p className="text-2xl font-manrope font-bold text-primary">{value}</p>
             <p className="text-xs text-primary/50 mt-0.5">{label}</p>
         </div>
     );
@@ -281,7 +281,7 @@ function ProfileRow({ icon, label, value }: { icon: React.ReactNode; label: stri
                 {icon}
             </div>
             <div>
-                <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                     {label}
                 </p>
                 <p className="text-sm font-medium text-primary">{value}</p>

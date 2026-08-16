@@ -1,19 +1,16 @@
-import AboutHero from "@/components/AboutHero";
-import History from "@/components/History";
-import Values from "@/components/Values";
-import ContactWithData from "@/components/ContactWithData";
-import Footer from "@/components/Footer";
-
+import AboutHero from "@/components/litsey/AboutHero";
+import History from "@/components/litsey/History";
+import Values from "@/components/litsey/Values";
+import ContactWithData from "@/components/contact/ContactWithData";
 export const dynamic = 'force-dynamic';
 
-export default function RegisterPage() {
+export default function LitseyPage() {
     return (
         <main className="bg-background min-h-screen flex flex-col">
             <AboutHero />
             <History />
             <Values />
             <ContactWithData />
-            <Footer />
         </main>
       
     )

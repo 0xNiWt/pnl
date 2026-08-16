@@ -38,12 +38,12 @@ export default function Values() {
             className="max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
             id="values"
         >
-            <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
+            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
                 <span className="w-6 h-px bg-secondary" />
                 Чому обирають нас
             </span>
 
-            <h2 className="font-grotesk font-bold text-primary text-3xl md:text-4xl tracking-tight mb-10 max-w-xl">
+            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-10 max-w-xl">
                 Освіта, побудована на практиці й дослідженні
             </h2>
 
@@ -57,7 +57,7 @@ export default function Values() {
                             <Icon size={20} className="text-primary" />
                         </span>
                         <div>
-                            <h3 className="font-grotesk font-bold text-primary text-base mb-1.5">{title}</h3>
+                            <h3 className="font-manrope font-bold text-primary text-base mb-1.5">{title}</h3>
                             <p className="text-sm text-primary/60 leading-relaxed">{text}</p>
                         </div>
                     </div>

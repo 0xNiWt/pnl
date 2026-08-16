@@ -109,7 +109,7 @@ export default function PollCreateForm({
 
             {/* Для кого */}
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Для кого голосування
                 </label>
 
@@ -118,7 +118,7 @@ export default function PollCreateForm({
                         <button
                             key={s}
                             onClick={() => setScope(s)}
-                            className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${scope === s ? 'bg-primary text-background' : 'text-primary/60'
+                            className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${scope === s ? 'bg-primary text-background' : 'text-primary/60'
                                 }`}
                         >
                             {POLL_SCOPE_LABELS[s]}
@@ -158,7 +158,7 @@ export default function PollCreateForm({
 
             {/* Питання */}
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Питання
                 </label>
                 <input
@@ -170,7 +170,7 @@ export default function PollCreateForm({
             </div>
 
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Пояснення (необов&apos;язково)
                 </label>
                 <textarea
@@ -184,7 +184,7 @@ export default function PollCreateForm({
 
             {/* Варіанти */}
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Варіанти відповіді
                 </label>
 
@@ -222,7 +222,7 @@ export default function PollCreateForm({
 
             {/* Анонімність */}
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Тип голосування
                 </label>
 
@@ -267,7 +267,7 @@ export default function PollCreateForm({
                 <button
                     onClick={submit}
                     disabled={saving}
-                    className="inline-flex items-center gap-2 bg-primary text-background font-grotesk font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                     {saving ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                     Створити

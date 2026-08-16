@@ -166,14 +166,14 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             <div className="inline-flex self-start rounded-full border border-primary/15 p-1">
                 <button
                     onClick={() => setTab('students')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${tab === 'students' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'students' ? 'bg-primary text-background' : 'text-primary/60'
                         }`}
                 >
                     Список учнів
                 </button>
                 <button
                     onClick={() => setTab('positions')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${tab === 'positions' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'positions' ? 'bg-primary text-background' : 'text-primary/60'
                         }`}
                 >
                     Усі посади
@@ -344,7 +344,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                                 <div className="px-5 pb-5 pt-1 flex flex-col gap-4 bg-primary/[0.02]">
                                                     {POSITION_SCOPES.map((scope) => (
                                                         <div key={scope.id}>
-                                                            <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-2">
+                                                            <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-2">
                                                                 {scope.label}
                                                             </p>
                                                             <div className="flex flex-wrap gap-2">
@@ -426,7 +426,7 @@ function ScopeCard({
     return (
         <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
             <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
-                <p className="font-grotesk font-bold text-sm text-primary">{scope.label}</p>
+                <p className="font-manrope font-bold text-sm text-primary">{scope.label}</p>
                 <p className="text-xs text-primary/40 mt-0.5">{scope.hint}</p>
             </div>
 
@@ -477,7 +477,7 @@ function PositionBadge({ id }: { id: string }) {
 function Filter({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div>
-            <label className="block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+            <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                 {label}
             </label>
             {children}

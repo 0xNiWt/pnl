@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles, canManageUsers } from '@/lib/roles';
-import UsersRoleManager from '@/components/UsersRoleManager';
+import UsersRoleManager from '@/components/profile/UsersRoleManager';
 
 export default async function UsersEdit() {
     const { user, roles } = await getCurrentUserWithRoles();
@@ -29,11 +29,11 @@ export default async function UsersEdit() {
                 </Link>
 
                 <div className="mb-8">
-                    <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
+                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                         <span className="w-5 h-px bg-secondary" />
                         Огляд системи
                     </span>
-                    <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
+                    <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Управління ролями
                     </h1>
                     <p className="text-sm text-primary/50 mt-2 max-w-2xl">

@@ -115,7 +115,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                                     <Users size={15} />
                                 </span>
                                 <div>
-                                    <p className="font-grotesk font-bold text-sm text-primary leading-none">
+                                    <p className="font-manrope font-bold text-sm text-primary leading-none">
                                         {group.className}
                                     </p>
                                     {parallelOf(group.className) && (

@@ -6,7 +6,7 @@ html {
 
 @theme {
   --font-bebas: var(--font-bebas-neue);
-  --font-grotesk: var(--font-space-grotesk);
+  --font-manrope: var(--font-manrope);
   --font-inter: var(--font-inter);
 
   --color-primary: #1C2D56;

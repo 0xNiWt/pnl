@@ -30,7 +30,7 @@ export default async function MyPointsHistoryPage() {
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
-            <div className="w-full max-w-3xl mx-auto px-5 py-10 md:py-16">
+            <div className="w-full max-w-7xl mx-auto px-5 py-10 md:py-16">
 
                 <Link
                     href="/profile"
@@ -41,7 +41,7 @@ export default async function MyPointsHistoryPage() {
                 </Link>
 
                 <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
-                    <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
+                    <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Історія нарахувань
                     </h1>
                     <div className="flex items-center gap-3 bg-primary/[0.03] border border-primary/10 rounded-2xl px-5 py-3">
@@ -49,10 +49,10 @@ export default async function MyPointsHistoryPage() {
                             <Coins size={18} />
                         </span>
                         <div>
-                            <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                            <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                                 Разом
                             </p>
-                            <p className="text-lg font-grotesk font-bold text-primary leading-none mt-0.5">
+                            <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
                                 {total} <span className="text-sm font-normal text-primary/50">балів</span>
                             </p>
                         </div>
@@ -82,18 +82,18 @@ export default async function MyPointsHistoryPage() {
                             >
                                 <div>
                                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                        <span className="inline-block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-secondary">
+                                        <span className="inline-block text-[11px] font-manrope font-semibold uppercase tracking-wider text-secondary">
                                             {CATEGORY_LABELS[t.category as PointCategory] ?? t.category}
                                         </span>
                                         {t.event_title && (
-                                            <span className="inline-block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/45">
+                                            <span className="inline-block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/45">
                                                 · {t.event_title}
                                             </span>
                                         )}
                                         {t.coefficient && (
                                             <span
                                                 title="Рівень залученості за п. 12.2.3.3 Статуту"
-                                                className="inline-block rounded-full bg-accent/15 text-accent text-[11px] font-grotesk font-bold px-2 py-0.5"
+                                                className="inline-block rounded-full bg-accent/15 text-accent text-[11px] font-manrope font-bold px-2 py-0.5"
                                             >
                                                 К = {t.coefficient}
                                             </span>
@@ -116,7 +116,7 @@ export default async function MyPointsHistoryPage() {
                                     </p>
                                 </div>
                                 <div
-                                    className={`shrink-0 font-grotesk font-bold text-lg ${
+                                    className={`shrink-0 font-manrope font-bold text-lg ${
                                         t.points >= 0 ? 'text-accent' : 'text-red-500'
                                     }`}
                                 >

@@ -158,7 +158,7 @@ export default function PollDetail({
                     </Badge>
                 </div>
 
-                <h1 className="font-grotesk font-bold text-2xl md:text-3xl text-primary tracking-tight">
+                <h1 className="font-manrope font-bold text-2xl md:text-3xl text-primary tracking-tight">
                     {poll.title}
                 </h1>
                 {poll.description && (
@@ -179,7 +179,7 @@ export default function PollDetail({
             {/* Явка */}
             <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5">
                 <div className="flex items-center justify-between gap-3 mb-2">
-                    <p className="flex items-center gap-2 text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="flex items-center gap-2 text-xs font-manrope font-semibold uppercase tracking-wider text-primary/50">
                         <Users size={13} />
                         Явка
                     </p>
@@ -242,7 +242,7 @@ export default function PollDetail({
                     <button
                         onClick={vote}
                         disabled={busy}
-                        className="self-start inline-flex items-center gap-2 bg-primary text-background font-grotesk font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                        className="self-start inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                     >
                         {busy ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                         Проголосувати
@@ -266,7 +266,7 @@ export default function PollDetail({
             {/* Результати */}
             {isClosed && results && (
                 <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5">
-                    <p className="flex items-center gap-2 text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-4">
+                    <p className="flex items-center gap-2 text-xs font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-4">
                         <Trophy size={13} />
                         Результати · {totalVotes} {totalVotes === 1 ? 'голос' : 'голосів'}
                     </p>
@@ -282,13 +282,13 @@ export default function PollDetail({
                                         <p className="text-sm text-primary flex items-center gap-2 min-w-0">
                                             <span className="truncate">{r.label}</span>
                                             {isWinner && (
-                                                <span className="shrink-0 text-[10px] font-grotesk font-bold uppercase tracking-wider text-secondary bg-secondary/15 px-2 py-0.5 rounded-full">
+                                                <span className="shrink-0 text-[10px] font-manrope font-bold uppercase tracking-wider text-secondary bg-secondary/15 px-2 py-0.5 rounded-full">
                                                     {winners.length > 1 ? 'Нічия' : 'Перемагає'}
                                                 </span>
                                             )}
                                         </p>
                                         <p className="text-sm shrink-0">
-                                            <b className="font-grotesk text-primary">{share}%</b>
+                                            <b className="font-manrope text-primary">{share}%</b>
                                             <span className="text-primary/40"> · {r.votes}</span>
                                         </p>
                                     </div>
@@ -318,7 +318,7 @@ export default function PollDetail({
                 <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
                     <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03] flex items-center gap-2">
                         <Eye size={14} className="text-accent" />
-                        <p className="font-grotesk font-bold text-sm text-primary">
+                        <p className="font-manrope font-bold text-sm text-primary">
                             Хто як проголосував
                         </p>
                     </div>
@@ -360,7 +360,7 @@ export default function PollDetail({
                         <button
                             onClick={closePoll}
                             disabled={busy}
-                            className="inline-flex items-center gap-2 bg-primary text-background font-grotesk font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                            className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                         >
                             {busy ? <Loader2 size={15} className="animate-spin" /> : <Lock size={15} />}
                             Завершити голосування
@@ -398,7 +398,7 @@ function Badge({
 }) {
     return (
         <span
-            className={`inline-flex items-center gap-1.5 text-[11px] font-grotesk font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${tone === 'active' ? 'bg-secondary/15 text-secondary' : 'bg-primary/5 text-primary/50'
+            className={`inline-flex items-center gap-1.5 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${tone === 'active' ? 'bg-secondary/15 text-secondary' : 'bg-primary/5 text-primary/50'
                 }`}
         >
             {icon}

@@ -1,6 +1,6 @@
 import { redirect, notFound } from 'next/navigation';
 import { getCurrentUserWithRoles, canManageNews } from '@/lib/roles';
-import NewsForm from '@/components/NewsForm';
+import NewsForm from '@/components/news/NewsForm';
 
 type PageParams = { params: Promise<{ id: string }> };
 
@@ -22,11 +22,11 @@ export default async function EditNewsPage({ params }: PageParams) {
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-2xl mx-auto px-5 py-10 md:py-16">
-                <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
+                <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                     <span className="w-5 h-px bg-secondary" />
                     Кабінет редактора
                 </span>
-                <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight mb-8">
+                <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight mb-8">
                     Редагування новини
                 </h1>
 

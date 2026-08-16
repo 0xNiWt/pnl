@@ -19,7 +19,7 @@ export default function NotFound() {
             />
 
             <div className="relative flex flex-col items-center text-center">
-                <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-6">
+                <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-6">
                     <motion.span
                         initial={{ width: 0 }}
                         animate={{ width: 24 }}
@@ -40,7 +40,7 @@ export default function NotFound() {
                                 delay: i * 0.1,
                                 ease: smoothOut,
                             }}
-                            className="text-[clamp(4.5rem,2.5634rem_+_8.26vw,10rem)] font-grotesk font-bold leading-none text-primary"
+                            className="text-[clamp(4.5rem,2.5634rem_+_8.26vw,10rem)] font-manrope font-bold leading-none text-primary"
                         >
                             {digit}
                         </motion.span>

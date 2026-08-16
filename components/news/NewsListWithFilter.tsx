@@ -85,7 +85,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                 >
                                     <ChevronLeft size={16} />
                                 </button>
-                                <span className="font-grotesk font-bold text-sm text-primary">
+                                <span className="font-manrope font-bold text-sm text-primary">
                                     {MONTHS[month]} {year}
                                 </span>
                                 <button

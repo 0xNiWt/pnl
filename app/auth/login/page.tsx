@@ -43,12 +43,12 @@ export default function LoginPage() {
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
-                        <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
+                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                             <span className="w-5 h-px bg-secondary" />
                             Авторизація
                             <span className="w-5 h-px bg-secondary" />
                         </span>
-                        <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
+                        <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             Вхід до системи
                         </h1>
                         <p className="mt-2 text-sm text-primary/60">
@@ -67,7 +67,7 @@ export default function LoginPage() {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Електронна пошта
                                 </label>
                                 <div className="relative">
@@ -85,7 +85,7 @@ export default function LoginPage() {
 
                             <div>
                                 <div className="flex items-center justify-between mb-1.5">
-                                    <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70">
+                                    <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70">
                                         Пароль
                                     </label>
                                     <a href="#" className="text-xs text-primary/60 hover:text-primary transition-colors">

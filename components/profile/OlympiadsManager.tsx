@@ -187,10 +187,10 @@ export default function OlympiadsManager({
 
             {/* Додати здобуток */}
             <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5 flex flex-col gap-4">
-                <h2 className="font-grotesk font-bold text-sm text-primary">Додати здобуток</h2>
+                <h2 className="font-manrope font-bold text-sm text-primary">Додати здобуток</h2>
 
                 <div>
-                    <label className="block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                    <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                         Учень
                     </label>
 
@@ -240,7 +240,7 @@ export default function OlympiadsManager({
 
                 <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                        <label className="block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Предмет або тема
                         </label>
                         <input
@@ -252,7 +252,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Етап
                         </label>
                         <select
@@ -269,7 +269,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Результат
                         </label>
                         <select
@@ -286,7 +286,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Бали (порожньо — зі шкали)
                         </label>
                         <input
@@ -303,7 +303,7 @@ export default function OlympiadsManager({
                     <button
                         onClick={addResult}
                         disabled={adding}
-                        className="inline-flex items-center gap-2 bg-primary text-background font-grotesk font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                        className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                     >
                         {adding ? <Loader2 size={15} className="animate-spin" /> : <Plus size={15} />}
                         Додати
@@ -318,7 +318,7 @@ export default function OlympiadsManager({
             <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
                 <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03] flex items-center gap-2">
                     <Trophy size={15} className="text-secondary" />
-                    <p className="font-grotesk font-bold text-sm text-primary">
+                    <p className="font-manrope font-bold text-sm text-primary">
                         Здобутки ({results.length})
                     </p>
                 </div>
@@ -347,7 +347,7 @@ export default function OlympiadsManager({
                                     </div>
 
                                     <div className="text-right shrink-0">
-                                        <p className="font-grotesk font-bold text-secondary">+{r.points}</p>
+                                        <p className="font-manrope font-bold text-secondary">+{r.points}</p>
                                         <p className="text-[11px] text-primary/35">
                                             разом {totalsByStudent.get(r.student_id) ?? 0}
                                         </p>
@@ -370,7 +370,7 @@ export default function OlympiadsManager({
             {/* Шкала */}
             <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
                 <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
-                    <p className="font-grotesk font-bold text-sm text-primary">Шкала балів</p>
+                    <p className="font-manrope font-bold text-sm text-primary">Шкала балів</p>
                     <p className="text-xs text-primary/40 mt-0.5">
                         П. 10.7.6 Статуту поки позначений як «ДОРОБИТИ» — це тимчасові значення.
                         Зміна шкали не перераховує вже внесені здобутки.
@@ -380,7 +380,7 @@ export default function OlympiadsManager({
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead>
-                            <tr className="bg-primary/[0.02] text-left font-grotesk text-[11px] uppercase tracking-wider text-primary/50">
+                            <tr className="bg-primary/[0.02] text-left font-manrope text-[11px] uppercase tracking-wider text-primary/50">
                                 <th className="px-5 py-2.5">Етап</th>
                                 {OLYMPIAD_PLACES.map((p) => (
                                     <th key={p.value} className="px-3 py-2.5 w-28 text-right">

@@ -75,10 +75,10 @@ export default function UsersRoleManager({
 
             <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
                 <div className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr] gap-4 px-6 py-3 border-b border-primary/10 bg-primary/[0.03]">
-                    <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                         Користувач
                     </p>
-                    <p className="text-[11px] font-grotesk font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
                         Ролі
                     </p>
                 </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Space_Grotesk, Inter } from "next/font/google";
-import Header from "@/components/Header";
+import { Bebas_Neue, Manrope, Inter } from "next/font/google";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,10 +16,10 @@ const bebasNeue = Bebas_Neue({
   variable: "--font-bebas-neue",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-manrope",
 });
 
 export const metadata: Metadata = {
@@ -38,11 +39,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="uk"
-      className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
+      className={`${bebasNeue.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className={`${inter.variable} min-h-full flex flex-col bg-background`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

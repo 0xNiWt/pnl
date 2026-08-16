@@ -147,7 +147,7 @@ export default function StaffDirectory() {
 
     return (
         <section className="max-w-4xl mx-auto px-5 md:px-6 py-10 md:py-16" id="staff">
-            <div className="flex items-center gap-2 mb-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+            <div className="flex items-center gap-2 mb-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                 <span className="w-6 h-px bg-secondary" />
                 Педагогічний колектив
             </div>
@@ -159,7 +159,7 @@ export default function StaffDirectory() {
                     onClick={() => setMenuOpen((v) => !v)}
                     className="w-full flex items-center justify-between gap-3 bg-white border border-primary/15 rounded-xl px-5 py-4 h-[60px] md:h-[64px] text-left hover:border-primary/30 transition-colors"
                 >
-                    <span className="font-grotesk font-bold text-primary text-lg md:text-xl tracking-tight whitespace-nowrap overflow-hidden text-ellipsis">
+                    <span className="font-manrope font-bold text-primary text-lg md:text-xl tracking-tight whitespace-nowrap overflow-hidden text-ellipsis">
                         {dept.title}
                     </span>
                     {menuOpen ? (
@@ -245,12 +245,12 @@ export default function StaffDirectory() {
                                             draggable={false}
                                         />
                                     ) : (
-                                        <div className="w-full h-full flex items-center justify-center font-grotesk font-bold text-3xl text-primary/30">
+                                        <div className="w-full h-full flex items-center justify-center font-manrope font-bold text-3xl text-primary/30">
                                             {initials(member.name)}
                                         </div>
                                     )}
                                 </div>
-                                <h3 className="font-grotesk font-bold text-primary text-lg leading-snug">
+                                <h3 className="font-manrope font-bold text-primary text-lg leading-snug">
                                     {member.name}
                                 </h3>
                                 <p className="mt-2 text-sm text-primary/60 leading-snug max-w-[280px]">

@@ -74,7 +74,7 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                         <div className="min-w-0">
                             <div className="flex items-center gap-2 mb-1">
                                 <span
-                                    className={`text-[10px] font-grotesk font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                                    className={`text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                                         item.published
                                             ? 'bg-secondary/15 text-secondary'
                                             : 'bg-primary/10 text-primary/50'
@@ -84,7 +84,7 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                                 </span>
                                 <span className="text-xs text-primary/40">{dateLabel}</span>
                             </div>
-                            <p className="font-grotesk font-bold text-primary truncate">{item.title}</p>
+                            <p className="font-manrope font-bold text-primary truncate">{item.title}</p>
                         </div>
 
                         <div className="flex items-center gap-1.5 flex-shrink-0">

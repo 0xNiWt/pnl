@@ -19,7 +19,7 @@ export default function RegisterPage() {
     const CLASS_LETTERS = ['А', 'Б', 'В'];
     const studentClass = classGrade && classLetter ? `${classGrade}-${classLetter}` : '';
 
-    const isPnlEmail = email.toLowerCase().includes('kpnl145.kyiv.ua');
+    const isPnlEmail = email.toLowerCase().includes('gmail.com');
 // kpnl145.kyiv.ua
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -68,12 +68,12 @@ export default function RegisterPage() {
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
-                        <span className="inline-flex items-center gap-2 font-grotesk text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
+                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                             <span className="w-5 h-px bg-secondary" />
                             Доступ до системи
                             <span className="w-5 h-px bg-secondary" />
                         </span>
-                        <h1 className="font-grotesk font-bold text-3xl md:text-4xl text-primary tracking-tight">
+                        <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             Створити акаунт
                         </h1>
                         <p className="mt-2 text-sm text-primary/60">
@@ -98,7 +98,7 @@ export default function RegisterPage() {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Повне ім&apos;я <span className="text-accent">*</span>
                                 </label>
                                 <div className="relative">
@@ -115,7 +115,7 @@ export default function RegisterPage() {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Шкільна пошта <span className="text-accent">*</span>
                                 </label>
                                 <div className="relative">
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Клас <span className="text-accent">*</span>
                                 </label>
                                 <div className="flex gap-3">
@@ -174,7 +174,7 @@ export default function RegisterPage() {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                                     Пароль <span className="text-accent">*</span>
                                 </label>
                                 <div className="relative">

@@ -96,7 +96,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             )}
 
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                     Заголовок
                 </label>
                 <div className="relative">
@@ -113,7 +113,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             </div>
 
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                     Короткий опис
                 </label>
                 <div className="relative">
@@ -129,7 +129,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             </div>
 
             <div>
-                <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                     Текст новини
                 </label>
                 <textarea
@@ -144,7 +144,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
 
             <div>
                 <div className="flex items-center justify-between mb-1.5">
-                    <label className="block text-xs font-grotesk font-semibold uppercase tracking-wider text-primary/70">
+                    <label className="block text-xs font-manrope font-semibold uppercase tracking-wider text-primary/70">
                         Фото (перше — обкладинка картки)
                     </label>
                     <button

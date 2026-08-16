@@ -93,8 +93,6 @@ export default function RatingBoard() {
         return () => clearTimeout(timeout);
     }, [scope, search, load]);
 
-    // Місця приходять з сервера порахованими по всьому ліцею —
-    // тут лише сортуємо за обраним рейтингом.
     const rows = useMemo<Row[]>(() => {
         const source: Row[] = scope === 'student' ? studentRows : classRows;
         return [...source].sort((a, b) => {
@@ -106,17 +104,14 @@ export default function RatingBoard() {
         });
     }, [scope, rating, studentRows, classRows]);
 
-    // Скільки колонок займає таблиця — потрібно для рядка «Завантаження...».
-    // № + назва + (клас або к-сть учнів) = 3, далі залежить від рейтингу.
     const colCount = rating === 'points' ? 9 : rating === 'overall' ? 7 : 4;
 
     return (
-        <section className="max-w-6xl mx-auto px-5 md:px-6 py-8 md:py-12">
-            {/* Перемикач учні / класи */}
+        <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-8 md:py-12">
             <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
                 <button
                     onClick={() => setScope(scope === 'student' ? 'class' : 'student')}
-                    className="inline-flex items-center gap-2 font-grotesk font-semibold text-sm text-background bg-primary hover:bg-primary/90 transition-colors rounded-full px-4 py-2.5"
+                    className="inline-flex items-center gap-2 font-manrope font-semibold text-sm text-background bg-primary hover:bg-primary/90 transition-colors rounded-full px-4 py-2.5"
                 >
                     <ArrowLeftRight size={15} />
                     {scope === 'student' ? 'Показати рейтинг класів' : 'Показати рейтинг учнів'}
@@ -133,13 +128,12 @@ export default function RatingBoard() {
                 </div>
             </div>
 
-            {/* Чотири рейтинги за пп. 10.7 та 10.11 Статуту */}
             <div className="flex flex-wrap gap-1.5 mb-3">
                 {RATING_ORDER.map((kind) => (
                     <button
                         key={kind}
                         onClick={() => setRating(kind)}
-                        className={`px-4 py-1.5 rounded-full border text-xs font-grotesk font-semibold uppercase tracking-wide transition-colors ${rating === kind
+                        className={`px-4 py-1.5 rounded-full border text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${rating === kind
                             ? 'bg-primary text-background border-primary'
                             : 'border-primary/15 text-primary/60 hover:bg-primary/5'
                             }`}
@@ -157,7 +151,7 @@ export default function RatingBoard() {
             <div className="border border-primary/10 rounded-2xl overflow-x-auto bg-white/40">
                 <table className="w-full text-sm">
                     <thead>
-                        <tr className="bg-primary/5 text-left font-grotesk text-xs uppercase tracking-wide text-primary/60">
+                        <tr className="bg-primary/5 text-left font-manrope text-xs uppercase tracking-wide text-primary/60">
                             <th className="px-4 py-3 w-14">№</th>
                             <th className="px-4 py-3">{scope === 'student' ? 'ПІБ' : 'Клас'}</th>
                             {scope === 'student' && <th className="px-4 py-3 w-20">Клас</th>}
@@ -250,7 +244,7 @@ export default function RatingBoard() {
                                             </>
                                         )}
 
-                                        <td className="px-4 py-3 text-right font-grotesk font-semibold text-secondary">
+                                        <td className="px-4 py-3 text-right font-manrope font-semibold text-secondary">
                                             {rating === 'points' && row.total_points}
                                             {rating === 'academic' &&
                                                 (row.academic_score === null

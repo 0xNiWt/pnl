@@ -173,7 +173,7 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
             </div>
 
             <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5">
-                <h3 className="text-sm font-grotesk font-bold text-primary mb-3">Додати вакансію</h3>
+                <h3 className="text-sm font-manrope font-bold text-primary mb-3">Додати вакансію</h3>
                 <div className="flex flex-col gap-2">
                     <input
                         value={newTitle}
