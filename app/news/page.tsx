@@ -3,8 +3,6 @@ import NewsHero from '@/components/news/NewsHero';
 import NewsListWithFilter from '@/components/news/NewsListWithFilter';
 import ContactWithData from '@/components/contact/ContactWithData';
 
-export const dynamic = 'force-dynamic';
-
 export default async function NewsPage() {
     const supabase = await createClient();
 

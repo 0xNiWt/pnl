@@ -15,7 +15,6 @@ export default async function PollPage({ params }: { params: Promise<{ id: strin
 
     const supabase = await createClient();
 
-    // RLS не віддасть голосування, яке не адресоване цьому учню.
     const { data: poll } = await supabase
         .from('polls')
         .select('id, title, description, scope, class_name, status, is_anonymous, created_by, created_at, closed_at')

@@ -11,8 +11,8 @@ export default async function Header() {
 
     return (
         <header className="sticky top-0 z-50 bg-background px-4 py-4 border-b border-gray-800/20">
-            <div className="md:max-w-7xl mx-auto">
-                <div className="flex items-center justify-between md:gap-12 flex-wrap">
+            <div className="md:max-w-7xl mx-auto relative">
+                <div className="flex items-center justify-between md:gap-12">
                     <Link href="/" className="flex items-center gap-2 group">
                         <Image src={gerb} alt="Герб ліцею" className="h-16 w-auto" priority />
                         <h1 className="text-primary text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">

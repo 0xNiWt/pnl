@@ -19,13 +19,13 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: smoothOut }}
-                    className="md:hidden overflow-hidden border-t border-primary/10 mt-4 w-full basis-full"
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25, ease: smoothOut }}
+                    className="md:hidden absolute left-0 right-0 top-full mt-3 bg-background border border-primary/10 rounded-2xl shadow-xl overflow-hidden z-40"
                 >
-                    <div className="py-4 flex flex-col gap-4">
+                    <div className="py-4 px-3 flex flex-col gap-4">
                         <ul className="flex flex-col gap-1">
                             {links.map((item, i) => (
                                 <motion.li

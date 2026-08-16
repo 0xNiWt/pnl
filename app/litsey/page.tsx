@@ -2,7 +2,6 @@ import AboutHero from "@/components/litsey/AboutHero";
 import History from "@/components/litsey/History";
 import Values from "@/components/litsey/Values";
 import ContactWithData from "@/components/contact/ContactWithData";
-export const dynamic = 'force-dynamic';
 
 export default function LitseyPage() {
     return (

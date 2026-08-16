@@ -1,12 +1,12 @@
 import ContactWithData from "@/components/contact/ContactWithData";
 import StaffDirectory from "@/components/profile/StaffDirectory";
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export default function PedagogyPage() {
     return (
         <main className="bg-background min-h-screen flex flex-col">
-            <section className="max-w-7xl mx-auto px-5 md:px-6 pt-10 md:pt-16 text-center md:text-left">
+            <section className="w-full max-w-7xl mx-auto px-5 md:px-6 pt-10 md:pt-16 text-center md:text-left">
                 <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
                     <span className="w-6 h-px bg-secondary" />
                     Ліцей №145
