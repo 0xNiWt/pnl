@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, EyeOff, Eye, Loader2, Plus, TriangleAlert, X } from 'lucide-react';
+import { Check, EyeOff, Loader2, Plus, TriangleAlert, X } from 'lucide-react';
 import { compareClasses } from '@/lib/positions';
 import { POLL_SCOPE_LABELS, QUORUM, type PollScope } from '@/lib/voting';
 
@@ -21,7 +21,6 @@ export default function PollCreateForm({
     const [className, setClassName] = useState<string>(myClass ?? allClasses[0] ?? '');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [isAnonymous, setIsAnonymous] = useState(true);
     const [options, setOptions] = useState<string[]>(['', '']);
 
     const [saving, setSaving] = useState(false);
@@ -75,7 +74,6 @@ export default function PollCreateForm({
                     description,
                     scope,
                     className: scope === 'class' ? className : null,
-                    isAnonymous,
                     options: clean,
                 }),
             });
@@ -220,46 +218,23 @@ export default function PollCreateForm({
                 </button>
             </div>
 
-            {/* Анонімність */}
+            {/* Таємність. Вибору немає навмисно: відкритих голосувань у ліцеї
+                більше не проводимо, тому кожне створене тут — таємне. */}
             <div>
                 <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Тип голосування
                 </label>
 
-                <div className="grid sm:grid-cols-2 gap-2">
-                    <button
-                        onClick={() => setIsAnonymous(true)}
-                        className={`text-left px-4 py-3 rounded-xl border transition-colors ${isAnonymous
-                            ? 'border-secondary bg-secondary/10'
-                            : 'border-primary/10 bg-white/40 hover:bg-primary/5'
-                            }`}
-                    >
-                        <p className="flex items-center gap-2 text-sm font-medium text-primary">
-                            <EyeOff size={14} className="text-secondary" />
-                            Анонімне
-                        </p>
-                        <p className="text-xs text-primary/50 mt-1">
-                            Хто за що голосував — не зберігається взагалі. Видно лише відсотки
-                            та явку. Так вимагає п. 3.6 Статуту.
-                        </p>
-                    </button>
-
-                    <button
-                        onClick={() => setIsAnonymous(false)}
-                        className={`text-left px-4 py-3 rounded-xl border transition-colors ${!isAnonymous
-                            ? 'border-secondary bg-secondary/10'
-                            : 'border-primary/10 bg-white/40 hover:bg-primary/5'
-                            }`}
-                    >
-                        <p className="flex items-center gap-2 text-sm font-medium text-primary">
-                            <Eye size={14} className="text-accent" />
-                            Відкрите
-                        </p>
-                        <p className="text-xs text-primary/50 mt-1">
-                            Після закриття організатор побачить поіменний список. Учні
-                            попереджаються про це перед голосуванням.
-                        </p>
-                    </button>
+                <div className="rounded-xl border border-secondary/25 bg-secondary/[0.08] px-4 py-3">
+                    <p className="flex items-center gap-2 text-sm font-medium text-primary">
+                        <EyeOff size={14} className="text-secondary" />
+                        Таємне — інакше не буває
+                    </p>
+                    <p className="text-xs text-primary/55 mt-1 leading-relaxed">
+                        Хто за що голосував, не зберігається взагалі: ні організатор, ні
+                        адміністрація не побачать поіменного списку. Видно лише відсотки
+                        та явку — так вимагає п. 3.6 Статуту.
+                    </p>
                 </div>
             </div>
 

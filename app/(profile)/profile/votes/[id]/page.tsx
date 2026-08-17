@@ -47,11 +47,8 @@ export default async function PollPage({ params }: { params: Promise<{ id: strin
         ? await supabase.rpc('poll_results', { p_poll_id: id })
         : { data: null };
 
-    // Поіменний список — тільки для відкритих голосувань і тільки організатору.
-    const { data: voters } =
-        isClosed && !poll.is_anonymous && isOrganizer
-            ? await supabase.rpc('poll_voters', { p_poll_id: id })
-            : { data: null };
+    // Поіменного списку не запитуємо взагалі: усі голосування таємні, тому
+    // «хто за що» не показуємо нікому — ні організатору, ні адміністрації.
 
     return (
         <main className="bg-background min-h-screen flex flex-col font-inter">
@@ -85,7 +82,6 @@ export default async function PollPage({ params }: { params: Promise<{ id: strin
                         eligible: turnout?.eligible ?? 0,
                     }}
                     results={results ?? null}
-                    voters={voters ?? null}
                 />
             </div>
         </main>

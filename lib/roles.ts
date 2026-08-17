@@ -40,6 +40,16 @@ export function canManageRatingVisibility(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');
 }
 
+// Хто редагує таблиці перемог на олімпіадах на сторінці «Про ліцей».
+export function canManageOlympiadStats(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
+// Хто редагує книгу пам'яті на сторінці «Ліцей».
+export function canManageMemoryBook(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
 // Ролі, які можна видати іншому користувачу.
 // Овнер може видати будь-яку роль, включно з moderator та owner.
 // Модератор може видати всі ролі, окрім owner і moderator.

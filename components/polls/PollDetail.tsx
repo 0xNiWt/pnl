@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     Check,
-    Eye,
     EyeOff,
     Loader2,
     Lock,
@@ -39,8 +38,6 @@ type Poll = {
 
 type Option = { id: string; label: string; sort_order: number };
 
-type Voter = { voter_name: string; voter_class: string | null; option_label: string };
-
 export default function PollDetail({
     poll,
     options,
@@ -48,7 +45,6 @@ export default function PollDetail({
     isOrganizer,
     turnout,
     results,
-    voters,
 }: {
     poll: Poll;
     options: Option[];
@@ -56,7 +52,6 @@ export default function PollDetail({
     isOrganizer: boolean;
     turnout: { voted: number; eligible: number };
     results: PollOptionResult[] | null;
-    voters: Voter[] | null;
 }) {
     const router = useRouter();
 
@@ -151,8 +146,8 @@ export default function PollDetail({
                             ? `Клас ${poll.class_name}`
                             : POLL_SCOPE_LABELS.lyceum}
                     </Badge>
-                    <Badge icon={poll.is_anonymous ? <EyeOff size={11} /> : <Eye size={11} />}>
-                        {poll.is_anonymous ? 'Анонімне' : 'Відкрите'}
+                    <Badge icon={<EyeOff size={11} />}>
+                        {poll.is_anonymous ? 'Таємне' : 'Архівне · створене як відкрите'}
                     </Badge>
                     <Badge tone={isClosed ? 'muted' : 'active'}>
                         {isClosed ? 'Завершено' : 'Триває'}
@@ -211,13 +206,11 @@ export default function PollDetail({
             {/* Голосування */}
             {!isClosed && !hasVoted && (
                 <div className="bg-white/40 border border-primary/10 rounded-2xl p-5 flex flex-col gap-3">
-                    {!poll.is_anonymous && (
-                        <p className="flex items-start gap-2 text-xs text-primary/70 bg-accent/10 border border-accent/25 rounded-xl px-3.5 py-2.5">
-                            <Eye size={14} className="shrink-0 mt-0.5 text-accent" />
-                            Це відкрите голосування: після його завершення організатор побачить,
-                            який варіант ти обрав.
-                        </p>
-                    )}
+                    <p className="flex items-start gap-2 text-xs text-primary/70 bg-secondary/[0.08] border border-secondary/25 rounded-xl px-3.5 py-2.5">
+                        <EyeOff size={14} className="shrink-0 mt-0.5 text-secondary" />
+                        Голосування таємне: твій вибір не зберігається поруч з іменем, тому
+                        побачити, за що саме ти проголосував, не зможе ніхто.
+                    </p>
 
                     <div className="flex flex-col gap-2">
                         {options.map((option) => (
@@ -314,37 +307,8 @@ export default function PollDetail({
                 </div>
             )}
 
-            {/* Поіменний список */}
-            {isClosed && voters && voters.length > 0 && (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
-                    <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03] flex items-center gap-2">
-                        <Eye size={14} className="text-accent" />
-                        <p className="font-manrope font-bold text-sm text-primary">
-                            Хто як проголосував
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col divide-y divide-primary/10">
-                        {voters.map((v, i) => (
-                            <div key={`${v.voter_name}-${i}`} className="flex items-center gap-4 px-5 py-2.5">
-                                <p className="text-sm text-primary min-w-0 flex-1 truncate">
-                                    {v.voter_name}
-                                    <span className="ml-2 text-xs text-primary/40">
-                                        {v.voter_class ?? ''}
-                                    </span>
-                                </p>
-                                <p className="text-sm font-medium text-secondary shrink-0">
-                                    {v.option_label}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-
-                    <p className="px-5 py-3 text-xs text-primary/40 border-t border-primary/10">
-                        Список видно лише організатору, бо голосування створювали як відкрите.
-                    </p>
-                </div>
-            )}
+            {/* Поіменного списку немає й бути не може: сторінка навмисно
+                не запитує зв'язок «хто за що». */}
 
             {/* Кругова діаграма — тільки організатору (та адміністрації
                 з модератором, які теж вважаються організаторами). */}
@@ -352,11 +316,12 @@ export default function PollDetail({
                 <ResultsDonut results={results} totalVotes={totalVotes} />
             )}
 
-            {isClosed && poll.is_anonymous && isOrganizer && (
+            {isClosed && (
                 <p className="flex items-start gap-2 text-xs text-primary/50 px-1">
                     <Lock size={13} className="shrink-0 mt-0.5" />
-                    Це анонімне голосування — зв&apos;язок «хто за що» не зберігався в базі,
-                    тому поіменного списку не існує навіть у адміністрації.
+                    {poll.is_anonymous
+                        ? 'Голосування таємне — зв’язок «хто за що» не зберігався в базі, тому поіменного списку не існує ні в організатора, ні в адміністрації.'
+                        : 'Це давнє голосування створювали за старими правилами як відкрите, але поіменний список більше не показується нікому.'}
                 </p>
             )}
 

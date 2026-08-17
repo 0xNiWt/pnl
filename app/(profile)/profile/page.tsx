@@ -15,7 +15,7 @@ import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
     Coins, TrendingUp, FileEdit, Settings,
     BarChart3, ClipboardList, Award, GraduationCap, Trophy,
-    Vote, Plus, EyeOff,
+    Vote, Plus, EyeOff, BookOpen,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -309,6 +309,8 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Нарахування балів" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Навчальний рейтинг" href="/profile/rating/academic" icon={<GraduationCap size={15} />} />
                     <QuickAction label="Олімпіадний рейтинг" href="/profile/rating/olympiads" icon={<Trophy size={15} />} />
+                    <QuickAction label="Перемоги на олімпіадах (сайт)" href="/profile/olympiads" icon={<BarChart3 size={15} />} />
+                    <QuickAction label="Книга пам'яті" href="/profile/memory" icon={<BookOpen size={15} />} />
                     <QuickAction label="Видимість рейтингів" href="/profile/rating/visibility" icon={<EyeOff size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
                 </div>

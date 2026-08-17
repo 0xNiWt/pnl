@@ -13,7 +13,6 @@ type Poll = {
     scope: PollScope;
     class_name: string | null;
     status: 'open' | 'closed';
-    is_anonymous: boolean;
     created_at: string;
 };
 
@@ -35,7 +34,7 @@ export default async function VotesPage() {
     // RLS сама віддасть лише ті голосування, які адресовані цьому учню.
     const { data: polls, error } = await supabase
         .from('polls')
-        .select('id, title, scope, class_name, status, is_anonymous, created_at')
+        .select('id, title, scope, class_name, status, created_at')
         .order('created_at', { ascending: false });
 
     // У яких я вже брав участь — щоб не пропонувати голосувати вдруге.
@@ -133,7 +132,7 @@ function Section({
                                         ? `Клас ${poll.class_name}`
                                         : POLL_SCOPE_LABELS.lyceum}
                                     {' · '}
-                                    {poll.is_anonymous ? 'анонімне' : 'відкрите'}
+                                    таємне
                                     {' · '}
                                     {new Date(poll.created_at).toLocaleDateString('uk-UA', {
                                         day: 'numeric',

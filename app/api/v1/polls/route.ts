@@ -13,12 +13,11 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { title, description, scope, className, isAnonymous, options } = body as {
+  const { title, description, scope, className, options } = body as {
     title?: string;
     description?: string;
     scope?: string;
     className?: string | null;
-    isAnonymous?: boolean;
     options?: string[];
   };
 
@@ -48,7 +47,9 @@ export async function POST(request: NextRequest) {
     p_description: description ?? null,
     p_scope: scope,
     p_class: scope === 'class' ? className : null,
-    p_is_anonymous: isAnonymous !== false,
+    // Таємність не обговорюється: клієнт її не вибирає, тому підсунути
+    // відкрите голосування запитом в обхід форми не вийде.
+    p_is_anonymous: true,
     p_options: clean,
   });
 
