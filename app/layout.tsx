@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Manrope, Inter } from "next/font/google";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,10 +39,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="uk"
       className={`${bebasNeue.variable} ${manrope.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className={`${inter.variable} min-h-full flex flex-col bg-background`}>
-        <Header />
+      <body className="min-h-full flex flex-col bg-background">
         {children}
-        <Footer />
       </body>
     </html>
   );
