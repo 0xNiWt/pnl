@@ -1,6 +1,5 @@
-// Публічні документи ліцею. Файли лежать у public/docs (та public/audio),
-// тому посилання відносні. Ті документи, файлів яких ще немає в репозиторії,
-// тимчасово ведуть на старий сайт — у них external: true.
+// Публічні документи ліцею. Усі файли лежать у public/docs (та public/audio),
+// тому посилання відносні — нічого не тягнемо зі старого сайту.
 
 // "doc" — файл Word: у браузері він не відкривається, тому такі документи
 // показуємо лише з кнопкою завантаження.
@@ -10,7 +9,9 @@ export type DocFile = {
     href: string;
     // Підпис для багатосторінкових документів («Сторінка 1»); для одного файла не потрібен.
     label?: string;
-    external?: boolean;
+    // Сторінка сайту з текстом документа — для файлів, які браузер не показує
+    // (Word). Саме на неї веде «Відкрити», а «Завантажити» лишає оригінал.
+    preview?: string;
 };
 
 export type DocItem = {
@@ -39,7 +40,7 @@ export const DOC_GROUPS: DocGroup[] = [
                 id: "statut",
                 title: "Статут ліцею",
                 kind: "pdf",
-                files: [{ href: "https://kpnl145.kyiv.ua/images/statut.pdf", external: true }],
+                files: [{ href: "/docs/statut.pdf" }],
             },
             {
                 id: "licens",
@@ -66,13 +67,18 @@ export const DOC_GROUPS: DocGroup[] = [
                 title: "Правила поведінки учнів ліцею",
                 note: "Пам’ятка для батьків та учнів: загальні правила, зовнішній вигляд, поведінка на уроках і перервах",
                 kind: "doc",
-                files: [{ href: "/docs/pravyla_povedinky.docx" }],
+                files: [
+                    {
+                        href: "/docs/pravyla_povedinky.docx",
+                        preview: "/litsey/documents/pravyla-povedinky",
+                    },
+                ],
             },
             {
                 id: "propusk",
                 title: "Пропускний режим",
                 kind: "pdf",
-                files: [{ href: "https://kpnl145.kyiv.ua/images/propusk.pdf", external: true }],
+                files: [{ href: "/docs/propusk.pdf" }],
             },
             {
                 id: "povitr",
@@ -111,7 +117,7 @@ export const DOC_GROUPS: DocGroup[] = [
                 title: "Річний звіт про діяльність закладу",
                 year: "2024/2025",
                 kind: "pdf",
-                files: [{ href: "https://kpnl145.kyiv.ua/images/zvit_24_25.pdf", external: true }],
+                files: [{ href: "/docs/zvit_24_25.pdf" }],
             },
             {
                 id: "plan-25-26",

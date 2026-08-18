@@ -117,12 +117,16 @@ const DEPARTMENTS: Department[] = [
     },
 ];
 
+const smoothOut = [0.16, 1, 0.3, 1] as const;
+
 function initials(fullName: string) {
     const parts = fullName.split(' ').filter(Boolean);
     return parts.slice(0, 2).map((p) => p[0]).join('').toUpperCase();
 }
 
 // Розмір кнопки сталий на всіх екранах — як і розмір картки.
+// bg-background + z-10: стрілки стоять над приглушеними сусідніми картками,
+// які висовуються з-під активної, і не «просвічують» їх крізь себе.
 function ArrowButton({
     dir,
     onClick,
@@ -137,10 +141,55 @@ function ArrowButton({
             type="button"
             onClick={onClick}
             aria-label={dir === 1 ? 'Наступний педагог' : 'Попередній педагог'}
-            className={`w-11 h-11 shrink-0 rounded-full border border-primary/15 flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors ${className}`}
+            className={`relative z-10 w-11 h-11 shrink-0 rounded-full border border-primary/15 bg-background flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors ${className}`}
         >
             {dir === 1 ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
+    );
+}
+
+// Вміст картки педагога. Розміри задає батько, тож той самий компонент
+// підходить і для активної картки, і для приглушених сусідів.
+function MemberCard({ member }: { member: StaffMember }) {
+    return (
+        <div className="w-full h-full flex flex-col items-center text-center bg-white border border-primary/10 rounded-2xl px-6 py-9 overflow-hidden">
+            <div className="relative w-40 h-40 md:w-44 md:h-44 shrink-0 rounded-full overflow-hidden bg-primary/5 mb-6 ring-1 ring-primary/10">
+                {member.photo ? (
+                    <Image
+                        src={member.photo}
+                        alt={member.name}
+                        fill
+                        sizes="176px"
+                        className="object-cover"
+                        draggable={false}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center font-manrope font-bold text-3xl text-primary/30">
+                        {initials(member.name)}
+                    </div>
+                )}
+            </div>
+            <h3 className="font-manrope font-bold text-primary text-lg leading-snug">
+                {member.name}
+            </h3>
+            <p className="mt-2 w-full text-sm text-primary/60 leading-snug">
+                {member.position}
+            </p>
+        </div>
+    );
+}
+
+// Сусідня картка — лише натяк на продовження: розмита й притемнена.
+// Натискати на неї нема чого, тому вона схована від читалок екрана.
+function PeekCard({ member }: { member: StaffMember }) {
+    return (
+        <div
+            aria-hidden
+            className="relative w-[280px] md:w-[340px] h-[88%] shrink-0 select-none opacity-65 blur-[2px]"
+        >
+            <MemberCard member={member} />
+            <div className="absolute inset-0 rounded-2xl bg-primary/20" />
+        </div>
     );
 }
 
@@ -152,7 +201,9 @@ export default function StaffDirectory() {
 
     const dept = DEPARTMENTS[deptIndex];
     const member = dept.members[memberIndex];
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
+    const total = dept.members.length;
+    const prevMember = dept.members[(memberIndex - 1 + total) % total];
+    const nextMember = dept.members[(memberIndex + 1) % total];
 
     const selectDept = (i: number) => {
         setDeptIndex(i);
@@ -238,7 +289,20 @@ export default function StaffDirectory() {
                     {/* Розмір картки фіксований: і ширина, і висота однакові
                         для всіх педагогів, хоч би яким довгим був опис посади.
                         Інакше блок «стрибав» під час перегортання. */}
-                    <div className="relative w-[280px] md:w-[340px] h-[440px] md:h-[470px] shrink-0 overflow-hidden">
+                    <div className="relative w-[280px] md:w-[340px] h-[440px] md:h-[470px] shrink-0">
+                        {/* Сусіди лежать у ширшій масці, що «висовується» за краї
+                            активної картки. Маска абсолютна, тож на ширину секції
+                            не впливає, а overflow обрізає сусідів з боків. */}
+                        {total > 1 && (
+                            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[520px] md:w-[620px] max-w-[96vw] flex items-center justify-center gap-2 md:gap-4 overflow-hidden pointer-events-none">
+                                <PeekCard member={prevMember} />
+                                {/* Порожній блок тримає центр: сусіди відступають
+                                    рівно на ширину активної картки. */}
+                                <div className="w-[280px] md:w-[340px] shrink-0" />
+                                <PeekCard member={nextMember} />
+                            </div>
+                        )}
+
                         <AnimatePresence mode="wait" custom={direction} initial={false}>
                             <motion.div
                                 key={`${deptIndex}-${memberIndex}`}
@@ -254,30 +318,9 @@ export default function StaffDirectory() {
                                     if (info.offset.x < -60) goTo(1);
                                     else if (info.offset.x > 60) goTo(-1);
                                 }}
-                                className="absolute inset-0 flex flex-col items-center text-center bg-white border border-primary/10 rounded-2xl px-6 py-9 overflow-hidden cursor-grab active:cursor-grabbing"
+                                className="absolute inset-0 cursor-grab active:cursor-grabbing"
                             >
-                                <div className="relative w-40 h-40 md:w-44 md:h-44 shrink-0 rounded-full overflow-hidden bg-primary/5 mb-6 ring-1 ring-primary/10">
-                                    {member.photo ? (
-                                        <Image
-                                            src={member.photo}
-                                            alt={member.name}
-                                            fill
-                                            sizes="176px"
-                                            className="object-cover"
-                                            draggable={false}
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center font-manrope font-bold text-3xl text-primary/30">
-                                            {initials(member.name)}
-                                        </div>
-                                    )}
-                                </div>
-                                <h3 className="font-manrope font-bold text-primary text-lg leading-snug">
-                                    {member.name}
-                                </h3>
-                                <p className="mt-2 w-full text-sm text-primary/60 leading-snug">
-                                    {member.position}
-                                </p>
+                                <MemberCard member={member} />
                             </motion.div>
                         </AnimatePresence>
                     </div>

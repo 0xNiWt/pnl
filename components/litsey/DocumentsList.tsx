@@ -55,8 +55,6 @@ export default function DocumentsList() {
 function DocumentCard({ item }: { item: DocItem }) {
     const { icon: Icon, label } = KIND_META[item.kind];
     const multiple = item.files.length > 1;
-    // Файл Word браузер усе одно не покаже — пропонуємо лише завантажити.
-    const downloadOnly = item.kind === "doc";
 
     return (
         <article className="rounded-2xl border border-primary/10 bg-primary/[0.03] p-5 flex flex-col">
@@ -87,31 +85,34 @@ function DocumentCard({ item }: { item: DocItem }) {
                 </div>
             </div>
 
-            <div className="mt-5 pt-4 border-t border-primary/10 flex flex-col gap-2.5">
-                {item.files.map((file) => (
-                    <div key={file.href} className="flex flex-wrap items-center gap-2">
-                        {multiple && (
-                            <span className="text-xs text-primary/45 mr-auto">{file.label}</span>
-                        )}
+            {/* mt-auto притискає блок кнопок до низу — у сусідніх картках рядка
+                вони опиняються на одному рівні, хоч би якою довгою була назва. */}
+            <div className="mt-auto pt-5 border-t border-primary/10 flex flex-col gap-2.5">
+                {item.files.map((file) => {
+                    // Word браузер не покаже: «Відкрити» веде на сторінку сайту
+                    // з текстом документа, якщо вона є. Немає — лишається лише
+                    // завантаження.
+                    const viewHref = file.preview ?? (item.kind === "doc" ? null : file.href);
 
-                        {!downloadOnly && (
-                            <a
-                                href={file.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`inline-flex items-center gap-1.5 rounded-full border border-primary/15 px-3.5 py-1.5 font-manrope text-xs font-semibold text-primary/75 hover:bg-primary hover:text-background hover:border-primary transition-colors ${multiple ? "" : "flex-1 justify-center"
-                                    }`}
-                            >
-                                <ExternalLink size={13} />
-                                Відкрити
-                            </a>
-                        )}
+                    return (
+                        <div key={file.href} className="flex flex-wrap items-center gap-2">
+                            {multiple && (
+                                <span className="text-xs text-primary/45 mr-auto">{file.label}</span>
+                            )}
 
-                        {file.external ? (
-                            <span className="text-[11px] text-primary/35">
-                                файл на старому сайті
-                            </span>
-                        ) : (
+                            {viewHref && (
+                                <a
+                                    href={viewHref}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`inline-flex items-center gap-1.5 rounded-full border border-primary/15 px-3.5 py-1.5 font-manrope text-xs font-semibold text-primary/75 hover:bg-primary hover:text-background hover:border-primary transition-colors ${multiple ? "" : "flex-1 justify-center"
+                                        }`}
+                                >
+                                    <ExternalLink size={13} />
+                                    Відкрити
+                                </a>
+                            )}
+
                             <a
                                 href={file.href}
                                 download
@@ -121,9 +122,9 @@ function DocumentCard({ item }: { item: DocItem }) {
                                 <Download size={13} />
                                 Завантажити
                             </a>
-                        )}
-                    </div>
-                ))}
+                        </div>
+                    );
+                })}
             </div>
         </article>
     );
