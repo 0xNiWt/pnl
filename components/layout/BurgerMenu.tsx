@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import { ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 type LinkItem = { label: string; href: string };
@@ -51,6 +52,15 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                             transition={{ delay: links.length * 0.035 + 0.05, duration: 0.25, ease: smoothOut }}
                             className="pt-3 border-t border-primary/10 flex flex-col gap-2 px-1"
                         >
+                            <Link
+                                href="/shop"
+                                onClick={onLinkClick}
+                                className="w-full flex items-center justify-center gap-2 rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
+                            >
+                                <ShoppingCart size={16} />
+                                Магазин
+                            </Link>
+
                             {isLoggedIn ? (
                                 <Link
                                     href="/profile"

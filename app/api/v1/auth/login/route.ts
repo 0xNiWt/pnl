@@ -30,10 +30,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    return NextResponse.json(
-      { user: data.user, session: data.session },
-      { status: 200 }
-    )
+    // Токени сесії вже стоять у httpOnly-куках — у тілі відповіді їх
+    // повертати не треба, інакше вони стають доступні будь-якому скрипту.
+    return NextResponse.json({ user: data.user }, { status: 200 })
   } catch (err) {
     console.error('Login error:', err)
     return NextResponse.json(

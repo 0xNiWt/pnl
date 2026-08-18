@@ -14,6 +14,9 @@ export type Position = {
   id: string;
   label: string;
   scope: PositionScope;
+  // Назва групи в множині: «Фізорги», «Старости». Потрібна там, де йдеться
+  // про всіх, хто обіймає посаду, — наприклад, у голосуваннях для активу.
+  plural?: string;
 };
 
 export const POSITION_SCOPES: { id: PositionScope; label: string; hint: string }[] = [
@@ -37,8 +40,8 @@ export const POSITION_SCOPES: { id: PositionScope; label: string; hint: string }
 export const POSITIONS: Position[] = [
   // Ліцейський актив
   { id: 'prsl', label: 'ПРСЛ (президент РСЛ)', scope: 'lyceum' },
-  { id: 'prsl-deputy', label: 'Заступник ПРСЛ', scope: 'lyceum' },
-  { id: 'ex-president', label: 'Експрезидент', scope: 'lyceum' },
+  { id: 'prsl-deputy', label: 'Заступник ПРСЛ', scope: 'lyceum', plural: 'Заступники ПРСЛ' },
+  { id: 'ex-president', label: 'Експрезидент', scope: 'lyceum', plural: 'Експрезиденти' },
   { id: 'head-starostat', label: 'Голова старостату', scope: 'lyceum' },
   { id: 'head-presscenter', label: 'Голова пресцентру', scope: 'lyceum' },
   { id: 'head-fizorg', label: 'Голова фізоргів', scope: 'lyceum' },
@@ -48,20 +51,20 @@ export const POSITIONS: Position[] = [
   { id: 'website', label: 'Відповідальний за сайт ліцею', scope: 'lyceum' },
 
   // Головний актив класу
-  { id: 'starosta', label: 'Староста', scope: 'class-main' },
-  { id: 'rsl-rep', label: 'Представник РСЛ', scope: 'class-main' },
-  { id: 'redactor', label: 'Редактор', scope: 'class-main' },
-  { id: 'kultorg', label: 'Культорг', scope: 'class-main' },
-  { id: 'fizorg', label: 'Фізорг', scope: 'class-main' },
+  { id: 'starosta', label: 'Староста', scope: 'class-main', plural: 'Старости' },
+  { id: 'rsl-rep', label: 'Представник РСЛ', scope: 'class-main', plural: 'Представники РСЛ' },
+  { id: 'redactor', label: 'Редактор', scope: 'class-main', plural: 'Редактори' },
+  { id: 'kultorg', label: 'Культорг', scope: 'class-main', plural: 'Культорги' },
+  { id: 'fizorg', label: 'Фізорг', scope: 'class-main', plural: 'Фізорги' },
 
   // Другорядний актив класу
-  { id: 'photographer', label: 'Фотограф', scope: 'class-secondary' },
-  { id: 'erudite-captain', label: 'Капітан команди «Ерудит»', scope: 'class-secondary' },
-  { id: 'starosta-deputy', label: 'Заступник старости', scope: 'class-secondary' },
-  { id: 'rsl-rep-deputy', label: 'Заступник представника РСЛ', scope: 'class-secondary' },
-  { id: 'redactor-deputy', label: 'Заступник редактора', scope: 'class-secondary' },
-  { id: 'fizorg-deputy', label: 'Заступник фізорга', scope: 'class-secondary' },
-  { id: 'volunteer', label: 'Волонтер', scope: 'class-secondary' },
+  { id: 'photographer', label: 'Фотограф', scope: 'class-secondary', plural: 'Фотографи' },
+  { id: 'erudite-captain', label: 'Капітан команди «Ерудит»', scope: 'class-secondary', plural: 'Капітани команд «Ерудит»' },
+  { id: 'starosta-deputy', label: 'Заступник старости', scope: 'class-secondary', plural: 'Заступники старост' },
+  { id: 'rsl-rep-deputy', label: 'Заступник представника РСЛ', scope: 'class-secondary', plural: 'Заступники представників РСЛ' },
+  { id: 'redactor-deputy', label: 'Заступник редактора', scope: 'class-secondary', plural: 'Заступники редакторів' },
+  { id: 'fizorg-deputy', label: 'Заступник фізорга', scope: 'class-secondary', plural: 'Заступники фізоргів' },
+  { id: 'volunteer', label: 'Волонтер', scope: 'class-secondary', plural: 'Волонтери' },
 ];
 
 const POSITION_MAP = new Map(POSITIONS.map((p) => [p.id, p]));
@@ -72,6 +75,15 @@ export function isPositionId(value: unknown): value is string {
 
 export function positionLabel(id: string): string {
   return POSITION_MAP.get(id)?.label ?? id;
+}
+
+/**
+ * Назва всіх, хто обіймає посаду: «Фізорги», «Старости». Якщо множини для
+ * посади не задано, повертаємо звичайну назву — краще так, ніж порожньо.
+ */
+export function positionGroupLabel(id: string): string {
+  const position = POSITION_MAP.get(id);
+  return position?.plural ?? position?.label ?? id;
 }
 
 export function positionScope(id: string): PositionScope | null {

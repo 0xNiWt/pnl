@@ -14,7 +14,7 @@ import {
     X,
 } from 'lucide-react';
 import {
-    POLL_SCOPE_LABELS,
+    pollAudienceLabel,
     QUORUM,
     hasQuorum,
     optionPercent,
@@ -30,6 +30,7 @@ type Poll = {
     description: string | null;
     scope: PollScope;
     class_name: string | null;
+    position_id: string | null;
     status: 'open' | 'closed';
     is_anonymous: boolean;
     created_at: string;
@@ -141,11 +142,7 @@ export default function PollDetail({
             {/* Шапка */}
             <div>
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <Badge>
-                        {poll.scope === 'class'
-                            ? `Клас ${poll.class_name}`
-                            : POLL_SCOPE_LABELS.lyceum}
-                    </Badge>
+                    <Badge>{pollAudienceLabel(poll)}</Badge>
                     <Badge icon={<EyeOff size={11} />}>
                         {poll.is_anonymous ? 'Таємне' : 'Архівне · створене як відкрите'}
                     </Badge>

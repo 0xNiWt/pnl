@@ -1,6 +1,11 @@
 import { createClient } from './server';
+// Роль і правила видачі ролей описані один раз — у rolesClient.ts, бо той
+// файл доступний і браузеру. Тут лише перевикористовуємо, щоб дві копії
+// тих самих прав не розійшлися з часом.
+import { assignableRoles, canAssignRole, type Role } from './rolesClient';
 
-export type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
+export { assignableRoles, canAssignRole };
+export type { Role };
 
 export async function getCurrentUserWithRoles() {
   const supabase = await createClient();
@@ -45,24 +50,27 @@ export function canManageOlympiadStats(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');
 }
 
+// Хто заводить товари в магазині мерчу та видає замовлення.
+export function canManageShop(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
 // Хто редагує книгу пам'яті на сторінці «Ліцей».
 export function canManageMemoryBook(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');
 }
 
-// Ролі, які можна видати іншому користувачу.
-// Овнер може видати будь-яку роль, включно з moderator та owner.
-// Модератор може видати всі ролі, окрім owner і moderator.
-export function assignableRoles(actingRoles: Role[]): Role[] {
-  if (actingRoles.includes('owner')) {
-    return ['student', 'teacher', 'editor', 'moderator', 'owner'];
-  }
-  if (actingRoles.includes('moderator')) {
-    return ['student', 'teacher', 'editor'];
-  }
-  return [];
-}
 
-export function canAssignRole(actingRoles: Role[], targetRole: Role): boolean {
-  return assignableRoles(actingRoles).includes(targetRole);
+/**
+ * Баланс балів учня: нараховано мінус витрачено в магазині.
+ *
+ * Рахує база (функція points_balance), бо нарахування й замовлення лежать
+ * у різних таблицях, а RLS показує читачеві не всі рядки. Рейтинг тут ні
+ * до чого: він рахує зароблене й від покупок не змінюється.
+ */
+export async function getPointsBalance(userId: string): Promise<number> {
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc('points_balance', { p_user: userId });
+
+  return error ? 0 : (data ?? 0);
 }

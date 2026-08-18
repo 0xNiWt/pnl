@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, Plus, Vote } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles } from '@/lib/roles';
-import { canCreatePolls, POLL_SCOPE_LABELS, type PollScope } from '@/lib/voting';
+import { canCreatePolls, pollAudienceLabel, type PollScope } from '@/lib/voting';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,6 +12,7 @@ type Poll = {
     title: string;
     scope: PollScope;
     class_name: string | null;
+    position_id: string | null;
     status: 'open' | 'closed';
     created_at: string;
 };
@@ -34,7 +35,7 @@ export default async function VotesPage() {
     // RLS сама віддасть лише ті голосування, які адресовані цьому учню.
     const { data: polls, error } = await supabase
         .from('polls')
-        .select('id, title, scope, class_name, status, created_at')
+        .select('id, title, scope, class_name, position_id, status, created_at')
         .order('created_at', { ascending: false });
 
     // У яких я вже брав участь — щоб не пропонувати голосувати вдруге.
@@ -128,9 +129,7 @@ function Section({
                             <div className="min-w-0 flex-1">
                                 <p className="text-sm font-semibold text-primary">{poll.title}</p>
                                 <p className="text-xs text-primary/45 mt-1">
-                                    {poll.scope === 'class'
-                                        ? `Клас ${poll.class_name}`
-                                        : POLL_SCOPE_LABELS.lyceum}
+                                    {pollAudienceLabel(poll)}
                                     {' · '}
                                     таємне
                                     {' · '}

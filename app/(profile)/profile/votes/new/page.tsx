@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles } from '@/lib/roles';
-import { pollScopesFor } from '@/lib/voting';
+import { pollScopesFor, pollTargetPositionsFor } from '@/lib/voting';
 import PollCreateForm from '@/components/polls/PollCreateForm';
 
 export default async function NewPollPage() {
@@ -19,6 +19,7 @@ export default async function NewPollPage() {
 
     const positions = (profile?.positions ?? []) as string[];
     const scopes = pollScopesFor(positions, roles);
+    const positionTargets = pollTargetPositionsFor(positions, roles);
 
     // Немає жодного дозволеного масштабу — на сторінці робити нічого.
     if (scopes.length === 0) redirect('/profile/votes');
@@ -60,6 +61,7 @@ export default async function NewPollPage() {
                     scopes={scopes}
                     myClass={profile?.class ?? null}
                     allClasses={allClasses}
+                    positionTargets={positionTargets}
                 />
             </div>
         </main>

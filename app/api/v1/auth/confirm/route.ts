@@ -6,7 +6,14 @@ export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const tokenHash = searchParams.get('token_hash');
   const type = searchParams.get('type') as EmailOtpType | null;
-  const next = searchParams.get('next') ?? '/auth/login';
+  // next приходить із листа, тому довіряти йому не можна: пускаємо лише
+  // внутрішні шляхи, інакше посиланням можна було б відправити людину
+  // на чужий сайт уже після входу.
+  const requestedNext = searchParams.get('next');
+  const next =
+    requestedNext && requestedNext.startsWith('/') && !requestedNext.startsWith('//')
+      ? requestedNext
+      : '/auth/login';
 
   if (!tokenHash || !type) {
     return NextResponse.redirect(`${origin}/auth/login?error=invalid_link`);

@@ -48,7 +48,7 @@ export default function PointsAwardPanel() {
 
     // Пошук учнів — спільний для обох вкладок.
     const [studentQuery, setStudentQuery] = useState('');
-    const [studentOptions, setStudentOptions] = useState<StudentOption[]>([]);
+    const [allStudents, setAllStudents] = useState<StudentOption[]>([]);
 
     // Вкладка «Учням»
     const [selectedStudents, setSelectedStudents] = useState<StudentOption[]>([]);
@@ -74,15 +74,32 @@ export default function PointsAwardPanel() {
             .then((j) => setSituations(j.data ?? []));
     }, []);
 
-    // Пошук учнів
+    // Список учнів — теж один раз. /api/v1/rating віддає весь рейтинг
+    // одним запитом і пошуку на сервері не має, тому шукаємо тут, у браузері:
+    // так підказки з'являються без затримки й без походу на сервер
+    // на кожну натиснуту літеру.
     useEffect(() => {
-        const t = setTimeout(() => {
-            fetch(`/api/v1/rating?type=student&search=${encodeURIComponent(studentQuery)}`)
-                .then((r) => r.json())
-                .then((j) => setStudentOptions(j.data ?? []));
-        }, 250);
-        return () => clearTimeout(t);
-    }, [studentQuery]);
+        fetch('/api/v1/rating')
+            .then((r) => r.json())
+            .then((j) =>
+                setAllStudents(
+                    (j.students ?? []).map((s: StudentOption) => ({
+                        student_id: s.student_id,
+                        full_name: s.full_name,
+                        class: s.class,
+                    }))
+                )
+            )
+            .catch(() => setAllStudents([]));
+    }, []);
+
+    const studentOptions = useMemo(() => {
+        const q = studentQuery.trim().toLowerCase();
+        if (!q) return [];
+        return allStudents
+            .filter((s) => (s.full_name ?? '').toLowerCase().includes(q))
+            .slice(0, 20);
+    }, [allStudents, studentQuery]);
 
     const filteredSituations = useMemo(
         () => situations.filter((s) => s.target === mode),

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles, canAssignRole, canManageUsers, type Role } from '@/lib/roles';
 
 const ALL_ROLES: Role[] = ['student', 'teacher', 'editor', 'moderator', 'owner'];
@@ -18,6 +17,13 @@ export async function PATCH(
 
   if (!canManageUsers(actingRoles)) {
     return NextResponse.json({ error: 'Недостатньо прав' }, { status: 403 });
+  }
+
+  if (targetUserId === user.id) {
+    return NextResponse.json(
+      { error: 'Свої власні ролі змінювати не можна' },
+      { status: 403 }
+    );
   }
 
   const body = await request.json();
@@ -47,15 +53,6 @@ export async function PATCH(
   }
 
   const currentRoles = (targetProfile.roles ?? []) as Role[];
-
-  // Додатковий захист: не можна знімати роль owner чи moderator у когось іншого,
-  // якщо в тебе самого немає права призначати цю роль.
-  if (action === 'remove' && !canAssignRole(actingRoles, role)) {
-    return NextResponse.json(
-      { error: 'У вас немає права знімати цю роль' },
-      { status: 403 }
-    );
-  }
 
   let newRoles: Role[];
   if (action === 'add') {

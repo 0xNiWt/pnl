@@ -1,10 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Клієнт створюємо всередині запиту, а не при завантаженні модуля:
+// інакше збірка падає всюди, де немає RESEND_API_KEY (наприклад, локально).
+function mailer() {
+  const key = process.env.RESEND_API_KEY;
+  return key ? new Resend(key) : null;
+}
 
 export async function POST(request: NextRequest) {
   try {
+    const resend = mailer();
+    const to = process.env.CONTACT_EMAIL;
+
+    if (!resend || !to) {
+      console.error("Пошта не налаштована: бракує RESEND_API_KEY або CONTACT_EMAIL");
+      return NextResponse.json(
+        { error: "Форма зв'язку тимчасово не працює" },
+        { status: 503 }
+      );
+    }
+
     const body = await request.json();
 
     const name = String(body.name ?? "").trim();
@@ -27,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: "Сайт <noreply@thedragons.site>",
-      to: process.env.CONTACT_EMAIL!,
+      to,
       replyTo: email,
       subject: `Нове повідомлення від ${name}`,
       text: `

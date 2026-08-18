@@ -98,7 +98,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         user: data.user,
-        session: data.session,
         needsEmailConfirmation,
       },
       { status: 200 }

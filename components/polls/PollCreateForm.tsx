@@ -3,22 +3,25 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Check, EyeOff, Loader2, Plus, TriangleAlert, X } from 'lucide-react';
-import { compareClasses } from '@/lib/positions';
+import { compareClasses, positionGroupLabel } from '@/lib/positions';
 import { POLL_SCOPE_LABELS, QUORUM, type PollScope } from '@/lib/voting';
 
 export default function PollCreateForm({
     scopes,
     myClass,
     allClasses,
+    positionTargets,
 }: {
     scopes: PollScope[];
     myClass: string | null;
     allClasses: string[];
+    positionTargets: string[];
 }) {
     const router = useRouter();
 
     const [scope, setScope] = useState<PollScope>(scopes[0]);
     const [className, setClassName] = useState<string>(myClass ?? allClasses[0] ?? '');
+    const [positionId, setPositionId] = useState<string>(positionTargets[0] ?? '');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [options, setOptions] = useState<string[]>(['', '']);
@@ -62,6 +65,10 @@ export default function PollCreateForm({
             setError('Обери клас');
             return;
         }
+        if (scope === 'position' && !positionId) {
+            setError('Обери групу активу');
+            return;
+        }
 
         setSaving(true);
 
@@ -74,6 +81,7 @@ export default function PollCreateForm({
                     description,
                     scope,
                     className: scope === 'class' ? className : null,
+                    positionId: scope === 'position' ? positionId : null,
                     options: clean,
                 }),
             });
@@ -147,10 +155,40 @@ export default function PollCreateForm({
                     </div>
                 )}
 
+                {scope === 'position' && (
+                    <div className="mt-3">
+                        {positionTargets.length > 1 ? (
+                            <select
+                                value={positionId}
+                                onChange={(e) => setPositionId(e.target.value)}
+                                className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                            >
+                                {positionTargets.map((id) => (
+                                    <option key={id} value={id}>
+                                        {positionGroupLabel(id)}
+                                    </option>
+                                ))}
+                            </select>
+                        ) : (
+                            <p className="text-sm text-primary/60">
+                                Група{' '}
+                                <b className="text-primary">
+                                    {positionId ? positionGroupLabel(positionId) : '—'}
+                                </b>{' '}
+                                — голосувати зможуть усі, хто обіймає цю посаду в ліцеї.
+                            </p>
+                        )}
+                    </div>
+                )}
+
                 <p className="text-xs text-primary/45 mt-2">
                     Мінімальна явка за п. 3.6 Статуту:{' '}
                     <b className="text-primary/70">{Math.round(QUORUM[scope] * 100)}%</b>
-                    {scope === 'class' ? ' для голосувань класу.' : ' для загальноліцейських.'}
+                    {scope === 'class'
+                        ? ' для голосувань класу.'
+                        : scope === 'position'
+                            ? ' — стільки ж, скільки для класу.'
+                            : ' для загальноліцейських.'}
                 </p>
             </div>
 

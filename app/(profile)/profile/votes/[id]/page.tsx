@@ -17,7 +17,7 @@ export default async function PollPage({ params }: { params: Promise<{ id: strin
 
     const { data: poll } = await supabase
         .from('polls')
-        .select('id, title, description, scope, class_name, status, is_anonymous, created_by, created_at, closed_at')
+        .select('id, title, description, scope, class_name, position_id, status, is_anonymous, created_by, created_at, closed_at')
         .eq('id', id)
         .maybeSingle();
 
@@ -69,6 +69,7 @@ export default async function PollPage({ params }: { params: Promise<{ id: strin
                         description: poll.description,
                         scope: poll.scope as PollScope,
                         class_name: poll.class_name,
+                        position_id: poll.position_id,
                         status: poll.status,
                         is_anonymous: poll.is_anonymous,
                         created_at: poll.created_at,

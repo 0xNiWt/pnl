@@ -6,7 +6,7 @@ import { positionLabel } from '@/lib/positions';
 import { canCreatePolls } from '@/lib/voting';
 import { getMyRatingRow, type StudentRatingRow } from '@/lib/points';
 import { getRatingVisibility } from '@/lib/ratingVisibility';
-import { canManageRatingVisibility } from '@/lib/roles';
+import { canManageRatingVisibility, getPointsBalance } from '@/lib/roles';
 import {
     NOTHING_HIDDEN, RATING_LABELS, visibleRatings,
     type RatingKind, type RatingVisibility,
@@ -15,7 +15,7 @@ import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
     Coins, TrendingUp, FileEdit, Settings,
     BarChart3, ClipboardList, Award, GraduationCap, Trophy,
-    Vote, Plus, EyeOff, BookOpen,
+    Vote, Plus, EyeOff, BookOpen, ShoppingCart, ShoppingBag, Package,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -42,8 +42,9 @@ export default async function ProfilePage() {
 
     const roles = (profile?.roles ?? ['student']) as Role[];
     const positions = (profile?.positions ?? []) as string[];
-    // Право створювати голосування дають посади (староста, представник РСЛ, ПРСЛ),
-    // а не окремі ролі — див. lib/voting.ts.
+    // Право створювати голосування дають посади (староста, представник РСЛ,
+    // ПРСЛ, голови старостату/фізоргів/пресцентру), а не окремі ролі —
+    // див. lib/voting.ts.
     const mayCreatePolls = canCreatePolls(positions, roles);
     const roleLabelText = roles.map((r) => ROLE_LABELS[r]).join(' · ');
     const joinedDate = profile?.created_at
@@ -55,17 +56,15 @@ export default async function ProfilePage() {
     let ratingHidden: RatingVisibility = NOTHING_HIDDEN;
 
     if (roles.includes('student')) {
-        const [transactionsRes, ratingRow, visibility] = await Promise.all([
-            supabase
-                .from('point_transactions')
-                .select('points')
-                .eq('target', 'student')
-                .eq('student_id', user.id),
+        // Баланс рахує база: це нарахування мінус витрачене в магазині.
+        // Рейтинг при цьому не змінюється — він рахує зароблене.
+        const [balance, ratingRow, visibility] = await Promise.all([
+            getPointsBalance(user.id),
             getMyRatingRow(user.id),
             getRatingVisibility(),
         ]);
 
-        pointsBalance = (transactionsRes.data ?? []).reduce((sum, t) => sum + (t.points ?? 0), 0);
+        pointsBalance = balance;
         myRating = ratingRow;
         ratingHidden = visibility;
     }
@@ -128,6 +127,7 @@ export default async function ProfilePage() {
                         {(roles.includes('student') || mayCreatePolls) && (
                             <VotesSection mayCreate={mayCreatePolls} />
                         )}
+                        {roles.includes('student') && <ShopSection balance={pointsBalance} />}
                         {roles.includes('teacher') && <TeacherSection />}
                         {roles.includes('editor') && <EditorSection />}
                         {(roles.includes('owner') || roles.includes('moderator')) && <OwnerSection stats={ownerStats} />}
@@ -248,8 +248,9 @@ function VotesSection({ mayCreate }: { mayCreate: boolean }) {
     return (
         <SectionCard title="Голосування" icon={<Vote size={16} />}>
             <p className="text-sm text-primary/60 mb-4">
-                Голосування класу та ліцею. Створювати їх можуть староста, представник РСЛ
-                і ПРСЛ.
+                Голосування класу, ліцею та груп активу. Створювати їх можуть староста
+                й представник РСЛ (у своєму класі), ПРСЛ (ліцей і будь-яка група),
+                а голови старостату, фізоргів і пресцентру — у своїй групі.
             </p>
             <div className="flex flex-col gap-2">
                 <QuickAction
@@ -264,6 +265,22 @@ function VotesSection({ mayCreate }: { mayCreate: boolean }) {
                         icon={<Plus size={15} />}
                     />
                 )}
+            </div>
+        </SectionCard>
+    );
+}
+
+function ShopSection({ balance }: { balance: number }) {
+    return (
+        <SectionCard title="Магазин мерчу" icon={<ShoppingCart size={16} />}>
+            <p className="text-sm text-primary/60 mb-4">
+                Мерч ліцею за бали активності або за гроші. Зараз на балансі{' '}
+                <b className="text-primary">{balance}</b>. Покупки не впливають на місце
+                в рейтингу.
+            </p>
+            <div className="flex flex-col gap-2">
+                <QuickAction label="Перейти до магазину" href="/shop" icon={<ShoppingBag size={15} />} />
+                <QuickAction label="Мої замовлення" href="/profile/orders" icon={<Package size={15} />} />
             </div>
         </SectionCard>
     );
@@ -306,6 +323,8 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Управління ролями" href="/profile/users" icon={<ShieldCheck size={15} />} />
                     <QuickAction label="Учні та посади" href="/profile/students" icon={<Award size={15} />} />
                     <QuickAction label="Керування новинами" href="/profile/news" icon={<Newspaper size={15} />} />
+                    <QuickAction label="Товари магазину" href="/profile/shop" icon={<ShoppingCart size={15} />} />
+                    <QuickAction label="Замовлення мерчу" href="/profile/shop/orders" icon={<Package size={15} />} />
                     <QuickAction label="Нарахування балів" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Навчальний рейтинг" href="/profile/rating/academic" icon={<GraduationCap size={15} />} />
                     <QuickAction label="Олімпіадний рейтинг" href="/profile/rating/olympiads" icon={<Trophy size={15} />} />

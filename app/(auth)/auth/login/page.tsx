@@ -15,6 +15,16 @@ export default function LoginPage() {
     // Домен ліцею дописується автоматично — див. lib/email.ts.
     const normalizedEmail = normalizeLyceumEmail(email);
 
+    // Куди повертатися після входу. Proxy кладе сюди сторінку, з якої
+    // людину розвернуло на логін (?redirectTo=/profile/votes). Беремо лише
+    // внутрішні шляхи: «//чужий-сайт» чи повний URL сюди не пройдуть.
+    function destination() {
+        const target = new URLSearchParams(window.location.search).get('redirectTo');
+        return target && target.startsWith('/') && !target.startsWith('//')
+            ? target
+            : '/profile';
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setEmail(normalizedEmail);
@@ -35,7 +45,7 @@ export default function LoginPage() {
                 return;
             }
 
-            window.location.href = '/profile';
+            window.location.href = destination();
         } catch {
             setError('Не вдалося з\'єднатися з сервером');
         } finally {
