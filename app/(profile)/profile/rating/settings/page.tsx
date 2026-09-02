@@ -22,7 +22,7 @@ export default async function ProfileRatingPage() {
                 </Link>
                 <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
                     <span className="w-5 h-px bg-secondary" />
-                    Кабінет редактора
+                    Кабінет нарахувань
                 </span>
                 <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight mb-8">
                     Нарахування балів

@@ -29,9 +29,9 @@ export function canManageNews(roles: Role[]) {
   return roles.includes('editor') || roles.includes('moderator') || roles.includes('owner');
 }
 
-// Нарахування балів — окреме право: редактор і адміністрація, без модератора.
+// Нарахування балів: редактор, модератор і адміністрація.
 export function canManagePoints(roles: Role[]) {
-  return roles.includes('editor') || roles.includes('owner');
+  return roles.includes('editor') || roles.includes('moderator') || roles.includes('owner');
 }
 
 // Хто може заходити на сторінку керування користувачами та ролями.
