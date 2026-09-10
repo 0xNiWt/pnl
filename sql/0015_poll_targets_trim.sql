@@ -11,11 +11,11 @@
 --   старости, редактори, фізорги, капітани команд «Ерудит».
 --
 -- Хто кого скликає (заступників у списках більше немає):
---   голова старостату   → старости;
---   голова пресцентру   → редактори;
---   голова фізоргів     → фізорги;
---   президент «Ерудиту» → капітани команд;
---   ПРСЛ, модератор і адміністрація → будь-яка з чотирьох груп.
+--   голова старостату   -> старости;
+--   голова пресцентру   -> редактори;
+--   голова фізоргів     -> фізорги;
+--   президент «Ерудиту» -> капітани команд;
+--   ПРСЛ, модератор і адміністрація -> будь-яка з чотирьох груп.
 --
 -- Той самий розподіл прав продубльовано в lib/voting.ts: застосунок
 -- вирішує, що показати у формі, а база — що дозволити насправді.
@@ -25,40 +25,31 @@
 -- голосування серед, скажімо, волонтерів дійде до кінця нормально —
 -- нове просто вже не створити.
 --
+-- Навмисно без операторів склейки масивів і перетину: їх легко втратити
+-- при копіюванні через консоль. Замість них — таблиця відповідностей
+-- «група активу <- її голова» і звичайний = any (...).
+--
 -- Міграція безпечна для повторного запуску.
 
 create or replace function public.poll_position_targets(p_positions text[], p_roles text[])
 returns text[]
-language plpgsql
+language sql
 immutable
 as $$
-declare
-  -- Групи активу, серед яких узагалі проводять голосування.
-  -- Порядок — як у довіднику lib/positions.ts.
-  v_all text[] := array['starosta', 'redactor', 'fizorg', 'erudite-captain'];
-  v_out text[] := '{}';
-begin
-  p_positions := coalesce(p_positions, '{}');
-  p_roles     := coalesce(p_roles, '{}');
-
-  if p_roles && array['owner', 'moderator'] or 'prsl' = any (p_positions) then
-    return v_all;
-  end if;
-
-  if 'head-starostat' = any (p_positions) then
-    v_out := v_out || array['starosta'];
-  end if;
-  if 'head-presscenter' = any (p_positions) then
-    v_out := v_out || array['redactor'];
-  end if;
-  if 'head-fizorg' = any (p_positions) then
-    v_out := v_out || array['fizorg'];
-  end if;
-  if 'erudite-president' = any (p_positions) then
-    v_out := v_out || array['erudite-captain'];
-  end if;
-
-  return v_out;
-end $$;
+  -- Порядок (ord) — як у довіднику lib/positions.ts, щоб список у формі
+  -- не стрибав. head — посада, яка скликає голосування серед цієї групи.
+  select coalesce(array_agg(t.id order by t.ord), '{}'::text[])
+    from (values
+            ('starosta'::text,        1, 'head-starostat'::text),
+            ('redactor'::text,        2, 'head-presscenter'::text),
+            ('fizorg'::text,          3, 'head-fizorg'::text),
+            ('erudite-captain'::text, 4, 'erudite-president'::text)
+         ) as t(id, ord, head)
+   -- Адміністрація і ПРСЛ — будь-яка група; голова — лише своя.
+   where 'owner'     = any (coalesce(p_roles, '{}'::text[]))
+      or 'moderator' = any (coalesce(p_roles, '{}'::text[]))
+      or 'prsl'      = any (coalesce(p_positions, '{}'::text[]))
+      or t.head      = any (coalesce(p_positions, '{}'::text[]))
+$$;
 
 grant execute on function public.poll_position_targets(text[], text[]) to authenticated;
