@@ -6,6 +6,8 @@ import { positionLabel } from '@/lib/positions';
 import { canCreatePolls } from '@/lib/voting';
 import { getMyRatingRow, type StudentRatingRow } from '@/lib/points';
 import { getRatingVisibility } from '@/lib/ratingVisibility';
+import { hasRatingConsent } from '@/lib/consent';
+import RatingConsentCard from '@/components/profile/RatingConsentCard';
 import { canManageRatingVisibility, getPointsBalance } from '@/lib/roles';
 import {
     NOTHING_HIDDEN, RATING_LABELS, visibleRatings,
@@ -50,6 +52,24 @@ export default async function ProfilePage() {
     const joinedDate = profile?.created_at
         ? new Date(profile.created_at).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
         : null;
+
+    // П. 10.1.2 Положення: без згоди учня не можна враховувати в рейтингах.
+    // Окремим запитом, бо до міграції 0016 цих колонок ще немає — тоді
+    // помилку просто ковтаємо й нічого в учня не просимо.
+    const { data: consentRow } = await supabase
+        .from('profiles')
+        .select('rating_consent_at, rating_consent_version, rating_consent_revoked_at')
+        .eq('id', user.id)
+        .maybeSingle();
+
+    const needsConsent =
+        roles.includes('student') &&
+        Boolean(consentRow) &&
+        !hasRatingConsent({
+            consentedAt: consentRow?.rating_consent_at ?? null,
+            version: consentRow?.rating_consent_version ?? null,
+            revokedAt: consentRow?.rating_consent_revoked_at ?? null,
+        });
 
     let pointsBalance = 0;
     let myRating: StudentRatingRow | null = null;
@@ -117,6 +137,7 @@ export default async function ProfilePage() {
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
 
                     <div className="flex flex-col gap-6">
+                        {needsConsent && <RatingConsentCard />}
                         {roles.includes('student') && (
                             <StudentSection
                                 rating={myRating}

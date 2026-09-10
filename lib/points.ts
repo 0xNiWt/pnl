@@ -1,6 +1,19 @@
 import { cache } from 'react';
 import { createClient } from './server';
 import { averageOf, combinePlaces, rankByValue } from './ratings';
+import { hasRatingConsent } from './consent';
+import { isRatingConsentEnforced } from './appSettings';
+
+// Профіль у вигляді, потрібному рейтингу. Колонки зі згодою приходять лише
+// в строгому режимі — див. getRatingSnapshot.
+type RatingProfile = {
+  id: string;
+  full_name: string | null;
+  class: string | null;
+  academic_score: number | string | null;
+  rating_consent_at?: string | null;
+  rating_consent_revoked_at?: string | null;
+};
 
 export type PointCategory =
   | 'sport'
@@ -140,15 +153,45 @@ export type RatingSnapshot = {
 export const getRatingSnapshot = cache(async function getRatingSnapshot(): Promise<RatingSnapshot> {
   const supabase = await createClient();
 
+  // Пп. 10.1.2 та 10.2.2 Положення: враховувати можна лише тих учнів, які дали
+  // згоду. Колонки зі згодою питаємо тільки в строгому режимі — доки його не
+  // ввімкнули (і доки не запущена міграція 0016), запит лишається старим.
+  const enforceConsent = await isRatingConsentEnforced();
+
+  // Два окремі запити замість одного зі змінним списком колонок: так
+  // supabase-js бачить рядок колонок як літерал і сам виводить типи.
+  const profilesQuery = enforceConsent
+    ? supabase
+        .from('profiles')
+        .select('id, full_name, class, academic_score, rating_consent_at, rating_consent_revoked_at')
+        .not('class', 'is', null)
+    : supabase
+        .from('profiles')
+        .select('id, full_name, class, academic_score')
+        .not('class', 'is', null);
+
   const [profilesRes, transactionsRes, olympiadsRes] = await Promise.all([
-    supabase.from('profiles').select('id, full_name, class, academic_score').not('class', 'is', null),
+    profilesQuery,
     supabase.from('point_transactions_public').select('student_id, class_name, target, category, points'),
     supabase.from('olympiad_results').select('student_id, points'),
   ]);
 
-  const profiles = profilesRes.data ?? [];
+  const allProfiles = (profilesRes.data ?? []) as RatingProfile[];
   const transactions = transactionsRes.data ?? [];
   const olympiads = olympiadsRes.data ?? [];
+
+  // Учень без згоди не потрапляє ні до індивідуального рейтингу, ні до
+  // підрахунку показників свого класу: далі за кодом його id просто немає,
+  // тому й бали з олімпіадами до класу не додадуться.
+  const profiles = enforceConsent
+    ? allProfiles.filter((p) =>
+        hasRatingConsent({
+          consentedAt: p.rating_consent_at ?? null,
+          version: null,
+          revokedAt: p.rating_consent_revoked_at ?? null,
+        })
+      )
+    : allProfiles;
 
   // --- допоміжні мапи по учнях -------------------------------------
   const studentToClass = new Map<string, string>();

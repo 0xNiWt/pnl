@@ -37,7 +37,8 @@ export async function POST(request: NextRequest) {
     if (!positionId || !isPositionId(positionId)) {
       return NextResponse.json({ error: 'Обери групу активу' }, { status: 400 });
     }
-    // Ліцейські посади одиничні — голосування серед них не має сенсу.
+    // Голосують лише чотири групи активу (див. POSITION_POLL_TARGETS):
+    // старости, редактори, фізорги, капітани «Ерудиту».
     if (!POSITION_POLL_TARGETS.includes(positionId)) {
       return NextResponse.json(
         { error: 'Серед цієї посади голосування не проводять' },

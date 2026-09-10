@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { canManageRatingVisibility, getCurrentUserWithRoles } from '@/lib/roles';
 import { getRatingVisibility } from '@/lib/ratingVisibility';
+import { isRatingConsentEnforced } from '@/lib/appSettings';
+import { createClient } from '@/lib/server';
 import RatingVisibilityManager from '@/components/profile/RatingVisibilityManager';
+import RatingConsentPolicy from '@/components/profile/RatingConsentPolicy';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +16,24 @@ export default async function RatingVisibilityPage() {
     if (!user) redirect('/auth/login');
     if (!canManageRatingVisibility(roles)) redirect('/profile');
 
-    const hidden = await getRatingVisibility();
+    const supabase = await createClient();
+
+    const [hidden, enforced, totalRes, consentedRes] = await Promise.all([
+        getRatingVisibility(),
+        isRatingConsentEnforced(),
+        supabase
+            .from('profiles')
+            .select('id', { count: 'exact', head: true })
+            .not('class', 'is', null),
+        // Порахувати згоди можна лише після міграції 0016 — доти запит
+        // поверне помилку, і ми просто покажемо нуль.
+        supabase
+            .from('profiles')
+            .select('id', { count: 'exact', head: true })
+            .not('class', 'is', null)
+            .not('rating_consent_at', 'is', null)
+            .is('rating_consent_revoked_at', null),
+    ]);
 
     return (
         <main className="bg-background min-h-screen font-inter">
@@ -34,6 +54,20 @@ export default async function RatingVisibilityPage() {
                 </h1>
 
                 <RatingVisibilityManager initial={hidden} />
+
+                <h2 className="font-manrope font-bold text-2xl text-primary tracking-tight mt-12 mb-2">
+                    Згода на участь у рейтингах
+                </h2>
+                <p className="text-sm text-primary/60 mb-6 max-w-2xl">
+                    П. 10.1.2 Положення: обробка даних і включення учня до будь-яких
+                    ліцейських рейтингів можливі лише за його добровільною згодою.
+                </p>
+
+                <RatingConsentPolicy
+                    initialEnforced={enforced}
+                    consented={consentedRes.count ?? 0}
+                    totalStudents={totalRes.count ?? 0}
+                />
             </div>
         </main>
     );

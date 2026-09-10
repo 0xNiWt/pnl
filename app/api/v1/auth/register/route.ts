@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/server'
 import { translateAuthError } from '@/lib/authErrors'
 import { LYCEUM_EMAIL_SUFFIX, isLyceumEmail, normalizeLyceumEmail } from '@/lib/email'
+import { POLOZHENNIA_VERSION } from '@/lib/consent'
 
 const ALLOWED_CLASSES = [
   '7-А', '7-Б', '7-В',
@@ -15,11 +16,12 @@ const ALLOWED_CLASSES = [
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { email, password, fullName, studentClass } = body as {
+    const { email, password, fullName, studentClass, consentVersion } = body as {
       email?: string
       password?: string
       fullName?: string
       studentClass?: string
+      consentVersion?: string
     }
 
     if (!email || !password) {
@@ -53,6 +55,16 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // П. 10.1.2 Положення: реєстрація без згоди на обробку даних та участь
+    // у рейтингах неможлива. Галочку в браузері легко обійти, тому
+    // перевіряємо й тут.
+    if (consentVersion !== POLOZHENNIA_VERSION) {
+      return NextResponse.json(
+        { error: 'Щоб зареєструватися, потрібно погодитися з Положенням' },
+        { status: 400 }
+      )
+    }
+
     const supabase = await createClient()
 
     const { data, error } = await supabase.auth.signUp({
@@ -61,6 +73,10 @@ export async function POST(request: NextRequest) {
       options: {
         data: {
           full_name: fullName ?? null,
+          // Відмітку про згоду кладемо в метадані самої реєстрації: тригер
+          // profiles_rating_consent перенесе її в профіль. Так згоду не можна
+          // проставити окремим запитом уже після створення акаунта.
+          rating_consent_version: POLOZHENNIA_VERSION,
         },
         emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/login`
       },

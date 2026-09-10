@@ -4,6 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Mail, Lock, User, Eye, EyeOff, AlertCircle, ArrowRight } from 'lucide-react';
 import { LYCEUM_EMAIL_SUFFIX, isLyceumEmail, normalizeLyceumEmail } from '@/lib/email';
+import {
+    CONSENT_LABEL,
+    CONSENT_NOTE,
+    POLOZHENNIA_URL,
+    POLOZHENNIA_VERSION,
+} from '@/lib/consent';
 
 export default function RegisterPage() {
     const [fullName, setFullName] = useState('');
@@ -11,6 +17,7 @@ export default function RegisterPage() {
     const [password, setPassword] = useState('');
     const [classGrade, setClassGrade] = useState('');
     const [classLetter, setClassLetter] = useState('');
+    const [agreed, setAgreed] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -39,6 +46,13 @@ export default function RegisterPage() {
             return;
         }
 
+        // П. 10.1.2 Положення: без згоди учня не можна ані обробляти дані,
+        // ані вносити його до рейтингів.
+        if (!agreed) {
+            setError('Щоб зареєструватися, потрібно погодитися з Положенням');
+            return;
+        }
+
         setError('');
         setLoading(true);
 
@@ -46,7 +60,13 @@ export default function RegisterPage() {
             const res = await fetch('/api/v1/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: normalizedEmail, password, fullName, studentClass }),
+                body: JSON.stringify({
+                    email: normalizedEmail,
+                    password,
+                    fullName,
+                    studentClass,
+                    consentVersion: POLOZHENNIA_VERSION,
+                }),
             });
 
             const data = await res.json();
@@ -215,9 +235,36 @@ export default function RegisterPage() {
                                 </div>
                             </div>
 
+                            {/* Згода за п. 10.1.2 Положення: без неї учня не можна
+                                вносити до рейтингів, тому без галочки реєстрація не йде. */}
+                            <label className="flex items-start gap-3 rounded-xl border border-primary/10 bg-primary/[0.03] p-3.5 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={agreed}
+                                    onChange={(e) => {
+                                        setAgreed(e.target.checked);
+                                        if (error) setError('');
+                                    }}
+                                    className="mt-0.5 w-4 h-4 shrink-0 rounded border-primary/25 accent-primary cursor-pointer"
+                                />
+                                <span className="text-xs text-primary/75 leading-relaxed">
+                                    {CONSENT_LABEL}{' '}
+                                    <Link
+                                        href={POLOZHENNIA_URL}
+                                        target="_blank"
+                                        className="font-semibold text-primary underline underline-offset-2 hover:text-secondary transition-colors"
+                                    >
+                                        Читати Положення
+                                    </Link>
+                                    <span className="mt-1.5 block text-[11px] text-primary/45">
+                                        {CONSENT_NOTE}
+                                    </span>
+                                </span>
+                            </label>
+
                             <button
                                 type="submit"
-                                disabled={loading}
+                                disabled={loading || !agreed}
                                 className="w-full mt-2 rounded-xl bg-primary py-3 px-4 text-sm font-bold text-background tracking-wide hover:bg-primary/90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Зачекайте...' : 'Зареєструватися'}

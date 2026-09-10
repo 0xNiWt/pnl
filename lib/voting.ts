@@ -4,7 +4,8 @@
 //   староста / представник РСЛ — голосування в межах свого класу;
 //   ПРСЛ                        — увесь ліцей і будь-яка група активу;
 //   голова старостату / фізоргів / пресцентру — своя група активу
-//                                 (усі старости, усі фізорги, усі редактори).
+//                                 (усі старости, усі фізорги, усі редактори);
+//   президент клубу «Ерудит»    — усі капітани команд.
 // Модератор і адміністрація можуть створювати будь-які.
 //
 // Усі голосування — таємні: вибору «відкрите/анонімне» немає ні у формі,
@@ -29,12 +30,22 @@ export const CLASS_POLL_POSITIONS = ['starosta', 'rsl-rep'];
 export const LYCEUM_POLL_POSITIONS = ['prsl'];
 
 /**
- * Голосування для групи активу можна проводити серед тих, хто обіймає
- * класну посаду: «усі фізорги ліцею», «усі старости». Ліцейські посади сюди
- * не потрапляють — вони одиничні, голосувати самому із собою немає сенсу.
+ * Групи активу, серед яких узагалі проводять голосування: старости,
+ * редактори, фізорги та капітани «Ерудиту». Решта класних посад
+ * (заступники, культорги, фотографи, представники РСЛ, волонтери) сюди не
+ * входить — окремих зборів вони не мають, тож і голосувати серед них немає
+ * чого. Ліцейські посади не входять тим більше: вони одиничні.
  */
+const POSITION_POLL_TARGET_IDS = new Set([
+  'starosta',
+  'redactor',
+  'fizorg',
+  'erudite-captain',
+]);
+
+// Порядок беремо з довідника, щоб список у формі не стрибав.
 export const POSITION_POLL_TARGETS: string[] = POSITIONS
-  .filter((p) => p.scope === 'class-main' || p.scope === 'class-secondary')
+  .filter((p) => POSITION_POLL_TARGET_IDS.has(p.id))
   .map((p) => p.id);
 
 /**
@@ -42,9 +53,9 @@ export const POSITION_POLL_TARGETS: string[] = POSITIONS
  * Ключ — посада голови, значення — посади, серед яких він може голосувати.
  */
 export const POSITION_POLL_RIGHTS: Record<string, string[]> = {
-  'head-starostat': ['starosta', 'starosta-deputy'],
-  'head-fizorg': ['fizorg', 'fizorg-deputy'],
-  'head-presscenter': ['redactor', 'redactor-deputy', 'photographer'],
+  'head-starostat': ['starosta'],
+  'head-fizorg': ['fizorg'],
+  'head-presscenter': ['redactor'],
   'erudite-president': ['erudite-captain'],
 };
 
@@ -68,7 +79,7 @@ export function pollTargetPositionsFor(positions: string[], roles: string[]): st
     }
   }
 
-  // Порядок беремо з довідника, щоб список не стрибав.
+  // Порядок — той самий, що й у POSITION_POLL_TARGETS.
   return POSITION_POLL_TARGETS.filter((id) => allowed.has(id));
 }
 
