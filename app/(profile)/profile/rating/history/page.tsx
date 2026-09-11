@@ -27,7 +27,7 @@ export default async function MyPointsHistoryPage() {
             .eq('target', 'student')
             .eq('student_id', user.id)
             .order('created_at', { ascending: false }),
-        // Олімпіадні здобутки — окремий рейтинг за п. 10.7.2 Статуту,
+        // Олімпіадні здобутки — окремий рейтинг за п. 10.1.6 Положення,
         // тому й бали за них рахуються окремо від балів активності.
         supabase
             .from('olympiad_results')

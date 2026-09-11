@@ -1,4 +1,4 @@
-// Система рейтингів — пп. 10.7 (учні) та 10.11 (класи) Статуту.
+// Система рейтингів — пп. 10.1 (учні) та 10.2 (класи) Положення.
 //
 // Рейтингів чотири:
 //   1) навчальний   — за середнім балом;
@@ -47,15 +47,29 @@ export function visibleRatings(hidden: RatingVisibility, canSeeHidden: boolean):
   return RATING_KINDS.filter((kind) => !hidden[kind]);
 }
 
-// Етапи олімпіад та МАН. Шкала балів за п. 10.7.6 Статуту ще не затверджена
-// («ДОРОБИТИ»), тому значення живуть у базі й редагуються без зміни коду.
+// Етапи олімпіад і конкурсу-захисту МАН за чинною шкалою — пп. 10.1.10.1
+// та 10.1.10.2 Положення. Самі бали лежать у таблиці olympiad_scale: їх
+// закладає міграція sql/0018_olympiad_scale_2026.sql, а адміністрація може
+// виправити окрему клітинку з кабінету, не чіпаючи код.
+//
+// МАН розділено на два етапи, бо Положення дає їм різні бали.
 export const OLYMPIAD_LEVELS: { id: string; label: string; short: string }[] = [
-  { id: 'school', label: 'Шкільний етап', short: 'Шкільний' },
+  { id: 'district', label: 'Районний етап', short: 'Район' },
   { id: 'city', label: 'Міський етап', short: 'Місто' },
-  { id: 'region', label: 'Обласний етап', short: 'Область' },
   { id: 'national', label: 'Всеукраїнський етап', short: 'Україна' },
-  { id: 'international', label: 'Міжнародний рівень', short: 'Міжнар.' },
-  { id: 'man', label: 'МАН (конкурс-захист)', short: 'МАН' },
+  { id: 'international', label: 'Міжнародний етап', short: 'Міжнар.' },
+  { id: 'man-city', label: 'МАН — міський етап', short: 'МАН місто' },
+  { id: 'man-national', label: 'МАН — всеукраїнський етап', short: 'МАН Україна' },
+];
+
+// Етапи, яких у чинній шкалі немає, але вони лишилися в раніше внесених
+// здобутках: шкільний і обласний етапи та збірний «МАН» без етапу. Нового
+// запису з ними не створити — isOlympiadLevel їх не пропускає, — але старий
+// запис треба вміти показати, тому підписи зберігаємо.
+export const LEGACY_OLYMPIAD_LEVELS: { id: string; label: string; short: string }[] = [
+  { id: 'school', label: 'Шкільний етап (стара шкала)', short: 'Шкільний' },
+  { id: 'region', label: 'Обласний етап (стара шкала)', short: 'Область' },
+  { id: 'man', label: 'МАН (стара шкала)', short: 'МАН' },
 ];
 
 export const OLYMPIAD_PLACES: { value: number; label: string }[] = [
@@ -66,7 +80,10 @@ export const OLYMPIAD_PLACES: { value: number; label: string }[] = [
 ];
 
 export function olympiadLevelLabel(id: string): string {
-  return OLYMPIAD_LEVELS.find((l) => l.id === id)?.label ?? id;
+  const level =
+    OLYMPIAD_LEVELS.find((l) => l.id === id) ??
+    LEGACY_OLYMPIAD_LEVELS.find((l) => l.id === id);
+  return level?.label ?? id;
 }
 
 export function olympiadPlaceLabel(place: number): string {

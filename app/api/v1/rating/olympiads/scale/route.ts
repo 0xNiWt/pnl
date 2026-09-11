@@ -3,8 +3,9 @@ import { createClient } from '@/lib/server';
 import { getCurrentUserWithRoles, canManageUsers } from '@/lib/roles';
 import { isOlympiadLevel, isOlympiadPlace } from '@/lib/ratings';
 
-// Шкала олімпіадних балів. У Статуті (п. 10.7.6) вона позначена як
-// [ДОРОБИТИ], тому живе в базі й редагується з кабінету.
+// Шкала олімпіадних балів. Значення задає Положення (пп. 10.1.10.1
+// та 10.1.10.2) і закладає міграція sql/0018_olympiad_scale_2026.sql,
+// але зберігаються вони в базі, тож клітинку можна виправити з кабінету.
 
 export async function GET() {
   const supabase = await createClient();
