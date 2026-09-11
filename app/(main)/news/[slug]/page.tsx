@@ -85,16 +85,17 @@ export default async function NewsArticlePage({ params }: PageParams) {
                 </h1>
 
                 {mainImage && (
-                    <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-none md:rounded-none overflow-hidden mb-6 md:mb-8">
-                        <Image
-                            src={mainImage}
-                            alt={title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 768px"
-                            priority
-                        />
-                    </div>
+                    // width/height задають лише пропорцію до завантаження; далі
+                    // h-auto віддає висоту самому знімку, тож кадр не ріжеться.
+                    <Image
+                        src={mainImage}
+                        alt={title}
+                        width={1600}
+                        height={1200}
+                        className="mb-6 h-auto w-full bg-primary/5 md:mb-8"
+                        sizes="(max-width: 768px) 100vw, 768px"
+                        priority
+                    />
                 )}
 
                 <div className="flex flex-col gap-3.5 md:gap-4 text-[15px] md:text-base text-primary/80 leading-relaxed">
@@ -104,17 +105,17 @@ export default async function NewsArticlePage({ params }: PageParams) {
                 </div>
 
                 {galleryImages.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 md:gap-3 mt-6 md:mt-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 items-start gap-2.5 md:gap-3 mt-6 md:mt-8">
                         {galleryImages.map((src, i) => (
-                            <div key={i} className="relative w-full aspect-square rounded-none md:rounded-none overflow-hidden">
-                                <Image
-                                    src={src}
-                                    alt={`${title} — фото ${i + 2}`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 640px) 50vw, 33vw"
-                                />
-                            </div>
+                            <Image
+                                key={i}
+                                src={src}
+                                alt={`${title} — фото ${i + 2}`}
+                                width={1200}
+                                height={900}
+                                className="h-auto w-full bg-primary/5"
+                                sizes="(max-width: 640px) 50vw, 33vw"
+                            />
                         ))}
                     </div>
                 )}
