@@ -76,7 +76,13 @@ export const OLYMPIAD_PLACES: { value: number; label: string }[] = [
   { value: 1, label: 'I місце' },
   { value: 2, label: 'II місце' },
   { value: 3, label: 'III місце' },
-  { value: 0, label: 'Участь' },
+];
+
+// За саму участь балів немає: Положення нараховує їх лише за призові місця
+// (п. 10.1.10.3). Нового запису з «участю» не створити, а раніше внесені
+// треба вміти показати — тому підпис лишаємо.
+export const LEGACY_OLYMPIAD_PLACES: { value: number; label: string }[] = [
+  { value: 0, label: 'Участь (без балів)' },
 ];
 
 export function olympiadLevelLabel(id: string): string {
@@ -87,7 +93,10 @@ export function olympiadLevelLabel(id: string): string {
 }
 
 export function olympiadPlaceLabel(place: number): string {
-  return OLYMPIAD_PLACES.find((p) => p.value === place)?.label ?? `${place} місце`;
+  const found =
+    OLYMPIAD_PLACES.find((p) => p.value === place) ??
+    LEGACY_OLYMPIAD_PLACES.find((p) => p.value === place);
+  return found?.label ?? `${place} місце`;
 }
 
 export function isOlympiadLevel(value: unknown): value is string {

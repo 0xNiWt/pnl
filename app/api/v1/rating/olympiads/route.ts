@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Невідомий етап олімпіади' }, { status: 400 });
   }
   if (!isOlympiadPlace(place)) {
-    return NextResponse.json({ error: 'Місце має бути 1, 2, 3 або «участь»' }, { status: 400 });
+    return NextResponse.json({ error: 'Місце має бути 1, 2 або 3' }, { status: 400 });
   }
 
   let finalPoints: number;
