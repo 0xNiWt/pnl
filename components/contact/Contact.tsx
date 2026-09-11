@@ -60,19 +60,19 @@ export default function Contact({
     
     return (
         <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: smoothOut }} className="w-full max-w-7xl mx-auto flex flex-col items-center md:items-start gap-8 md:gap-12 px-5 md:px-6 py-10 md:py-24" id="contact">
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45">
+                <span className="w-6 h-px bg-accent" />
                 Контакти
             </span>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full">
                 {/* ВАКАНСІЇ */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-manrope font-bold text-primary text-lg mb-5">Вакансії</h3>
+                    <h3 className="font-cormorant font-semibold text-primary text-xl mb-5">Вакансії</h3>
 
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3 justify-center md:justify-start">
-                            <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
+                            <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
                                 <User size={18} className="text-primary" />
                             </span>
                             <p className="text-sm text-primary/70 text-left leading-6">
@@ -95,11 +95,11 @@ export default function Contact({
 
                 {/* АДРЕСИ */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-manrope font-bold text-primary text-lg mb-5">Адреси</h3>
+                    <h3 className="font-cormorant font-semibold text-primary text-xl mb-5">Адреси</h3>
 
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3 justify-center md:justify-start">
-                            <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
+                            <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
                                 <Phone size={18} className="text-primary" />
                             </span>
                             <p className="text-sm text-primary/70 text-left leading-6">
@@ -108,7 +108,7 @@ export default function Contact({
                         </div>
 
                         <div className="flex items-center gap-3 justify-center md:justify-start">
-                            <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
+                            <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
                                 <Mail size={18} className="text-primary" />
                             </span>
                             <span>
@@ -126,7 +126,7 @@ export default function Contact({
 
                 {/* Зворотній зв'язок */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-manrope font-bold text-primary text-lg mb-5">
+                    <h3 className="font-cormorant font-semibold text-primary text-xl mb-5">
                     Зворотній зв&apos;язок
                     </h3>
 
@@ -145,7 +145,7 @@ export default function Contact({
                         type="text"
                         required
                         placeholder="Введіть своє ім'я"
-                        className="w-full rounded-xl border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none transition-colors focus:border-secondary focus:bg-white"
+                        className="w-full rounded-none border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none transition-colors focus:border-accent focus:bg-white"
                         />
                     </div>
 
@@ -159,7 +159,7 @@ export default function Contact({
                         type="email"
                         required
                         placeholder="Введіть свій email"
-                        className="w-full rounded-xl border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none transition-colors focus:border-secondary focus:bg-white"
+                        className="w-full rounded-none border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none transition-colors focus:border-accent focus:bg-white"
                         />
                     </div>
 
@@ -173,14 +173,14 @@ export default function Contact({
                         rows={4}
                         required
                         placeholder="Напишіть повідомлення"
-                        className="w-full resize-none rounded-xl border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none transition-colors focus:border-secondary focus:bg-white"
+                        className="w-full resize-none rounded-none border border-primary/10 bg-primary/5 px-4 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none transition-colors focus:border-accent focus:bg-white"
                         />
                     </div>
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className="mt-1 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="mt-1 rounded-none bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         {loading ? "Відправлення..." : "Відправити"}
                     </button>

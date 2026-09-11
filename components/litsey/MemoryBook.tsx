@@ -32,15 +32,15 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: smoothOut }}
-                className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-20"
+                className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
                 id="memory-intro"
             >
-                <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                    <span className="w-6 h-px bg-secondary" />
+                <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                    <span className="w-6 h-px bg-accent" />
                     Книга пам’яті
                 </span>
 
-                <h1 className="font-manrope font-bold text-primary leading-[1.05] tracking-tight text-[clamp(2rem,1.6rem+2.4vw,3.6rem)] max-w-3xl">
+                <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
                     {MEMORY_BOOK_TITLE}
                 </h1>
 
@@ -55,7 +55,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                         href={MEMORY_BOOK_PDF}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-primary/15 px-5 py-2.5 font-manrope text-sm font-semibold text-primary/75 hover:bg-primary hover:text-background hover:border-primary transition-colors"
+                        className="inline-flex items-center gap-2 rounded-none border border-primary/15 px-5 py-2.5 font-manrope text-sm font-semibold text-primary/75 hover:bg-primary hover:text-background hover:border-primary transition-colors"
                     >
                         <ExternalLink size={15} />
                         Відкрити презентацію
@@ -64,7 +64,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                     <a
                         href={MEMORY_BOOK_PDF}
                         download
-                        className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-manrope text-sm font-semibold text-background hover:bg-primary/90 transition-colors"
+                        className="inline-flex items-center gap-2 rounded-none bg-primary px-5 py-2.5 font-manrope text-sm font-semibold text-background hover:bg-primary/90 transition-colors"
                     >
                         <Download size={15} />
                         Завантажити
@@ -72,7 +72,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                 </div>
 
                 {entries.length > 0 && (
-                    <p className="mt-6 font-bebas text-2xl text-accent tracking-wide">
+                    <p className="mt-6 font-cormorant text-2xl text-accent tracking-wide">
                         {entries.length} імен у книзі
                     </p>
                 )}
@@ -92,7 +92,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                                 setShown(PAGE_SIZE);
                             }}
                             placeholder="Пошук за прізвищем або текстом"
-                            className="w-full rounded-full border border-primary/15 bg-white/60 pl-11 pr-10 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none focus:border-secondary transition-colors"
+                            className="w-full rounded-none border border-primary/15 bg-white/60 pl-11 pr-10 py-2.5 text-sm text-primary placeholder:text-primary/40 outline-none focus:border-accent transition-colors"
                         />
                         {query && (
                             <button
@@ -123,7 +123,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                         <div className="mt-8 text-center">
                             <button
                                 onClick={() => setShown(shown + PAGE_SIZE)}
-                                className="inline-flex items-center gap-2 rounded-full border border-primary/15 px-6 py-3 font-manrope text-sm font-semibold text-primary/75 hover:bg-primary/5 hover:text-primary transition-colors"
+                                className="inline-flex items-center gap-2 rounded-none border border-primary/15 px-6 py-3 font-manrope text-sm font-semibold text-primary/75 hover:bg-primary/5 hover:text-primary transition-colors"
                             >
                                 Показати ще
                                 <span className="text-primary/40">
@@ -146,7 +146,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
     const shortText = isLong && !expanded ? text.slice(0, 260).trimEnd() + '…' : text;
 
     return (
-        <article className="rounded-2xl border border-primary/10 bg-primary/[0.02] overflow-hidden flex flex-col">
+        <article className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-hidden flex flex-col">
             <div className="relative w-full aspect-[3/4] bg-primary/[0.05]">
                 {entry.photo_url ? (
                     <Image
@@ -160,7 +160,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
                 ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-primary/25">
                         <User size={32} />
-                        <span className="font-manrope text-[11px] uppercase tracking-[0.14em]">
+                        <span className="font-plex text-[11px] uppercase tracking-[0.14em]">
                             Фото не збереглося
                         </span>
                     </div>
@@ -168,12 +168,12 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
             </div>
 
             <div className="p-5 flex flex-col flex-1">
-                <h2 className="font-manrope font-bold text-primary text-base leading-snug">
+                <h2 className="font-cormorant font-semibold text-primary text-lg leading-snug">
                     {entry.name}
                 </h2>
 
                 {entry.relation && (
-                    <p className="mt-1 text-sm text-secondary">{entry.relation}</p>
+                    <p className="mt-1 text-sm text-accent">{entry.relation}</p>
                 )}
 
                 {text && (
@@ -185,7 +185,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
                         {isLong && (
                             <button
                                 onClick={() => setExpanded(!expanded)}
-                                className="mt-2 self-start font-manrope text-xs font-semibold text-secondary hover:text-primary transition-colors"
+                                className="mt-2 self-start font-manrope text-xs font-semibold text-accent hover:text-primary transition-colors"
                             >
                                 {expanded ? 'Згорнути' : 'Читати далі'}
                             </button>

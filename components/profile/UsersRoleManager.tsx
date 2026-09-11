@@ -68,17 +68,17 @@ export default function UsersRoleManager({
     return (
         <div className="flex flex-col gap-4">
             {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     {error}
                 </div>
             )}
 
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
                 <div className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr] gap-4 px-6 py-3 border-b border-primary/10 bg-primary/[0.03]">
-                    <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
                         Користувач
                     </p>
-                    <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
                         Ролі
                     </p>
                 </div>
@@ -117,9 +117,9 @@ export default function UsersRoleManager({
                                                 type="button"
                                                 disabled={!canToggle || isLoading}
                                                 onClick={() => toggleRole(profile.id, role, has)}
-                                                className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors
+                                                className={`flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-semibold transition-colors
                                                     ${has
-                                                        ? 'bg-secondary/15 text-secondary'
+                                                        ? 'bg-accent/15 text-accent'
                                                         : 'bg-primary/5 text-primary/40'}
                                                     ${canToggle ? 'hover:opacity-80 cursor-pointer' : 'cursor-not-allowed opacity-60'}
                                                 `}

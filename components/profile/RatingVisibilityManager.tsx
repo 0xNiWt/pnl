@@ -50,7 +50,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
     return (
         <div className="flex flex-col gap-4">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                 </div>
@@ -63,13 +63,13 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                     return (
                         <div
                             key={kind}
-                            className="flex items-center justify-between gap-4 bg-primary/[0.02] border border-primary/10 rounded-2xl px-5 py-4"
+                            className="flex items-center justify-between gap-4 bg-primary/[0.02] border border-primary/10 rounded-none px-5 py-4"
                         >
                             <div className="min-w-0">
                                 <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">
                                     {RATING_LABELS[kind]}
                                     {isHidden && (
-                                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/15 px-2 py-0.5 rounded-full">
+                                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/15 px-2 py-0.5 rounded-none">
                                             <EyeOff size={10} />
                                             Приховано
                                         </span>
@@ -81,7 +81,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                             <button
                                 onClick={() => toggle(kind)}
                                 disabled={busy !== null}
-                                className={`shrink-0 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-manrope font-semibold transition-colors disabled:opacity-50 ${isHidden
+                                className={`shrink-0 inline-flex items-center gap-2 rounded-none px-4 py-2 text-sm font-manrope font-semibold transition-colors disabled:opacity-50 ${isHidden
                                     ? 'bg-primary text-background hover:bg-primary/90'
                                     : 'bg-primary/5 text-primary/70 hover:bg-primary/10'
                                     }`}

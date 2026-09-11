@@ -47,7 +47,7 @@ export default async function VotesPage() {
     const closed = rows.filter((p) => p.status === 'closed');
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-7xl mx-auto px-5 py-10 md:py-16">
 
                 <Link
@@ -60,8 +60,8 @@ export default async function VotesPage() {
 
                 <div className="flex flex-col flex-wrap items-center text-center md:items-start gap-4 mb-8">
                     <div>
-                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
-                            <span className="w-5 h-px bg-secondary" />
+                        <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
+                            <span className="w-5 h-px bg-accent" />
                             Учнівське самоврядування
                         </span>
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
@@ -72,7 +72,7 @@ export default async function VotesPage() {
                     {mayCreate && (
                         <Link
                             href="/profile/votes/new"
-                            className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors"
+                            className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors"
                         >
                             <Plus size={15} />
                             Створити голосування
@@ -81,7 +81,7 @@ export default async function VotesPage() {
                 </div>
 
                 {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3 mb-6">
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3 mb-6">
                         Не вдалося завантажити: {error.message}
                     </div>
                 )}
@@ -106,12 +106,12 @@ function Section({
 }) {
     return (
         <div className="mb-8">
-            <h2 className="font-manrope font-semibold text-sm text-primary/70 uppercase tracking-wide mb-3">
+            <h2 className="font-plex font-semibold text-sm text-primary/70 uppercase tracking-wide mb-3">
                 {title}
             </h2>
 
             {polls.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl px-6 py-8 text-center">
+                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-8 text-center">
                     <p className="text-sm text-primary/40">{empty}</p>
                 </div>
             ) : (
@@ -120,9 +120,9 @@ function Section({
                         <Link
                             key={poll.id}
                             href={`/profile/votes/${poll.id}`}
-                            className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5 hover:bg-primary/[0.04] transition-colors flex items-start gap-4"
+                            className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 hover:bg-primary/[0.04] transition-colors flex items-start gap-4"
                         >
-                            <span className="w-9 h-9 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary shrink-0">
+                            <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent shrink-0">
                                 <Vote size={17} />
                             </span>
 
@@ -140,7 +140,7 @@ function Section({
                                 </p>
                             </div>
 
-                            <span className="shrink-0 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary/5 text-primary/50">
+                            <span className="shrink-0 text-[11px] font-plex font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none bg-primary/5 text-primary/50">
                                 {poll.status === 'closed'
                                     ? 'Результати'
                                     : votedIn.has(poll.id)

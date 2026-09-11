@@ -23,7 +23,7 @@ export default function LogoutButton() {
         <button
             onClick={handleLogout}
             disabled={loading}
-            className="w-full mt-2 rounded-xl border border-accent/30 bg-accent/5 py-3 px-4 text-sm font-bold text-accent tracking-wide hover:bg-accent/10 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full mt-2 rounded-none border border-accent/30 bg-accent/5 py-3 px-4 text-sm font-bold text-accent tracking-wide hover:bg-accent/10 active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
         >
             <LogOut size={16} />
             {loading ? 'Виходимо...' : 'Вийти з акаунту'}

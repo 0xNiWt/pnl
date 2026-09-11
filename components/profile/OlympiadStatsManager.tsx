@@ -29,7 +29,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
 
     if (tables.length === 0) {
         return (
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl px-6 py-8 text-center">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-8 text-center">
                 <p className="text-sm text-primary/50">
                     Таблиць ще немає — застосуйте міграцію sql/0008_olympiad_stats.sql.
                 </p>
@@ -160,7 +160,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
     return (
         <div className="flex flex-col gap-5">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0">
@@ -175,7 +175,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     <button
                         key={t.id}
                         onClick={() => setActiveId(t.id)}
-                        className={`rounded-full px-4 py-2 font-inter text-sm font-medium transition-colors ${t.id === table.id
+                        className={`rounded-none px-4 py-2 font-inter text-sm font-medium transition-colors ${t.id === table.id
                             ? 'bg-primary text-background'
                             : 'text-primary/70 bg-primary/5 hover:bg-primary/10'
                             }`}
@@ -188,7 +188,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
             <div className="flex flex-wrap items-center gap-3">
                 <button
                     onClick={addRow}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-primary transition-colors"
                 >
                     <Plus size={15} />
                     Додати предмет
@@ -196,7 +196,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                 <span className="text-primary/20">·</span>
                 <button
                     onClick={addYear}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-primary transition-colors"
                 >
                     <Plus size={15} />
                     Додати рік
@@ -207,14 +207,14 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                 </p>
             </div>
 
-            <div className="rounded-2xl border border-primary/10 bg-primary/[0.02] overflow-x-auto">
+            <div className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                     <thead>
                         <tr className="bg-primary/[0.04]">
-                            <th className="text-left font-manrope text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-2.5 min-w-[190px] border-b border-primary/10">
+                            <th className="text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-2.5 min-w-[190px] border-b border-primary/10">
                                 Предмет
                             </th>
-                            <th className="font-manrope text-xs font-semibold uppercase tracking-wider text-primary/60 px-2 py-2.5 border-b border-primary/10 whitespace-nowrap">
+                            <th className="font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-2 py-2.5 border-b border-primary/10 whitespace-nowrap">
                                 Всього
                             </th>
                             {draft.years.map((year, index) => (
@@ -223,7 +223,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                                         <input
                                             value={year}
                                             onChange={(e) => setYear(index, e.target.value)}
-                                            className="w-[86px] rounded-lg border border-primary/15 bg-white/70 px-1.5 py-1 text-center text-[11px] focus:outline-none focus:border-secondary"
+                                            className="w-[86px] rounded-none border border-primary/15 bg-white/70 px-1.5 py-1 text-center text-[11px] focus:outline-none focus:border-accent"
                                         />
                                         <button
                                             onClick={() => removeYear(index)}
@@ -247,7 +247,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                                         value={row.subject}
                                         onChange={(e) => setSubject(rowIndex, e.target.value)}
                                         placeholder="Назва предмета"
-                                        className="w-full rounded-lg border border-primary/15 bg-white/70 px-2.5 py-1.5 text-sm focus:outline-none focus:border-secondary"
+                                        className="w-full rounded-none border border-primary/15 bg-white/70 px-2.5 py-1.5 text-sm focus:outline-none focus:border-accent"
                                     />
                                 </td>
 
@@ -258,7 +258,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                                         inputMode="numeric"
                                         placeholder={String(rowTotal({ ...row, total: null }))}
                                         title="Порожньо — рахується як сума по роках"
-                                        className="w-[70px] rounded-lg border border-primary/15 bg-white/70 px-2 py-1.5 text-center text-sm tabular-nums focus:outline-none focus:border-secondary"
+                                        className="w-[70px] rounded-none border border-primary/15 bg-white/70 px-2 py-1.5 text-center text-sm tabular-nums focus:outline-none focus:border-accent"
                                     />
                                 </td>
 
@@ -268,7 +268,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                                             value={row.counts[year] ?? ''}
                                             onChange={(e) => setCell(rowIndex, year, e.target.value)}
                                             inputMode="numeric"
-                                            className="w-[54px] rounded-lg border border-primary/10 bg-white/60 px-1 py-1.5 text-center text-sm tabular-nums focus:outline-none focus:border-secondary"
+                                            className="w-[54px] rounded-none border border-primary/10 bg-white/60 px-1 py-1.5 text-center text-sm tabular-nums focus:outline-none focus:border-accent"
                                         />
                                     </td>
                                 ))}
@@ -323,14 +323,14 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                 <button
                     onClick={save}
                     disabled={saving}
-                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                     {saving ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                     Зберегти таблицю
                 </button>
 
                 {saved === table.id && (
-                    <span className="text-sm text-secondary font-semibold">Збережено</span>
+                    <span className="text-sm text-accent font-semibold">Збережено</span>
                 )}
 
                 <p className="text-xs text-primary/40 basis-full">

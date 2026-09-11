@@ -6,7 +6,7 @@ export default async function MemoryPage() {
     const entries = await getMemoryEntries();
 
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <main className="paper-grid bg-background min-h-screen flex flex-col">
             <MemoryBook entries={entries} />
             <ContactWithData />
         </main>

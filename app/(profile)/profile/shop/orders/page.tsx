@@ -37,7 +37,7 @@ export default async function ShopOrdersPage() {
     }));
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-4xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile/shop"
@@ -48,12 +48,12 @@ export default async function ShopOrdersPage() {
                 </Link>
 
                 <div className="mb-8">
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
-                        <span className="w-5 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
+                        <span className="w-5 h-px bg-accent" />
                         Магазин
                     </span>
                     <h1 className="flex items-center gap-2.5 font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
-                        <Package size={28} className="text-secondary" />
+                        <Package size={28} className="text-accent" />
                         Замовлення за бали
                     </h1>
                     <p className="text-sm text-primary/50 mt-2 max-w-xl">

@@ -72,7 +72,7 @@ export default function ShopGrid({
 
     if (products.length === 0) {
         return (
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl px-6 py-16 text-center">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-16 text-center">
                 <PackageX size={28} className="mx-auto text-primary/25 mb-3" />
                 <p className="text-sm text-primary/50">
                     Товарів поки немає. Зазирніть пізніше — мерч ось-ось буде.
@@ -86,7 +86,7 @@ export default function ShopGrid({
             {/* Баланс і повідомлення */}
             <div className="flex flex-wrap items-center gap-3">
                 {currentBalance !== null && (
-                    <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 border border-accent/25 px-4 py-2 text-sm">
+                    <span className="inline-flex items-center gap-2 rounded-none bg-accent/10 border border-accent/25 px-4 py-2 text-sm">
                         <Coins size={15} className="text-accent" />
                         <span className="text-primary/60">Ваш баланс:</span>
                         <b className="font-manrope text-primary">{formatPoints(currentBalance)}</b>
@@ -95,7 +95,7 @@ export default function ShopGrid({
 
                 {!isLoggedIn && (
                     <span className="text-sm text-primary/50">
-                        <Link href="/auth/login" className="font-semibold text-secondary hover:text-primary">
+                        <Link href="/auth/login" className="font-semibold text-accent hover:text-primary">
                             Увійдіть
                         </Link>
                         , щоб купувати за бали.
@@ -104,7 +104,7 @@ export default function ShopGrid({
             </div>
 
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0" aria-label="Закрити">
@@ -114,12 +114,12 @@ export default function ShopGrid({
             )}
 
             {bought && (
-                <div className="flex items-start gap-2 bg-secondary/[0.08] border border-secondary/25 text-primary/80 text-sm rounded-xl px-4 py-3">
-                    <Check size={16} className="shrink-0 mt-0.5 text-secondary" />
+                <div className="flex items-start gap-2 bg-accent/[0.08] border border-accent/25 text-primary/80 text-sm rounded-none px-4 py-3">
+                    <Check size={16} className="shrink-0 mt-0.5 text-accent" />
                     <span>
                         Замовлено <b className="text-primary">{bought}</b>. Бали списано — по мерч
                         підійдіть до активу. Замовлення видно в{' '}
-                        <Link href="/profile/orders" className="font-semibold text-secondary hover:text-primary">
+                        <Link href="/profile/orders" className="font-semibold text-accent hover:text-primary">
                             кабінеті
                         </Link>
                         .
@@ -166,7 +166,7 @@ function ProductCard({
         forPoints && balance !== null && product.price_points !== null && balance < product.price_points;
 
     return (
-        <div className="flex flex-col bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+        <div className="flex flex-col bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
             <div className="relative w-full aspect-[4/3] bg-primary/5">
                 {product.image_url ? (
                     <Image
@@ -187,12 +187,12 @@ function ProductCard({
                 )}
 
                 {!product.active && (
-                    <span className="absolute top-3 left-3 text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-primary text-background">
+                    <span className="absolute top-3 left-3 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-1 rounded-none bg-primary text-background">
                         Прихований
                     </span>
                 )}
                 {soldOut && (
-                    <span className="absolute top-3 right-3 text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-accent text-background">
+                    <span className="absolute top-3 right-3 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-1 rounded-none bg-accent text-background">
                         Немає
                     </span>
                 )}
@@ -209,14 +209,14 @@ function ProductCard({
 
                 <div className="flex flex-wrap items-center gap-2 mt-3">
                     {product.price_points !== null && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-primary">
+                        <span className="inline-flex items-center gap-1.5 rounded-none bg-accent/10 px-3 py-1 text-xs font-semibold text-primary">
                             <Coins size={12} className="text-accent" />
                             {formatPoints(product.price_points)}
                         </span>
                     )}
                     {product.price_uah !== null && (
-                        <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary/12 px-3 py-1 text-xs font-semibold text-primary">
-                            <CreditCard size={12} className="text-secondary" />
+                        <span className="inline-flex items-center gap-1.5 rounded-none bg-accent/12 px-3 py-1 text-xs font-semibold text-primary">
+                            <CreditCard size={12} className="text-accent" />
                             {formatUah(product.price_uah)}
                         </span>
                     )}
@@ -237,7 +237,7 @@ function ProductCard({
                                         ? 'Не вистачає балів'
                                         : undefined
                             }
-                            className="inline-flex items-center justify-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-40"
+                            className="inline-flex items-center justify-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-40"
                         >
                             {busy ? <Loader2 size={15} className="animate-spin" /> : <Coins size={15} />}
                             {notEnough ? 'Не вистачає балів' : 'Купити за бали'}
@@ -249,7 +249,7 @@ function ProductCard({
                             href={product.form_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-2 border border-primary/20 text-primary font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/5 transition-colors"
+                            className="inline-flex items-center justify-center gap-2 border border-primary/20 text-primary font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/5 transition-colors"
                         >
                             <ExternalLink size={15} />
                             Купити за гроші

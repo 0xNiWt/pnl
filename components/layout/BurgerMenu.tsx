@@ -24,7 +24,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.25, ease: smoothOut }}
-                    className="md:hidden absolute left-0 right-0 top-full mt-3 bg-background border border-primary/10 rounded-2xl shadow-xl overflow-hidden z-40"
+                    className="md:hidden absolute left-0 right-0 top-full mt-3 bg-background border border-primary/10 rounded-none shadow-none overflow-hidden z-40"
                 >
                     <div className="py-4 px-3 flex flex-col gap-4">
                         <ul className="flex flex-col gap-1">
@@ -38,7 +38,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                     <Link
                                         href={item.href}
                                         onClick={onLinkClick}
-                                        className="block px-3 py-2.5 rounded-xl text-primary font-inter font-bold text-base hover:bg-primary/5 active:bg-primary/10 transition-colors"
+                                        className="block px-3 py-2.5 rounded-none text-primary font-inter font-bold text-base hover:bg-primary/5 active:bg-primary/10 transition-colors"
                                     >
                                         {item.label}
                                     </Link>
@@ -55,7 +55,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                             <Link
                                 href="/shop"
                                 onClick={onLinkClick}
-                                className="w-full flex items-center justify-center gap-2 rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
+                                className="w-full flex items-center justify-center gap-2 rounded-none border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
                             >
                                 <ShoppingCart size={16} />
                                 Магазин
@@ -65,7 +65,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                 <Link
                                     href="/profile"
                                     onClick={onLinkClick}
-                                    className="w-full text-center rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
+                                    className="w-full text-center rounded-none border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
                                 >
                                     Кабінет
                                 </Link>
@@ -74,14 +74,14 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                     <Link
                                         href="/auth/login"
                                         onClick={onLinkClick}
-                                        className="w-full text-center rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
+                                        className="w-full text-center rounded-none border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
                                     >
                                         Вхід
                                     </Link>
                                     <Link
                                         href="/auth/register"
                                         onClick={onLinkClick}
-                                        className="w-full text-center rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
+                                        className="w-full text-center rounded-none border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
                                     >
                                         Реєстрація
                                     </Link>

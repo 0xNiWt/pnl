@@ -66,7 +66,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
         <div className="flex flex-col gap-4">
 
             {/* Пошук і коротка статистика */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-4 md:p-5 flex flex-col gap-3">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-3">
                 <div className="relative">
                     <Search
                         size={15}
@@ -76,7 +76,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Пошук за іменем, класом або посадою: «10-А», «староста»..."
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                     />
                 </div>
 
@@ -100,18 +100,18 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
             </div>
 
             {groups.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl px-6 py-10 text-center">
+                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-10 text-center">
                     <p className="text-sm text-primary/40">За таким запитом нікого не знайдено.</p>
                 </div>
             ) : (
                 groups.map((group) => (
                     <div
                         key={group.className}
-                        className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden"
+                        className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden"
                     >
                         <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
                             <div className="flex items-center gap-2.5">
-                                <span className="w-8 h-8 rounded-lg bg-secondary/15 flex items-center justify-center text-secondary">
+                                <span className="w-8 h-8 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                     <Users size={15} />
                                 </span>
                                 <div>
@@ -150,7 +150,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                                                 positions.map((id) => (
                                                     <span
                                                         key={id}
-                                                        className="inline-block bg-secondary/15 text-secondary text-[11px] font-semibold px-2.5 py-1 rounded-lg"
+                                                        className="inline-block bg-accent/15 text-accent text-[11px] font-semibold px-2.5 py-1 rounded-none"
                                                     >
                                                         {positionLabel(id)}
                                                     </span>

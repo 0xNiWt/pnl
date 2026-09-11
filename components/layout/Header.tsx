@@ -10,14 +10,21 @@ export default async function Header() {
     const { data: { user } } = await supabase.auth.getUser();
 
     return (
-        <header className="sticky top-0 z-50 bg-background px-4 py-4 border-b border-gray-800/20">
-            <div className="md:max-w-7xl mx-auto relative">
-                <div className="flex items-center justify-between md:gap-12">
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <Image src={gerb} alt="Герб ліцею" className="h-16 w-auto" priority />
-                        <h1 className="text-primary/60 text-[clamp(1rem,0.7143rem_+_0.5952vw,1.25rem)] font-inter font-bold">
-                            Природничо-науковий ліцей №145
-                        </h1>
+        <header className="sticky top-0 z-50 border-b border-primary/15 bg-background">
+            <div className="mx-auto max-w-7xl px-5 md:px-10">
+                <div className="flex items-center justify-between gap-6 py-3.5 md:gap-12">
+                    <Link href="/" className="group flex items-center gap-3">
+                        <Image src={gerb} alt="Герб ліцею" className="h-12 w-auto md:h-14" priority />
+
+                        <span className="flex flex-col">
+                            <span className="font-cormorant text-[clamp(1.05rem,0.8rem+0.7vw,1.5rem)] font-semibold leading-[1.05] tracking-[-0.01em] text-primary">
+                                Природничо-науковий ліцей
+                            </span>
+                            {/* Номер закладу винесено в технічний рядок — як вихідні дані. */}
+                            <span className="mt-0.5 font-plex text-[9px] uppercase tracking-[0.22em] text-primary/40">
+                                № 145 · Київ · з 1962
+                            </span>
+                        </span>
                     </Link>
 
                     <Nav isLoggedIn={!!user} />

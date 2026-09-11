@@ -74,9 +74,9 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                         <div className="min-w-0">
                             <div className="flex items-center gap-2 mb-1">
                                 <span
-                                    className={`text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                                    className={`text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-0.5 rounded-none ${
                                         item.published
-                                            ? 'bg-secondary/15 text-secondary'
+                                            ? 'bg-accent/15 text-accent'
                                             : 'bg-primary/10 text-primary/50'
                                     }`}
                                 >
@@ -92,14 +92,14 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                                 onClick={() => handleTogglePublish(item)}
                                 disabled={isPending}
                                 title={item.published ? 'Зняти з публікації' : 'Опублікувати'}
-                                className="w-9 h-9 rounded-lg bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
+                                className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
                             >
                                 {item.published ? <EyeOff size={16} /> : <Eye size={16} />}
                             </button>
 
                             <Link
                                 href={`/profile/news/${item.id}/edit`}
-                                className="w-9 h-9 rounded-lg bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors"
+                                className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors"
                             >
                                 <FileEdit size={16} />
                             </Link>
@@ -107,7 +107,7 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                             <button
                                 onClick={() => handleDelete(item.id)}
                                 disabled={isPending}
-                                className="w-9 h-9 rounded-lg bg-accent/5 hover:bg-accent/10 flex items-center justify-center text-accent transition-colors disabled:opacity-50"
+                                className="w-9 h-9 rounded-none bg-accent/5 hover:bg-accent/10 flex items-center justify-center text-accent transition-colors disabled:opacity-50"
                             >
                                 <Trash2 size={16} />
                             </button>

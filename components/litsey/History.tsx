@@ -18,22 +18,22 @@ export default function History() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="history"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Історія
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-10 max-w-xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-xl">
                 Понад 60 років у природничій освіті
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {MILESTONES.map((m) => (
                     <div key={m.year} className="border-l-2 border-primary/10 pl-5">
-                        <span className="font-bebas text-3xl text-accent">{m.year}</span>
+                        <span className="font-cormorant text-3xl text-accent">{m.year}</span>
                         <p className="mt-2 text-sm text-primary/70 leading-relaxed">{m.text}</p>
                     </div>
                 ))}

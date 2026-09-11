@@ -11,20 +11,13 @@ export default function NotFound() {
 
     return (
         <div className="relative flex flex-col items-center justify-center min-h-dvh bg-background overflow-hidden px-5">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, ease: smoothOut }}
-                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-accent/20 blur-[110px]"
-            />
-
             <div className="relative flex flex-col items-center text-center">
-                <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-6">
+                <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-6">
                     <motion.span
                         initial={{ width: 0 }}
                         animate={{ width: 24 }}
                         transition={{ duration: 0.5, delay: 0.4, ease: smoothOut }}
-                        className="h-px bg-secondary"
+                        className="h-px bg-accent"
                     />
                     Помилка 404
                 </span>
@@ -51,7 +44,7 @@ export default function NotFound() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.45, ease: smoothOut }}
-                    className="mt-2 text-[clamp(1.25rem,1.0563rem_+_0.8264vw,1.8rem)] font-bebas tracking-wide text-primary/70"
+                    className="mt-2 text-[clamp(1.25rem,1.0563rem_+_0.8264vw,1.8rem)] font-cormorant tracking-wide text-primary/70"
                 >
                     Сторінку не знайдено
                 </motion.h2>
@@ -73,7 +66,7 @@ export default function NotFound() {
                 >
                     <Link
                         href="/"
-                        className="mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90"
+                        className="mt-8 inline-flex items-center gap-2 rounded-none bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90"
                     >
                         <ArrowLeft size={16} />
                         На головну

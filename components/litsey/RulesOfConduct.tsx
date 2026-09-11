@@ -23,7 +23,7 @@ function Block({ block }: { block: RulesBlock }) {
 
         case "heading":
             return (
-                <h2 className="font-manrope font-bold text-primary text-xl md:text-2xl tracking-tight mt-10 first:mt-0">
+                <h2 className="font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em] mt-10 first:mt-0">
                     {block.text}
                 </h2>
             );
@@ -60,4 +60,4 @@ function Block({ block }: { block: RulesBlock }) {
 // Маркер малюємо псевдоелементом: так довгий пункт переноситься рівно під
 // текстом, а не під крапкою, як це робить звичайний list-style.
 const BULLET =
-    "relative pl-5 text-base text-primary/70 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-secondary";
+    "relative pl-5 text-base text-primary/70 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1.5 before:h-1.5 before:rounded-none before:bg-accent";

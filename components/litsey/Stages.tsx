@@ -54,15 +54,15 @@ export default function Stages() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="stages"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Як вибудовано навчання
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-10 max-w-2xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-2xl">
                 Спершу знайти себе — потім поглибитись
             </h2>
 
@@ -70,18 +70,18 @@ export default function Stages() {
                 {STAGES.map(({ icon: Icon, badge, title, lead, points }) => (
                     <div
                         key={title}
-                        className="rounded-2xl border border-primary/10 bg-primary/[0.03] p-6 md:p-8 flex flex-col"
+                        className="rounded-none border border-primary/10 bg-primary/[0.03] p-6 md:p-8 flex flex-col"
                     >
                         <div className="flex items-center gap-3 mb-5">
-                            <span className="w-11 h-11 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+                            <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center shrink-0">
                                 <Icon size={20} className="text-primary" />
                             </span>
-                            <span className="font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-secondary">
+                            <span className="font-plex text-[10px] uppercase tracking-[0.2em] text-primary/45">
                                 {badge}
                             </span>
                         </div>
 
-                        <h3 className="font-manrope font-bold text-primary text-2xl tracking-tight">
+                        <h3 className="font-cormorant font-semibold text-primary text-3xl leading-[1.1] tracking-[-0.01em]">
                             {title}
                         </h3>
                         <p className="mt-2 text-sm text-primary/70 leading-relaxed">{lead}</p>
@@ -89,7 +89,7 @@ export default function Stages() {
                         <ul className="mt-5 flex flex-col gap-3">
                             {points.map((p) => (
                                 <li key={p} className="flex gap-3 text-sm text-primary/60 leading-relaxed">
-                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                                    <span className="mt-2 h-1.5 w-1.5 rounded-none bg-accent shrink-0" />
                                     {p}
                                 </li>
                             ))}
@@ -100,8 +100,8 @@ export default function Stages() {
 
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5">
                 {NOTES.map((n) => (
-                    <div key={n.title} className="rounded-2xl border border-primary/10 p-6">
-                        <h3 className="font-manrope font-bold text-primary text-base mb-2">{n.title}</h3>
+                    <div key={n.title} className="rounded-none border border-primary/10 p-6">
+                        <h3 className="font-cormorant font-semibold text-primary text-lg mb-2">{n.title}</h3>
                         <p className="text-sm text-primary/60 leading-relaxed">{n.text}</p>
                     </div>
                 ))}

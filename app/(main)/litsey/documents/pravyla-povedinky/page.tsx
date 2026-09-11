@@ -12,17 +12,17 @@ export const metadata: Metadata = {
 
 export default function RulesPage() {
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <main className="paper-grid bg-background min-h-screen flex flex-col">
             <section className="w-full max-w-3xl mx-auto px-5 md:px-6 pt-10 md:pt-16 pb-8 md:pb-10">
                 <Link
                     href="/litsey/documents"
-                    className="inline-flex items-center gap-1.5 font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-primary/50 hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-1.5 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-primary/50 hover:text-primary transition-colors"
                 >
                     <ArrowLeft size={14} />
                     Нормативна база
                 </Link>
 
-                <h1 className="mt-5 font-manrope font-bold text-primary leading-[1.1] tracking-tight text-[clamp(1.75rem,1.45rem+1.8vw,3rem)]">
+                <h1 className="mt-5 font-cormorant font-semibold text-primary leading-[1] tracking-[-0.02em] text-[clamp(2.1rem,1.4rem+2.8vw,3.8rem)]">
                     Правила поведінки учнів ліцею
                 </h1>
 
@@ -34,7 +34,7 @@ export default function RulesPage() {
                 <a
                     href="/docs/pravyla_povedinky.docx"
                     download
-                    className="mt-7 inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 font-manrope text-xs font-semibold text-background hover:bg-primary/90 transition-colors"
+                    className="mt-7 inline-flex items-center gap-1.5 rounded-none bg-primary px-4 py-2 font-manrope text-xs font-semibold text-background hover:bg-primary/90 transition-colors"
                 >
                     <Download size={13} />
                     Завантажити DOCX

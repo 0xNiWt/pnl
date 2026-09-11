@@ -119,7 +119,7 @@ export default function RatingBoard({
     if (available.length === 0) {
         return (
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-8 md:py-12">
-                <div className="border border-primary/10 rounded-2xl bg-white/40 px-6 py-12 text-center">
+                <div className="border border-primary/10 rounded-none bg-white/40 px-6 py-12 text-center">
                     <EyeOff size={22} className="mx-auto mb-3 text-primary/30" />
                     <p className="text-sm text-primary/55">
                         Рейтинги тимчасово приховані адміністрацією ліцею.
@@ -142,7 +142,7 @@ export default function RatingBoard({
             <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
                 <button
                     onClick={() => setScope(scope === 'student' ? 'class' : 'student')}
-                    className="inline-flex items-center gap-2 font-manrope font-semibold text-sm text-background bg-primary hover:bg-primary/90 transition-colors rounded-full px-4 py-2.5"
+                    className="inline-flex items-center gap-2 font-manrope font-semibold text-sm text-background bg-primary hover:bg-primary/90 transition-colors rounded-none px-4 py-2.5"
                 >
                     <ArrowLeftRight size={15} />
                     {scope === 'student' ? 'Показати рейтинг класів' : 'Показати рейтинг учнів'}
@@ -154,7 +154,7 @@ export default function RatingBoard({
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder={scope === 'student' ? 'Пошук за іменем...' : 'Пошук за класом...'}
-                        className="w-full pl-9 pr-3.5 py-2.5 rounded-full border border-primary/15 bg-white/60 text-sm text-primary placeholder:text-primary/40 focus:outline-none focus:border-secondary"
+                        className="w-full pl-9 pr-3.5 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm text-primary placeholder:text-primary/40 focus:outline-none focus:border-accent"
                     />
                 </div>
             </div>
@@ -164,7 +164,7 @@ export default function RatingBoard({
                     <button
                         key={kind}
                         onClick={() => setRating(kind)}
-                        className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${activeRating === kind
+                        className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-none border text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${activeRating === kind
                             ? 'bg-primary text-background border-primary'
                             : 'border-primary/15 text-primary/60 hover:bg-primary/5'
                             }`}
@@ -176,21 +176,21 @@ export default function RatingBoard({
             </div>
 
             {hidden[activeRating] && canSeeHidden && (
-                <p className="flex items-start gap-2 text-xs text-accent bg-accent/10 border border-accent/25 rounded-xl px-3.5 py-2.5 mb-3 max-w-2xl">
+                <p className="flex items-start gap-2 text-xs text-accent bg-accent/10 border border-accent/25 rounded-none px-3.5 py-2.5 mb-3 max-w-2xl">
                     <EyeOff size={14} className="shrink-0 mt-0.5" />
                     Цей рейтинг приховано — його бачите тільки ви, адміністрація та модератори.
                 </p>
             )}
 
             <p className="flex items-start gap-2 text-xs text-primary/50 mb-6 max-w-2xl">
-                <Info size={14} className="shrink-0 mt-0.5 text-secondary" />
+                <Info size={14} className="shrink-0 mt-0.5 text-accent" />
                 {RATING_HINTS[activeRating]}
             </p>
 
-            <div className="border border-primary/10 rounded-2xl overflow-x-auto bg-white/40">
+            <div className="border border-primary/10 rounded-none overflow-x-auto bg-white/40">
                 <table className="w-full text-sm">
                     <thead>
-                        <tr className="bg-primary/5 text-left font-manrope text-xs uppercase tracking-wide text-primary/60">
+                        <tr className="bg-primary/5 text-left font-plex text-xs uppercase tracking-wide text-primary/60">
                             <th className="px-4 py-3 w-14">№</th>
                             <th className="px-4 py-3">{scope === 'student' ? 'ПІБ' : 'Клас'}</th>
                             {scope === 'student' && <th className="px-4 py-3 w-20">Клас</th>}
@@ -265,7 +265,7 @@ export default function RatingBoard({
                                             </td>
                                         ))}
 
-                                    <td className="px-4 py-3 text-right font-manrope font-semibold text-secondary">
+                                    <td className="px-4 py-3 text-right font-manrope font-semibold text-accent">
                                         {activeRating === 'points' && row.total_points}
                                         {activeRating === 'academic' &&
                                             (row.academic_score === null

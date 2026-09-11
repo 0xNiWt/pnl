@@ -104,7 +104,7 @@ export default function PollCreateForm({
     return (
         <div className="flex flex-col gap-5">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0">
@@ -115,16 +115,16 @@ export default function PollCreateForm({
 
             {/* Для кого */}
             <div>
-                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Для кого голосування
                 </label>
 
-                <div className="inline-flex rounded-full border border-primary/15 p-1">
+                <div className="inline-flex rounded-none border border-primary/15 p-1">
                     {scopes.map((s) => (
                         <button
                             key={s}
                             onClick={() => setScope(s)}
-                            className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${scope === s ? 'bg-primary text-background' : 'text-primary/60'
+                            className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${scope === s ? 'bg-primary text-background' : 'text-primary/60'
                                 }`}
                         >
                             {POLL_SCOPE_LABELS[s]}
@@ -138,7 +138,7 @@ export default function PollCreateForm({
                             <select
                                 value={className}
                                 onChange={(e) => setClassName(e.target.value)}
-                                className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                                className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                             >
                                 {classChoices.map((c) => (
                                     <option key={c} value={c}>
@@ -161,7 +161,7 @@ export default function PollCreateForm({
                             <select
                                 value={positionId}
                                 onChange={(e) => setPositionId(e.target.value)}
-                                className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                                className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                             >
                                 {positionTargets.map((id) => (
                                     <option key={id} value={id}>
@@ -194,19 +194,19 @@ export default function PollCreateForm({
 
             {/* Питання */}
             <div>
-                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Питання
                 </label>
                 <input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Наприклад: Куди йдемо на екскурсію?"
-                    className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                    className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                 />
             </div>
 
             <div>
-                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Пояснення (необов&apos;язково)
                 </label>
                 <textarea
@@ -214,13 +214,13 @@ export default function PollCreateForm({
                     onChange={(e) => setDescription(e.target.value)}
                     rows={2}
                     placeholder="Деталі, дата, умови..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm resize-none focus:outline-none focus:border-secondary"
+                    className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm resize-none focus:outline-none focus:border-accent"
                 />
             </div>
 
             {/* Варіанти */}
             <div>
-                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Варіанти відповіді
                 </label>
 
@@ -232,7 +232,7 @@ export default function PollCreateForm({
                                 value={option}
                                 onChange={(e) => setOption(index, e.target.value)}
                                 placeholder={index === 0 ? 'Так' : index === 1 ? 'Ні' : 'Ще варіант'}
-                                className="flex-1 px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                                className="flex-1 px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                             />
                             <button
                                 onClick={() => removeOption(index)}
@@ -249,7 +249,7 @@ export default function PollCreateForm({
                 <button
                     onClick={addOption}
                     disabled={options.length >= 20}
-                    className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-secondary hover:text-primary transition-colors disabled:opacity-40"
+                    className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-primary transition-colors disabled:opacity-40"
                 >
                     <Plus size={14} />
                     Додати варіант
@@ -259,13 +259,13 @@ export default function PollCreateForm({
             {/* Таємність. Вибору немає навмисно: відкритих голосувань у ліцеї
                 більше не проводимо, тому кожне створене тут — таємне. */}
             <div>
-                <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                     Тип голосування
                 </label>
 
-                <div className="rounded-xl border border-secondary/25 bg-secondary/[0.08] px-4 py-3">
+                <div className="rounded-none border border-accent/25 bg-accent/[0.08] px-4 py-3">
                     <p className="flex items-center gap-2 text-sm font-medium text-primary">
-                        <EyeOff size={14} className="text-secondary" />
+                        <EyeOff size={14} className="text-accent" />
                         Таємне — інакше не буває
                     </p>
                     <p className="text-xs text-primary/55 mt-1 leading-relaxed">
@@ -280,7 +280,7 @@ export default function PollCreateForm({
                 <button
                     onClick={submit}
                     disabled={saving}
-                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                     {saving ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                     Створити

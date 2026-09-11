@@ -7,7 +7,7 @@ export default async function OlympiadsPage() {
     const tables = await getOlympiadTables();
 
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <main className="paper-grid bg-background min-h-screen flex flex-col">
             <OlympiadsIntro tables={tables} />
             <OlympiadStats tables={tables} />
             <ContactWithData />

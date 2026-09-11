@@ -52,16 +52,16 @@ export default function RatingConsentPolicy({
     return (
         <div className="flex flex-col gap-4">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                 </div>
             )}
 
-            <div className="flex items-center justify-between gap-4 bg-primary/[0.02] border border-primary/10 rounded-2xl px-5 py-4">
+            <div className="flex items-center justify-between gap-4 bg-primary/[0.02] border border-primary/10 rounded-none px-5 py-4">
                 <div className="min-w-0">
                     <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">
-                        <ShieldCheck size={15} className="text-secondary" />
+                        <ShieldCheck size={15} className="text-accent" />
                         Враховувати лише учнів зі згодою
                     </p>
                     <p className="text-xs text-primary/50 mt-1">
@@ -74,7 +74,7 @@ export default function RatingConsentPolicy({
                 <button
                     onClick={toggle}
                     disabled={busy}
-                    className={`shrink-0 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-manrope font-semibold transition-colors disabled:opacity-50 ${enforced
+                    className={`shrink-0 inline-flex items-center gap-2 rounded-none px-4 py-2 text-sm font-manrope font-semibold transition-colors disabled:opacity-50 ${enforced
                         ? 'bg-primary/5 text-primary/70 hover:bg-primary/10'
                         : 'bg-primary text-background hover:bg-primary/90'
                         }`}
@@ -115,7 +115,7 @@ function Stat({
     tone?: 'calm' | 'warn';
 }) {
     return (
-        <div className="rounded-2xl border border-primary/10 bg-primary/[0.02] px-5 py-4">
+        <div className="rounded-none border border-primary/10 bg-primary/[0.02] px-5 py-4">
             <p
                 className={`font-manrope font-bold text-2xl ${tone === 'warn' ? 'text-accent' : 'text-primary'
                     }`}

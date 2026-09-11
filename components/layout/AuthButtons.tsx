@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 
+// Кнопки набрані моношрифтом і мають волосяні межі замість жирних рамок:
+// та сама мова, що й у решті інтерфейсу.
+const BASE =
+    "inline-flex items-center justify-center border px-4 py-2.5 font-plex text-[11px] uppercase tracking-[0.18em] transition-colors";
+
 export default function AuthButtons({ isLoggedIn }: { isLoggedIn: boolean }) {
     return (
         <div className="hidden md:flex items-center gap-2">
@@ -10,15 +15,15 @@ export default function AuthButtons({ isLoggedIn }: { isLoggedIn: boolean }) {
                 href="/shop"
                 aria-label="Магазин мерчу"
                 title="Магазин мерчу"
-                className="rounded-xl border-2 border-primary text-primary p-2 hover:bg-primary hover:text-background active:scale-95 transition-all"
+                className="border border-primary/25 p-2.5 text-primary/70 transition-colors hover:border-primary hover:bg-primary hover:text-background"
             >
-                <ShoppingCart size={18} />
+                <ShoppingCart size={17} />
             </Link>
 
             {isLoggedIn ? (
                 <Link
                     href="/profile"
-                    className="rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2 px-4 active:scale-95 transition-transform"
+                    className={`${BASE} border-primary bg-primary text-background hover:bg-accent hover:border-accent hover:text-primary`}
                 >
                     Кабінет
                 </Link>
@@ -26,13 +31,13 @@ export default function AuthButtons({ isLoggedIn }: { isLoggedIn: boolean }) {
                 <>
                     <Link
                         href="/auth/login"
-                        className="rounded-xl border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2 px-4 hover:bg-primary hover:text-background active:scale-95 transition-all"
+                        className={`${BASE} border-primary/25 text-primary/70 hover:border-primary hover:text-primary`}
                     >
                         Вхід
                     </Link>
                     <Link
                         href="/auth/register"
-                        className="rounded-xl border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2 px-4 active:scale-95 transition-transform"
+                        className={`${BASE} border-primary bg-primary text-background hover:bg-accent hover:border-accent hover:text-primary`}
                     >
                         Реєстрація
                     </Link>

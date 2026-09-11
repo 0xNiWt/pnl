@@ -19,7 +19,7 @@ export default async function StudentsListPage() {
         .order('full_name', { ascending: true });
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-5xl mx-auto px-5 py-10 md:py-16">
 
                 <Link
@@ -31,8 +31,8 @@ export default async function StudentsListPage() {
                 </Link>
 
                 <div className="mb-8">
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
-                        <span className="w-5 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
+                        <span className="w-5 h-px bg-accent" />
                         Огляд системи
                     </span>
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
@@ -46,7 +46,7 @@ export default async function StudentsListPage() {
                 </div>
 
                 {error ? (
-                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                         Не вдалося завантажити список: {error.message}
                     </div>
                 ) : (

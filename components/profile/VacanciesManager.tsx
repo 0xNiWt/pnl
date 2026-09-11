@@ -103,12 +103,12 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
     return (
         <div className="flex flex-col gap-4">
             {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     {error}
                 </div>
             )}
 
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
                 <div className="flex flex-col divide-y divide-primary/10">
                     {vacancies.map((v) => (
                         <div key={v.id} className="flex items-center gap-3 px-5 py-3.5">
@@ -119,25 +119,25 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                                             value={editTitle}
                                             onChange={(e) => setEditTitle(e.target.value)}
                                             placeholder="Назва вакансії"
-                                            className="rounded-lg border border-primary/10 bg-white px-3 py-1.5 text-sm outline-none focus:border-secondary"
+                                            className="rounded-none border border-primary/10 bg-white px-3 py-1.5 text-sm outline-none focus:border-accent"
                                         />
                                         <input
                                             value={editUrl}
                                             onChange={(e) => setEditUrl(e.target.value)}
                                             placeholder="/vacancies/..."
-                                            className="rounded-lg border border-primary/10 bg-white px-3 py-1.5 text-sm outline-none focus:border-secondary"
+                                            className="rounded-none border border-primary/10 bg-white px-3 py-1.5 text-sm outline-none focus:border-accent"
                                         />
                                     </div>
                                     <button
                                         onClick={() => saveEdit(v.id)}
                                         disabled={loading}
-                                        className="w-8 h-8 rounded-lg bg-secondary/15 text-secondary flex items-center justify-center hover:opacity-80"
+                                        className="w-8 h-8 rounded-none bg-accent/15 text-accent flex items-center justify-center hover:opacity-80"
                                     >
                                         <Check size={15} />
                                     </button>
                                     <button
                                         onClick={() => setEditingId(null)}
-                                        className="w-8 h-8 rounded-lg bg-primary/5 text-primary/50 flex items-center justify-center hover:opacity-80"
+                                        className="w-8 h-8 rounded-none bg-primary/5 text-primary/50 flex items-center justify-center hover:opacity-80"
                                     >
                                         <X size={15} />
                                     </button>
@@ -150,14 +150,14 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                                     </div>
                                     <button
                                         onClick={() => startEdit(v)}
-                                        className="w-8 h-8 rounded-lg bg-primary/5 text-primary/50 flex items-center justify-center hover:text-primary hover:bg-primary/10"
+                                        className="w-8 h-8 rounded-none bg-primary/5 text-primary/50 flex items-center justify-center hover:text-primary hover:bg-primary/10"
                                     >
                                         <Pencil size={14} />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(v.id)}
                                         disabled={loading}
-                                        className="w-8 h-8 rounded-lg bg-accent/5 text-accent flex items-center justify-center hover:bg-accent/10"
+                                        className="w-8 h-8 rounded-none bg-accent/5 text-accent flex items-center justify-center hover:bg-accent/10"
                                     >
                                         <Trash2 size={14} />
                                     </button>
@@ -172,25 +172,25 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                 </div>
             </div>
 
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
                 <h3 className="text-sm font-manrope font-bold text-primary mb-3">Додати вакансію</h3>
                 <div className="flex flex-col gap-2">
                     <input
                         value={newTitle}
                         onChange={(e) => setNewTitle(e.target.value)}
                         placeholder="Наприклад: Вчитель фізики"
-                        className="rounded-xl border border-primary/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-secondary"
+                        className="rounded-none border border-primary/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-accent"
                     />
                     <input
                         value={newUrl}
                         onChange={(e) => setNewUrl(e.target.value)}
                         placeholder="/vacancies/physics"
-                        className="rounded-xl border border-primary/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-secondary"
+                        className="rounded-none border border-primary/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-accent"
                     />
                     <button
                         onClick={handleAdd}
                         disabled={loading}
-                        className="flex items-center justify-center gap-2 rounded-xl bg-primary text-background py-2.5 text-sm font-bold hover:bg-primary/90 disabled:opacity-50"
+                        className="flex items-center justify-center gap-2 rounded-none bg-primary text-background py-2.5 text-sm font-bold hover:bg-primary/90 disabled:opacity-50"
                     >
                         <Plus size={15} />
                         Додати

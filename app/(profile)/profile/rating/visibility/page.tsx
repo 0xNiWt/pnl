@@ -36,7 +36,7 @@ export default async function RatingVisibilityPage() {
     ]);
 
     return (
-        <main className="bg-background min-h-screen font-inter">
+        <main className="paper-grid bg-background min-h-screen font-inter">
             <div className="w-full flex flex-col max-w-3xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile"
@@ -45,8 +45,8 @@ export default async function RatingVisibilityPage() {
                     <ArrowLeft size={15} />
                     Назад до профілю
                 </Link>
-                <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
-                    <span className="w-5 h-px bg-secondary" />
+                <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
+                    <span className="w-5 h-px bg-accent" />
                     Керування
                 </span>
                 <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight mb-8">

@@ -28,11 +28,11 @@ export default function Science() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="science"
         >
             <div className="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-14 items-center">
-                <figure className="relative overflow-hidden rounded-[20px] order-2 md:order-1">
+                <figure className="relative overflow-hidden rounded-none-[20px] order-2 md:order-1">
                     <Image
                         src={manAwards}
                         alt="Нагородження призерів Київської Малої академії наук"
@@ -43,25 +43,25 @@ export default function Science() {
 
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/85 to-transparent" />
 
-                    <figcaption className="absolute bottom-0 left-0 right-0 p-5 font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-background/90">
+                    <figcaption className="absolute bottom-0 left-0 right-0 p-5 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-background/90">
                         Підсумкове нагородження Київської МАН
                     </figcaption>
                 </figure>
 
                 <div className="order-1 md:order-2">
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                        <span className="w-6 h-px bg-accent" />
                         Наука та дослідження
                     </span>
 
-                    <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-6 max-w-xl">
+                    <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
                         Мала академія наук — у стінах ліцею
                     </h2>
 
                     <ul className="flex flex-col gap-3.5 max-w-xl">
                         {SCIENCE_POINTS.map((p) => (
                             <li key={p.slice(0, 24)} className="flex gap-3 text-base text-primary/70 leading-relaxed">
-                                <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                                <span className="mt-2.5 h-1.5 w-1.5 rounded-none bg-accent shrink-0" />
                                 {p}
                             </li>
                         ))}
@@ -69,10 +69,10 @@ export default function Science() {
                 </div>
             </div>
 
-            <div className="mt-12 rounded-2xl border border-primary/10 bg-primary/[0.03] p-6 md:p-8">
+            <div className="mt-12 rounded-none border border-primary/10 bg-primary/[0.03] p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-7">
                     <div>
-                        <h3 className="font-manrope font-bold text-primary text-xl md:text-2xl tracking-tight">
+                        <h3 className="font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
                             Позаурочна освіта
                         </h3>
                         <p className="mt-1.5 text-sm text-primary/60 max-w-2xl leading-relaxed">
@@ -87,7 +87,7 @@ export default function Science() {
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
                     {EXTRAS.map((e) => (
                         <div key={e.label} className="border-l-2 border-primary/10 pl-4">
-                            <span className="font-bebas text-4xl leading-none text-accent">{e.value}</span>
+                            <span className="font-cormorant text-4xl leading-none text-accent">{e.value}</span>
                             <p className="mt-1.5 text-sm text-primary/60 leading-snug">{e.label}</p>
                         </div>
                     ))}

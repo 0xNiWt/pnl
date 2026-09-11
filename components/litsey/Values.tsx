@@ -35,15 +35,15 @@ export default function Values() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="values"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Чому обирають нас
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-10 max-w-xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-xl">
                 Освіта, побудована на практиці й дослідженні
             </h2>
 
@@ -51,13 +51,13 @@ export default function Values() {
                 {VALUES.map(({ icon: Icon, title, text }) => (
                     <div
                         key={title}
-                        className="rounded-2xl border border-primary/10 bg-primary/[0.03] p-6 flex flex-col gap-4"
+                        className="rounded-none border border-primary/10 bg-primary/[0.03] p-6 flex flex-col gap-4"
                     >
-                        <span className="w-11 h-11 rounded-xl bg-primary/5 flex items-center justify-center">
+                        <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center">
                             <Icon size={20} className="text-primary" />
                         </span>
                         <div>
-                            <h3 className="font-manrope font-bold text-primary text-base mb-1.5">{title}</h3>
+                            <h3 className="font-cormorant font-semibold text-primary text-lg mb-1.5">{title}</h3>
                             <p className="text-sm text-primary/60 leading-relaxed">{text}</p>
                         </div>
                     </div>

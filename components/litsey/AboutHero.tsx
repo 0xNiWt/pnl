@@ -21,19 +21,19 @@ export default function AboutHero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="about-hero"
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-start md:items-center gap-8 md:gap-12">
                 <div className="text-center md:text-left">
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                        <span className="w-6 h-px bg-accent" />
                         Про ліцей
                     </span>
 
-                    <h1 className="font-manrope font-bold text-primary leading-[1.05] tracking-tight text-[clamp(2rem,1.6rem+2.4vw,4.2rem)]">
+                    <h2 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,1.4rem+4.6vw,5.8rem)]">
                         Школа, де наука<br />стає <span className="text-accent">покликанням</span>
-                    </h1>
+                    </h2>
 
                     <p className="mt-5 text-base text-primary/70 max-w-[480px] mx-auto md:mx-0">
                         Київський природничо-науковий ліцей №145 створено на базі
@@ -43,10 +43,8 @@ export default function AboutHero() {
                     </p>
                 </div>
 
-                <div className="relative w-full max-w-[380px] md:max-w-[400px] mx-auto md:mx-0 md:justify-self-end overflow-hidden rounded-[20px] bg-primary p-7 text-background">
-                    <div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-accent/35 blur-[60px]" />
-
-                    <div className="mb-3.5 font-manrope font-bold text-xs uppercase tracking-[0.15em] text-cream/80">
+                <div className="relative w-full max-w-[380px] md:max-w-[400px] mx-auto md:mx-0 md:justify-self-end overflow-hidden rounded-none-[20px] bg-primary p-7 text-background">
+                    <div className="mb-3.5 font-plex font-bold text-xs uppercase tracking-[0.15em] text-cream/80">
                         Наша місія
                     </div>
 
@@ -58,7 +56,7 @@ export default function AboutHero() {
                 </div>
             </div>
 
-            <figure className="relative mt-10 md:mt-16 overflow-hidden rounded-[20px]">
+            <figure className="relative mt-10 md:mt-16 overflow-hidden rounded-none-[20px]">
                 <Image
                     src={svyato}
                     alt="Урочистість у ліцеї: учні та вчителі в актовій залі"
@@ -70,12 +68,12 @@ export default function AboutHero() {
 
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/80 to-transparent" />
 
-                <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-7 font-manrope text-xs md:text-sm font-semibold uppercase tracking-[0.14em] text-background/90">
+                <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-7 font-plex text-xs md:text-sm font-semibold uppercase tracking-[0.14em] text-background/90">
                     Ліцейські урочистості · зустрічі поколінь ліцеїстів
                 </figcaption>
             </figure>
 
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 rounded-2xl border border-primary/10 bg-primary/[0.03] overflow-hidden">
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 rounded-none border border-primary/10 bg-primary/[0.03] overflow-hidden">
                 {STATS.map((stat, i) => (
                     <div
                         key={stat.label}
@@ -86,7 +84,7 @@ export default function AboutHero() {
                             ${i === 2 ? "md:border-r-0" : ""}
                         `}
                     >
-                        <h4 className="font-manrope font-bold text-primary text-3xl md:text-4xl">{stat.value}</h4>
+                        <h4 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
                         <p className="font-inter text-primary/60 text-sm max-w-[160px] leading-snug">{stat.label}</p>
                     </div>
                 ))}

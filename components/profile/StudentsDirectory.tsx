@@ -163,17 +163,17 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
         <div className="flex flex-col gap-4">
 
             {/* Перемикач вигляду */}
-            <div className="inline-flex self-start rounded-full border border-primary/15 p-1">
+            <div className="inline-flex self-start rounded-none border border-primary/15 p-1">
                 <button
                     onClick={() => setTab('students')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'students' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'students' ? 'bg-primary text-background' : 'text-primary/60'
                         }`}
                 >
                     Список учнів
                 </button>
                 <button
                     onClick={() => setTab('positions')}
-                    className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'positions' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'positions' ? 'bg-primary text-background' : 'text-primary/60'
                         }`}
                 >
                     Усі посади
@@ -181,7 +181,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             </div>
 
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0">
@@ -191,7 +191,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             )}
 
             {warning && (
-                <div className="flex items-start gap-2 bg-accent/10 border border-accent/30 text-primary text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-accent/10 border border-accent/30 text-primary text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5 text-accent" />
                     <span>{warning}</span>
                     <button onClick={() => setWarning(null)} className="ml-auto shrink-0 text-primary/40">
@@ -203,7 +203,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             {tab === 'students' ? (
                 <>
                     {/* Фільтри */}
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-4 md:p-5 flex flex-col gap-4">
+                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
                         <div className="relative">
                             <Search
                                 size={15}
@@ -213,7 +213,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 placeholder="Пошук за іменем або посадою: «Іваненко», «староста», «фізорг»..."
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                             />
                         </div>
 
@@ -225,7 +225,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                         setParallel(e.target.value);
                                         setClassName(ALL);
                                     }}
-                                    className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                                    className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                                 >
                                     <option value={ALL}>Усі паралелі</option>
                                     {parallels.map((p) => (
@@ -240,7 +240,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                 <select
                                     value={className}
                                     onChange={(e) => setClassName(e.target.value)}
-                                    className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                                    className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                                 >
                                     <option value={ALL}>Усі класи</option>
                                     {classes.map((c) => (
@@ -255,7 +255,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                 <select
                                     value={position}
                                     onChange={(e) => setPosition(e.target.value)}
-                                    className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                                    className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                                 >
                                     <option value={ALL}>Будь-яка посада</option>
                                     <option value={NONE}>Без посади</option>
@@ -288,7 +288,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                     </div>
 
                     {/* Список учнів */}
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
                         {filtered.length === 0 ? (
                             <p className="px-6 py-10 text-sm text-primary/40 text-center">
                                 За такими умовами нікого не знайдено.
@@ -344,7 +344,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                                 <div className="px-5 pb-5 pt-1 flex flex-col gap-4 bg-primary/[0.02]">
                                                     {POSITION_SCOPES.map((scope) => (
                                                         <div key={scope.id}>
-                                                            <p className="text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-2">
+                                                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-2">
                                                                 {scope.label}
                                                             </p>
                                                             <div className="flex flex-wrap gap-2">
@@ -367,15 +367,15 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                                                                         .join(', ')}`
                                                                                     : undefined
                                                                             }
-                                                                            className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-50 ${has
-                                                                                ? 'bg-secondary/15 text-secondary'
+                                                                            className={`flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-50 ${has
+                                                                                ? 'bg-accent/15 text-accent'
                                                                                 : 'bg-primary/5 text-primary/40 hover:bg-primary/10'
                                                                                 }`}
                                                                         >
                                                                             {has ? <Check size={12} /> : <X size={12} />}
                                                                             {p.label}
                                                                             {!has && taken.length > 0 && (
-                                                                                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                                                                <span className="w-1.5 h-1.5 rounded-none bg-accent" />
                                                                             )}
                                                                             {isLoading && '…'}
                                                                         </button>
@@ -386,7 +386,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                                     ))}
 
                                                     <p className="text-xs text-primary/40">
-                                                        Крапка <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent align-middle" />{' '}
+                                                        Крапка <span className="inline-block w-1.5 h-1.5 rounded-none bg-accent align-middle" />{' '}
                                                         означає, що посаду вже хтось займає
                                                         {' '}(у класі — для класних посад, у ліцеї — для ліцейських).
                                                     </p>
@@ -424,7 +424,7 @@ function ScopeCard({
     holdersOf: (id: string) => Profile[];
 }) {
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+        <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
             <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
                 <p className="font-manrope font-bold text-sm text-primary">{scope.label}</p>
                 <p className="text-xs text-primary/40 mt-0.5">{scope.hint}</p>
@@ -448,7 +448,7 @@ function ScopeCard({
                                     holders.map((h) => (
                                         <span
                                             key={h.id}
-                                            className="inline-flex items-center gap-1.5 bg-secondary/10 text-primary text-xs font-medium px-3 py-1 rounded-full"
+                                            className="inline-flex items-center gap-1.5 bg-accent/10 text-primary text-xs font-medium px-3 py-1 rounded-none"
                                         >
                                             {h.full_name ?? 'Без імені'}
                                             {h.class && (
@@ -468,7 +468,7 @@ function ScopeCard({
 
 function PositionBadge({ id }: { id: string }) {
     return (
-        <span className="inline-block bg-secondary/15 text-secondary text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+        <span className="inline-block bg-accent/15 text-accent text-[11px] font-semibold px-2.5 py-1 rounded-none">
             {positionLabel(id)}
         </span>
     );
@@ -477,7 +477,7 @@ function PositionBadge({ id }: { id: string }) {
 function Filter({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div>
-            <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+            <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                 {label}
             </label>
             {children}

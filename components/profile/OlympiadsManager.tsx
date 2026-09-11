@@ -176,7 +176,7 @@ export default function OlympiadsManager({
     return (
         <div className="flex flex-col gap-4">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0">
@@ -186,16 +186,16 @@ export default function OlympiadsManager({
             )}
 
             {/* Додати здобуток */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5 flex flex-col gap-4">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 flex flex-col gap-4">
                 <h2 className="font-manrope font-bold text-sm text-primary">Додати здобуток</h2>
 
                 <div>
-                    <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                    <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                         Учень
                     </label>
 
                     {student ? (
-                        <div className="inline-flex items-center gap-2 bg-secondary/10 text-primary text-sm font-medium px-3.5 py-2 rounded-xl">
+                        <div className="inline-flex items-center gap-2 bg-accent/10 text-primary text-sm font-medium px-3.5 py-2 rounded-none">
                             {student.full_name ?? 'Без імені'}
                             <span className="text-primary/40 text-xs">{student.class ?? '—'}</span>
                             <button
@@ -215,10 +215,10 @@ export default function OlympiadsManager({
                                 value={studentQuery}
                                 onChange={(e) => setStudentQuery(e.target.value)}
                                 placeholder="Почни вводити ім'я учня..."
-                                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                                className="w-full pl-10 pr-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                             />
                             {suggestions.length > 0 && (
-                                <div className="absolute z-10 mt-1 w-full bg-white border border-primary/10 rounded-xl shadow-lg overflow-hidden">
+                                <div className="absolute z-10 mt-1 w-full bg-white border border-primary/10 rounded-none shadow-none overflow-hidden">
                                     {suggestions.map((p) => (
                                         <button
                                             key={p.id}
@@ -240,25 +240,25 @@ export default function OlympiadsManager({
 
                 <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Предмет або тема
                         </label>
                         <input
                             value={subject}
                             onChange={(e) => setSubject(e.target.value)}
                             placeholder="Математика, Історія України..."
-                            className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm focus:outline-none focus:border-secondary"
+                            className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm focus:outline-none focus:border-accent"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Етап
                         </label>
                         <select
                             value={level}
                             onChange={(e) => setLevel(e.target.value)}
-                            className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                            className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                         >
                             {OLYMPIAD_LEVELS.map((l) => (
                                 <option key={l.id} value={l.id}>
@@ -269,13 +269,13 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Результат
                         </label>
                         <select
                             value={place}
                             onChange={(e) => setPlace(Number(e.target.value))}
-                            className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                            className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                         >
                             {OLYMPIAD_PLACES.map((p) => (
                                 <option key={p.value} value={p.value}>
@@ -286,7 +286,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-manrope font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
                             Бали (порожньо — зі шкали)
                         </label>
                         <input
@@ -294,7 +294,7 @@ export default function OlympiadsManager({
                             onChange={(e) => setCustomPoints(e.target.value)}
                             inputMode="numeric"
                             placeholder={String(scalePoints(level, place))}
-                            className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm focus:outline-none focus:border-secondary"
+                            className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm focus:outline-none focus:border-accent"
                         />
                     </div>
                 </div>
@@ -303,7 +303,7 @@ export default function OlympiadsManager({
                     <button
                         onClick={addResult}
                         disabled={adding}
-                        className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                        className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                     >
                         {adding ? <Loader2 size={15} className="animate-spin" /> : <Plus size={15} />}
                         Додати
@@ -315,9 +315,9 @@ export default function OlympiadsManager({
             </div>
 
             {/* Список здобутків */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
                 <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03] flex items-center gap-2">
-                    <Trophy size={15} className="text-secondary" />
+                    <Trophy size={15} className="text-accent" />
                     <p className="font-manrope font-bold text-sm text-primary">
                         Здобутки ({results.length})
                     </p>
@@ -347,7 +347,7 @@ export default function OlympiadsManager({
                                     </div>
 
                                     <div className="text-right shrink-0">
-                                        <p className="font-manrope font-bold text-secondary">+{r.points}</p>
+                                        <p className="font-manrope font-bold text-accent">+{r.points}</p>
                                         <p className="text-[11px] text-primary/35">
                                             разом {totalsByStudent.get(r.student_id) ?? 0}
                                         </p>
@@ -368,7 +368,7 @@ export default function OlympiadsManager({
             </div>
 
             {/* Шкала */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
                 <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
                     <p className="font-manrope font-bold text-sm text-primary">Шкала балів</p>
                     <p className="text-xs text-primary/40 mt-0.5">
@@ -380,7 +380,7 @@ export default function OlympiadsManager({
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead>
-                            <tr className="bg-primary/[0.02] text-left font-manrope text-[11px] uppercase tracking-wider text-primary/50">
+                            <tr className="bg-primary/[0.02] text-left font-plex text-[11px] uppercase tracking-wider text-primary/50">
                                 <th className="px-5 py-2.5">Етап</th>
                                 {OLYMPIAD_PLACES.map((p) => (
                                     <th key={p.value} className="px-3 py-2.5 w-28 text-right">
@@ -398,7 +398,7 @@ export default function OlympiadsManager({
                                         return (
                                             <td key={p.value} className="px-3 py-2 text-right">
                                                 <div className="inline-flex items-center gap-1.5">
-                                                    <span className="w-4 text-secondary">
+                                                    <span className="w-4 text-accent">
                                                         {savingCell === cell && (
                                                             <Loader2 size={13} className="animate-spin" />
                                                         )}
@@ -413,7 +413,7 @@ export default function OlympiadsManager({
                                                             if (e.key === 'Enter') e.currentTarget.blur();
                                                         }}
                                                         inputMode="numeric"
-                                                        className="w-16 px-2 py-1.5 rounded-lg border border-primary/15 bg-white text-sm text-right focus:outline-none focus:border-secondary"
+                                                        className="w-16 px-2 py-1.5 rounded-none border border-primary/15 bg-white text-sm text-right focus:outline-none focus:border-accent"
                                                     />
                                                 </div>
                                             </td>

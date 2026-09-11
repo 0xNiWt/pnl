@@ -142,7 +142,7 @@ function ArrowButton({
             type="button"
             onClick={onClick}
             aria-label={dir === 1 ? 'Наступний педагог' : 'Попередній педагог'}
-            className={`relative z-10 w-11 h-11 shrink-0 rounded-full border border-primary/15 bg-background flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors ${className}`}
+            className={`relative z-10 w-11 h-11 shrink-0 rounded-none border border-primary/15 bg-background flex items-center justify-center text-primary/60 hover:text-primary hover:border-primary/40 transition-colors ${className}`}
         >
             {dir === 1 ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
@@ -153,8 +153,8 @@ function ArrowButton({
 // підходить і для активної картки, і для приглушених сусідів.
 function MemberCard({ member }: { member: StaffMember }) {
     return (
-        <div className="w-full h-full flex flex-col items-center text-center bg-white border border-primary/10 rounded-2xl px-6 py-9 overflow-hidden">
-            <div className="relative w-40 h-40 md:w-44 md:h-44 shrink-0 rounded-full overflow-hidden bg-primary/5 mb-6 ring-1 ring-primary/10">
+        <div className="w-full h-full flex flex-col items-center text-center bg-white border border-primary/10 rounded-none px-6 py-9 overflow-hidden">
+            <div className="relative w-40 h-40 md:w-44 md:h-44 shrink-0 rounded-none overflow-hidden bg-primary/5 mb-6 ring-1 ring-primary/10">
                 {member.photo ? (
                     <Image
                         src={member.photo}
@@ -170,7 +170,7 @@ function MemberCard({ member }: { member: StaffMember }) {
                     </div>
                 )}
             </div>
-            <h3 className="font-manrope font-bold text-primary text-lg leading-snug">
+            <h3 className="font-cormorant font-semibold text-primary text-xl leading-snug">
                 {member.name}
             </h3>
             <p className="mt-2 w-full text-sm text-primary/60 leading-snug">
@@ -189,7 +189,7 @@ function PeekCard({ member }: { member: StaffMember }) {
             className="relative w-[280px] md:w-[340px] h-[88%] shrink-0 select-none opacity-65 blur-[2px]"
         >
             <MemberCard member={member} />
-            <div className="absolute inset-0 rounded-2xl bg-primary/20" />
+            <div className="absolute inset-0 rounded-none bg-primary/20" />
         </div>
     );
 }
@@ -221,8 +221,8 @@ export default function StaffDirectory() {
 
     return (
         <section className="max-w-4xl mx-auto px-5 md:px-6 py-10 md:py-16" id="staff">
-            <div className="flex items-center gap-2 mb-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                <span className="w-6 h-px bg-secondary" />
+            <div className="flex items-center gap-2 mb-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45">
+                <span className="w-6 h-px bg-accent" />
                 Педагогічний колектив
             </div>
 
@@ -231,9 +231,9 @@ export default function StaffDirectory() {
                 <button
                     type="button"
                     onClick={() => setMenuOpen((v) => !v)}
-                    className="w-full flex items-center justify-between gap-3 bg-white border border-primary/15 rounded-xl px-5 py-4 h-[60px] md:h-[64px] text-left hover:border-primary/30 transition-colors"
+                    className="w-full flex items-center justify-between gap-3 bg-white border border-primary/15 rounded-none px-5 py-4 h-[60px] md:h-[64px] text-left hover:border-primary/30 transition-colors"
                 >
-                    <span className="font-manrope font-bold text-primary text-lg md:text-xl tracking-tight whitespace-nowrap overflow-hidden text-ellipsis">
+                    <span className="font-cormorant font-semibold text-primary text-xl md:text-2xl leading-[1.15] whitespace-nowrap overflow-hidden text-ellipsis">
                         {dept.title}
                     </span>
                     {menuOpen ? (
@@ -250,7 +250,7 @@ export default function StaffDirectory() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -8 }}
                             transition={{ duration: 0.2, ease: smoothOut }}
-                            className="absolute z-20 top-full left-0 right-0 mt-2 bg-white border border-primary/15 rounded-xl shadow-lg overflow-hidden max-h-[360px] overflow-y-auto"
+                            className="absolute z-20 top-full left-0 right-0 mt-2 bg-white border border-primary/15 rounded-none shadow-none overflow-hidden max-h-[360px] overflow-y-auto"
                         >
                             {DEPARTMENTS.map((d, i) => (
                                 <button
@@ -353,7 +353,7 @@ export default function StaffDirectory() {
                             }}
                             aria-label={`Педагог ${i + 1}`}
                             // Крапки теж не змінюють розміру — активну видно за кольором.
-                            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                            className={`w-1.5 h-1.5 rounded-none transition-colors ${
                                 i === memberIndex ? 'bg-primary' : 'bg-primary/20'
                             }`}
                         />

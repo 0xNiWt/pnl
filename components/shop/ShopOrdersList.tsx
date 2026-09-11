@@ -15,7 +15,7 @@ export type OrderRow = ShopOrder & { student_name: string; student_class: string
 
 const STATUS_STYLES: Record<OrderStatus, string> = {
     new: 'bg-accent/12 text-accent',
-    issued: 'bg-secondary/15 text-secondary',
+    issued: 'bg-accent/15 text-accent',
     cancelled: 'bg-primary/8 text-primary/40',
 };
 
@@ -68,7 +68,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
     return (
         <div className="flex flex-col gap-5">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0" aria-label="Закрити">
@@ -77,12 +77,12 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                 </div>
             )}
 
-            <div className="inline-flex flex-wrap gap-1 rounded-full border border-primary/15 p-1 self-start">
+            <div className="inline-flex flex-wrap gap-1 rounded-none border border-primary/15 p-1 self-start">
                 {(['new', 'issued', 'cancelled', 'all'] as const).map((key) => (
                     <button
                         key={key}
                         onClick={() => setFilter(key)}
-                        className={`px-4 py-1.5 rounded-full text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${
+                        className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${
                             filter === key ? 'bg-primary text-background' : 'text-primary/60 hover:text-primary'
                         }`}
                     >
@@ -93,7 +93,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
             </div>
 
             {shown.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl px-6 py-10 text-center">
+                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-10 text-center">
                     <p className="text-sm text-primary/40">
                         {filter === 'new' ? 'Замовлень, що чекають видачі, немає.' : 'Тут порожньо.'}
                     </p>
@@ -106,7 +106,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                         return (
                             <div
                                 key={order.id}
-                                className="flex flex-wrap items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-2xl p-4"
+                                className="flex flex-wrap items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-none p-4"
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="text-sm font-semibold text-primary truncate">
@@ -130,7 +130,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                 </span>
 
                                 <span
-                                    className={`shrink-0 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full ${STATUS_STYLES[order.status]}`}
+                                    className={`shrink-0 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${STATUS_STYLES[order.status]}`}
                                 >
                                     {ORDER_STATUS_LABELS[order.status]}
                                 </span>
@@ -143,7 +143,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                             <button
                                                 onClick={() => setStatus(order, 'issued')}
                                                 disabled={busy}
-                                                className="inline-flex items-center gap-1.5 rounded-full bg-primary text-background px-4 py-1.5 text-xs font-manrope font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
+                                                className="inline-flex items-center gap-1.5 rounded-none bg-primary text-background px-4 py-1.5 text-xs font-manrope font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
                                             >
                                                 <Check size={13} />
                                                 Видано

@@ -47,11 +47,11 @@ export default function HymnPlayer({ src }: { src: string }) {
     }
 
     return (
-        <div className="flex items-center gap-4 rounded-2xl bg-background/10 border border-background/15 px-4 py-3">
+        <div className="flex items-center gap-4 rounded-none bg-background/10 border border-background/15 px-4 py-3">
             <button
                 onClick={toggle}
                 aria-label={playing ? "Пауза" : "Прослухати гімн"}
-                className="w-11 h-11 shrink-0 rounded-full bg-cream text-primary flex items-center justify-center hover:bg-cream/85 active:scale-95 transition-all"
+                className="w-11 h-11 shrink-0 rounded-none bg-cream text-primary flex items-center justify-center hover:bg-cream/85 active:scale-95 transition-all"
             >
                 {playing ? (
                     <Pause size={18} fill="currentColor" />
@@ -61,17 +61,17 @@ export default function HymnPlayer({ src }: { src: string }) {
             </button>
 
             <div className="min-w-0 flex-1">
-                <p className="font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-cream/80 mb-2">
+                <p className="font-plex text-xs font-semibold uppercase tracking-[0.14em] text-cream/80 mb-2">
                     {playing ? "Звучить гімн" : "Прослухати гімн"}
                 </p>
 
                 <button
                     onClick={seek}
                     aria-label="Перемотати"
-                    className="group block w-full h-2 rounded-full bg-background/20 overflow-hidden cursor-pointer"
+                    className="group block w-full h-2 rounded-none bg-background/20 overflow-hidden cursor-pointer"
                 >
                     <span
-                        className="block h-full rounded-full bg-cream transition-[width] duration-200"
+                        className="block h-full rounded-none bg-cream transition-[width] duration-200"
                         style={{ width: `${percent}%` }}
                     />
                 </button>

@@ -13,15 +13,15 @@ export default function OlympiadsIntro({ tables }: { tables: OlympiadTable[] }) 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-20"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
             id="olympiads-intro"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Досягнення
             </span>
 
-            <h1 className="font-manrope font-bold text-primary leading-[1.05] tracking-tight text-[clamp(2rem,1.6rem+2.4vw,3.6rem)] max-w-3xl">
+            <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
                 Перемоги на олімпіадах
             </h1>
 
@@ -36,7 +36,7 @@ export default function OlympiadsIntro({ tables }: { tables: OlympiadTable[] }) 
                     <a
                         key={table.id}
                         href={`#${table.id}`}
-                        className="rounded-full border border-primary/15 px-4 py-2 font-inter text-sm text-primary/70 hover:bg-primary/5 hover:text-primary transition-colors"
+                        className="rounded-none border border-primary/15 px-4 py-2 font-inter text-sm text-primary/70 hover:bg-primary/5 hover:text-primary transition-colors"
                     >
                         {table.title}
                     </a>
@@ -44,7 +44,7 @@ export default function OlympiadsIntro({ tables }: { tables: OlympiadTable[] }) 
             </div>
 
             {grandTotal > 0 && (
-                <p className="mt-6 font-bebas text-2xl text-accent tracking-wide">
+                <p className="mt-6 font-cormorant text-2xl text-accent tracking-wide">
                     {grandTotal} перемог усього
                 </p>
             )}

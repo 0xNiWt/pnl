@@ -6,7 +6,7 @@ import ContactWithData from "@/components/contact/ContactWithData";
 
 export default function VstupPage() {
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <main className="paper-grid bg-background min-h-screen flex flex-col">
             <VstupHero />
             <AdmissionRules />
             <ExamTopics />

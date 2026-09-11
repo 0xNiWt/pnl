@@ -51,7 +51,7 @@ export default async function PollPage({ params }: { params: Promise<{ id: strin
     // «хто за що» не показуємо нікому — ні організатору, ні адміністрації.
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-2xl mx-auto px-5 py-10 md:py-16">
 
                 <Link

@@ -28,14 +28,14 @@ export default async function ShopPage() {
     const balance = user ? await getPointsBalance(user.id) : null;
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 pt-10 md:pt-16">
                 <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                        <span className="w-6 h-px bg-accent" />
                         Магазин
                     </span>
-                    <h1 className="font-manrope font-bold text-primary leading-[1.05] tracking-tight text-[clamp(2rem,1.6rem+2vw,3.6rem)]">
+                    <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)]">
                         Мерч <span className="text-accent">ліцею</span>
                     </h1>
                     <p className="mt-5 text-base text-primary/70 max-w-[560px]">
@@ -47,8 +47,8 @@ export default async function ShopPage() {
             </section>
 
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-10 md:py-14 flex-1">
-                <h2 className="flex items-center gap-2 font-manrope font-bold text-primary text-sm uppercase tracking-wide mb-5">
-                    <ShoppingCart size={16} className="text-secondary" />
+                <h2 className="flex items-center gap-2 font-plex font-bold text-primary text-sm uppercase tracking-wide mb-5">
+                    <ShoppingCart size={16} className="text-accent" />
                     Товари
                 </h2>
 

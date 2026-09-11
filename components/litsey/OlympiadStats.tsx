@@ -33,7 +33,7 @@ export default function OlympiadStats({ tables }: { tables: OlympiadTable[] }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.85, ease: smoothOut }}
-                    className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-16 scroll-mt-28"
+                    className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-16 scroll-mt-28"
                     id={table.id}
                 >
                     <TableCard table={table} />
@@ -48,10 +48,10 @@ function TableCard({ table }: { table: OlympiadTable }) {
     const hasRows = table.rows.length > 0;
 
     return (
-        <div className="rounded-2xl border border-primary/10 bg-primary/[0.02] overflow-hidden">
+        <div className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-hidden">
             <div className="px-5 md:px-6 py-5 border-b border-primary/10 flex flex-wrap items-end justify-between gap-3">
                 <div>
-                    <h2 className="flex items-center gap-2 font-manrope font-bold text-primary text-xl md:text-2xl tracking-tight">
+                    <h2 className="flex items-center gap-2 font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
                         <Trophy size={18} className="text-accent" />
                         {table.title}
                     </h2>
@@ -61,7 +61,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                 </div>
 
                 {total > 0 && (
-                    <p className="font-bebas text-4xl text-accent leading-none">
+                    <p className="font-cormorant text-4xl text-accent leading-none">
                         {total}
                         <span className="ml-2 font-inter text-xs uppercase tracking-[0.14em] text-primary/40">
                             перемог
@@ -77,13 +77,13 @@ function TableCard({ table }: { table: OlympiadTable }) {
                     <table className="w-full border-collapse text-sm">
                         <thead>
                             <tr className="bg-primary/[0.04]">
-                                <th className="sticky left-0 z-10 bg-[#F6F1E4] text-left font-manrope text-xs font-semibold uppercase tracking-wider text-primary/60 px-4 py-3 min-w-[200px] border-b border-primary/10">
+                                <th className="sticky left-0 z-10 bg-[#F6F1E4] text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-4 py-3 min-w-[200px] border-b border-primary/10">
                                     Предмет
                                 </th>
-                                <th className="font-manrope text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-3 border-b border-primary/10">
+                                <th className="font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-3 border-b border-primary/10">
                                     Всього
                                 </th>
-                                <th className="font-manrope text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-3 border-b border-primary/10 whitespace-nowrap">
+                                <th className="font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-3 border-b border-primary/10 whitespace-nowrap">
                                     % від усіх
                                 </th>
                                 {table.years.map((year) => (

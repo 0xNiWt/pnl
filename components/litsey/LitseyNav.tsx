@@ -8,7 +8,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 
 const SECTIONS = [
     {
-        href: "/litsey",
+        href: "/",
         label: "Про ліцей",
         description: "Історія, етапи навчання, наука та символи закладу",
     },
@@ -38,12 +38,12 @@ export default function LitseyNav() {
     const active = SECTIONS.find((s) => s.href === pathname) ?? SECTIONS[0];
 
     return (
-        <div className="w-full border-b border-gray-800/20 bg-background">
+        <div className="w-full border-b border-primary/15 bg-background">
             <div className="max-w-7xl mx-auto px-5 md:px-6 py-3 relative">
 
                 {/* Десктоп — розділи поруч */}
                 <nav className="hidden md:flex items-center gap-2">
-                    <span className="font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mr-3">
+                    <span className="font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mr-3">
                         Розділ
                     </span>
 
@@ -55,7 +55,7 @@ export default function LitseyNav() {
                                 key={section.href}
                                 href={section.href}
                                 title={section.description}
-                                className={`rounded-full px-4 py-2 font-inter text-sm font-medium transition-colors ${isActive
+                                className={`rounded-none px-4 py-2 font-inter text-sm font-medium transition-colors ${isActive
                                     ? "bg-primary text-background"
                                     : "text-primary/70 hover:bg-primary/5 hover:text-primary"
                                     }`}
@@ -73,12 +73,12 @@ export default function LitseyNav() {
                     aria-label={isOpen ? "Закрити розділи ліцею" : "Відкрити розділи ліцею"}
                     className="md:hidden w-full flex items-center gap-3 text-left"
                 >
-                    <span className="w-9 h-9 shrink-0 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+                    <span className="w-9 h-9 shrink-0 rounded-none bg-primary/5 flex items-center justify-center text-primary">
                         {isOpen ? <X size={18} /> : <Menu size={18} />}
                     </span>
 
                     <span className="min-w-0 flex-1">
-                        <span className="block font-manrope text-[10px] font-semibold uppercase tracking-[0.18em] text-secondary">
+                        <span className="block font-plex text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
                             Розділ ліцею
                         </span>
                         <span className="block font-inter font-bold text-primary truncate">
@@ -102,7 +102,7 @@ export default function LitseyNav() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -8 }}
                             transition={{ duration: 0.25, ease: smoothOut }}
-                            className="md:hidden absolute left-3 right-3 top-full mt-2 bg-background border border-primary/10 rounded-2xl shadow-xl overflow-hidden z-40"
+                            className="md:hidden absolute left-3 right-3 top-full mt-2 bg-background border border-primary/10 rounded-none shadow-none overflow-hidden z-40"
                         >
                             <ul className="p-2 flex flex-col gap-1">
                                 {SECTIONS.map((section, i) => {
@@ -118,7 +118,7 @@ export default function LitseyNav() {
                                             <Link
                                                 href={section.href}
                                                 onClick={() => setIsOpen(false)}
-                                                className={`block px-3 py-2.5 rounded-xl transition-colors ${isActive ? "bg-primary/5" : "hover:bg-primary/5 active:bg-primary/10"
+                                                className={`block px-3 py-2.5 rounded-none transition-colors ${isActive ? "bg-primary/5" : "hover:bg-primary/5 active:bg-primary/10"
                                                     }`}
                                             >
                                                 <span className="block font-inter font-bold text-primary">

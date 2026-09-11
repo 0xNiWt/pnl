@@ -133,7 +133,7 @@ export default function AcademicScoresManager({
     return (
         <div className="flex flex-col gap-4">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0">
@@ -143,14 +143,14 @@ export default function AcademicScoresManager({
             )}
 
             {/* Фільтри */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-4 md:p-5 flex flex-col gap-4">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
                 <div className="relative">
                     <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary/30" />
                     <input
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         placeholder="Пошук за іменем..."
-                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                     />
                 </div>
 
@@ -161,7 +161,7 @@ export default function AcademicScoresManager({
                             setParallel(e.target.value);
                             setClassName(ALL);
                         }}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                     >
                         <option value={ALL}>Усі паралелі</option>
                         {parallels.map((p) => (
@@ -174,7 +174,7 @@ export default function AcademicScoresManager({
                     <select
                         value={className}
                         onChange={(e) => setClassName(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-primary/15 bg-white text-sm"
+                        className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm"
                     >
                         <option value={ALL}>Усі класи</option>
                         {classes.map((c) => (
@@ -202,7 +202,7 @@ export default function AcademicScoresManager({
             </div>
 
             {/* Список */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl overflow-hidden">
+            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
                 {filtered.length === 0 ? (
                     <p className="px-6 py-10 text-sm text-primary/40 text-center">
                         За такими умовами нікого не знайдено.
@@ -230,10 +230,10 @@ export default function AcademicScoresManager({
                                         }}
                                         inputMode="decimal"
                                         placeholder="—"
-                                        className="w-24 px-3 py-2 rounded-lg border border-primary/15 bg-white text-sm text-right focus:outline-none focus:border-secondary"
+                                        className="w-24 px-3 py-2 rounded-none border border-primary/15 bg-white text-sm text-right focus:outline-none focus:border-accent"
                                     />
 
-                                    <span className="w-5 text-secondary">
+                                    <span className="w-5 text-accent">
                                         {savingId === p.id && <Loader2 size={15} className="animate-spin" />}
                                         {okId === p.id && savingId !== p.id && <Check size={15} />}
                                     </span>

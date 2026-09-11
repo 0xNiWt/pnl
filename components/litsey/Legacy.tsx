@@ -21,17 +21,17 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="legacy"
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-8 md:gap-14 items-center">
                 <div>
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                        <span className="w-6 h-px bg-accent" />
                         Спадок
                     </span>
 
-                    <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-6 max-w-xl">
+                    <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
                         Піввіковий досвід роботи з обдарованими дітьми
                     </h2>
 
@@ -44,7 +44,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                     </div>
                 </div>
 
-                <figure className="relative overflow-hidden rounded-[20px] bg-primary/[0.03]">
+                <figure className="relative overflow-hidden rounded-none-[20px] bg-primary/[0.03]">
                     <Image
                         src={international}
                         alt="Ліцеїстка з прапором України на церемонії міжнародної олімпіади"
@@ -55,7 +55,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
 
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/85 to-transparent" />
 
-                    <figcaption className="absolute bottom-0 left-0 right-0 p-5 font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-background/90">
+                    <figcaption className="absolute bottom-0 left-0 right-0 p-5 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-background/90">
                         Прапор України на сцені міжнародної олімпіади
                     </figcaption>
                 </figure>
@@ -63,7 +63,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
 
             {tables.length > 0 && (
                 <>
-                    <p className="mt-12 mb-5 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-primary/45">
+                    <p className="mt-12 mb-5 font-plex text-xs font-semibold uppercase tracking-[0.18em] text-primary/45">
                         Перемоги на олімпіадах
                     </p>
 
@@ -74,13 +74,13 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                             return (
                                 <div
                                     key={table.id}
-                                    className="rounded-2xl border border-primary/10 bg-primary/[0.03] p-6 flex flex-col"
+                                    className="rounded-none border border-primary/10 bg-primary/[0.03] p-6 flex flex-col"
                                 >
-                                    <span className="font-bebas text-5xl leading-none text-accent">
+                                    <span className="font-cormorant text-5xl leading-none text-accent">
                                         {total > 0 ? total : '—'}
                                     </span>
 
-                                    <h3 className="mt-3 font-manrope font-bold text-primary text-base leading-snug">
+                                    <h3 className="mt-3 font-cormorant font-semibold text-primary text-lg leading-snug">
                                         {table.title}
                                     </h3>
 
@@ -92,7 +92,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
 
                                     <Link
                                         href={`/litsey/olympiads#${table.id}`}
-                                        className="group mt-4 pt-4 border-t border-primary/10 inline-flex items-center gap-1.5 font-manrope text-sm font-semibold text-secondary hover:text-primary transition-colors"
+                                        className="group mt-4 pt-4 border-t border-primary/10 inline-flex items-center gap-1.5 font-manrope text-sm font-semibold text-accent hover:text-primary transition-colors"
                                     >
                                         Подивитись таблицю
                                         <ArrowRight

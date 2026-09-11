@@ -20,7 +20,7 @@ export default async function ProfileShopPage() {
         .order('created_at', { ascending: false });
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <div className="w-full max-w-4xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile"
@@ -32,8 +32,8 @@ export default async function ProfileShopPage() {
 
                 <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
                     <div>
-                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-3">
-                            <span className="w-5 h-px bg-secondary" />
+                        <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
+                            <span className="w-5 h-px bg-accent" />
                             Магазин
                         </span>
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
@@ -47,7 +47,7 @@ export default async function ProfileShopPage() {
 
                     <Link
                         href="/profile/shop/orders"
-                        className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-5 py-2.5 text-sm font-manrope font-semibold text-primary hover:bg-primary/5 transition-colors"
+                        className="inline-flex items-center gap-2 rounded-none border border-primary/20 px-5 py-2.5 text-sm font-manrope font-semibold text-primary hover:bg-primary/5 transition-colors"
                     >
                         <ClipboardList size={15} />
                         Замовлення

@@ -63,9 +63,9 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                 <div className="relative flex-shrink-0">
                     <button
                         onClick={() => setOpen((v) => !v)}
-                        className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors ${
+                        className={`flex items-center gap-2 rounded-none border px-4 py-2.5 text-sm font-semibold transition-colors ${
                             selected
-                                ? 'border-secondary bg-secondary/10 text-primary'
+                                ? 'border-accent bg-accent/10 text-primary'
                                 : 'border-primary/10 bg-primary/[0.02] text-primary/70 hover:border-primary/20'
                         }`}
                     >
@@ -76,12 +76,12 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                     </button>
 
                     {open && (
-                        <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-72 rounded-2xl border border-primary/10 bg-background p-4 shadow-xl">
+                        <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-72 rounded-none border border-primary/10 bg-background p-4 shadow-none">
                             <div className="flex items-center justify-between mb-3">
                                 <button
                                     type="button"
                                     onClick={goPrevMonth}
-                                    className="w-7 h-7 rounded-lg hover:bg-primary/5 flex items-center justify-center text-primary/60"
+                                    className="w-7 h-7 rounded-none hover:bg-primary/5 flex items-center justify-center text-primary/60"
                                 >
                                     <ChevronLeft size={16} />
                                 </button>
@@ -91,7 +91,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                 <button
                                     type="button"
                                     onClick={goNextMonth}
-                                    className="w-7 h-7 rounded-lg hover:bg-primary/5 flex items-center justify-center text-primary/60"
+                                    className="w-7 h-7 rounded-none hover:bg-primary/5 flex items-center justify-center text-primary/60"
                                 >
                                     <ChevronRight size={16} />
                                 </button>
@@ -119,7 +119,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                                 setSelected(isSelected ? null : date);
                                                 setOpen(false);
                                             }}
-                                            className={`relative aspect-square rounded-lg text-xs flex items-center justify-center transition-colors ${
+                                            className={`relative aspect-square rounded-none text-xs flex items-center justify-center transition-colors ${
                                                 isSelected
                                                     ? 'bg-primary text-background font-bold'
                                                     : hasNews
@@ -129,7 +129,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                         >
                                             {date.getDate()}
                                             {hasNews && !isSelected && (
-                                                <span className="absolute bottom-1 w-1 h-1 rounded-full bg-accent" />
+                                                <span className="absolute bottom-1 w-1 h-1 rounded-none bg-accent" />
                                             )}
                                         </button>
                                     );
@@ -143,7 +143,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                         setSelected(null);
                                         setOpen(false);
                                     }}
-                                    className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-lg bg-primary/5 hover:bg-primary/10 py-2 text-xs font-semibold text-primary/60 transition-colors"
+                                    className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-none bg-primary/5 hover:bg-primary/10 py-2 text-xs font-semibold text-primary/60 transition-colors"
                                 >
                                     <X size={13} />
                                     Скинути фільтр

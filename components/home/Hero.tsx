@@ -20,15 +20,15 @@ export default function Hero() {
     ];
 
     return (
-        <section className="max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24" id="hero">
+        <section className="max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24" id="hero">
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-start md:items-center gap-8 md:gap-12 py-10 md:py-24">
                 <div className="text-center md:text-left">
-                    <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                        <span className="w-6 h-px bg-accent" />
                         Природничий науковий ліцей · Київ
                     </span>
 
-                    <h1 className="font-manrope font-bold text-primary leading-[1.05] tracking-tight text-[clamp(2rem,1.6rem+2.4vw,4.2rem)]">
+                    <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,1.4rem+4.6vw,5.8rem)]">
                         Навчання, що<br />починається з <span className="text-accent">«чому»</span>
                     </h1>
 
@@ -39,10 +39,8 @@ export default function Hero() {
                     </p>
                 </div>
 
-                <div className="relative w-full max-w-[380px] md:max-w-[400px] mx-auto md:mx-0 md:justify-self-end overflow-hidden rounded-[20px] bg-primary p-7 text-background">
-                    <div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-accent/35 blur-[60px]" />
-
-                    <div className="mb-3.5 font-manrope font-bold text-xs uppercase tracking-[0.15em] text-cream/80">
+                <div className="relative w-full max-w-[380px] md:max-w-[400px] mx-auto md:mx-0 md:justify-self-end overflow-hidden rounded-none-[20px] bg-primary p-7 text-background">
+                    <div className="mb-3.5 font-plex font-bold text-xs uppercase tracking-[0.15em] text-cream/80">
                         Розклад дзвінків · Сьогодні
                     </div>
 
@@ -52,7 +50,7 @@ export default function Hero() {
                                 key={lesson.num}
                                 className="flex items-baseline gap-3 border-b border-background/10 py-2.5 text-sm last:border-none"
                             >
-                                <span className="w-6 font-bebas text-xl text-accent">{lesson.num}</span>
+                                <span className="w-6 font-cormorant text-xl text-accent">{lesson.num}</span>
                                 <span>Урок</span>
                                 <span className="ml-auto tabular-nums text-background/65">{lesson.time}</span>
                             </div>
@@ -61,7 +59,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 rounded-2xl border border-primary/10 bg-primary/[0.03] overflow-hidden divide-primary/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 rounded-none border border-primary/10 bg-primary/[0.03] overflow-hidden divide-primary/10">
                 {stats.map((stat, i) => (
                     <div
                         key={stat.label}
@@ -72,7 +70,7 @@ export default function Hero() {
                             ${i === 2 ? "md:border-r-0" : ""}
                         `}
                     >
-                        <h4 className="font-manrope font-bold text-primary text-3xl md:text-4xl">{stat.value}</h4>
+                        <h4 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
                         <p className="font-inter text-primary/60 text-sm max-w-[140px] leading-snug">{stat.label}</p>
                     </div>
                 ))}

@@ -13,15 +13,15 @@ export default function PrepCourses() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="courses"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Підготовка
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-4 max-w-2xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-2xl">
                 Підготовчі курси ліцею
             </h2>
 
@@ -34,13 +34,13 @@ export default function PrepCourses() {
                 {PREP_COURSES.map((course) => (
                     <div
                         key={course.id}
-                        className="rounded-2xl border border-primary/10 bg-primary/[0.02] p-6 md:p-7 flex flex-col"
+                        className="rounded-none border border-primary/10 bg-primary/[0.02] p-6 md:p-7 flex flex-col"
                     >
-                        <span className="inline-flex self-start items-center font-manrope text-[11px] font-bold uppercase tracking-[0.14em] text-secondary bg-secondary/10 rounded-full px-3 py-1 mb-4">
+                        <span className="inline-flex self-start items-center font-plex text-[11px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-3 py-1 mb-4">
                             {course.audience}
                         </span>
 
-                        <h3 className="font-manrope font-bold text-primary text-xl tracking-tight">
+                        <h3 className="font-cormorant font-semibold text-primary text-2xl leading-[1.15]">
                             {course.title}
                         </h3>
 
@@ -54,7 +54,7 @@ export default function PrepCourses() {
                                     key={detail.label}
                                     className="flex flex-col sm:flex-row sm:gap-4 py-2.5 border-b border-primary/[0.07]"
                                 >
-                                    <dt className="font-manrope text-[11px] font-semibold uppercase tracking-wider text-primary/40 sm:w-28 shrink-0 pt-0.5">
+                                    <dt className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/40 sm:w-28 shrink-0 pt-0.5">
                                         {detail.label}
                                     </dt>
                                     <dd className="text-sm text-primary/75 leading-relaxed">
@@ -65,7 +65,7 @@ export default function PrepCourses() {
                         </dl>
 
                         <div className="mt-5">
-                            <p className="font-manrope text-[11px] font-semibold uppercase tracking-wider text-primary/40 mb-2">
+                            <p className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/40 mb-2">
                                 Викладачі
                             </p>
                             <ul className="flex flex-col gap-1.5">
@@ -111,7 +111,7 @@ export default function PrepCourses() {
                             href={course.registerUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 font-manrope text-sm font-semibold text-background hover:bg-primary/90 transition-colors"
+                            className="group mt-6 inline-flex items-center justify-center gap-2 rounded-none bg-primary px-5 py-3 font-manrope text-sm font-semibold text-background hover:bg-primary/90 transition-colors"
                         >
                             {course.registerLabel}
                             <ArrowUpRight

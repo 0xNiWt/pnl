@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react';
 import BurgerMenu from './BurgerMenu';
 
 const LINKS = [
-    { label: 'Ліцей', href: '/litsey' },
+    { label: 'Ліцей', href: '/' },
     { label: 'Вступ', href: '/vstup' },
     { label: 'Педагоги', href: '/pedagogy' },
     { label: 'Рейтинг', href: '/rating' },
@@ -22,7 +22,7 @@ export default function Nav({ isLoggedIn }: { isLoggedIn: boolean }) {
     return (
         <>
             <nav>
-                <ul className="hidden space-x-4 md:flex">
+                <ul className="hidden items-center gap-7 md:flex">
                     {LINKS.map((item, i) => (
                         <motion.li
                             key={item.label}
@@ -34,7 +34,7 @@ export default function Nav({ isLoggedIn }: { isLoggedIn: boolean }) {
                                 href={item.href}
                                 // Колір посилань не змінюється ніколи — ні при наведенні,
                                 // ні при натисканні. Єдина реакція на наведення — підкреслення.
-                                className="relative inline-block text-primary font-inter font-medium text-base tracking-wide before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-primary before:transition-all before:duration-300 hover:before:w-full"
+                                className="relative inline-block font-plex text-[11px] uppercase tracking-[0.18em] text-primary/70 transition-colors hover:text-primary before:content-[''] before:absolute before:left-0 before:-bottom-1.5 before:h-px before:w-0 before:bg-accent before:transition-all before:duration-300 hover:before:w-full"
                             >
                                 {item.label}
                             </Link>

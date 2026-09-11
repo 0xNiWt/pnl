@@ -177,7 +177,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
     return (
         <div className="flex flex-col gap-5">
             {error && (
-                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+                <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5" />
                     <span>{error}</span>
                     <button onClick={() => setError(null)} className="ml-auto shrink-0" aria-label="Закрити">
@@ -198,7 +198,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
             ) : (
                 <button
                     onClick={startCreate}
-                    className="self-start inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors"
+                    className="self-start inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors"
                 >
                     <Plus size={15} />
                     Додати товар
@@ -206,7 +206,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
             )}
 
             {products.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl px-6 py-10 text-center">
+                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-10 text-center">
                     <p className="text-sm text-primary/40">Товарів ще немає.</p>
                 </div>
             ) : (
@@ -214,9 +214,9 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="flex items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-2xl p-4"
+                            className="flex items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-none p-4"
                         >
-                            <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-primary/5 shrink-0">
+                            <div className="relative w-16 h-16 rounded-none overflow-hidden bg-primary/5 shrink-0">
                                 {product.image_url ? (
                                     <Image
                                         src={product.image_url}
@@ -237,7 +237,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                 <p className="text-sm font-semibold text-primary truncate">
                                     {product.title}
                                     {!product.active && (
-                                        <span className="ml-2 text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary/50">
+                                        <span className="ml-2 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-0.5 rounded-none bg-primary/10 text-primary/50">
                                             прихований
                                         </span>
                                     )}
@@ -251,7 +251,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                     )}
                                     {product.price_uah !== null && (
                                         <span className="inline-flex items-center gap-1">
-                                            <CreditCard size={11} className="text-secondary" />
+                                            <CreditCard size={11} className="text-accent" />
                                             {formatUah(product.price_uah)}
                                         </span>
                                     )}
@@ -266,7 +266,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                     onClick={() => toggleActive(product)}
                                     disabled={busy}
                                     title={product.active ? 'Сховати з вітрини' : 'Показати на вітрині'}
-                                    className="w-9 h-9 rounded-lg bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
+                                    className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
                                 >
                                     {product.active ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
@@ -274,7 +274,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                     onClick={() => startEdit(product)}
                                     disabled={busy}
                                     title="Редагувати"
-                                    className="w-9 h-9 rounded-lg bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
+                                    className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
                                 >
                                     <Pencil size={16} />
                                 </button>
@@ -282,7 +282,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                     onClick={() => remove(product)}
                                     disabled={busy}
                                     title="Видалити"
-                                    className="w-9 h-9 rounded-lg bg-accent/5 hover:bg-accent/10 flex items-center justify-center text-accent transition-colors disabled:opacity-50"
+                                    className="w-9 h-9 rounded-none bg-accent/5 hover:bg-accent/10 flex items-center justify-center text-accent transition-colors disabled:opacity-50"
                                 >
                                     <Trash2 size={16} />
                                 </button>
@@ -314,7 +314,7 @@ function ProductForm({
         setDraft({ ...draft, [key]: value });
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 rounded-2xl p-5 md:p-6 flex flex-col gap-4">
+        <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 md:p-6 flex flex-col gap-4">
             <h3 className="font-manrope font-bold text-primary text-sm">
                 {isEdit ? 'Редагування товару' : 'Новий товар'}
             </h3>
@@ -324,7 +324,7 @@ function ProductForm({
                     value={draft.title}
                     onChange={(e) => set('title', e.target.value)}
                     placeholder="Худі ліцею"
-                    className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                    className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                 />
             </Field>
 
@@ -334,7 +334,7 @@ function ProductForm({
                     onChange={(e) => set('description', e.target.value)}
                     rows={3}
                     placeholder="Розміри, кольори, деталі..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm resize-none focus:outline-none focus:border-secondary"
+                    className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm resize-none focus:outline-none focus:border-accent"
                 />
             </Field>
 
@@ -343,7 +343,7 @@ function ProductForm({
                     value={draft.imageUrl}
                     onChange={(e) => set('imageUrl', e.target.value)}
                     placeholder="https://kpnl145.kyiv.ua/merch/hoodie.jpg"
-                    className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                    className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                 />
             </Field>
 
@@ -354,7 +354,7 @@ function ProductForm({
                         onChange={(e) => set('pricePoints', e.target.value)}
                         inputMode="numeric"
                         placeholder="250"
-                        className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                        className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                     />
                 </Field>
 
@@ -364,7 +364,7 @@ function ProductForm({
                         onChange={(e) => set('priceUah', e.target.value)}
                         inputMode="decimal"
                         placeholder="450"
-                        className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                        className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                     />
                 </Field>
             </div>
@@ -377,7 +377,7 @@ function ProductForm({
                     value={draft.formUrl}
                     onChange={(e) => set('formUrl', e.target.value)}
                     placeholder="https://forms.gle/..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                    className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                 />
             </Field>
 
@@ -387,7 +387,7 @@ function ProductForm({
                     onChange={(e) => set('stock', e.target.value)}
                     inputMode="numeric"
                     placeholder="20"
-                    className="w-full sm:w-40 px-4 py-2.5 rounded-xl border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-secondary"
+                    className="w-full sm:w-40 px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                 />
             </Field>
 
@@ -405,7 +405,7 @@ function ProductForm({
                 <button
                     onClick={onSave}
                     disabled={busy}
-                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-full px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
+                    className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                     {busy ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                     Зберегти
@@ -433,7 +433,7 @@ function Field({
 }) {
     return (
         <div>
-            <label className="block text-xs font-manrope font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
                 {label}
             </label>
             {children}

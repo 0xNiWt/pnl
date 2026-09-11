@@ -17,7 +17,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
     return (
         <Link
             href={`/news/${slug}`}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-primary/10 bg-primary/[0.02] hover:border-primary/20 transition-colors"
+            className="group flex flex-col overflow-hidden rounded-none border border-primary/10 bg-primary/[0.02] hover:border-primary/20 transition-colors"
         >
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary/5">
                 {coverUrl ? (
@@ -28,7 +28,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
-                    <div className="flex h-full w-full items-center justify-center font-bebas text-4xl text-primary/15">
+                    <div className="flex h-full w-full items-center justify-center font-cormorant text-4xl text-primary/15">
                         ПНЛ №145
                     </div>
                 )}
@@ -36,12 +36,12 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
 
             <div className="flex flex-1 flex-col gap-2.5 p-5">
                 {dateLabel && (
-                    <span className="font-manrope text-xs font-semibold uppercase tracking-wider text-secondary">
+                    <span className="font-plex text-xs font-semibold uppercase tracking-wider text-accent">
                         {dateLabel}
                     </span>
                 )}
 
-                <h3 className="font-manrope font-bold text-primary text-lg leading-snug">
+                <h3 className="font-cormorant font-semibold text-primary text-xl leading-snug">
                     {title}
                 </h3>
 

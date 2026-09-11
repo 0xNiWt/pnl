@@ -21,7 +21,7 @@ export default function HeroesRoll() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: smoothOut }}
-                className="border-t border-gray-800/20 py-14 md:py-20 text-center font-manrope font-bold text-xl md:text-2xl text-primary tracking-tight"
+                className="border-t border-primary/15 py-14 md:py-20 text-center font-manrope font-bold text-xl md:text-2xl text-primary tracking-tight"
             >
                 Повік не забудемо безмежний геройський чин.
                 <br />
@@ -38,11 +38,11 @@ function HeroCard({ hero }: { hero: Hero }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="border-b border-gray-800/20 py-10 md:py-16 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-7 md:gap-12"
+            className="border-b border-primary/15 py-10 md:py-16 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-7 md:gap-12"
             id={hero.id}
         >
             <div className="md:sticky md:top-28 md:self-start">
-                <div className="relative w-full max-w-[280px] mx-auto md:mx-0 aspect-[3/4] overflow-hidden rounded-2xl bg-primary/[0.04]">
+                <div className="relative w-full max-w-[280px] mx-auto md:mx-0 aspect-[3/4] overflow-hidden rounded-none bg-primary/[0.04]">
                     <Image
                         src={hero.photo}
                         alt={hero.name}
@@ -60,12 +60,12 @@ function HeroCard({ hero }: { hero: Hero }) {
             </div>
 
             <div>
-                <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.16em] text-secondary mb-3">
-                    <span className="w-5 h-px bg-secondary" />
+                <span className="inline-flex items-center gap-2 font-plex text-xs font-semibold uppercase tracking-[0.16em] text-accent mb-3">
+                    <span className="w-5 h-px bg-accent" />
                     {hero.graduation}
                 </span>
 
-                <h2 className="font-manrope font-bold text-primary text-2xl md:text-3xl tracking-tight">
+                <h2 className="font-cormorant font-semibold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
                     {hero.name}
                     {hero.callsign && (
                         <span className="text-primary/45 font-medium"> «{hero.callsign}»</span>
@@ -87,8 +87,8 @@ function HeroCard({ hero }: { hero: Hero }) {
                 </div>
 
                 {hero.awards && hero.awards.length > 0 && (
-                    <div className="mt-6 max-w-3xl rounded-2xl border border-primary/10 bg-primary/[0.03] p-5">
-                        <p className="flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-primary/50 mb-3">
+                    <div className="mt-6 max-w-3xl rounded-none border border-primary/10 bg-primary/[0.03] p-5">
+                        <p className="flex items-center gap-2 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-primary/50 mb-3">
                             <Award size={14} className="text-accent" />
                             Нагороджений посмертно
                         </p>
@@ -96,7 +96,7 @@ function HeroCard({ hero }: { hero: Hero }) {
                         <ul className="flex flex-col gap-2">
                             {hero.awards.map((award) => (
                                 <li key={award} className="flex gap-3 text-sm text-primary/70 leading-relaxed">
-                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                                    <span className="mt-2 h-1.5 w-1.5 rounded-none bg-accent shrink-0" />
                                     {award}
                                 </li>
                             ))}

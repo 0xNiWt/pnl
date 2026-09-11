@@ -45,15 +45,15 @@ export default function LifeGallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="life"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Життя ліцею
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-4 max-w-xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-xl">
                 Не тільки формули
             </h2>
 
@@ -66,7 +66,7 @@ export default function LifeGallery() {
                 {SHOTS.map((shot) => (
                     <figure
                         key={shot.tag}
-                        className={`group relative overflow-hidden rounded-[20px] bg-primary/[0.03] ${shot.wide ? "md:col-span-2" : ""
+                        className={`group relative overflow-hidden rounded-none-[20px] bg-primary/[0.03] ${shot.wide ? "md:col-span-2" : ""
                             }`}
                     >
                         <div className={`relative w-full ${shot.wide ? "aspect-[5/3]" : "aspect-[4/3]"}`}>
@@ -83,7 +83,7 @@ export default function LifeGallery() {
                         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-primary/90 via-primary/35 to-transparent" />
 
                         <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-7">
-                            <span className="inline-block font-manrope text-[11px] font-bold uppercase tracking-[0.16em] text-cream mb-1.5">
+                            <span className="inline-block font-plex text-[11px] font-bold uppercase tracking-[0.16em] text-cream mb-1.5">
                                 {shot.tag}
                             </span>
                             <p className="text-sm md:text-base text-background/90 leading-snug max-w-lg">

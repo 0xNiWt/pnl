@@ -4,7 +4,7 @@ import ContactWithData from "@/components/contact/ContactWithData";
 
 export default function DocumentsPage() {
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <main className="paper-grid bg-background min-h-screen flex flex-col">
             <DocumentsIntro />
             <DocumentsList />
             <ContactWithData />

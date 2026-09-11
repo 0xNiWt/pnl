@@ -61,7 +61,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
     const [mainImage, ...galleryImages] = images;
 
     return (
-        <main className="bg-background min-h-screen flex flex-col font-inter">
+        <main className="paper-grid bg-background min-h-screen flex flex-col font-inter">
             <article className="max-w-3xl mx-auto w-full px-4 py-8 sm:px-5 md:px-6 md:py-16">
                 
                 <div className="flex justify-between items-center mb-6 md:mb-8">
@@ -74,7 +74,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                     </Link>
 
                     {dateLabel && (
-                        <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-wider text-secondary">
+                        <span className="inline-flex items-center gap-2 font-plex text-xs font-semibold uppercase tracking-wider text-accent">
                             {dateLabel}
                         </span>
                     )}
@@ -85,7 +85,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                 </h1>
 
                 {mainImage && (
-                    <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-xl md:rounded-2xl overflow-hidden mb-6 md:mb-8">
+                    <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-none md:rounded-none overflow-hidden mb-6 md:mb-8">
                         <Image
                             src={mainImage}
                             alt={title}
@@ -106,7 +106,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                 {galleryImages.length > 0 && (
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 md:gap-3 mt-6 md:mt-8">
                         {galleryImages.map((src, i) => (
-                            <div key={i} className="relative w-full aspect-square rounded-lg md:rounded-xl overflow-hidden">
+                            <div key={i} className="relative w-full aspect-square rounded-none md:rounded-none overflow-hidden">
                                 <Image
                                     src={src}
                                     alt={`${title} — фото ${i + 2}`}

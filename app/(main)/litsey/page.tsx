@@ -1,26 +1,7 @@
-import AboutHero from "@/components/litsey/AboutHero";
-import History from "@/components/litsey/History";
-import LegacyWithData from "@/components/litsey/LegacyWithData";
-import Stages from "@/components/litsey/Stages";
-import Science from "@/components/litsey/Science";
-import Values from "@/components/litsey/Values";
-import LifeGallery from "@/components/litsey/LifeGallery";
-import Symbols from "@/components/litsey/Symbols";
-import ContactWithData from "@/components/contact/ContactWithData";
+import { redirect } from "next/navigation";
 
+// Сторінка про ліцей переїхала на головну. Стару адресу лишаємо робочою:
+// на неї є посилання ззовні та в підменю розділів.
 export default function LitseyPage() {
-    return (
-        <main className="bg-background min-h-screen flex flex-col">
-            <AboutHero />
-            <History />
-            <LegacyWithData />
-            <Stages />
-            <Science />
-            <Values />
-            <LifeGallery />
-            <Symbols />
-            <ContactWithData />
-        </main>
-
-    )
+    redirect("/");
 }

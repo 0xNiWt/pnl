@@ -16,15 +16,15 @@ export default function ExamTopics() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="topics"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Що вчити
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-4 max-w-2xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-2xl">
                 Перелік тем для випробувань
             </h2>
 
@@ -38,7 +38,7 @@ export default function ExamTopics() {
                     <button
                         key={topic.id}
                         onClick={() => setActiveId(topic.id)}
-                        className={`rounded-full px-5 py-2.5 font-inter text-sm font-medium transition-colors ${topic.id === active.id
+                        className={`rounded-none px-5 py-2.5 font-inter text-sm font-medium transition-colors ${topic.id === active.id
                             ? "bg-primary text-background"
                             : "text-primary/70 bg-primary/5 hover:bg-primary/10 hover:text-primary"
                             }`}
@@ -52,13 +52,13 @@ export default function ExamTopics() {
                 {active.subjects.map((subject) => (
                     <div
                         key={subject.title}
-                        className="rounded-2xl border border-primary/10 bg-primary/[0.02] p-6 md:p-7"
+                        className="rounded-none border border-primary/10 bg-primary/[0.02] p-6 md:p-7"
                     >
                         <div className="flex items-baseline justify-between gap-3 mb-5 pb-4 border-b border-primary/10">
-                            <h3 className="font-manrope font-bold text-primary text-xl tracking-tight">
+                            <h3 className="font-cormorant font-semibold text-primary text-2xl leading-[1.15]">
                                 {subject.title}
                             </h3>
-                            <span className="font-manrope text-xs font-semibold uppercase tracking-[0.14em] text-primary/35">
+                            <span className="font-plex text-xs font-semibold uppercase tracking-[0.14em] text-primary/35">
                                 {subject.groups.reduce((sum, g) => sum + g.topics.length, 0)} тем
                             </span>
                         </div>
@@ -67,7 +67,7 @@ export default function ExamTopics() {
                             {subject.groups.map((group, gi) => (
                                 <div key={gi}>
                                     {group.subtitle && (
-                                        <p className="font-manrope font-semibold text-sm text-secondary mb-3">
+                                        <p className="font-manrope font-semibold text-sm text-accent mb-3">
                                             {group.subtitle}
                                         </p>
                                     )}

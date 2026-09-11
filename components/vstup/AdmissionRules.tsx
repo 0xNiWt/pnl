@@ -17,15 +17,15 @@ export default function AdmissionRules() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-gray-800/20 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="rules"
         >
-            <span className="inline-flex items-center gap-2 font-manrope text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
+                <span className="w-6 h-px bg-accent" />
                 Правила
             </span>
 
-            <h2 className="font-manrope font-bold text-primary text-3xl md:text-4xl tracking-tight mb-4 max-w-3xl">
+            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-3xl">
                 Правила конкурсного відбору, прийому та зарахування
             </h2>
 
@@ -41,18 +41,18 @@ export default function AdmissionRules() {
                         return (
                             <div
                                 key={section.id}
-                                className="rounded-2xl border border-primary/10 bg-primary/[0.02] overflow-hidden"
+                                className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-hidden"
                             >
                                 <button
                                     onClick={() => setOpen(isOpen ? null : section.id)}
                                     aria-expanded={isOpen}
                                     className="w-full flex items-center gap-4 px-5 md:px-6 py-4 text-left hover:bg-primary/[0.03] transition-colors"
                                 >
-                                    <span className="font-bebas text-2xl text-accent leading-none w-6 shrink-0">
+                                    <span className="font-cormorant text-2xl text-accent leading-none w-6 shrink-0">
                                         {section.number}
                                     </span>
 
-                                    <span className="font-manrope font-bold text-primary text-base md:text-lg flex-1">
+                                    <span className="font-cormorant font-semibold text-primary text-lg md:text-lg flex-1">
                                         {section.title}
                                     </span>
 
@@ -81,7 +81,7 @@ export default function AdmissionRules() {
                                             <ol className="px-5 md:px-6 pb-5 pt-1 flex flex-col gap-3.5 border-t border-primary/[0.07]">
                                                 {section.items.map((item, i) => (
                                                     <li key={i} className="flex gap-3.5 pt-3.5 first:pt-4">
-                                                        <span className="font-manrope text-xs font-bold text-secondary tabular-nums shrink-0 pt-0.5 w-8">
+                                                        <span className="font-manrope text-xs font-bold text-accent tabular-nums shrink-0 pt-0.5 w-8">
                                                             {section.number}.{i + 1}
                                                         </span>
                                                         <span className="text-sm text-primary/70 leading-relaxed">
@@ -100,17 +100,15 @@ export default function AdmissionRules() {
 
                 {/* Документи — окремою карткою, бо це найчастіше питання батьків. */}
                 <div
-                    className="relative overflow-hidden rounded-2xl bg-primary p-7 text-background lg:sticky lg:top-28 scroll-mt-24"
+                    className="relative overflow-hidden rounded-none bg-primary p-7 text-background lg:sticky lg:top-28 scroll-mt-24"
                     id="documents"
                 >
-                    <div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-accent/35 blur-[60px]" />
-
                     <div className="relative">
                         <div className="flex items-center gap-2.5 mb-5">
-                            <span className="w-9 h-9 rounded-xl bg-background/10 flex items-center justify-center">
+                            <span className="w-9 h-9 rounded-none bg-background/10 flex items-center justify-center">
                                 <FileCheck size={16} className="text-cream" />
                             </span>
-                            <span className="font-manrope font-bold text-xs uppercase tracking-[0.15em] text-cream/80">
+                            <span className="font-plex font-bold text-xs uppercase tracking-[0.15em] text-cream/80">
                                 Які документи подати
                             </span>
                         </div>
@@ -118,7 +116,7 @@ export default function AdmissionRules() {
                         <ul className="flex flex-col gap-3">
                             {REQUIRED_DOCUMENTS.map((doc) => (
                                 <li key={doc} className="flex gap-3 text-[15px] leading-snug">
-                                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cream shrink-0" />
+                                    <span className="mt-2 h-1.5 w-1.5 rounded-none bg-cream shrink-0" />
                                     {doc}
                                 </li>
                             ))}
