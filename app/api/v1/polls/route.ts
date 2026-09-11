@@ -5,7 +5,7 @@ import { isPollScope, POSITION_POLL_TARGETS } from '@/lib/voting';
 
 // POST — створити голосування.
 // Права перевіряє сама база (функція create_poll): староста і представник РСЛ
-// можуть лише свій клас, ПРСЛ — увесь ліцей і будь-яку групу активу, голова
+// можуть лише свій клас, ПРСЛ — увесь ліцей, РСЛ і будь-яку групу активу, голова
 // старостату/фізоргів/пресцентру — свою групу, модератор і адміністрація — будь-яке.
 export async function POST(request: NextRequest) {
   const { supabase, user } = await getCurrentUserWithRoles();
@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
     if (!positionId || !isPositionId(positionId)) {
       return NextResponse.json({ error: 'Обери групу активу' }, { status: 400 });
     }
-    // Голосують лише чотири групи активу (див. POSITION_POLL_TARGETS):
-    // старости, редактори, фізорги, капітани «Ерудиту».
+    // Голосують лише п'ять груп активу (див. POSITION_POLL_TARGETS):
+    // старости, представники РСЛ, редактори, фізорги, капітани «Ерудиту».
     if (!POSITION_POLL_TARGETS.includes(positionId)) {
       return NextResponse.json(
         { error: 'Серед цієї посади голосування не проводять' },
