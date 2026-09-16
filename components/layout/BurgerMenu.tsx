@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -16,17 +17,41 @@ type BurgerMenuProps = {
 const smoothOut = [0.16, 1, 0.3, 1] as const;
 
 export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: BurgerMenuProps) {
+    // Меню розкривається на весь екран під шапкою, тож треба знати, де
+    // шапка закінчується: її висота залежить від шрифтів і розміру герба.
+    const [headerBottom, setHeaderBottom] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const measure = () => {
+            const header = document.querySelector('header');
+            setHeaderBottom(header ? Math.round(header.getBoundingClientRect().bottom) : 0);
+        };
+
+        measure();
+        window.addEventListener('resize', measure);
+        return () => window.removeEventListener('resize', measure);
+    }, [isOpen]);
+
+    // Скрол сторінки навмисно не блокуємо: overflow: hidden на <html> вимикає
+    // sticky, і шапка з хрестиком поїхала б за межі екрана. Від прокручування
+    // фону пальцем захищає overscroll-contain на самій панелі.
     return (
         <AnimatePresence>
-            {isOpen && (
+            {isOpen && headerBottom !== null && (
                 <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.25, ease: smoothOut }}
-                    className="md:hidden absolute left-0 right-0 top-full mt-3 bg-background border border-primary/10 rounded-none shadow-none overflow-hidden z-40"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2, ease: smoothOut }}
+                    style={{ top: headerBottom }}
+                    // fixed + bottom-0: панель тягнеться від шапки до самого
+                    // низу екрана, тож сайт не просвічує ні в щілину згори,
+                    // ні під меню.
+                    className="md:hidden fixed inset-x-0 bottom-0 z-40 bg-background border-t border-primary/10 overflow-y-auto overscroll-contain"
                 >
-                    <div className="py-4 px-3 flex flex-col gap-4">
+                    <div className="min-h-full py-4 px-3 flex flex-col gap-4">
                         <ul className="flex flex-col gap-1">
                             {links.map((item, i) => (
                                 <motion.li
@@ -50,7 +75,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: links.length * 0.035 + 0.05, duration: 0.25, ease: smoothOut }}
-                            className="pt-3 border-t border-primary/10 flex flex-col gap-2 px-1"
+                            className="mt-auto pt-4 border-t border-primary/10 flex flex-col gap-2 px-1"
                         >
                             <Link
                                 href="/shop"

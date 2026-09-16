@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ScrollReveal from "@/components/layout/ScrollReveal";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <Header />
       {children}
       <Footer />
+      <ScrollReveal />
     </>
   );
 }

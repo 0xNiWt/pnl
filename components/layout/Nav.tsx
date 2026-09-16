@@ -10,7 +10,6 @@ const LINKS = [
     { label: 'Ліцей', href: '/' },
     { label: 'Вступ', href: '/vstup' },
     { label: 'Педагоги', href: '/pedagogy' },
-    { label: 'Рейтинг', href: '/rating' },
     { label: 'Новини', href: '/news' },
 ];
 

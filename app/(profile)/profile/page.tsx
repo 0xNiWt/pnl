@@ -149,6 +149,8 @@ export default async function ProfilePage() {
                             <VotesSection mayCreate={mayCreatePolls} />
                         )}
                         {roles.includes('student') && <ShopSection balance={pointsBalance} />}
+                        {/* Учні бачать рейтинг у картці «Мій рейтинг»; решті — окреме посилання. */}
+                        {!roles.includes('student') && <RatingSection />}
                         {roles.includes('teacher') && <TeacherSection />}
                         {roles.includes('editor') && <EditorSection />}
                         {(roles.includes('owner') || roles.includes('moderator')) && <OwnerSection stats={ownerStats} />}
@@ -224,7 +226,7 @@ function StudentSection({
                             </p>
                         </div>
                         <Link
-                            href="/rating"
+                            href="/profile/rating"
                             className="shrink-0 text-sm font-semibold text-accent hover:text-primary transition-colors"
                         >
                             Переглянути →
@@ -303,6 +305,17 @@ function ShopSection({ balance }: { balance: number }) {
                 <QuickAction label="Перейти до магазину" href="/shop" icon={<ShoppingBag size={15} />} />
                 <QuickAction label="Мої замовлення" href="/profile/orders" icon={<Package size={15} />} />
             </div>
+        </SectionCard>
+    );
+}
+
+function RatingSection() {
+    return (
+        <SectionCard title="Рейтинг ліцею" icon={<TrendingUp size={16} />}>
+            <p className="text-sm text-primary/60 mb-4">
+                Бали учнів і класів за активність у житті ліцею.
+            </p>
+            <QuickAction label="Переглянути рейтинг" href="/profile/rating" icon={<TrendingUp size={15} />} />
         </SectionCard>
     );
 }

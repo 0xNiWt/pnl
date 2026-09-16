@@ -24,6 +24,7 @@ export default function AuthLayout({
                         <Image
                             src={gerb}
                             alt="Герб ліцею"
+                            sizes="28px"
                             className="h-9 w-auto"
                         />
                     </Link>

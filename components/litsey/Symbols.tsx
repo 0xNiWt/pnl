@@ -85,6 +85,7 @@ export default function Symbols() {
                         <Image
                             src={gerb}
                             alt="Герб Природничо-наукового ліцею №145"
+                            sizes="162px"
                             className="relative h-44 w-auto md:h-52"
                         />
                     </div>

@@ -14,7 +14,15 @@ export default async function Header() {
             <div className="mx-auto max-w-7xl px-5 md:px-10">
                 <div className="flex items-center justify-between gap-6 py-3.5 md:gap-12">
                     <Link href="/" className="group flex items-center gap-3">
-                        <Image src={gerb} alt="Герб ліцею" className="h-12 w-auto md:h-14" priority />
+                        <Image
+                            src={gerb}
+                            alt="Герб ліцею"
+                            // Герб показано висотою 48/56 px. Без sizes Next
+                            // тягнув би варіант на 1080 px завширшки.
+                            sizes="44px"
+                            className="h-12 w-auto md:h-14"
+                            priority
+                        />
 
                         <span className="flex flex-col">
                             <span className="font-cormorant text-[clamp(1.05rem,0.8rem+0.7vw,1.5rem)] font-semibold leading-[1.05] tracking-[-0.01em] text-primary">
