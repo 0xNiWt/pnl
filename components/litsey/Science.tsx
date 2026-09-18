@@ -49,12 +49,12 @@ export default function Science() {
                 </figure>
 
                 <div className="order-1 md:order-2">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                        <span className="w-6 h-px bg-accent" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                        <span className="w-6 h-px bg-secondary" />
                         Наука та дослідження
                     </span>
 
-                    <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
+                    <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
                         Мала академія наук — у стінах ліцею
                     </h2>
 
@@ -72,7 +72,7 @@ export default function Science() {
             <div className="mt-12 rounded-none border border-primary/10 bg-primary/[0.03] p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-7">
                     <div>
-                        <h3 className="font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
+                        <h3 className="font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
                             Позаурочна освіта
                         </h3>
                         <p className="mt-1.5 text-sm text-primary/60 max-w-2xl leading-relaxed">

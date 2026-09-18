@@ -60,15 +60,15 @@ export default function Contact({
     
     return (
         <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: smoothOut }} className="w-full max-w-7xl mx-auto flex flex-col items-center md:items-start gap-8 md:gap-12 px-5 md:px-6 py-10 md:py-24" id="contact">
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep">
+                <span className="w-6 h-px bg-secondary" />
                 Контакти
             </span>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full">
                 {/* ВАКАНСІЇ */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-cormorant font-semibold text-primary text-xl mb-5">Вакансії</h3>
+                    <h3 className="font-cormorant font-bold text-primary text-xl mb-5">Вакансії</h3>
 
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3 justify-center md:justify-start">
@@ -95,7 +95,7 @@ export default function Contact({
 
                 {/* АДРЕСИ */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-cormorant font-semibold text-primary text-xl mb-5">Адреси</h3>
+                    <h3 className="font-cormorant font-bold text-primary text-xl mb-5">Адреси</h3>
 
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3 justify-center md:justify-start">
@@ -126,7 +126,7 @@ export default function Contact({
 
                 {/* Зворотній зв'язок */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-cormorant font-semibold text-primary text-xl mb-5">
+                    <h3 className="font-cormorant font-bold text-primary text-xl mb-5">
                     Зворотній зв&apos;язок
                     </h3>
 

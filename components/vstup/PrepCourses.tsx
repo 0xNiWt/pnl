@@ -16,12 +16,12 @@ export default function PrepCourses() {
             className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="courses"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                <span className="w-6 h-px bg-secondary" />
                 Підготовка
             </span>
 
-            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-2xl">
+            <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-2xl">
                 Підготовчі курси ліцею
             </h2>
 
@@ -40,7 +40,7 @@ export default function PrepCourses() {
                             {course.audience}
                         </span>
 
-                        <h3 className="font-cormorant font-semibold text-primary text-2xl leading-[1.15]">
+                        <h3 className="font-cormorant font-bold text-primary text-2xl leading-[1.15]">
                             {course.title}
                         </h3>
 

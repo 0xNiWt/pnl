@@ -61,11 +61,11 @@ function HeroCard({ hero }: { hero: Hero }) {
 
             <div>
                 <span className="inline-flex items-center gap-2 font-plex text-xs font-semibold uppercase tracking-[0.16em] text-accent mb-3">
-                    <span className="w-5 h-px bg-accent" />
+                    <span className="w-5 h-px bg-secondary" />
                     {hero.graduation}
                 </span>
 
-                <h2 className="font-cormorant font-semibold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
+                <h2 className="font-cormorant font-bold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
                     {hero.name}
                     {hero.callsign && (
                         <span className="text-primary/45 font-medium"> «{hero.callsign}»</span>

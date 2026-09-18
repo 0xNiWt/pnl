@@ -15,12 +15,12 @@ export default function NewsHero() {
             id="news-hero"
         >
             <div className="flex flex-col items-center md:items-start">
-                <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                    <span className="w-6 h-px bg-accent" />
+                <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                    <span className="w-6 h-px bg-secondary" />
                     Новини
                 </span>
 
-                <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-2xl">
+                <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-2xl">
                     Що відбувається в <span className="text-accent">ліцеї</span>
                 </h1>
 

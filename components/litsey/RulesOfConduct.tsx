@@ -23,7 +23,7 @@ function Block({ block }: { block: RulesBlock }) {
 
         case "heading":
             return (
-                <h2 className="font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em] mt-10 first:mt-0">
+                <h2 className="font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em] mt-10 first:mt-0">
                     {block.text}
                 </h2>
             );

@@ -16,12 +16,12 @@ export default function OlympiadsIntro({ tables }: { tables: OlympiadTable[] }) 
             className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
             id="olympiads-intro"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                <span className="w-6 h-px bg-secondary" />
                 Досягнення
             </span>
 
-            <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
+            <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
                 Перемоги на олімпіадах
             </h1>
 

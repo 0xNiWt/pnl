@@ -23,12 +23,12 @@ export default function Hero() {
         <section className="max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24" id="hero">
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-start md:items-center gap-8 md:gap-12 py-10 md:py-24">
                 <div className="text-center md:text-left">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                        <span className="w-6 h-px bg-accent" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                        <span className="w-6 h-px bg-secondary" />
                         Природничий науковий ліцей · Київ
                     </span>
 
-                    <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,1.4rem+4.6vw,5.8rem)]">
+                    <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,1.4rem+4.6vw,5.8rem)]">
                         Навчання, що<br />починається з <span className="text-accent">«чому»</span>
                     </h1>
 
@@ -70,7 +70,7 @@ export default function Hero() {
                             ${i === 2 ? "md:border-r-0" : ""}
                         `}
                     >
-                        <h4 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
+                        <h4 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
                         <p className="font-inter text-primary/60 text-sm max-w-[140px] leading-snug">{stat.label}</p>
                     </div>
                 ))}

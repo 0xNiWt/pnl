@@ -35,12 +35,12 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                 className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
                 id="memory-intro"
             >
-                <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                    <span className="w-6 h-px bg-accent" />
+                <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                    <span className="w-6 h-px bg-secondary" />
                     Книга пам’яті
                 </span>
 
-                <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
+                <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
                     {MEMORY_BOOK_TITLE}
                 </h1>
 
@@ -168,7 +168,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
             </div>
 
             <div className="p-5 flex flex-col flex-1">
-                <h2 className="font-cormorant font-semibold text-primary text-lg leading-snug">
+                <h2 className="font-cormorant font-bold text-primary text-lg leading-snug">
                     {entry.name}
                 </h2>
 

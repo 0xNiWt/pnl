@@ -24,20 +24,27 @@ export default function BuildingHero() {
 
             {/* Заливка суцільна лише внизу, під текстом; вгорі знімок лишається чистим. */}
             <div className="absolute inset-0 bg-gradient-to-t from-primary from-6% via-primary/55 via-45% to-transparent to-82%" />
+            {/* Блакитний відсвіт герба зліва — обкладинка світліша й «наша». */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-secondary/35 via-transparent to-transparent mix-blend-screen" />
 
             <div className="absolute inset-x-0 bottom-0">
                 <div className="mx-auto w-full max-w-7xl px-5 pb-8 md:px-10 md:pb-12">
                     <span className="flex items-center gap-3 font-plex text-[10px] uppercase tracking-[0.22em] text-background/70">
-                        <span className="h-px w-6 bg-accent" />
+                        <span className="h-px w-6 bg-secondary" />
                         Київ · засновано 1962
                     </span>
 
-                    <h1 className="mt-5 font-cormorant text-[clamp(2.8rem,1.6rem+5.4vw,6.5rem)] font-semibold leading-[0.9] tracking-[-0.02em] text-background">
-                        Ліцей <span className="text-accent">№&nbsp;145</span>
+                    {/* Обидва рядки однакового розміру: розмір підібрано так, щоб
+                        «Природничо-науковий» уміщався в один рядок і на телефоні. */}
+                    <h1 className="mt-5 font-cormorant font-bold leading-[0.92] tracking-[-0.02em] text-background text-[clamp(2.15rem,1rem+5.2vw,6.2rem)]">
+                        <span className="block">Природничо-науковий</span>
+                        <span className="block">
+                            ліцей <span className="text-secondary">№&nbsp;145</span>
+                        </span>
                     </h1>
 
                     <p className="mt-5 max-w-[520px] font-inter text-[15px] leading-[1.75] text-background/75">
-                        Природничо-науковий ліцей: поглиблені фізика, математика, хімія
+                        Поглиблені фізика, математика, хімія
                         та інформатика, лабораторні практикуми й наукова робота учнів.
                     </p>
 
@@ -45,7 +52,7 @@ export default function BuildingHero() {
                     <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-background/20 pt-4 font-plex text-[10px] uppercase tracking-[0.18em] text-background/55">
                         {SUBJECTS.map((subject, i) => (
                             <span key={subject} className="flex items-center gap-6">
-                                <span className="text-accent">{String(i + 1).padStart(2, "0")}</span>
+                                <span className="text-secondary">{String(i + 1).padStart(2, "0")}</span>
                                 {subject}
                             </span>
                         ))}

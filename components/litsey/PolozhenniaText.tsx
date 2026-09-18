@@ -42,7 +42,7 @@ function Node({ node }: { node: PolozhenniaNode }) {
                 // коли на нього переходять зі змісту.
                 <h2
                     id={node.id}
-                    className="font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em] mt-12 first:mt-0 scroll-mt-28"
+                    className="font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em] mt-12 first:mt-0 scroll-mt-28"
                 >
                     {node.text}
                 </h2>
@@ -52,7 +52,7 @@ function Node({ node }: { node: PolozhenniaNode }) {
             return (
                 <h3
                     id={node.id}
-                    className="font-cormorant font-semibold text-primary text-lg md:text-xl leading-[1.2] mt-8 scroll-mt-28"
+                    className="font-cormorant font-bold text-primary text-lg md:text-xl leading-[1.2] mt-8 scroll-mt-28"
                 >
                     {node.text}
                 </h3>

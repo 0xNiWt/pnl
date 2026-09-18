@@ -6,7 +6,7 @@ import { ClipboardList, GraduationCap, Wallet } from "lucide-react";
 const FACTS = [
     {
         icon: GraduationCap,
-        title: '8 і 9 класи',
+        title: '7–9 класи',
         text: 'Основний набір — конкурс «Школярій 145». До 11 класу прийом не проводиться.',
     },
     {
@@ -40,12 +40,12 @@ export default function VstupHero() {
             className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
             id="vstup-hero"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                <span className="w-6 h-px bg-secondary" />
                 Вступ
             </span>
 
-            <h1 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
+            <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)] max-w-3xl">
                 Як вступити до ліцею
             </h1>
 
@@ -77,7 +77,7 @@ export default function VstupHero() {
                         <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center mb-4">
                             <Icon size={20} className="text-primary" />
                         </span>
-                        <h2 className="font-cormorant font-semibold text-primary text-lg mb-1.5">
+                        <h2 className="font-cormorant font-bold text-primary text-lg mb-1.5">
                             {title}
                         </h2>
                         <p className="text-sm text-primary/60 leading-relaxed">{text}</p>

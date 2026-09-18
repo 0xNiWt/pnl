@@ -20,12 +20,12 @@ export default function AdmissionRules() {
             className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="rules"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                <span className="w-6 h-px bg-secondary" />
                 Правила
             </span>
 
-            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-3xl">
+            <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-4 max-w-3xl">
                 Правила конкурсного відбору, прийому та зарахування
             </h2>
 
@@ -52,7 +52,7 @@ export default function AdmissionRules() {
                                         {section.number}
                                     </span>
 
-                                    <span className="font-cormorant font-semibold text-primary text-lg md:text-lg flex-1">
+                                    <span className="font-cormorant font-bold text-primary text-lg md:text-lg flex-1">
                                         {section.title}
                                     </span>
 

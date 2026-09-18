@@ -11,7 +11,10 @@ html {
   --font-plex: var(--font-plex-mono);
 
   --color-primary: #1C2D56;
+  /* Блакитний з герба ліцею. */
   --color-secondary: #63A8CC;
+  /* Той самий блакитний, темніший — для тексту на світлому фоні (контраст ≥ 4.5). */
+  --color-secondary-deep: #2A76A4;
   --color-accent: #C79D5A;
   --color-cream: #ECD792;
   --color-background: #FBF6E9;
@@ -21,8 +24,8 @@ html {
    градієнтами, щоб не тягнути растрову текстуру. */
 .paper-grid {
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--color-primary) 5%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--color-primary) 5%, transparent) 1px, transparent 1px);
+    linear-gradient(to right, color-mix(in oklab, var(--color-secondary) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-secondary) 16%, transparent) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
@@ -53,5 +56,21 @@ html {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Основний текст і заголовки — трохи жирніші за замовчуванням. У шарі base,
+   тож явні класи (font-normal, font-bold тощо) і далі мають перевагу. */
+@layer base {
+  main p,
+  main li,
+  main dd {
+    font-weight: 500;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
   }
 }

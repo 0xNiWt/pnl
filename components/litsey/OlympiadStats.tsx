@@ -44,6 +44,8 @@ export default function OlympiadStats({ tables }: { tables: OlympiadTable[] }) {
 }
 
 function TableCard({ table }: { table: OlympiadTable }) {
+    // Найновіший рік — ліворуч, біля назви предмета: його шукають найчастіше.
+    const yearsNewestFirst = [...table.years].reverse();
     const total = tableTotal(table.rows);
     const hasRows = table.rows.length > 0;
 
@@ -51,7 +53,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
         <div className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-hidden">
             <div className="px-5 md:px-6 py-5 border-b border-primary/10 flex flex-wrap items-end justify-between gap-3">
                 <div>
-                    <h2 className="flex items-center gap-2 font-cormorant font-semibold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
+                    <h2 className="flex items-center gap-2 font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
                         <Trophy size={18} className="text-accent" />
                         {table.title}
                     </h2>
@@ -86,7 +88,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                                 <th className="font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-3 border-b border-primary/10 whitespace-nowrap">
                                     % від усіх
                                 </th>
-                                {table.years.map((year) => (
+                                {yearsNewestFirst.map((year) => (
                                     <th
                                         key={year}
                                         className="px-2.5 py-3 border-b border-primary/10 font-inter text-[11px] font-medium text-primary/45 whitespace-nowrap"
@@ -109,7 +111,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                                     <td className="text-center text-primary/45 px-3 py-2.5 border-b border-primary/[0.07] tabular-nums whitespace-nowrap">
                                         {formatShare(rowShare(row, total))}
                                     </td>
-                                    {table.years.map((year) => {
+                                    {yearsNewestFirst.map((year) => {
                                         const value = row.counts[year];
 
                                         return (
@@ -134,7 +136,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                                     {total}
                                 </td>
                                 <td className="px-3 py-3" />
-                                {table.years.map((year) => {
+                                {yearsNewestFirst.map((year) => {
                                     const value = yearTotal(table.rows, year);
 
                                     return (

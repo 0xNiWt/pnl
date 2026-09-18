@@ -26,18 +26,18 @@ export default function AboutHero() {
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-start md:items-center gap-8 md:gap-12">
                 <div className="text-center md:text-left">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                        <span className="w-6 h-px bg-accent" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                        <span className="w-6 h-px bg-secondary" />
                         Про ліцей
                     </span>
 
-                    <h2 className="font-cormorant font-semibold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,1.4rem+4.6vw,5.8rem)]">
+                    <h2 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,1.4rem+4.6vw,5.8rem)]">
                         Школа, де наука<br />стає <span className="text-accent">покликанням</span>
                     </h2>
 
                     <p className="mt-5 text-base text-primary/70 max-w-[480px] mx-auto md:mx-0">
                         Київський природничо-науковий ліцей №145 створено на базі
-                        фізико-математичної школи, педколектив якої має піввіковий досвід
+                        фізико-математичної школи, педколектив якої має шістдесятип’ятирічний досвід
                         роботи з обдарованими дітьми. Поглиблені фізика, математика,
                         хімія та інформатика — і вчителі, які пам&apos;ятають ваше ім&apos;я.
                     </p>
@@ -84,7 +84,7 @@ export default function AboutHero() {
                             ${i === 2 ? "md:border-r-0" : ""}
                         `}
                     >
-                        <h4 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
+                        <h4 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
                         <p className="font-inter text-primary/60 text-sm max-w-[160px] leading-snug">{stat.label}</p>
                     </div>
                 ))}

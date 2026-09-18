@@ -1,14 +1,33 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import international from "@/public/about/international.jpg";
+import olympiadTeam from "@/public/about/international/olympiad-team.jpg";
+import manUnesco from "@/public/about/international/man-unesco.jpg";
+import scienceFair from "@/public/about/international/science-fair.jpg";
+import genevaRobotics from "@/public/about/international/geneva-robotics.jpg";
+import presidentAward1 from "@/public/about/international/president-award-1.jpg";
+import presidentAward2 from "@/public/about/international/president-award-2.jpg";
+import presidentAward3 from "@/public/about/international/president-award-3.jpg";
+import PhotoCarousel, { type Slide } from "./PhotoCarousel";
 import { tableTotal, type OlympiadTable } from "@/lib/olympiads";
 
+// Перше фото — те, що стояло тут раніше; далі — міжнародні здобутки ліцеїстів.
+const SLIDES: Slide[] = [
+    { src: international, alt: "Ліцеїстка з прапором України на церемонії міжнародної олімпіади", caption: "Прапор України на сцені міжнародної олімпіади" },
+    { src: olympiadTeam, alt: "Ліцеїсти з медалями та прапором України після міжнародної олімпіади", caption: "Медалі міжнародної олімпіади" },
+    { src: manUnesco, alt: "Ліцеїсти з медалями під банерами ЮНЕСКО та Малої академії наук України", caption: "Нагородження МАН і ЮНЕСКО" },
+    { src: scienceFair, alt: "Ліцеїсти з дипломами й медалями на міжнародній виставці наукових робіт", caption: "Міжнародна виставка наукових робіт" },
+    { src: genevaRobotics, alt: "Команда ліцею з роботом на First Global Challenge у Женеві", caption: "First Global Challenge · Женева" },
+    { src: presidentAward1, alt: "Вручення ліцеїсту Премії Президента України", caption: "Премія Президента України" },
+    { src: presidentAward2, alt: "Вручення ліцеїсту Премії Президента України", caption: "Премія Президента України" },
+    { src: presidentAward3, alt: "Вручення ліцеїстці Премії Президента України", caption: "Премія Президента України" },
+];
+
 const PARAGRAPHS = [
-    "Ліцей виріс із фізико-математичної школи №145, і півстоліття роботи з обдарованими дітьми — це не гасло, а метод: у ліцею є практичний досвід та інтелектуальний потенціал, щоб бути першою ланкою у підготовці інтелектуальної еліти України.",
+    "Ліцей виріс із фізико-математичної школи №145, і шістдесят п’ять років роботи з обдарованими дітьми — це не гасло, а метод: у ліцею є практичний досвід та інтелектуальний потенціал, щоб бути першою ланкою у підготовці інтелектуальної еліти України.",
     "Найпереконливіше про це говорить шлях випускників. Усі випускники СШ №145 здобули вищу освіту, близько 1800 із них захистили кандидатські дисертації, а 170 — докторські.",
 ];
 
@@ -26,13 +45,13 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-8 md:gap-14 items-center">
                 <div>
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                        <span className="w-6 h-px bg-accent" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                        <span className="w-6 h-px bg-secondary" />
                         Спадок
                     </span>
 
-                    <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
-                        Піввіковий досвід роботи з обдарованими дітьми
+                    <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
+                        Шістдесятип’ятирічний досвід роботи з обдарованими дітьми
                     </h2>
 
                     <div className="flex flex-col gap-4 max-w-xl">
@@ -44,21 +63,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                     </div>
                 </div>
 
-                <figure className="relative overflow-hidden rounded-none-[20px] bg-primary/[0.03]">
-                    <Image
-                        src={international}
-                        alt="Ліцеїстка з прапором України на церемонії міжнародної олімпіади"
-                        className="w-full h-auto"
-                        sizes="(max-width: 768px) 100vw, 480px"
-                        placeholder="blur"
-                    />
-
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/85 to-transparent" />
-
-                    <figcaption className="absolute bottom-0 left-0 right-0 p-5 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-background/90">
-                        Прапор України на сцені міжнародної олімпіади
-                    </figcaption>
-                </figure>
+                <PhotoCarousel slides={SLIDES} className="aspect-[4/3] w-full" />
             </div>
 
             {tables.length > 0 && (
@@ -80,7 +85,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                                         {total > 0 ? total : '—'}
                                     </span>
 
-                                    <h3 className="mt-3 font-cormorant font-semibold text-primary text-lg leading-snug">
+                                    <h3 className="mt-3 font-cormorant font-bold text-primary text-lg leading-snug">
                                         {table.title}
                                     </h3>
 

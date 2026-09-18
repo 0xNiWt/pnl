@@ -38,12 +38,12 @@ export default function Values() {
             className="max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="values"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                <span className="w-6 h-px bg-secondary" />
                 Чому обирають нас
             </span>
 
-            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-xl">
+            <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-xl">
                 Освіта, побудована на практиці й дослідженні
             </h2>
 
@@ -57,7 +57,7 @@ export default function Values() {
                             <Icon size={20} className="text-primary" />
                         </span>
                         <div>
-                            <h3 className="font-cormorant font-semibold text-primary text-lg mb-1.5">{title}</h3>
+                            <h3 className="font-cormorant font-bold text-primary text-lg mb-1.5">{title}</h3>
                             <p className="text-sm text-primary/60 leading-relaxed">{text}</p>
                         </div>
                     </div>

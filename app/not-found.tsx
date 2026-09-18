@@ -12,7 +12,7 @@ export default function NotFound() {
     return (
         <div className="relative flex flex-col items-center justify-center min-h-dvh bg-background overflow-hidden px-5">
             <div className="relative flex flex-col items-center text-center">
-                <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-6">
+                <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-6">
                     <motion.span
                         initial={{ width: 0 }}
                         animate={{ width: 24 }}

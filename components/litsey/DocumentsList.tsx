@@ -34,7 +34,7 @@ export default function DocumentsList() {
                     className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-16"
                     id={group.id}
                 >
-                    <h2 className="font-cormorant font-semibold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
+                    <h2 className="font-cormorant font-bold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
                         {group.title}
                     </h2>
                     <p className="mt-2 mb-8 text-base text-primary/60 max-w-2xl leading-relaxed">
@@ -75,7 +75,7 @@ function DocumentCard({ item }: { item: DocItem }) {
                         )}
                     </div>
 
-                    <h3 className="font-cormorant font-semibold text-primary text-lg leading-snug">
+                    <h3 className="font-cormorant font-bold text-primary text-lg leading-snug">
                         {item.title}
                     </h3>
 

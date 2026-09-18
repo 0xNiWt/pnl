@@ -7,6 +7,7 @@ import Stages from "@/components/litsey/Stages";
 import Science from "@/components/litsey/Science";
 import Values from "@/components/litsey/Values";
 import LifeGallery from "@/components/litsey/LifeGallery";
+import Volunteering from "@/components/litsey/Volunteering";
 import Symbols from "@/components/litsey/Symbols";
 import ContactWithData from "@/components/contact/ContactWithData";
 
@@ -24,6 +25,7 @@ export default function Home() {
             <Science />
             <Values />
             <LifeGallery />
+            <Volunteering />
             <Symbols />
             <ContactWithData />
         </main>

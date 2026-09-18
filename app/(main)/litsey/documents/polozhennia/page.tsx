@@ -22,7 +22,7 @@ export default function PolozhenniaPage() {
                     Нормативна база
                 </Link>
 
-                <h1 className="mt-5 font-cormorant font-semibold text-primary leading-[1] tracking-[-0.02em] text-[clamp(2.1rem,1.4rem+2.8vw,3.8rem)]">
+                <h1 className="mt-5 font-cormorant font-bold text-primary leading-[1] tracking-[-0.02em] text-[clamp(2.1rem,1.4rem+2.8vw,3.8rem)]">
                     Положення про учнівське самоврядування
                 </h1>
 

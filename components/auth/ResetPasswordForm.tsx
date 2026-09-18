@@ -43,10 +43,10 @@ export default function ResetPasswordForm() {
         <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
-                        <span className="w-5 h-px bg-accent" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
+                        <span className="w-5 h-px bg-secondary" />
                         Новий пароль
-                        <span className="w-5 h-px bg-accent" />
+                        <span className="w-5 h-px bg-secondary" />
                     </span>
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Встановіть новий пароль

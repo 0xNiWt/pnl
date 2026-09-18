@@ -27,8 +27,8 @@ export default async function OlympiadStatsPage() {
                 </Link>
 
                 <div className="mb-8">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-3">
-                        <span className="w-5 h-px bg-accent" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
+                        <span className="w-5 h-px bg-secondary" />
                         Сторінка «Про ліцей»
                     </span>
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">

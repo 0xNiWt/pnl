@@ -6,7 +6,7 @@ import { Compass, Target } from "lucide-react";
 const STAGES = [
     {
         icon: Compass,
-        badge: "I етап · 8–9 класи",
+        badge: "I етап · 7–9 класи",
         title: "Адаптаційний",
         lead: "Здібності учня розкриваються, уточнюються та розвиваються.",
         points: [
@@ -57,12 +57,12 @@ export default function Stages() {
             className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
             id="stages"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mb-4">
-                <span className="w-6 h-px bg-accent" />
+            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
+                <span className="w-6 h-px bg-secondary" />
                 Як вибудовано навчання
             </span>
 
-            <h2 className="font-cormorant font-semibold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-2xl">
+            <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-10 max-w-2xl">
                 Спершу знайти себе — потім поглибитись
             </h2>
 
@@ -81,7 +81,7 @@ export default function Stages() {
                             </span>
                         </div>
 
-                        <h3 className="font-cormorant font-semibold text-primary text-3xl leading-[1.1] tracking-[-0.01em]">
+                        <h3 className="font-cormorant font-bold text-primary text-3xl leading-[1.1] tracking-[-0.01em]">
                             {title}
                         </h3>
                         <p className="mt-2 text-sm text-primary/70 leading-relaxed">{lead}</p>
@@ -101,7 +101,7 @@ export default function Stages() {
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5">
                 {NOTES.map((n) => (
                     <div key={n.title} className="rounded-none border border-primary/10 p-6">
-                        <h3 className="font-cormorant font-semibold text-primary text-lg mb-2">{n.title}</h3>
+                        <h3 className="font-cormorant font-bold text-primary text-lg mb-2">{n.title}</h3>
                         <p className="text-sm text-primary/60 leading-relaxed">{n.text}</p>
                     </div>
                 ))}

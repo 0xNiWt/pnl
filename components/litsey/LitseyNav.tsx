@@ -43,7 +43,7 @@ export default function LitseyNav() {
 
                 {/* Десктоп — розділи поруч */}
                 <nav className="hidden md:flex items-center gap-2">
-                    <span className="font-plex text-[10px] uppercase tracking-[0.22em] text-primary/45 mr-3">
+                    <span className="font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mr-3">
                         Розділ
                     </span>
 

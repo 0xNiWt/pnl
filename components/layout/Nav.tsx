@@ -33,7 +33,7 @@ export default function Nav({ isLoggedIn }: { isLoggedIn: boolean }) {
                                 href={item.href}
                                 // Колір посилань не змінюється ніколи — ні при наведенні,
                                 // ні при натисканні. Єдина реакція на наведення — підкреслення.
-                                className="relative inline-block font-plex text-[11px] uppercase tracking-[0.18em] text-primary/70 transition-colors hover:text-primary before:content-[''] before:absolute before:left-0 before:-bottom-1.5 before:h-px before:w-0 before:bg-accent before:transition-all before:duration-300 hover:before:w-full"
+                                className="relative inline-block font-plex text-[12px] font-bold uppercase tracking-[0.16em] text-primary transition-colors hover:text-secondary-deep before:content-[''] before:absolute before:left-0 before:-bottom-1.5 before:h-0.5 before:w-0 before:bg-secondary before:transition-all before:duration-300 hover:before:w-full"
                             >
                                 {item.label}
                             </Link>

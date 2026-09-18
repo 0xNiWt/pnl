@@ -41,7 +41,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
                     </span>
                 )}
 
-                <h3 className="font-cormorant font-semibold text-primary text-xl leading-snug">
+                <h3 className="font-cormorant font-bold text-primary text-xl leading-snug">
                     {title}
                 </h3>
 
