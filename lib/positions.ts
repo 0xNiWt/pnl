@@ -17,6 +17,9 @@ export type Position = {
   // Назва групи в множині: «Фізорги», «Старости». Потрібна там, де йдеться
   // про всіх, хто обіймає посаду, — наприклад, у голосуваннях для активу.
   plural?: string;
+  // Посаду можуть обіймати кілька людей в одному класі (учасники клубу).
+  // Для таких посад не попереджаємо про «суміщення».
+  multiple?: boolean;
 };
 
 export const POSITION_SCOPES: { id: PositionScope; label: string; hint: string }[] = [
@@ -60,6 +63,7 @@ export const POSITIONS: Position[] = [
   // Другорядний актив класу
   { id: 'photographer', label: 'Фотограф', scope: 'class-secondary', plural: 'Фотографи' },
   { id: 'erudite-captain', label: 'Капітан команди «Ерудит»', scope: 'class-secondary', plural: 'Капітани команд «Ерудит»' },
+  { id: 'erudite-member', label: 'Учасник клубу «Ерудит»', scope: 'class-secondary', plural: 'Учасники клубу «Ерудит»', multiple: true },
   { id: 'starosta-deputy', label: 'Заступник старости', scope: 'class-secondary', plural: 'Заступники старост' },
   { id: 'rsl-rep-deputy', label: 'Заступник представника РСЛ', scope: 'class-secondary', plural: 'Заступники представників РСЛ' },
   { id: 'redactor-deputy', label: 'Заступник редактора', scope: 'class-secondary', plural: 'Заступники редакторів' },
@@ -84,6 +88,10 @@ export function positionLabel(id: string): string {
 export function positionGroupLabel(id: string): string {
   const position = POSITION_MAP.get(id);
   return position?.plural ?? position?.label ?? id;
+}
+
+export function allowsMultipleHolders(id: string): boolean {
+  return POSITION_MAP.get(id)?.multiple === true;
 }
 
 export function positionScope(id: string): PositionScope | null {

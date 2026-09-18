@@ -4,6 +4,8 @@ import { createClient } from '@/lib/server';
 import LogoutButton from '@/components/profile/LogoutButton';
 import { positionLabel } from '@/lib/positions';
 import { canCreatePolls } from '@/lib/voting';
+import { canManageErudite, canViewErudite, currentSeason, eruditeStats, teamStandings, type EruditeStats } from '@/lib/erudite';
+import { getEruditeSeason } from '@/lib/eruditeData';
 import { getMyRatingRow, type StudentRatingRow } from '@/lib/points';
 import { getRatingVisibility } from '@/lib/ratingVisibility';
 import { hasRatingConsent } from '@/lib/consent';
@@ -17,7 +19,7 @@ import {
     User, Mail, ShieldCheck, Calendar, Newspaper, Users,
     Coins, TrendingUp, FileEdit, Settings,
     BarChart3, ClipboardList, Award, GraduationCap, Trophy,
-    Vote, Plus, EyeOff, BookOpen, ShoppingCart, ShoppingBag, Package,
+    Vote, Plus, EyeOff, BookOpen, ShoppingCart, ShoppingBag, Package, Brain,
 } from 'lucide-react';
 
 type Role = 'student' | 'teacher' | 'editor' | 'moderator' | 'owner';
@@ -89,6 +91,17 @@ export default async function ProfilePage() {
         ratingHidden = visibility;
     }
 
+    // Три показники клубу «Ерудит» — лише для тих, хто бачить клуб.
+    let eruditeSummary: EruditeStats | null = null;
+    if (canViewErudite(positions, roles)) {
+        const club = await getEruditeSeason(currentSeason());
+        eruditeSummary = eruditeStats(
+            teamStandings(club.teams, club.games, club.results, club.penalties),
+            club.games,
+            club.participantsCount
+        );
+    }
+
     let ownerStats: { students: number; teachers: number; news: number } | null = null;
     if (roles.includes('owner') || roles.includes('moderator')) {
         const [studentsRes, teachersRes, newsRes] = await Promise.all([
@@ -149,6 +162,14 @@ export default async function ProfilePage() {
                             <VotesSection mayCreate={mayCreatePolls} />
                         )}
                         {roles.includes('student') && <ShopSection balance={pointsBalance} />}
+                        {/* Клуб «Ерудит» бачать лише учасники, капітани команд і президент клубу. */}
+                        {eruditeSummary && (
+                            <EruditeSection
+                                stats={eruditeSummary}
+                                canManage={canManageErudite(positions, roles)}
+                                isCaptain={positions.includes('erudite-captain')}
+                            />
+                        )}
                         {/* Учні бачать рейтинг у картці «Мій рейтинг»; решті — окреме посилання. */}
                         {!roles.includes('student') && <RatingSection />}
                         {roles.includes('teacher') && <TeacherSection />}
@@ -316,6 +337,34 @@ function RatingSection() {
                 Бали учнів і класів за активність у житті ліцею.
             </p>
             <QuickAction label="Переглянути рейтинг" href="/profile/rating" icon={<TrendingUp size={15} />} />
+        </SectionCard>
+    );
+}
+
+function EruditeSection({ stats, canManage, isCaptain }: { stats: EruditeStats; canManage: boolean; isCaptain: boolean }) {
+    const leader = stats.leaders.length
+        ? stats.leaders.map((l) => (l.className ? `${l.name} (${l.className})` : l.name)).join(', ')
+        : '—';
+
+    return (
+        <SectionCard title="Клуб «Ерудит»" icon={<Brain size={16} />}>
+            <div className="grid grid-cols-3 gap-4 py-2 mb-4">
+                <MiniStat value={String(stats.gamesPlayed)} label="ігор відбулося" />
+                <MiniStat value={String(stats.participants)} label="учасників з капітанами" />
+                <div className="text-center">
+                    <p className="text-sm font-manrope font-bold text-primary leading-tight pt-1.5">{leader}</p>
+                    <p className="text-xs text-primary/50 mt-1">лідер рейтингу</p>
+                </div>
+            </div>
+            <div className="flex flex-col gap-2">
+                <QuickAction label="Рейтинг «Ерудит»" href="/profile/erudite" icon={<Trophy size={15} />} />
+                {isCaptain && (
+                    <QuickAction label="Заявки моєї команди на ігри" href="/profile/erudite" icon={<Users size={15} />} />
+                )}
+                {canManage && (
+                    <QuickAction label="Команди та ігри" href="/profile/erudite/manage" icon={<Settings size={15} />} />
+                )}
+            </div>
         </SectionCard>
     );
 }

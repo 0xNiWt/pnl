@@ -7,6 +7,7 @@ import {
     POSITION_SCOPES,
     compareClasses,
     isLyceumPosition,
+    allowsMultipleHolders,
     parallelOf,
     positionIdsMatching,
     positionLabel,
@@ -105,6 +106,8 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
     function otherHolders(positionId: string, profile: Profile): Profile[] {
         return profiles.filter((p) => {
             if (p.id === profile.id) return false;
+            // Учасників клубу в класі може бути кілька — це не суміщення.
+            if (allowsMultipleHolders(positionId)) return false;
             if (!(p.positions ?? []).includes(positionId)) return false;
             if (isLyceumPosition(positionId)) return true;
             return p.class === profile.class;
