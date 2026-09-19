@@ -69,7 +69,7 @@ function DocumentCard({ item }: { item: DocItem }) {
                             {label}
                         </span>
                         {item.year && (
-                            <span className="font-plex text-[12px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-2 py-0.5">
+                            <span className="font-plex text-[12px] font-bold uppercase tracking-[0.14em] text-primary bg-primary/10 rounded-none px-2 py-0.5">
                                 {item.year}
                             </span>
                         )}

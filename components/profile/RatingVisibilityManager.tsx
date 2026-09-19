@@ -63,7 +63,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                     return (
                         <div
                             key={kind}
-                            className="flex items-center justify-between gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-4"
+                            className="flex items-center justify-between gap-4 bg-primary/[0.04] border border-primary/10 rounded-none px-5 py-4"
                         >
                             <div className="min-w-0">
                                 <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">

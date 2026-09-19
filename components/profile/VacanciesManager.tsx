@@ -108,7 +108,7 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                 </div>
             )}
 
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none overflow-hidden">
                 <div className="flex flex-col divide-y divide-primary/10">
                     {vacancies.map((v) => (
                         <div key={v.id} className="flex items-center gap-3 px-5 py-3.5">
@@ -172,7 +172,7 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                 </div>
             </div>
 
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5">
                 <h3 className="text-sm font-manrope font-bold text-primary mb-3">Додати вакансію</h3>
                 <div className="flex flex-col gap-2">
                     <input

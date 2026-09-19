@@ -67,7 +67,7 @@ export default function ExamTopics() {
                             {subject.groups.map((group, gi) => (
                                 <div key={gi}>
                                     {group.subtitle && (
-                                        <p className="font-manrope font-semibold text-sm text-accent mb-3">
+                                        <p className="font-manrope font-semibold text-sm text-primary mb-3">
                                             {group.subtitle}
                                         </p>
                                     )}

@@ -170,7 +170,7 @@ export default function PollDetail({
             )}
 
             {/* Явка */}
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5">
                 <div className="flex items-center justify-between gap-3 mb-2">
                     <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70">
                         <Users size={13} />
@@ -256,7 +256,7 @@ export default function PollDetail({
 
             {/* Результати */}
             {isClosed && results && (
-                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+                <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5">
                     <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-4">
                         <Trophy size={13} />
                         Результати · {totalVotes} {totalVotes === 1 ? 'голос' : 'голосів'}
@@ -391,7 +391,7 @@ function ResultsDonut({
     });
 
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+        <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5">
             <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-4">
                 <PieChart size={13} />
                 Розподіл голосів

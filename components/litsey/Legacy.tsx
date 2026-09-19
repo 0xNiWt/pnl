@@ -27,7 +27,7 @@ const SLIDES: Slide[] = [
 ];
 
 const PARAGRAPHS = [
-    "Ліцей виріс із фізико-математичної школи №145, і шістдесят п’ять років роботи з обдарованими дітьми — це не гасло, а метод: у ліцею є практичний досвід та інтелектуальний потенціал, щоб бути першою ланкою у підготовці інтелектуальної еліти України.",
+    "Ліцей виріс із фізико-математичної школи №145, і 65 років роботи з обдарованими дітьми — це не гасло, а метод: у ліцею є практичний досвід та інтелектуальний потенціал, щоб бути першою ланкою у підготовці інтелектуальної еліти України.",
     "Найпереконливіше про це говорить шлях випускників. Усі випускники СШ №145 здобули вищу освіту, близько 1800 із них захистили кандидатські дисертації, а 170 — докторські.",
 ];
 
@@ -51,7 +51,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                     </span>
 
                     <h2 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em] mb-6 max-w-xl">
-                        Шістдесятип’ятирічний досвід роботи з обдарованими дітьми
+                        65-річний досвід роботи з обдарованими дітьми
                     </h2>
 
                     <div className="flex flex-col gap-4 max-w-xl">
@@ -81,7 +81,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                                     key={table.id}
                                     className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-6 flex flex-col"
                                 >
-                                    <span className="font-cormorant text-5xl leading-none text-accent">
+                                    <span className="font-cormorant text-5xl leading-none text-primary">
                                         {total > 0 ? total : '—'}
                                     </span>
 
@@ -97,7 +97,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
 
                                     <Link
                                         href={`/litsey/olympiads#${table.id}`}
-                                        className="group mt-4 pt-4 border-t border-primary/10 inline-flex items-center gap-1.5 font-manrope text-sm font-semibold text-accent hover:text-primary transition-colors"
+                                        className="group mt-4 pt-4 border-t border-primary/10 inline-flex items-center gap-1.5 font-manrope text-sm font-semibold text-primary hover:text-secondary-deep transition-colors"
                                     >
                                         Подивитись таблицю
                                         <ArrowRight

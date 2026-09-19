@@ -36,7 +36,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
 
             <div className="flex flex-1 flex-col gap-2.5 p-5">
                 {dateLabel && (
-                    <span className="font-plex text-xs font-semibold uppercase tracking-wider text-accent">
+                    <span className="font-plex text-xs font-semibold uppercase tracking-wider text-primary">
                         {dateLabel}
                     </span>
                 )}

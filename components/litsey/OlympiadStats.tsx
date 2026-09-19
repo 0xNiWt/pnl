@@ -54,7 +54,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
             <div className="px-5 md:px-6 py-5 border-b border-primary/10 flex flex-wrap items-end justify-between gap-3">
                 <div>
                     <h2 className="flex items-center gap-2 font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
-                        <Trophy size={18} className="text-accent" />
+                        <Trophy size={18} className="text-primary" />
                         {table.title}
                     </h2>
                     {table.subtitle && (
@@ -63,7 +63,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                 </div>
 
                 {total > 0 && (
-                    <p className="font-cormorant text-4xl text-accent leading-none">
+                    <p className="font-cormorant text-4xl text-primary leading-none">
                         {total}
                         <span className="ml-2 font-inter text-xs uppercase tracking-[0.14em] text-primary/60">
                             перемог

@@ -111,7 +111,7 @@ function Section({
             </h2>
 
             {polls.length === 0 ? (
-                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-8 text-center">
+                <div className="bg-primary/[0.04] border border-primary/10 rounded-none px-6 py-8 text-center">
                     <p className="text-sm text-primary/60">{empty}</p>
                 </div>
             ) : (
@@ -120,7 +120,7 @@ function Section({
                         <Link
                             key={poll.id}
                             href={`/profile/votes/${poll.id}`}
-                            className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5 hover:bg-secondary/[0.1] transition-colors flex items-start gap-4"
+                            className="bg-primary/[0.04] border border-primary/10 rounded-none p-5 hover:bg-primary/[0.04] transition-colors flex items-start gap-4"
                         >
                             <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent shrink-0">
                                 <Vote size={17} />

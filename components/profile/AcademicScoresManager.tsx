@@ -143,7 +143,7 @@ export default function AcademicScoresManager({
             )}
 
             {/* Фільтри */}
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
                 <div className="relative">
                     <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary/30" />
                     <input
@@ -202,7 +202,7 @@ export default function AcademicScoresManager({
             </div>
 
             {/* Список */}
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none overflow-hidden">
                 {filtered.length === 0 ? (
                     <p className="px-6 py-10 text-sm text-primary/60 text-center">
                         За такими умовами нікого не знайдено.

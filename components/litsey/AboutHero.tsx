@@ -4,14 +4,6 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import svyato from "@/public/about/svyato.jpg";
 
-// Цифри — зі шляху випускників школи №145 та результатів останніх десяти років.
-const STATS = [
-    { value: "100%", label: "випускників здобули вищу освіту" },
-    { value: "≈1800", label: "захищених кандидатських дисертацій" },
-    { value: "170", label: "докторів наук серед випускників" },
-    { value: "18", label: "призерів міжнародних олімпіад за 10 років" },
-];
-
 export default function AboutHero() {
     const smoothOut = [0.16, 1, 0.3, 1] as const;
 
@@ -37,7 +29,7 @@ export default function AboutHero() {
 
                     <p className="mt-5 text-base text-primary/85 max-w-[480px] mx-auto md:mx-0">
                         Київський природничо-науковий ліцей №145 створено на базі
-                        фізико-математичної школи, педколектив якої має шістдесятип’ятирічний досвід
+                        фізико-математичної школи, педколектив якої має 65-річний досвід
                         роботи з обдарованими дітьми. Поглиблені фізика, математика,
                         хімія та інформатика — і вчителі, які пам&apos;ятають ваше ім&apos;я.
                     </p>
@@ -71,23 +63,6 @@ export default function AboutHero() {
                     Ліцейські урочистості · зустрічі поколінь ліцеїстів
                 </figcaption>
             </figure>
-
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 rounded-none border border-secondary/70 bg-secondary/[0.3] overflow-hidden">
-                {STATS.map((stat, i) => (
-                    <div
-                        key={stat.label}
-                        className={`flex flex-col items-center justify-center text-center gap-1 px-4 py-8 border-primary/10
-                            ${i % 2 === 0 ? "border-r" : ""}
-                            ${i < 2 ? "border-b md:border-b-0" : ""}
-                            ${i > 0 ? "md:border-l" : ""}
-                            ${i === 2 ? "md:border-r-0" : ""}
-                        `}
-                    >
-                        <h4 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
-                        <p className="font-inter text-primary/78 text-sm max-w-[160px] leading-snug">{stat.label}</p>
-                    </div>
-                ))}
-            </div>
         </motion.section>
     );
 }

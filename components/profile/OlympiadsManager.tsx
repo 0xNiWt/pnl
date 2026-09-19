@@ -186,7 +186,7 @@ export default function OlympiadsManager({
             )}
 
             {/* Додати здобуток */}
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5 flex flex-col gap-4">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5 flex flex-col gap-4">
                 <h2 className="font-manrope font-bold text-sm text-primary">Додати здобуток</h2>
 
                 <div>
@@ -315,8 +315,8 @@ export default function OlympiadsManager({
             </div>
 
             {/* Список здобутків */}
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
-                <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.3] flex items-center gap-2">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none overflow-hidden">
+                <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.04] flex items-center gap-2">
                     <Trophy size={15} className="text-accent" />
                     <p className="font-manrope font-bold text-sm text-primary">
                         Здобутки ({results.length})
@@ -368,8 +368,8 @@ export default function OlympiadsManager({
             </div>
 
             {/* Шкала */}
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
-                <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.3]">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none overflow-hidden">
+                <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.04]">
                     <p className="font-manrope font-bold text-sm text-primary">Шкала балів</p>
                     <p className="text-xs text-primary/60 mt-0.5">
                         П. 10.7.6 Статуту поки позначений як «ДОРОБИТИ» — це тимчасові значення.
@@ -380,7 +380,7 @@ export default function OlympiadsManager({
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead>
-                            <tr className="bg-secondary/[0.3] text-left font-plex text-[13px] uppercase tracking-wider text-primary/70">
+                            <tr className="bg-primary/[0.04] text-left font-plex text-[13px] uppercase tracking-wider text-primary/70">
                                 <th className="px-5 py-2.5">Етап</th>
                                 {OLYMPIAD_PLACES.map((p) => (
                                     <th key={p.value} className="px-3 py-2.5 w-28 text-right">

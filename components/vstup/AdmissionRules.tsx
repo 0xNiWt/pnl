@@ -48,7 +48,7 @@ export default function AdmissionRules() {
                                     aria-expanded={isOpen}
                                     className="w-full flex items-center gap-4 px-5 md:px-6 py-4 text-left hover:bg-secondary/[0.1] transition-colors"
                                 >
-                                    <span className="font-cormorant text-2xl text-accent leading-none w-6 shrink-0">
+                                    <span className="font-cormorant text-2xl text-primary leading-none w-6 shrink-0">
                                         {section.number}
                                     </span>
 
@@ -81,7 +81,7 @@ export default function AdmissionRules() {
                                             <ol className="px-5 md:px-6 pb-5 pt-1 flex flex-col gap-3.5 border-t border-primary/[0.07]">
                                                 {section.items.map((item, i) => (
                                                     <li key={i} className="flex gap-3.5 pt-3.5 first:pt-4">
-                                                        <span className="font-manrope text-xs font-bold text-accent tabular-nums shrink-0 pt-0.5 w-8">
+                                                        <span className="font-manrope text-xs font-bold text-primary tabular-nums shrink-0 pt-0.5 w-8">
                                                             {section.number}.{i + 1}
                                                         </span>
                                                         <span className="text-sm text-primary/85 leading-relaxed">

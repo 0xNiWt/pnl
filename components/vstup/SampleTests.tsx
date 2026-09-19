@@ -83,7 +83,7 @@ function SampleList({ title, items }: { title: string; items: Sample[] }) {
                                         {s.note ?? `${s.year} рік`}
                                     </span>
                                 </span>
-                                <span className="font-cormorant font-bold text-xl text-accent shrink-0">{s.year}</span>
+                                <span className="font-cormorant font-bold text-xl text-primary shrink-0">{s.year}</span>
                                 <Download size={16} className="shrink-0 text-primary/60 group-hover:text-secondary-deep transition-colors" />
                             </a>
                         </li>

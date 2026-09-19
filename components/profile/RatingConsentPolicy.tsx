@@ -58,7 +58,7 @@ export default function RatingConsentPolicy({
                 </div>
             )}
 
-            <div className="flex items-center justify-between gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-4">
+            <div className="flex items-center justify-between gap-4 bg-primary/[0.04] border border-primary/10 rounded-none px-5 py-4">
                 <div className="min-w-0">
                     <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">
                         <ShieldCheck size={15} className="text-accent" />
@@ -115,7 +115,7 @@ function Stat({
     tone?: 'calm' | 'warn';
 }) {
     return (
-        <div className="rounded-none border border-secondary/70 bg-secondary/[0.3] px-5 py-4">
+        <div className="rounded-none border border-primary/10 bg-primary/[0.03] px-5 py-4">
             <p
                 className={`font-manrope font-bold text-2xl ${tone === 'warn' ? 'text-accent' : 'text-primary'
                     }`}

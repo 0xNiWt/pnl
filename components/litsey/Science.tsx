@@ -61,7 +61,7 @@ export default function Science() {
                     <ul className="flex flex-col gap-3.5 max-w-xl">
                         {SCIENCE_POINTS.map((p) => (
                             <li key={p.slice(0, 24)} className="flex gap-3 text-base text-primary/85 leading-relaxed">
-                                <span className="mt-2.5 h-1.5 w-1.5 rounded-none bg-accent shrink-0" />
+                                <span className="mt-2.5 h-1.5 w-1.5 rounded-none bg-primary shrink-0" />
                                 {p}
                             </li>
                         ))}
@@ -87,7 +87,7 @@ export default function Science() {
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
                     {EXTRAS.map((e) => (
                         <div key={e.label} className="border-l-2 border-primary/10 pl-4">
-                            <span className="font-cormorant text-4xl leading-none text-accent">{e.value}</span>
+                            <span className="font-cormorant text-4xl leading-none text-primary">{e.value}</span>
                             <p className="mt-1.5 text-sm text-primary/78 leading-snug">{e.label}</p>
                         </div>
                     ))}

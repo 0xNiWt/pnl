@@ -131,7 +131,7 @@ function Tile({
     small?: boolean;
 }) {
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 px-5 py-4">
+        <div className="bg-primary/[0.04] border border-primary/10 px-5 py-4">
             <p className="flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.16em] text-primary/65">
                 <span className="text-accent">{icon}</span>
                 {label}
@@ -154,7 +154,7 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
     }
 
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 overflow-x-auto">
+        <div className="bg-primary/[0.04] border border-primary/10 overflow-x-auto">
             <table className="w-full text-sm border-collapse">
                 <thead>
                     <tr className="border-b border-primary/10">
@@ -265,7 +265,7 @@ function SummaryRow({
     children: React.ReactNode;
 }) {
     return (
-        <tr className={`border-t ${strong ? 'border-primary/15 bg-secondary/[0.3]' : 'border-primary/10'}`}>
+        <tr className={`border-t ${strong ? 'border-primary/15 bg-primary/[0.04]' : 'border-primary/10'}`}>
             <th scope="row" className={`sticky left-0 z-10 px-4 py-2.5 text-left ${strong ? 'bg-[#efe9dc]' : 'bg-[#f7f2e6]'}`}>
                 <span className={`${strong ? 'font-bold text-primary' : 'font-semibold text-primary/85'}`}>{label}</span>
                 {hint && <span className="block text-[12px] font-normal text-primary/60">{hint}</span>}
@@ -322,7 +322,7 @@ function PenaltyList({
     const gameTitle = new Map(games.map((g) => [g.id, g.title]));
 
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 px-5 py-4">
+        <div className="bg-primary/[0.04] border border-primary/10 px-5 py-4">
             <p className="font-plex text-[12px] uppercase tracking-[0.16em] text-primary/65 mb-3">Штрафи від президента клубу</p>
             <ul className="flex flex-col gap-2 text-sm">
                 {penalties.map((p) => (
@@ -351,7 +351,7 @@ function PersonalTable({ rows, currentUserId }: { rows: PersonStanding[]; curren
     }
 
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 overflow-x-auto">
+        <div className="bg-primary/[0.04] border border-primary/10 overflow-x-auto">
             <table className="w-full min-w-[560px] text-sm">
                 <thead>
                     <tr className="border-b border-primary/10 text-left">
@@ -423,7 +423,7 @@ function TabButton({
 
 function Empty({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 px-6 py-10 text-center">
+        <div className="bg-primary/[0.04] border border-primary/10 px-6 py-10 text-center">
             <p className="text-sm text-primary/65">{children}</p>
         </div>
     );
@@ -465,11 +465,11 @@ function GameHistory({
                     const winners = game.rows.filter((r) => r.place === 1);
 
                     return (
-                        <div key={game.id} className="bg-secondary/[0.3] border border-primary/10">
+                        <div key={game.id} className="bg-primary/[0.04] border border-primary/10">
                             <button
                                 onClick={() => setOpen(isOpen ? null : game.id)}
                                 aria-expanded={isOpen}
-                                className="w-full flex items-center gap-4 px-5 py-3.5 text-left hover:bg-secondary/[0.1] transition-colors"
+                                className="w-full flex items-center gap-4 px-5 py-3.5 text-left hover:bg-primary/[0.04] transition-colors"
                             >
                                 <span className="font-plex text-[13px] text-primary/65 tabular-nums w-20 shrink-0">
                                     {new Date(game.played_on).toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}
@@ -535,7 +535,7 @@ function GameHistory({
 
 function Rules() {
     return (
-        <details className="bg-secondary/[0.3] border border-primary/10 px-5 py-4 text-sm text-primary/80">
+        <details className="bg-primary/[0.04] border border-primary/10 px-5 py-4 text-sm text-primary/80">
             <summary className="cursor-pointer font-semibold text-primary">Як рахується рейтинг</summary>
             <ul className="mt-3 flex flex-col gap-2 leading-relaxed list-disc pl-5">
                 <li>

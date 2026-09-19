@@ -400,7 +400,7 @@ export default function EruditeManager({
                 )}
 
                 {planned.map((game) => (
-                    <div key={game.id} className="bg-secondary/[0.3] border border-primary/10">
+                    <div key={game.id} className="bg-primary/[0.04] border border-primary/10">
                         <div className="flex flex-wrap items-center gap-3 px-5 py-3.5 border-b border-primary/10">
                             <div className="flex-1 min-w-0">
                                 <p className="font-semibold text-primary truncate">{game.title}</p>
@@ -483,7 +483,7 @@ export default function EruditeManager({
 
                 <div className="flex flex-col gap-2">
                     {[...played].reverse().map((game) => (
-                        <div key={game.id} className="bg-secondary/[0.3] border border-primary/10 px-5 py-3.5 flex items-center gap-4">
+                        <div key={game.id} className="bg-primary/[0.04] border border-primary/10 px-5 py-3.5 flex items-center gap-4">
                             <span className="font-plex text-[13px] text-primary/65 tabular-nums w-24 shrink-0">
                                 {new Date(game.played_on).toLocaleDateString('uk-UA')}
                             </span>
@@ -577,7 +577,7 @@ export default function EruditeManager({
 
                 <div className="flex flex-col gap-2">
                     {penalties.map((p) => (
-                        <div key={p.id} className="bg-secondary/[0.3] border border-primary/10 px-5 py-3 flex items-center gap-4">
+                        <div key={p.id} className="bg-primary/[0.04] border border-primary/10 px-5 py-3 flex items-center gap-4">
                             <span className="font-manrope font-bold text-red-600 tabular-nums w-10 shrink-0">−{p.points}</span>
                             <div className="min-w-0 flex-1">
                                 <p className="text-sm font-semibold text-primary">
@@ -677,7 +677,7 @@ export default function EruditeManager({
                 ) : (
                     <div className="flex flex-col gap-2">
                         {teams.map((team, i) => (
-                            <div key={team.id} className="bg-secondary/[0.3] border border-primary/10 px-5 py-3.5 flex items-start gap-4">
+                            <div key={team.id} className="bg-primary/[0.04] border border-primary/10 px-5 py-3.5 flex items-start gap-4">
                                 <span className="font-manrope font-bold text-primary/60 w-8 shrink-0">№{i + 1}</span>
                                 <div className="min-w-0 flex-1">
                                     <p className="font-semibold text-primary">

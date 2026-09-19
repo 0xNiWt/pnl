@@ -73,8 +73,8 @@ export default function UsersRoleManager({
                 </div>
             )}
 
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
-                <div className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr] gap-4 px-6 py-3 border-b border-primary/10 bg-secondary/[0.3]">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none overflow-hidden">
+                <div className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr] gap-4 px-6 py-3 border-b border-primary/10 bg-primary/[0.04]">
                     <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                         Користувач
                     </p>

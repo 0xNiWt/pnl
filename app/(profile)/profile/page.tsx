@@ -132,7 +132,7 @@ export default async function ProfilePage() {
                         </h1>
                     </div>
 
-                    <div className="flex items-center gap-3 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-3">
+                    <div className="flex items-center gap-3 bg-primary/[0.04] border border-primary/10 rounded-none px-5 py-3">
                         <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                             <Coins size={18} />
                         </span>
@@ -178,7 +178,7 @@ export default async function ProfilePage() {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6">
+                        <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-6">
                             <h3 className="font-manrope font-bold text-primary text-sm mb-4">
                                 Дані акаунту
                             </h3>
@@ -423,7 +423,7 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
 
 function SectionCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6">
+        <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-6">
             <h3 className="flex items-center gap-2 font-manrope font-bold text-primary text-sm mb-4">
                 <span className="text-accent">{icon}</span>
                 {title}

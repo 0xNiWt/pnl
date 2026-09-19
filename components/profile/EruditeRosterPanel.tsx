@@ -89,7 +89,7 @@ export default function EruditeRosterPanel({
 
 function Notice({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 px-5 py-6 text-sm text-primary/70">
+        <div className="bg-primary/[0.04] border border-primary/10 px-5 py-6 text-sm text-primary/70">
             {children}
         </div>
     );
@@ -156,7 +156,7 @@ function RosterCard({
                 : 'bg-accent/10 text-accent border-accent/30';
 
     return (
-        <div className="bg-secondary/[0.3] border border-primary/10 p-5 flex flex-col gap-3">
+        <div className="bg-primary/[0.04] border border-primary/10 p-5 flex flex-col gap-3">
             <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                     <p className="font-semibold text-primary">{game.title}</p>

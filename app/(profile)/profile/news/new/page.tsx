@@ -19,7 +19,7 @@ export default async function NewNewsPage() {
                     Нова новина
                 </h1>
  
-                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6 md:p-8">
+                <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-6 md:p-8">
                     <NewsForm mode="create" />
                 </div>
             </div>

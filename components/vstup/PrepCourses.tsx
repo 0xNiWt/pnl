@@ -36,7 +36,7 @@ export default function PrepCourses() {
                         key={course.id}
                         className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-6 md:p-7 flex flex-col"
                     >
-                        <span className="inline-flex self-start items-center font-plex text-[13px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-3 py-1 mb-4">
+                        <span className="inline-flex self-start items-center font-plex text-[13px] font-bold uppercase tracking-[0.14em] text-primary bg-primary/10 rounded-none px-3 py-1 mb-4">
                             {course.audience}
                         </span>
 

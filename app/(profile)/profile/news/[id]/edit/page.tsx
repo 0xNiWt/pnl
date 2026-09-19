@@ -30,7 +30,7 @@ export default async function EditNewsPage({ params }: PageParams) {
                     Редагування новини
                 </h1>
 
-                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6 md:p-8">
+                <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-6 md:p-8">
                     <NewsForm mode="edit" newsId={id} initialData={article} />
                 </div>
             </div>

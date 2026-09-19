@@ -45,7 +45,7 @@ export default async function ProfileNewsPage() {
                     </Link>
                 </div>
  
-                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6">
+                <div className="bg-primary/[0.04] border border-primary/10 rounded-none px-6">
                     <NewsAdminList items={news ?? []} />
                 </div>
             </div>

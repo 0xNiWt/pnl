@@ -53,14 +53,14 @@ export default async function MyOrdersPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-8">
-                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+                    <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5">
                         <p className="flex items-center gap-1.5 text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             <Coins size={12} className="text-accent" />
                             Баланс
                         </p>
                         <p className="text-2xl font-manrope font-bold text-primary mt-1">{balance}</p>
                     </div>
-                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+                    <div className="bg-primary/[0.04] border border-primary/10 rounded-none p-5">
                         <p className="flex items-center gap-1.5 text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             <ShoppingBag size={12} className="text-accent" />
                             Витрачено
@@ -70,7 +70,7 @@ export default async function MyOrdersPage() {
                 </div>
 
                 {rows.length === 0 ? (
-                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-12 text-center">
+                    <div className="bg-primary/[0.04] border border-primary/10 rounded-none px-6 py-12 text-center">
                         <p className="text-sm text-primary/70 mb-4">Ви ще нічого не замовляли.</p>
                         <Link
                             href="/shop"
@@ -85,7 +85,7 @@ export default async function MyOrdersPage() {
                         {rows.map((order) => (
                             <div
                                 key={order.id}
-                                className="flex items-center gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none p-4"
+                                className="flex items-center gap-4 bg-primary/[0.04] border border-primary/10 rounded-none p-4"
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="text-sm font-semibold text-primary truncate">

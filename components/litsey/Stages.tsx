@@ -76,7 +76,7 @@ export default function Stages() {
                             <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center shrink-0">
                                 <Icon size={20} className="text-primary" />
                             </span>
-                            <span className="font-plex text-[12px] uppercase tracking-[0.2em] text-primary/65">
+                            <span className="font-plex text-[16px] uppercase tracking-[0.16em] text-primary/65">
                                 {badge}
                             </span>
                         </div>
@@ -89,7 +89,7 @@ export default function Stages() {
                         <ul className="mt-5 flex flex-col gap-3">
                             {points.map((p) => (
                                 <li key={p} className="flex gap-3 text-sm text-primary/78 leading-relaxed">
-                                    <span className="mt-2 h-1.5 w-1.5 rounded-none bg-accent shrink-0" />
+                                    <span className="mt-2 h-1.5 w-1.5 rounded-none bg-primary shrink-0" />
                                     {p}
                                 </li>
                             ))}

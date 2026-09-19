@@ -29,7 +29,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
 
     if (tables.length === 0) {
         return (
-            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-8 text-center">
+            <div className="bg-primary/[0.04] border border-primary/10 rounded-none px-6 py-8 text-center">
                 <p className="text-sm text-primary/70">
                     Таблиць ще немає — застосуйте міграцію sql/0008_olympiad_stats.sql.
                 </p>
@@ -207,10 +207,10 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                 </p>
             </div>
 
-            <div className="rounded-none border border-secondary/70 bg-secondary/[0.3] overflow-x-auto">
+            <div className="rounded-none border border-primary/10 bg-primary/[0.03] overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                     <thead>
-                        <tr className="bg-secondary/[0.3]">
+                        <tr className="bg-primary/[0.04]">
                             <th className="text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/78 px-3 py-2.5 min-w-[190px] border-b border-primary/10">
                                 Предмет
                             </th>
@@ -241,7 +241,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
 
                     <tbody>
                         {draft.rows.map((row, rowIndex) => (
-                            <tr key={rowIndex} className="hover:bg-secondary/[0.1]">
+                            <tr key={rowIndex} className="hover:bg-primary/[0.04]">
                                 <td className="px-3 py-1.5 border-b border-primary/[0.07]">
                                     <input
                                         value={row.subject}
@@ -298,7 +298,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     </tbody>
 
                     <tfoot>
-                        <tr className="bg-secondary/[0.3]">
+                        <tr className="bg-primary/[0.04]">
                             <th className="text-left font-manrope font-bold text-primary px-3 py-2.5">
                                 Загалом
                             </th>

@@ -173,7 +173,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
                 </h2>
 
                 {entry.relation && (
-                    <p className="mt-1 text-sm text-accent">{entry.relation}</p>
+                    <p className="mt-1 text-sm text-primary">{entry.relation}</p>
                 )}
 
                 {text && (
@@ -185,7 +185,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
                         {isLong && (
                             <button
                                 onClick={() => setExpanded(!expanded)}
-                                className="mt-2 self-start font-manrope text-xs font-semibold text-accent hover:text-primary transition-colors"
+                                className="mt-2 self-start font-manrope text-xs font-semibold text-primary hover:text-secondary-deep transition-colors"
                             >
                                 {expanded ? 'Згорнути' : 'Читати далі'}
                             </button>

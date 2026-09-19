@@ -201,7 +201,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                 {found.slice(0, shown).map((entry) => (
                     <div
                         key={entry.id}
-                        className="bg-secondary/[0.3] border border-primary/10 rounded-none p-4 flex items-start gap-4"
+                        className="bg-primary/[0.04] border border-primary/10 rounded-none p-4 flex items-start gap-4"
                     >
                         <div className="relative w-14 h-16 shrink-0 rounded-none overflow-hidden bg-primary/5">
                             {entry.photo_url ? (
@@ -262,7 +262,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                 ))}
 
                 {found.length === 0 && (
-                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-8 text-center">
+                    <div className="bg-primary/[0.04] border border-primary/10 rounded-none px-6 py-8 text-center">
                         <p className="text-sm text-primary/60">
                             {entries.length === 0
                                 ? 'Записів ще немає — застосуйте міграцію sql/0010_memory_book.sql або додайте людину вручну.'

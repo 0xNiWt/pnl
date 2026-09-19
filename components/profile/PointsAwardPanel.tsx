@@ -449,7 +449,7 @@ export default function PointsAwardPanel() {
             {/* Таблиця учасників із коефіцієнтами */}
             {mode === 'event' && (
                 <div className="border border-primary/10 rounded-none overflow-hidden bg-white/40">
-                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-secondary/[0.3]">
+                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-primary/[0.04]">
                         <span className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             Учасники — рівень, категорія та пояснення
                         </span>
@@ -557,7 +557,7 @@ export default function PointsAwardPanel() {
                     )}
 
                     {participants.length > 0 && (
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-3 border-t border-primary/10 bg-secondary/[0.3]">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-3 border-t border-primary/10 bg-primary/[0.04]">
                             <Summary label="Учасників" value={String(participants.length)} />
                             <Summary label="Сума коефіцієнтів" value={String(distribution.totalCoefficient)} />
                             <Summary

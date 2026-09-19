@@ -49,7 +49,7 @@ export default function BuildingHero() {
                     </p>
 
                     {/* Технічний рядок унизу обкладинки — як вихідні дані видання. */}
-                    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-background/20 pt-4 font-plex text-[12px] uppercase tracking-[0.18em] text-background/55">
+                    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-background/20 pt-4 font-plex text-[16px] uppercase tracking-[0.16em] text-background/55">
                         {SUBJECTS.map((subject, i) => (
                             <span key={subject} className="flex items-center gap-6">
                                 <span className="text-secondary">{String(i + 1).padStart(2, "0")}</span>
