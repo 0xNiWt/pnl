@@ -17,7 +17,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
     return (
         <Link
             href={`/news/${slug}`}
-            className="group flex flex-col overflow-hidden rounded-none border border-secondary/30 bg-secondary/[0.07] hover:border-secondary/60 transition-colors"
+            className="group flex flex-col overflow-hidden rounded-none border border-secondary/70 bg-secondary/[0.3] hover:border-secondary/60 transition-colors"
         >
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary/5">
                 {coverUrl ? (

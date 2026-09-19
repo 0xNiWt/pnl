@@ -16,7 +16,7 @@ export default async function NewsPage() {
         <main className="paper-grid bg-background min-h-screen flex flex-col">
             <NewsHero />
 
-            <section className="max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-16 w-full">
+            <section className="max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-16 w-full">
                 <NewsListWithFilter initialNews={news ?? []} />
             </section>
 

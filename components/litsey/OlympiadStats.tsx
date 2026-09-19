@@ -33,7 +33,7 @@ export default function OlympiadStats({ tables }: { tables: OlympiadTable[] }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.85, ease: smoothOut }}
-                    className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-16 scroll-mt-28"
+                    className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-16 scroll-mt-28"
                     id={table.id}
                 >
                     <TableCard table={table} />
@@ -50,7 +50,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
     const hasRows = table.rows.length > 0;
 
     return (
-        <div className="rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-hidden">
+        <div className="rounded-none border border-secondary/70 bg-secondary/[0.3] overflow-hidden">
             <div className="px-5 md:px-6 py-5 border-b border-primary/10 flex flex-wrap items-end justify-between gap-3">
                 <div>
                     <h2 className="flex items-center gap-2 font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
@@ -78,7 +78,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-sm">
                         <thead>
-                            <tr className="bg-secondary/[0.08]">
+                            <tr className="bg-secondary/[0.3]">
                                 <th className="sticky left-0 z-10 bg-[#F6F1E4] text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/78 px-4 py-3 min-w-[200px] border-b border-primary/10">
                                     Предмет
                                 </th>
@@ -91,7 +91,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                                 {yearsNewestFirst.map((year) => (
                                     <th
                                         key={year}
-                                        className="px-2.5 py-3 border-b border-primary/10 font-inter text-[11px] font-medium text-primary/65 whitespace-nowrap"
+                                        className="px-2.5 py-3 border-b border-primary/10 font-inter text-[13px] font-medium text-primary/65 whitespace-nowrap"
                                     >
                                         {year}
                                     </th>
@@ -128,7 +128,7 @@ function TableCard({ table }: { table: OlympiadTable }) {
                         </tbody>
 
                         <tfoot>
-                            <tr className="bg-secondary/[0.08]">
+                            <tr className="bg-secondary/[0.3]">
                                 <th className="sticky left-0 z-10 bg-[#F4EEDF] text-left font-manrope font-bold text-primary px-4 py-3">
                                     Загалом
                                 </th>

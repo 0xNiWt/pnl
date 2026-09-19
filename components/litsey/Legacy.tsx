@@ -40,13 +40,13 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="legacy"
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-8 md:gap-14 items-center">
                 <div>
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Спадок
                     </span>
 
@@ -79,7 +79,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                             return (
                                 <div
                                     key={table.id}
-                                    className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 flex flex-col"
+                                    className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-6 flex flex-col"
                                 >
                                     <span className="font-cormorant text-5xl leading-none text-accent">
                                         {total > 0 ? total : '—'}

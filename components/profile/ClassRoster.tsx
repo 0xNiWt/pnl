@@ -66,7 +66,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
         <div className="flex flex-col gap-4">
 
             {/* Пошук і коротка статистика */}
-            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-3">
+            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-3">
                 <div className="relative">
                     <Search
                         size={15}
@@ -100,16 +100,16 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
             </div>
 
             {groups.length === 0 ? (
-                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-10 text-center">
+                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-10 text-center">
                     <p className="text-sm text-primary/60">За таким запитом нікого не знайдено.</p>
                 </div>
             ) : (
                 groups.map((group) => (
                     <div
                         key={group.className}
-                        className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden"
+                        className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden"
                     >
-                        <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-primary/10 bg-secondary/[0.08]">
+                        <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-primary/10 bg-secondary/[0.3]">
                             <div className="flex items-center gap-2.5">
                                 <span className="w-8 h-8 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                     <Users size={15} />
@@ -119,7 +119,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                                         {group.className}
                                     </p>
                                     {parallelOf(group.className) && (
-                                        <p className="text-[11px] text-primary/60 mt-1">
+                                        <p className="text-[13px] text-primary/60 mt-1">
                                             {parallelOf(group.className)} паралель
                                         </p>
                                     )}
@@ -150,7 +150,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                                                 positions.map((id) => (
                                                     <span
                                                         key={id}
-                                                        className="inline-block bg-accent/15 text-accent text-[11px] font-semibold px-2.5 py-1 rounded-none"
+                                                        className="inline-block bg-accent/15 text-accent text-[13px] font-semibold px-2.5 py-1 rounded-none"
                                                     >
                                                         {positionLabel(id)}
                                                     </span>

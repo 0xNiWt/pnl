@@ -39,11 +39,11 @@ export default function Volunteering() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="volunteering"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                <span className="w-10 h-0.5 bg-secondary" />
                 Допомога захисникам
             </span>
 
@@ -74,8 +74,8 @@ export default function Volunteering() {
                     </figcaption>
                 </figure>
 
-                <div className="border border-secondary/30 bg-secondary/[0.07] p-6 md:p-8 flex flex-col">
-                    <p className="flex items-center gap-2 font-plex text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary-deep">
+                <div className="border border-secondary/70 bg-secondary/[0.3] p-6 md:p-8 flex flex-col">
+                    <p className="flex items-center gap-2 font-plex text-[13px] font-semibold uppercase tracking-[0.16em] text-secondary-deep">
                         <Store size={16} />
                         Щороку восени
                     </p>
@@ -105,8 +105,8 @@ export default function Volunteering() {
 
             {/* Госпіталь */}
             <div className="mt-6 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 items-stretch">
-                <div className="border border-secondary/30 bg-secondary/[0.07] p-6 md:p-8 flex flex-col order-2 lg:order-1">
-                    <p className="flex items-center gap-2 font-plex text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary-deep">
+                <div className="border border-secondary/70 bg-secondary/[0.3] p-6 md:p-8 flex flex-col order-2 lg:order-1">
+                    <p className="flex items-center gap-2 font-plex text-[13px] font-semibold uppercase tracking-[0.16em] text-secondary-deep">
                         <Hospital size={16} />
                         Окремий щорічний збір
                     </p>

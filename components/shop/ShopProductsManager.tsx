@@ -206,7 +206,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
             )}
 
             {products.length === 0 ? (
-                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-10 text-center">
+                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-10 text-center">
                     <p className="text-sm text-primary/60">Товарів ще немає.</p>
                 </div>
             ) : (
@@ -214,7 +214,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="flex items-center gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none p-4"
+                            className="flex items-center gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none p-4"
                         >
                             <div className="relative w-16 h-16 rounded-none overflow-hidden bg-primary/5 shrink-0">
                                 {product.image_url ? (
@@ -237,7 +237,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                 <p className="text-sm font-semibold text-primary truncate">
                                     {product.title}
                                     {!product.active && (
-                                        <span className="ml-2 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-0.5 rounded-none bg-primary/10 text-primary/70">
+                                        <span className="ml-2 text-[12px] font-plex font-bold uppercase tracking-wider px-2 py-0.5 rounded-none bg-primary/10 text-primary/70">
                                             прихований
                                         </span>
                                     )}
@@ -314,7 +314,7 @@ function ProductForm({
         setDraft({ ...draft, [key]: value });
 
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 md:p-6 flex flex-col gap-4">
+        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5 md:p-6 flex flex-col gap-4">
             <h3 className="font-manrope font-bold text-primary text-sm">
                 {isEdit ? 'Редагування товару' : 'Новий товар'}
             </h3>

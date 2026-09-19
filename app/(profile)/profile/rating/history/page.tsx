@@ -59,12 +59,12 @@ export default async function MyPointsHistoryPage() {
                         Мої бали та здобутки
                     </h1>
                     <div className="flex items-center gap-3 flex-wrap">
-                        <div className="flex items-center gap-3 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-3">
+                        <div className="flex items-center gap-3 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-3">
                             <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                 <Coins size={18} />
                             </span>
                             <div>
-                                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                                <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                     Активність
                                 </p>
                                 <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
@@ -73,12 +73,12 @@ export default async function MyPointsHistoryPage() {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-3 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-3">
+                        <div className="flex items-center gap-3 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-3">
                             <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                 <Trophy size={18} />
                             </span>
                             <div>
-                                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                                <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                     Олімпіади
                                 </p>
                                 <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
@@ -100,7 +100,7 @@ export default async function MyPointsHistoryPage() {
                 )}
 
                 {!error && (!transactions || transactions.length === 0) && (
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-8 text-center">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-8 text-center">
                         <p className="text-sm text-primary/70">
                             Поки що немає жодного нарахування балів.
                         </p>
@@ -112,22 +112,22 @@ export default async function MyPointsHistoryPage() {
                         {transactions.map((t) => (
                             <div
                                 key={t.id}
-                                className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
+                                className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
                             >
                                 <div>
                                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                        <span className="inline-block text-[11px] font-plex font-semibold uppercase tracking-wider text-accent">
+                                        <span className="inline-block text-[13px] font-plex font-semibold uppercase tracking-wider text-accent">
                                             {CATEGORY_LABELS[t.category as PointCategory] ?? t.category}
                                         </span>
                                         {t.event_title && (
-                                            <span className="inline-block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/65">
+                                            <span className="inline-block text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/65">
                                                 · {t.event_title}
                                             </span>
                                         )}
                                         {t.coefficient && (
                                             <span
                                                 title="Рівень залученості за п. 12.2.3.3 Статуту"
-                                                className="inline-block rounded-none bg-accent/15 text-accent text-[11px] font-manrope font-bold px-2 py-0.5"
+                                                className="inline-block rounded-none bg-accent/15 text-accent text-[13px] font-manrope font-bold px-2 py-0.5"
                                             >
                                                 К = {t.coefficient}
                                             </span>
@@ -176,7 +176,7 @@ export default async function MyPointsHistoryPage() {
                 </p>
 
                 {olympiads.length === 0 ? (
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-8 text-center">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-8 text-center">
                         <p className="text-sm text-primary/70">
                             Здобутків на олімпіадах і МАН поки не внесено.
                         </p>
@@ -186,14 +186,14 @@ export default async function MyPointsHistoryPage() {
                         {olympiads.map((o) => (
                             <div
                                 key={o.id}
-                                className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
+                                className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
                             >
                                 <div>
                                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                        <span className="inline-block text-[11px] font-plex font-semibold uppercase tracking-wider text-accent">
+                                        <span className="inline-block text-[13px] font-plex font-semibold uppercase tracking-wider text-accent">
                                             {olympiadLevelLabel(o.level)}
                                         </span>
-                                        <span className="inline-block rounded-none bg-accent/15 text-accent text-[11px] font-manrope font-bold px-2 py-0.5">
+                                        <span className="inline-block rounded-none bg-accent/15 text-accent text-[13px] font-manrope font-bold px-2 py-0.5">
                                             {olympiadPlaceLabel(o.place)}
                                         </span>
                                     </div>

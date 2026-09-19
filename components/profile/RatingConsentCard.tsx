@@ -77,7 +77,7 @@ export default function RatingConsentCard() {
                     >
                         Читати Положення
                     </Link>
-                    <span className="mt-1.5 block text-[11px] text-primary/65">
+                    <span className="mt-1.5 block text-[13px] text-primary/65">
                         {CONSENT_NOTE}
                     </span>
                 </span>

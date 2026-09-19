@@ -48,8 +48,8 @@ export default async function ShopOrdersPage() {
                 </Link>
 
                 <div className="mb-8">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
-                        <span className="w-5 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-3">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Магазин
                     </span>
                     <h1 className="flex items-center gap-2.5 font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">

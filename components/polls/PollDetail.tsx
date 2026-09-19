@@ -170,7 +170,7 @@ export default function PollDetail({
             )}
 
             {/* Явка */}
-            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
                 <div className="flex items-center justify-between gap-3 mb-2">
                     <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70">
                         <Users size={13} />
@@ -256,7 +256,7 @@ export default function PollDetail({
 
             {/* Результати */}
             {isClosed && results && (
-                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
                     <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-4">
                         <Trophy size={13} />
                         Результати · {totalVotes} {totalVotes === 1 ? 'голос' : 'голосів'}
@@ -273,7 +273,7 @@ export default function PollDetail({
                                         <p className="text-sm text-primary flex items-center gap-2 min-w-0">
                                             <span className="truncate">{r.label}</span>
                                             {isWinner && (
-                                                <span className="shrink-0 text-[10px] font-plex font-bold uppercase tracking-wider text-accent bg-accent/15 px-2 py-0.5 rounded-none">
+                                                <span className="shrink-0 text-[12px] font-plex font-bold uppercase tracking-wider text-accent bg-accent/15 px-2 py-0.5 rounded-none">
                                                     {winners.length > 1 ? 'Нічия' : 'Перемагає'}
                                                 </span>
                                             )}
@@ -391,7 +391,7 @@ function ResultsDonut({
     });
 
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
             <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-4">
                 <PieChart size={13} />
                 Розподіл голосів
@@ -486,7 +486,7 @@ function Badge({
 }) {
     return (
         <span
-            className={`inline-flex items-center gap-1.5 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${tone === 'active' ? 'bg-accent/15 text-accent' : 'bg-primary/5 text-primary/70'
+            className={`inline-flex items-center gap-1.5 text-[13px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${tone === 'active' ? 'bg-accent/15 text-accent' : 'bg-primary/5 text-primary/70'
                 }`}
         >
             {icon}

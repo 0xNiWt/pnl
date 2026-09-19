@@ -66,7 +66,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                         className={`flex items-center gap-2 rounded-none border px-4 py-2.5 text-sm font-semibold transition-colors ${
                             selected
                                 ? 'border-accent bg-accent/10 text-primary'
-                                : 'border-primary/10 bg-secondary/[0.08] text-primary/85 hover:border-secondary/60'
+                                : 'border-primary/10 bg-secondary/[0.3] text-primary/85 hover:border-secondary/60'
                         }`}
                     >
                         <CalendarDays size={16} />
@@ -99,7 +99,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
 
                             <div className="grid grid-cols-7 gap-1 mb-1">
                                 {WEEKDAYS.map((d) => (
-                                    <span key={d} className="text-center text-[10px] font-semibold uppercase text-primary/60 py-1">
+                                    <span key={d} className="text-center text-[12px] font-semibold uppercase text-primary/60 py-1">
                                         {d}
                                     </span>
                                 ))}

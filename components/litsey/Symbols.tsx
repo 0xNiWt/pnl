@@ -66,11 +66,11 @@ export default function Symbols() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="symbols"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                <span className="w-10 h-0.5 bg-secondary" />
                 Символи ліцею
             </span>
 
@@ -80,7 +80,7 @@ export default function Symbols() {
 
             <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-5 items-start">
                 {/* Герб */}
-                <div className="md:sticky md:top-28 rounded-none border border-secondary/30 bg-secondary/[0.07] p-7 md:p-9 flex flex-col items-center text-center">
+                <div className="md:sticky md:top-28 rounded-none border border-secondary/70 bg-secondary/[0.3] p-7 md:p-9 flex flex-col items-center text-center">
                     <div className="relative flex items-center justify-center mb-6">
                         <Image
                             src={gerb}
@@ -119,7 +119,7 @@ export default function Symbols() {
                             {ANTHEM.map((stanza, i) =>
                                 stanza.kind === "chorus" ? (
                                     <div key={i} className="border-l-2 border-accent/70 pl-5">
-                                        <span className="block font-plex text-[11px] font-bold uppercase tracking-[0.16em] text-cream/70 mb-2">
+                                        <span className="block font-plex text-[13px] font-bold uppercase tracking-[0.16em] text-cream/70 mb-2">
                                             Приспів
                                         </span>
                                         {stanza.lines.map((line) => (

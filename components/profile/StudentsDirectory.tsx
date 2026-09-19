@@ -206,7 +206,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             {tab === 'students' ? (
                 <>
                     {/* Фільтри */}
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
                         <div className="relative">
                             <Search
                                 size={15}
@@ -291,7 +291,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                     </div>
 
                     {/* Список учнів */}
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
                         {filtered.length === 0 ? (
                             <p className="px-6 py-10 text-sm text-primary/60 text-center">
                                 За такими умовами нікого не знайдено.
@@ -344,10 +344,10 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                             )}
 
                                             {isOpen && (
-                                                <div className="px-5 pb-5 pt-1 flex flex-col gap-4 bg-secondary/[0.08]">
+                                                <div className="px-5 pb-5 pt-1 flex flex-col gap-4 bg-secondary/[0.3]">
                                                     {POSITION_SCOPES.map((scope) => (
                                                         <div key={scope.id}>
-                                                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-2">
+                                                            <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-2">
                                                                 {scope.label}
                                                             </p>
                                                             <div className="flex flex-wrap gap-2">
@@ -427,8 +427,8 @@ function ScopeCard({
     holdersOf: (id: string) => Profile[];
 }) {
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
-            <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.08]">
+        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
+            <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.3]">
                 <p className="font-manrope font-bold text-sm text-primary">{scope.label}</p>
                 <p className="text-xs text-primary/60 mt-0.5">{scope.hint}</p>
             </div>
@@ -471,7 +471,7 @@ function ScopeCard({
 
 function PositionBadge({ id }: { id: string }) {
     return (
-        <span className="inline-block bg-accent/15 text-accent text-[11px] font-semibold px-2.5 py-1 rounded-none">
+        <span className="inline-block bg-accent/15 text-accent text-[13px] font-semibold px-2.5 py-1 rounded-none">
             {positionLabel(id)}
         </span>
     );
@@ -480,7 +480,7 @@ function PositionBadge({ id }: { id: string }) {
 function Filter({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div>
-            <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+            <label className="block text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                 {label}
             </label>
             {children}

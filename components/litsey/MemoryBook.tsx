@@ -32,11 +32,11 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: smoothOut }}
-                className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20"
+                className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20"
                 id="memory-intro"
             >
-                <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                    <span className="w-6 h-px bg-secondary" />
+                <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                    <span className="w-10 h-0.5 bg-secondary" />
                     Книга пам’яті
                 </span>
 
@@ -146,8 +146,8 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
     const shortText = isLong && !expanded ? text.slice(0, 260).trimEnd() + '…' : text;
 
     return (
-        <article className="rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-hidden flex flex-col">
-            <div className="relative w-full aspect-[3/4] bg-secondary/[0.08]">
+        <article className="rounded-none border border-secondary/70 bg-secondary/[0.3] overflow-hidden flex flex-col">
+            <div className="relative w-full aspect-[3/4] bg-secondary/[0.3]">
                 {entry.photo_url ? (
                     <Image
                         src={entry.photo_url}
@@ -160,7 +160,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
                 ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-primary/25">
                         <User size={32} />
-                        <span className="font-plex text-[11px] uppercase tracking-[0.14em]">
+                        <span className="font-plex text-[13px] uppercase tracking-[0.14em]">
                             Фото не збереглося
                         </span>
                     </div>

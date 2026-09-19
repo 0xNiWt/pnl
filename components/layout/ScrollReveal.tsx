@@ -22,6 +22,12 @@ const STAGGER_MS = 80;
 // Лінія, яку блок має перетнути, щоб випливти (частка висоти екрана).
 const TRIGGER_LINE = 0.92;
 
+// Блоки, що підвантажились окремо (Suspense), якийсь час лежать у DOM ще не
+// «оживленими» React. Якщо позначити їх раніше, React побачить чужі класи й
+// атрибути та поскаржиться на невідповідність — тож чекаємо на гідратацію.
+const isHydrated = (el: HTMLElement) =>
+    Object.keys(el).some((key) => key.startsWith('__reactFiber$'));
+
 export default function ScrollReveal() {
     const pathname = usePathname();
 
@@ -113,6 +119,7 @@ export default function ScrollReveal() {
 
             document.querySelectorAll<HTMLElement>(TARGETS).forEach((el) => {
                 if (el.dataset.revealSeen) return;
+                if (!isHydrated(el)) return;
                 el.dataset.revealSeen = '1';
 
                 if (el.closest('[data-no-reveal]')) return;
@@ -139,7 +146,10 @@ export default function ScrollReveal() {
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll, { passive: true });
-        const interval = window.setInterval(sweep, 600);
+        const interval = window.setInterval(() => {
+            prepare();
+            sweep();
+        }, 600);
 
         // Нові блоки («Показати ще», перемикання вкладок, перехід між сторінками).
         let mutationTimer = 0;

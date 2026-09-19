@@ -60,8 +60,8 @@ export default async function VotesPage() {
 
                 <div className="flex flex-col flex-wrap items-center text-center md:items-start gap-4 mb-8">
                     <div>
-                        <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
-                            <span className="w-5 h-px bg-secondary" />
+                        <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-3">
+                            <span className="w-10 h-0.5 bg-secondary" />
                             Учнівське самоврядування
                         </span>
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
@@ -111,7 +111,7 @@ function Section({
             </h2>
 
             {polls.length === 0 ? (
-                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-8 text-center">
+                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-8 text-center">
                     <p className="text-sm text-primary/60">{empty}</p>
                 </div>
             ) : (
@@ -120,7 +120,7 @@ function Section({
                         <Link
                             key={poll.id}
                             href={`/profile/votes/${poll.id}`}
-                            className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 hover:bg-secondary/[0.1] transition-colors flex items-start gap-4"
+                            className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5 hover:bg-secondary/[0.1] transition-colors flex items-start gap-4"
                         >
                             <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent shrink-0">
                                 <Vote size={17} />
@@ -140,7 +140,7 @@ function Section({
                                 </p>
                             </div>
 
-                            <span className="shrink-0 text-[11px] font-plex font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none bg-primary/5 text-primary/70">
+                            <span className="shrink-0 text-[13px] font-plex font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none bg-primary/5 text-primary/70">
                                 {poll.status === 'closed'
                                     ? 'Результати'
                                     : votedIn.has(poll.id)

@@ -63,13 +63,13 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                     return (
                         <div
                             key={kind}
-                            className="flex items-center justify-between gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-4"
+                            className="flex items-center justify-between gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-4"
                         >
                             <div className="min-w-0">
                                 <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">
                                     {RATING_LABELS[kind]}
                                     {isHidden && (
-                                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/15 px-2 py-0.5 rounded-none">
+                                        <span className="inline-flex items-center gap-1 text-[12px] font-bold uppercase tracking-wider text-accent bg-accent/15 px-2 py-0.5 rounded-none">
                                             <EyeOff size={10} />
                                             Приховано
                                         </span>

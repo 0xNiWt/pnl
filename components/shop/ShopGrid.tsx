@@ -72,7 +72,7 @@ export default function ShopGrid({
 
     if (products.length === 0) {
         return (
-            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-16 text-center">
+            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-16 text-center">
                 <PackageX size={28} className="mx-auto text-primary/25 mb-3" />
                 <p className="text-sm text-primary/70">
                     Товарів поки немає. Зазирніть пізніше — мерч ось-ось буде.
@@ -166,7 +166,7 @@ function ProductCard({
         forPoints && balance !== null && product.price_points !== null && balance < product.price_points;
 
     return (
-        <div className="flex flex-col bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
+        <div className="flex flex-col bg-secondary/[0.3] border border-primary/10 rounded-none overflow-hidden">
             <div className="relative w-full aspect-[4/3] bg-primary/5">
                 {product.image_url ? (
                     <Image
@@ -187,12 +187,12 @@ function ProductCard({
                 )}
 
                 {!product.active && (
-                    <span className="absolute top-3 left-3 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-1 rounded-none bg-primary text-background">
+                    <span className="absolute top-3 left-3 text-[12px] font-plex font-bold uppercase tracking-wider px-2 py-1 rounded-none bg-primary text-background">
                         Прихований
                     </span>
                 )}
                 {soldOut && (
-                    <span className="absolute top-3 right-3 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-1 rounded-none bg-accent text-background">
+                    <span className="absolute top-3 right-3 text-[12px] font-plex font-bold uppercase tracking-wider px-2 py-1 rounded-none bg-accent text-background">
                         Немає
                     </span>
                 )}

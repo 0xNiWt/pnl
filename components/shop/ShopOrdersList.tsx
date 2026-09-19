@@ -93,7 +93,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
             </div>
 
             {shown.length === 0 ? (
-                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-10 text-center">
+                <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-10 text-center">
                     <p className="text-sm text-primary/60">
                         {filter === 'new' ? 'Замовлень, що чекають видачі, немає.' : 'Тут порожньо.'}
                     </p>
@@ -106,7 +106,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                         return (
                             <div
                                 key={order.id}
-                                className="flex flex-wrap items-center gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none p-4"
+                                className="flex flex-wrap items-center gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none p-4"
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="text-sm font-semibold text-primary truncate">
@@ -130,7 +130,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                 </span>
 
                                 <span
-                                    className={`shrink-0 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${STATUS_STYLES[order.status]}`}
+                                    className={`shrink-0 text-[13px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${STATUS_STYLES[order.status]}`}
                                 >
                                     {ORDER_STATUS_LABELS[order.status]}
                                 </span>

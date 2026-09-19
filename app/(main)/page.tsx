@@ -4,6 +4,7 @@ import LitseyNav from "@/components/litsey/LitseyNav";
 import AboutHero from "@/components/litsey/AboutHero";
 import History from "@/components/litsey/History";
 import LegacyWithData from "@/components/litsey/LegacyWithData";
+import Partners from "@/components/litsey/Partners";
 import Stages from "@/components/litsey/Stages";
 import Science from "@/components/litsey/Science";
 import Values from "@/components/litsey/Values";
@@ -26,6 +27,7 @@ export default function Home() {
             <Suspense fallback={<div className="min-h-[60vh]" />}>
                 <LegacyWithData />
             </Suspense>
+            <Partners />
             <Stages />
             <Science />
             <Values />

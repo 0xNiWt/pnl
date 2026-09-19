@@ -29,7 +29,7 @@ export default function BuildingHero() {
 
             <div className="absolute inset-x-0 bottom-0">
                 <div className="mx-auto w-full max-w-7xl px-5 pb-8 md:px-10 md:pb-12">
-                    <span className="flex items-center gap-3 font-plex text-[10px] uppercase tracking-[0.22em] text-background/70">
+                    <span className="flex items-center gap-3 font-plex text-[12px] uppercase tracking-[0.22em] text-background/70">
                         <span className="h-px w-6 bg-secondary" />
                         Київ · засновано 1962
                     </span>
@@ -49,7 +49,7 @@ export default function BuildingHero() {
                     </p>
 
                     {/* Технічний рядок унизу обкладинки — як вихідні дані видання. */}
-                    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-background/20 pt-4 font-plex text-[10px] uppercase tracking-[0.18em] text-background/55">
+                    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-background/20 pt-4 font-plex text-[12px] uppercase tracking-[0.18em] text-background/55">
                         {SUBJECTS.map((subject, i) => (
                             <span key={subject} className="flex items-center gap-6">
                                 <span className="text-secondary">{String(i + 1).padStart(2, "0")}</span>

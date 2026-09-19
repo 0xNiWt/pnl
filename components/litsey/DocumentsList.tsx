@@ -31,7 +31,7 @@ export default function DocumentsList() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.85, ease: smoothOut }}
-                    className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-16"
+                    className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-16"
                     id={group.id}
                 >
                     <h2 className="font-cormorant font-bold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
@@ -57,7 +57,7 @@ function DocumentCard({ item }: { item: DocItem }) {
     const multiple = item.files.length > 1;
 
     return (
-        <article className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-5 flex flex-col">
+        <article className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-5 flex flex-col">
             <div className="flex items-start gap-3.5">
                 <span className="w-11 h-11 shrink-0 rounded-none bg-primary/5 flex items-center justify-center">
                     <Icon size={19} className="text-primary" />
@@ -65,11 +65,11 @@ function DocumentCard({ item }: { item: DocItem }) {
 
                 <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                        <span className="font-plex text-[10px] font-bold uppercase tracking-[0.14em] text-primary/60">
+                        <span className="font-plex text-[12px] font-bold uppercase tracking-[0.14em] text-primary/60">
                             {label}
                         </span>
                         {item.year && (
-                            <span className="font-plex text-[10px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-2 py-0.5">
+                            <span className="font-plex text-[12px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-2 py-0.5">
                                 {item.year}
                             </span>
                         )}

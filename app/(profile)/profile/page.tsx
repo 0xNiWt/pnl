@@ -123,8 +123,8 @@ export default async function ProfilePage() {
 
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
                     <div>
-                        <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
-                            <span className="w-5 h-px bg-secondary" />
+                        <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-3">
+                            <span className="w-10 h-0.5 bg-secondary" />
                             {roleLabelText}
                         </span>
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
@@ -132,12 +132,12 @@ export default async function ProfilePage() {
                         </h1>
                     </div>
 
-                    <div className="flex items-center gap-3 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-3">
+                    <div className="flex items-center gap-3 bg-secondary/[0.3] border border-primary/10 rounded-none px-5 py-3">
                         <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                             <Coins size={18} />
                         </span>
                         <div>
-                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                            <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                 Баланс
                             </p>
                             <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
@@ -178,7 +178,7 @@ export default async function ProfilePage() {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6">
+                        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6">
                             <h3 className="font-manrope font-bold text-primary text-sm mb-4">
                                 Дані акаунту
                             </h3>
@@ -260,7 +260,7 @@ function StudentSection({
                                 key={kind}
                                 className="rounded-none bg-primary/5 px-3.5 py-2.5"
                             >
-                                <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                                <p className="flex items-center gap-1.5 text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                     {RATING_LABELS[kind]}
                                     {hidden[kind] && <EyeOff size={11} className="text-accent" />}
                                 </p>
@@ -423,7 +423,7 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
 
 function SectionCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6">
+        <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6">
             <h3 className="flex items-center gap-2 font-manrope font-bold text-primary text-sm mb-4">
                 <span className="text-accent">{icon}</span>
                 {title}
@@ -461,7 +461,7 @@ function ProfileRow({ icon, label, value }: { icon: React.ReactNode; label: stri
                 {icon}
             </div>
             <div>
-                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                     {label}
                 </p>
                 <p className="text-sm font-medium text-primary">{value}</p>

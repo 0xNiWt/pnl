@@ -29,7 +29,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
 
     if (tables.length === 0) {
         return (
-            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-8 text-center">
+            <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-8 text-center">
                 <p className="text-sm text-primary/70">
                     Таблиць ще немає — застосуйте міграцію sql/0008_olympiad_stats.sql.
                 </p>
@@ -175,7 +175,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     <button
                         key={t.id}
                         onClick={() => setActiveId(t.id)}
-                        className={`rounded-none px-4 py-2 font-inter text-sm font-medium transition-colors ${t.id === table.id
+                        className={`rounded-none px-6 py-3 font-inter text-[clamp(1rem,0.8rem+0.6vw,1.375rem)] font-semibold transition-colors ${t.id === table.id
                             ? 'bg-primary text-background'
                             : 'text-primary/85 bg-primary/5 hover:bg-primary/10'
                             }`}
@@ -207,10 +207,10 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                 </p>
             </div>
 
-            <div className="rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-x-auto">
+            <div className="rounded-none border border-secondary/70 bg-secondary/[0.3] overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                     <thead>
-                        <tr className="bg-secondary/[0.08]">
+                        <tr className="bg-secondary/[0.3]">
                             <th className="text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/78 px-3 py-2.5 min-w-[190px] border-b border-primary/10">
                                 Предмет
                             </th>
@@ -223,7 +223,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                                         <input
                                             value={year}
                                             onChange={(e) => setYear(index, e.target.value)}
-                                            className="w-[86px] rounded-none border border-primary/15 bg-white/70 px-1.5 py-1 text-center text-[11px] focus:outline-none focus:border-accent"
+                                            className="w-[86px] rounded-none border border-primary/15 bg-white/70 px-1.5 py-1 text-center text-[13px] focus:outline-none focus:border-accent"
                                         />
                                         <button
                                             onClick={() => removeYear(index)}
@@ -298,7 +298,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     </tbody>
 
                     <tfoot>
-                        <tr className="bg-secondary/[0.08]">
+                        <tr className="bg-secondary/[0.3]">
                             <th className="text-left font-manrope font-bold text-primary px-3 py-2.5">
                                 Загалом
                             </th>

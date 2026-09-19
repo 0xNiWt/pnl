@@ -13,11 +13,11 @@ export default function PrepCourses() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="courses"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                <span className="w-10 h-0.5 bg-secondary" />
                 Підготовка
             </span>
 
@@ -34,9 +34,9 @@ export default function PrepCourses() {
                 {PREP_COURSES.map((course) => (
                     <div
                         key={course.id}
-                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 md:p-7 flex flex-col"
+                        className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-6 md:p-7 flex flex-col"
                     >
-                        <span className="inline-flex self-start items-center font-plex text-[11px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-3 py-1 mb-4">
+                        <span className="inline-flex self-start items-center font-plex text-[13px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-3 py-1 mb-4">
                             {course.audience}
                         </span>
 
@@ -54,7 +54,7 @@ export default function PrepCourses() {
                                     key={detail.label}
                                     className="flex flex-col sm:flex-row sm:gap-4 py-2.5 border-b border-primary/[0.07]"
                                 >
-                                    <dt className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/60 sm:w-28 shrink-0 pt-0.5">
+                                    <dt className="font-plex text-[13px] font-semibold uppercase tracking-wider text-primary/60 sm:w-28 shrink-0 pt-0.5">
                                         {detail.label}
                                     </dt>
                                     <dd className="text-sm text-primary/85 leading-relaxed">
@@ -65,7 +65,7 @@ export default function PrepCourses() {
                         </dl>
 
                         <div className="mt-5">
-                            <p className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/60 mb-2">
+                            <p className="font-plex text-[13px] font-semibold uppercase tracking-wider text-primary/60 mb-2">
                                 Викладачі
                             </p>
                             <ul className="flex flex-col gap-1.5">

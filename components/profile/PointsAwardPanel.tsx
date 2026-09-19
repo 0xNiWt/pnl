@@ -449,15 +449,15 @@ export default function PointsAwardPanel() {
             {/* Таблиця учасників із коефіцієнтами */}
             {mode === 'event' && (
                 <div className="border border-primary/10 rounded-none overflow-hidden bg-white/40">
-                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-secondary/[0.08]">
-                        <span className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-secondary/[0.3]">
+                        <span className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             Учасники — рівень, категорія та пояснення
                         </span>
                         {participants.length > 0 && (
                             <button
                                 onClick={applyDefaultsToAll}
                                 title="Поставити всім учасникам категорію та пояснення з нижньої форми"
-                                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-accent hover:text-primary transition-colors"
+                                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent hover:text-primary transition-colors"
                             >
                                 <CopyCheck size={13} />
                                 Однакові для всіх
@@ -549,7 +549,7 @@ export default function PointsAwardPanel() {
                                     />
                                 </div>
 
-                                <p className="text-[11px] text-primary/60">
+                                <p className="text-[13px] text-primary/60">
                                     {COEFFICIENT_LEVELS.find((l) => l.value === p.coefficient)?.title}
                                 </p>
                             </div>
@@ -557,7 +557,7 @@ export default function PointsAwardPanel() {
                     )}
 
                     {participants.length > 0 && (
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-3 border-t border-primary/10 bg-secondary/[0.08]">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-3 border-t border-primary/10 bg-secondary/[0.3]">
                             <Summary label="Учасників" value={String(participants.length)} />
                             <Summary label="Сума коефіцієнтів" value={String(distribution.totalCoefficient)} />
                             <Summary
@@ -655,7 +655,7 @@ export default function PointsAwardPanel() {
 function Summary({ label, value }: { label: string; value: string }) {
     return (
         <div>
-            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+            <p className="text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                 {label}
             </p>
             <p className="text-sm font-manrope font-bold text-primary mt-0.5">{value}</p>

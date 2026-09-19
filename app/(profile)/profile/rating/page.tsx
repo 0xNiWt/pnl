@@ -31,8 +31,8 @@ export default async function ProfileRatingPage() {
                 </Link>
 
                 <div className="flex flex-col items-center md:items-start">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Рейтинг
                     </span>
                     <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)]">

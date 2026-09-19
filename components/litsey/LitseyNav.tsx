@@ -38,12 +38,12 @@ export default function LitseyNav() {
     const active = SECTIONS.find((s) => s.href === pathname) ?? SECTIONS[0];
 
     return (
-        <div className="w-full border-b border-secondary/30 bg-background">
+        <div className="w-full border-b border-secondary/70 bg-background">
             <div className="max-w-7xl mx-auto px-5 md:px-6 py-3 relative">
 
                 {/* Десктоп — розділи поруч */}
-                <nav className="hidden md:flex items-center gap-2">
-                    <span className="font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mr-3">
+                <nav className="hidden lg:flex items-center gap-2">
+                    <span className="font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-semibold uppercase tracking-[0.14em] text-secondary-deep mr-3">
                         Розділ
                     </span>
 
@@ -55,7 +55,7 @@ export default function LitseyNav() {
                                 key={section.href}
                                 href={section.href}
                                 title={section.description}
-                                className={`rounded-none px-4 py-2 font-inter text-sm font-medium transition-colors ${isActive
+                                className={`rounded-none px-6 py-3 font-inter text-[clamp(1rem,0.8rem+0.6vw,1.375rem)] font-semibold transition-colors ${isActive
                                     ? "bg-primary text-background"
                                     : "text-primary/85 hover:bg-primary/5 hover:text-primary"
                                     }`}
@@ -71,14 +71,14 @@ export default function LitseyNav() {
                     onClick={() => setIsOpen(!isOpen)}
                     aria-expanded={isOpen}
                     aria-label={isOpen ? "Закрити розділи ліцею" : "Відкрити розділи ліцею"}
-                    className="md:hidden w-full flex items-center gap-3 text-left"
+                    className="lg:hidden w-full flex items-center gap-3 text-left"
                 >
                     <span className="w-9 h-9 shrink-0 rounded-none bg-primary/5 flex items-center justify-center text-primary">
                         {isOpen ? <X size={18} /> : <Menu size={18} />}
                     </span>
 
                     <span className="min-w-0 flex-1">
-                        <span className="block font-plex text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
+                        <span className="block font-plex text-[15px] font-semibold uppercase tracking-[0.14em] text-accent">
                             Розділ ліцею
                         </span>
                         <span className="block font-inter font-bold text-primary truncate">
@@ -102,7 +102,7 @@ export default function LitseyNav() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -8 }}
                             transition={{ duration: 0.25, ease: smoothOut }}
-                            className="md:hidden absolute left-3 right-3 top-full mt-2 bg-background border border-primary/10 rounded-none shadow-none overflow-hidden z-40"
+                            className="lg:hidden absolute left-3 right-3 top-full mt-2 bg-background border border-primary/10 rounded-none shadow-none overflow-hidden z-40"
                         >
                             <ul className="p-2 flex flex-col gap-1">
                                 {SECTIONS.map((section, i) => {

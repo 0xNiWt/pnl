@@ -93,10 +93,10 @@ export default function RegisterPage() {
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
-                        <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
-                            <span className="w-5 h-px bg-secondary" />
+                        <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-3">
+                            <span className="w-10 h-0.5 bg-secondary" />
                             Доступ до системи
-                            <span className="w-5 h-px bg-secondary" />
+                            <span className="w-10 h-0.5 bg-secondary" />
                         </span>
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             Створити акаунт
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                         </p>
                     </div>
 
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6 md:p-8 backdrop-blur-sm shadow-none">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6 md:p-8 backdrop-blur-sm shadow-none">
 
                         {error && (
                             <div className="mb-6 p-3.5 rounded-none bg-accent/10 border border-accent/30 flex items-center gap-2.5 text-xs font-medium text-accent">
@@ -167,11 +167,11 @@ export default function RegisterPage() {
                                     />
                                 </div>
                                 {email && !isPnlEmail ? (
-                                    <p className="mt-1 text-[11px] text-accent">
+                                    <p className="mt-1 text-[13px] text-accent">
                                         Потрібна ліцейська пошта ({LYCEUM_EMAIL_SUFFIX})
                                     </p>
                                 ) : (
-                                    <p className="mt-1 text-[11px] text-primary/65">
+                                    <p className="mt-1 text-[13px] text-primary/65">
                                         Достатньо імені акаунта — <b className="font-semibold">{LYCEUM_EMAIL_SUFFIX}</b> допишемо самі
                                         {email && email !== normalizedEmail && (
                                             <span className="text-accent"> · {normalizedEmail}</span>
@@ -237,7 +237,7 @@ export default function RegisterPage() {
 
                             {/* Згода за п. 10.1.2 Положення: без неї учня не можна
                                 вносити до рейтингів, тому без галочки реєстрація не йде. */}
-                            <label className="flex items-start gap-3 rounded-none border border-secondary/30 bg-secondary/[0.07] p-3.5 cursor-pointer">
+                            <label className="flex items-start gap-3 rounded-none border border-secondary/70 bg-secondary/[0.3] p-3.5 cursor-pointer">
                                 <input
                                     type="checkbox"
                                     checked={agreed}
@@ -256,7 +256,7 @@ export default function RegisterPage() {
                                     >
                                         Читати Положення
                                     </Link>
-                                    <span className="mt-1.5 block text-[11px] text-primary/65">
+                                    <span className="mt-1.5 block text-[13px] text-primary/65">
                                         {CONSENT_NOTE}
                                     </span>
                                 </span>

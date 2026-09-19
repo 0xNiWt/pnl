@@ -20,11 +20,11 @@ export default function Hero() {
     ];
 
     return (
-        <section className="max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24" id="hero">
+        <section className="max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24" id="hero">
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-start md:items-center gap-8 md:gap-12 py-10 md:py-24">
                 <div className="text-center md:text-left">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Природничий науковий ліцей · Київ
                     </span>
 
@@ -59,7 +59,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-hidden divide-primary/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 rounded-none border border-secondary/70 bg-secondary/[0.3] overflow-hidden divide-primary/10">
                 {stats.map((stat, i) => (
                     <div
                         key={stat.label}

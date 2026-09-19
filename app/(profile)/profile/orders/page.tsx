@@ -43,8 +43,8 @@ export default async function MyOrdersPage() {
                 </Link>
 
                 <div className="mb-8">
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
-                        <span className="w-5 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-3">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Магазин
                     </span>
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
@@ -53,15 +53,15 @@ export default async function MyOrdersPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-8">
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
-                        <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+                        <p className="flex items-center gap-1.5 text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             <Coins size={12} className="text-accent" />
                             Баланс
                         </p>
                         <p className="text-2xl font-manrope font-bold text-primary mt-1">{balance}</p>
                     </div>
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
-                        <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-5">
+                        <p className="flex items-center gap-1.5 text-[13px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             <ShoppingBag size={12} className="text-accent" />
                             Витрачено
                         </p>
@@ -70,7 +70,7 @@ export default async function MyOrdersPage() {
                 </div>
 
                 {rows.length === 0 ? (
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-12 text-center">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none px-6 py-12 text-center">
                         <p className="text-sm text-primary/70 mb-4">Ви ще нічого не замовляли.</p>
                         <Link
                             href="/shop"
@@ -85,7 +85,7 @@ export default async function MyOrdersPage() {
                         {rows.map((order) => (
                             <div
                                 key={order.id}
-                                className="flex items-center gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none p-4"
+                                className="flex items-center gap-4 bg-secondary/[0.3] border border-primary/10 rounded-none p-4"
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="text-sm font-semibold text-primary truncate">
@@ -103,7 +103,7 @@ export default async function MyOrdersPage() {
                                 </div>
 
                                 <span
-                                    className={`shrink-0 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${STATUS_STYLES[order.status]}`}
+                                    className={`shrink-0 text-[13px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${STATUS_STYLES[order.status]}`}
                                 >
                                     {ORDER_STATUS_LABELS[order.status]}
                                 </span>

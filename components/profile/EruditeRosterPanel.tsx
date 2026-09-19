@@ -89,7 +89,7 @@ export default function EruditeRosterPanel({
 
 function Notice({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 px-5 py-6 text-sm text-primary/70">
+        <div className="bg-secondary/[0.3] border border-primary/10 px-5 py-6 text-sm text-primary/70">
             {children}
         </div>
     );
@@ -156,7 +156,7 @@ function RosterCard({
                 : 'bg-accent/10 text-accent border-accent/30';
 
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 p-5 flex flex-col gap-3">
+        <div className="bg-secondary/[0.3] border border-primary/10 p-5 flex flex-col gap-3">
             <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                     <p className="font-semibold text-primary">{game.title}</p>
@@ -166,7 +166,7 @@ function RosterCard({
                     </p>
                 </div>
                 {roster && (
-                    <span className={`border px-2.5 py-1 font-plex text-[10px] uppercase tracking-wider ${statusTone}`}>
+                    <span className={`border px-2.5 py-1 font-plex text-[12px] uppercase tracking-wider ${statusTone}`}>
                         {ROSTER_STATUS_LABELS[roster.status]}
                     </span>
                 )}
@@ -208,7 +208,7 @@ function RosterCard({
                                         <input type="checkbox" checked={checked} onChange={() => toggle(p.id)} />
                                         <span className="truncate">{p.full_name ?? 'Без імені'}</span>
                                         {p.id === team.captain_id && (
-                                            <span className="ml-auto font-plex text-[9px] uppercase tracking-wider text-accent">капітан</span>
+                                            <span className="ml-auto font-plex text-[11px] uppercase tracking-wider text-accent">капітан</span>
                                         )}
                                     </label>
                                 );

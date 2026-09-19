@@ -16,11 +16,11 @@ export default function ExamTopics() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="topics"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                <span className="w-10 h-0.5 bg-secondary" />
                 Що вчити
             </span>
 
@@ -52,7 +52,7 @@ export default function ExamTopics() {
                 {active.subjects.map((subject) => (
                     <div
                         key={subject.title}
-                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 md:p-7"
+                        className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-6 md:p-7"
                     >
                         <div className="flex items-baseline justify-between gap-3 mb-5 pb-4 border-b border-primary/10">
                             <h3 className="font-cormorant font-bold text-primary text-2xl leading-[1.15]">

@@ -18,7 +18,7 @@ export default function MemorialBoards() {
             className="w-full max-w-7xl mx-auto px-5 md:px-6 pb-14 md:pb-24"
             id="memorial-boards"
         >
-            <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-center border-t border-secondary/30 pt-12 md:pt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-center border-t border-secondary/70 pt-12 md:pt-16">
                 <figure className="relative overflow-hidden bg-primary">
                     <Image
                         src={memorialBoards}
@@ -30,8 +30,8 @@ export default function MemorialBoards() {
                 </figure>
 
                 <div>
-                    <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                        <span className="w-6 h-px bg-secondary" />
+                    <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Дошка пошани
                     </span>
 
@@ -51,11 +51,11 @@ export default function MemorialBoards() {
                         та висловила глибоку вдячність їхнім батькам.
                     </p>
 
-                    <ul className="mt-6 flex flex-col divide-y divide-secondary/20 border-y border-secondary/30">
+                    <ul className="mt-6 flex flex-col divide-y divide-secondary/20 border-y border-secondary/70">
                         {HEROES.map((hero) => (
                             <li key={hero.id} className="py-2.5 flex items-baseline justify-between gap-4">
                                 <span className="font-cormorant font-bold text-xl text-primary">{hero.name}</span>
-                                <span className="font-plex text-[11px] font-semibold uppercase tracking-[0.12em] text-secondary-deep shrink-0">{hero.graduation.replace("Випускник ліцею ", "Випуск ").replace(" року", "")}</span>
+                                <span className="font-plex text-[13px] font-semibold uppercase tracking-[0.12em] text-secondary-deep shrink-0">{hero.graduation.replace("Випускник ліцею ", "Випуск ").replace(" року", "")}</span>
                             </li>
                         ))}
                     </ul>

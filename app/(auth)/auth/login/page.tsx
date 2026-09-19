@@ -58,10 +58,10 @@ export default function LoginPage() {
             <div className="flex-1 flex items-center justify-center px-5 py-10 md:py-16">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
-                        <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-3">
-                            <span className="w-5 h-px bg-secondary" />
+                        <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-3">
+                            <span className="w-10 h-0.5 bg-secondary" />
                             Авторизація
-                            <span className="w-5 h-px bg-secondary" />
+                            <span className="w-10 h-0.5 bg-secondary" />
                         </span>
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             Вхід до системи
@@ -71,7 +71,7 @@ export default function LoginPage() {
                         </p>
                     </div>
 
-                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6 md:p-8 backdrop-blur-sm shadow-none">
+                    <div className="bg-secondary/[0.3] border border-primary/10 rounded-none p-6 md:p-8 backdrop-blur-sm shadow-none">
 
                         {error && (
                             <div className="mb-6 p-3.5 rounded-none bg-accent/10 border border-accent/30 flex items-center gap-2.5 text-xs font-medium text-accent">
@@ -99,7 +99,7 @@ export default function LoginPage() {
                                         className="w-full rounded-none border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent/20"
                                     />
                                 </div>
-                                <p className="mt-1 text-[11px] text-primary/65">
+                                <p className="mt-1 text-[13px] text-primary/65">
                                     Достатньо імені акаунта — <b className="font-semibold">{LYCEUM_EMAIL_SUFFIX}</b> допишемо самі
                                     {email && email !== normalizedEmail && (
                                         <span className="text-accent"> · {normalizedEmail}</span>

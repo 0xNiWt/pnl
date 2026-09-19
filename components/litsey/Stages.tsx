@@ -54,11 +54,11 @@ export default function Stages() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="stages"
         >
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep mb-4">
+                <span className="w-10 h-0.5 bg-secondary" />
                 Як вибудовано навчання
             </span>
 
@@ -70,13 +70,13 @@ export default function Stages() {
                 {STAGES.map(({ icon: Icon, badge, title, lead, points }) => (
                     <div
                         key={title}
-                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 md:p-8 flex flex-col"
+                        className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-6 md:p-8 flex flex-col"
                     >
                         <div className="flex items-center gap-3 mb-5">
                             <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center shrink-0">
                                 <Icon size={20} className="text-primary" />
                             </span>
-                            <span className="font-plex text-[10px] uppercase tracking-[0.2em] text-primary/65">
+                            <span className="font-plex text-[12px] uppercase tracking-[0.2em] text-primary/65">
                                 {badge}
                             </span>
                         </div>

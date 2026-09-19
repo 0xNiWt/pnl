@@ -15,7 +15,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-center justify-between md:flex-col md:items-end md:gap-1">
-                    <span className="font-inter text-[10px] uppercase tracking-[0.14em] text-primary/35">
+                    <span className="font-inter text-[12px] uppercase tracking-[0.14em] text-primary/35">
                         Сайт розроблено
                     </span>
 

@@ -8,7 +8,7 @@ export default function PolozhenniaText() {
         <article className="w-full max-w-3xl mx-auto px-5 md:px-6 pb-14 md:pb-20">
             <nav
                 aria-label="Зміст документа"
-                className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-5 md:p-6 mb-10"
+                className="rounded-none border border-secondary/70 bg-secondary/[0.3] p-5 md:p-6 mb-10"
             >
                 <h2 className="font-plex font-bold text-primary text-sm uppercase tracking-[0.14em] mb-4">
                     Зміст

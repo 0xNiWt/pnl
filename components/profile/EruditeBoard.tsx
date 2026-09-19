@@ -64,7 +64,7 @@ export default function EruditeBoard({
 
                 {seasons.length > 1 && (
                     <div className="flex flex-wrap items-center gap-1.5">
-                        <span className="font-plex text-[10px] uppercase tracking-[0.18em] text-primary/60 mr-1">
+                        <span className="font-plex text-[12px] uppercase tracking-[0.18em] text-primary/60 mr-1">
                             Рік
                         </span>
                         {seasons.map((s) => (
@@ -131,8 +131,8 @@ function Tile({
     small?: boolean;
 }) {
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 px-5 py-4">
-            <p className="flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.16em] text-primary/65">
+        <div className="bg-secondary/[0.3] border border-primary/10 px-5 py-4">
+            <p className="flex items-center gap-2 font-plex text-[12px] uppercase tracking-[0.16em] text-primary/65">
                 <span className="text-accent">{icon}</span>
                 {label}
             </p>
@@ -154,19 +154,19 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
     }
 
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 overflow-x-auto">
+        <div className="bg-secondary/[0.3] border border-primary/10 overflow-x-auto">
             <table className="w-full text-sm border-collapse">
                 <thead>
                     <tr className="border-b border-primary/10">
-                        <th className="sticky left-0 z-10 bg-[#f7f2e6] px-4 py-3 text-left font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/65 min-w-[170px]">
+                        <th className="sticky left-0 z-10 bg-[#f7f2e6] px-4 py-3 text-left font-plex text-[12px] font-semibold uppercase tracking-[0.14em] text-primary/65 min-w-[170px]">
                             Гра
                         </th>
                         {standings.map((s) => (
                             <th key={s.team.id} className="px-2 py-3 text-center align-bottom min-w-[76px]">
                                 <span className="block font-manrope font-bold text-primary">№{s.number}</span>
-                                <span className="block text-[11px] font-normal text-primary/78 leading-tight">{s.team.name}</span>
+                                <span className="block text-[13px] font-normal text-primary/78 leading-tight">{s.team.name}</span>
                                 {s.team.class_name && (
-                                    <span className="block text-[10px] font-normal text-primary/60">{s.team.class_name}</span>
+                                    <span className="block text-[12px] font-normal text-primary/60">{s.team.class_name}</span>
                                 )}
                             </th>
                         ))}
@@ -186,7 +186,7 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
                         <tr key={game.id} className="border-b border-primary/[0.06]">
                             <RowHead>
                                 <span className="font-semibold text-primary">{i + 1}. {game.title}</span>
-                                <span className="block text-[11px] text-primary/60">
+                                <span className="block text-[13px] text-primary/60">
                                     {new Date(game.played_on).toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}
                                 </span>
                             </RowHead>
@@ -265,10 +265,10 @@ function SummaryRow({
     children: React.ReactNode;
 }) {
     return (
-        <tr className={`border-t ${strong ? 'border-primary/15 bg-secondary/[0.08]' : 'border-primary/10'}`}>
+        <tr className={`border-t ${strong ? 'border-primary/15 bg-secondary/[0.3]' : 'border-primary/10'}`}>
             <th scope="row" className={`sticky left-0 z-10 px-4 py-2.5 text-left ${strong ? 'bg-[#efe9dc]' : 'bg-[#f7f2e6]'}`}>
                 <span className={`${strong ? 'font-bold text-primary' : 'font-semibold text-primary/85'}`}>{label}</span>
-                {hint && <span className="block text-[10px] font-normal text-primary/60">{hint}</span>}
+                {hint && <span className="block text-[12px] font-normal text-primary/60">{hint}</span>}
             </th>
             {children}
         </tr>
@@ -280,7 +280,7 @@ function PlaceCell({ cell }: { cell?: { attended: boolean; place: number | null;
     if (!cell.attended) {
         return (
             <span className="inline-flex flex-col items-center" title="Неявка">
-                <span className="font-plex text-[11px] font-bold text-red-600">Н</span>
+                <span className="font-plex text-[13px] font-bold text-red-600">Н</span>
             </span>
         );
     }
@@ -288,7 +288,7 @@ function PlaceCell({ cell }: { cell?: { attended: boolean; place: number | null;
     return (
         <span className="inline-flex flex-col items-center gap-0.5">
             <PlaceBadge place={cell.place ?? 0} small />
-            <span className="text-[10px] text-primary/65 tabular-nums">+{cell.points}</span>
+            <span className="text-[12px] text-primary/65 tabular-nums">+{cell.points}</span>
         </span>
     );
 }
@@ -322,8 +322,8 @@ function PenaltyList({
     const gameTitle = new Map(games.map((g) => [g.id, g.title]));
 
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 px-5 py-4">
-            <p className="font-plex text-[10px] uppercase tracking-[0.16em] text-primary/65 mb-3">Штрафи від президента клубу</p>
+        <div className="bg-secondary/[0.3] border border-primary/10 px-5 py-4">
+            <p className="font-plex text-[12px] uppercase tracking-[0.16em] text-primary/65 mb-3">Штрафи від президента клубу</p>
             <ul className="flex flex-col gap-2 text-sm">
                 {penalties.map((p) => (
                     <li key={p.id} className="flex flex-wrap items-baseline gap-x-2">
@@ -351,7 +351,7 @@ function PersonalTable({ rows, currentUserId }: { rows: PersonStanding[]; curren
     }
 
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 overflow-x-auto">
+        <div className="bg-secondary/[0.3] border border-primary/10 overflow-x-auto">
             <table className="w-full min-w-[560px] text-sm">
                 <thead>
                     <tr className="border-b border-primary/10 text-left">
@@ -374,7 +374,7 @@ function PersonalTable({ rows, currentUserId }: { rows: PersonStanding[]; curren
                                 <td className="px-4 py-3">
                                     <p className="font-semibold text-primary">
                                         {r.person.full_name ?? 'Без імені'}
-                                        {me && <span className="ml-2 font-plex text-[10px] uppercase tracking-wider text-accent">це ви</span>}
+                                        {me && <span className="ml-2 font-plex text-[12px] uppercase tracking-wider text-accent">це ви</span>}
                                     </p>
                                     <p className="text-xs text-primary/65">
                                         {[r.person.class, r.teams.join(', ')].filter(Boolean).join(' · ')}
@@ -412,7 +412,7 @@ function TabButton({
     return (
         <button
             onClick={onClick}
-            className={`inline-flex items-center gap-2 px-4 py-2 font-plex text-[11px] uppercase tracking-[0.14em] transition-colors ${active ? 'bg-primary text-background' : 'text-primary/78 hover:text-primary'
+            className={`inline-flex items-center gap-2 px-4 py-2 font-plex text-[13px] uppercase tracking-[0.14em] transition-colors ${active ? 'bg-primary text-background' : 'text-primary/78 hover:text-primary'
                 }`}
         >
             {icon}
@@ -423,7 +423,7 @@ function TabButton({
 
 function Empty({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-secondary/[0.08] border border-primary/10 px-6 py-10 text-center">
+        <div className="bg-secondary/[0.3] border border-primary/10 px-6 py-10 text-center">
             <p className="text-sm text-primary/65">{children}</p>
         </div>
     );
@@ -432,7 +432,7 @@ function Empty({ children }: { children: React.ReactNode }) {
 function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
     return (
         <th
-            className={`px-4 py-3 font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/65 ${right ? 'text-right' : ''}`}
+            className={`px-4 py-3 font-plex text-[12px] font-semibold uppercase tracking-[0.14em] text-primary/65 ${right ? 'text-right' : ''}`}
         >
             {children}
         </th>
@@ -465,13 +465,13 @@ function GameHistory({
                     const winners = game.rows.filter((r) => r.place === 1);
 
                     return (
-                        <div key={game.id} className="bg-secondary/[0.08] border border-primary/10">
+                        <div key={game.id} className="bg-secondary/[0.3] border border-primary/10">
                             <button
                                 onClick={() => setOpen(isOpen ? null : game.id)}
                                 aria-expanded={isOpen}
                                 className="w-full flex items-center gap-4 px-5 py-3.5 text-left hover:bg-secondary/[0.1] transition-colors"
                             >
-                                <span className="font-plex text-[11px] text-primary/65 tabular-nums w-20 shrink-0">
+                                <span className="font-plex text-[13px] text-primary/65 tabular-nums w-20 shrink-0">
                                     {new Date(game.played_on).toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}
                                 </span>
                                 <span className="flex-1 min-w-0">
@@ -535,7 +535,7 @@ function GameHistory({
 
 function Rules() {
     return (
-        <details className="bg-secondary/[0.08] border border-primary/10 px-5 py-4 text-sm text-primary/80">
+        <details className="bg-secondary/[0.3] border border-primary/10 px-5 py-4 text-sm text-primary/80">
             <summary className="cursor-pointer font-semibold text-primary">Як рахується рейтинг</summary>
             <ul className="mt-3 flex flex-col gap-2 leading-relaxed list-disc pl-5">
                 <li>

@@ -50,7 +50,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                     // fixed + bottom-0: панель тягнеться від шапки до самого
                     // низу екрана, тож сайт не просвічує ні в щілину згори,
                     // ні під меню.
-                    className="md:hidden fixed inset-x-0 bottom-0 z-40 bg-background border-t border-primary/10 overflow-y-auto overscroll-contain"
+                    className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-background border-t border-primary/10 overflow-y-auto overscroll-contain"
                 >
                     <div className="min-h-full py-4 px-3 flex flex-col gap-4">
                         <ul className="flex flex-col gap-1">

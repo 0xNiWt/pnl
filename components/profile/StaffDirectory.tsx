@@ -29,8 +29,7 @@ const DEPARTMENTS: Department[] = [
         members: [
             { name: 'Бондаренко Людмила Петрівна', position: 'Учитель вищої категорії, учитель української мови та літератури, старший учитель', photo: '/staff/bondarenko.jpg' },
             { name: 'Медведенко Оксана Анатоліївна', position: 'Учитель вищої категорії, старший учитель, учитель української мови та літератури, поетеса, член Спілки журналістів України', photo: '/staff/medvedenko.jpg' },
-            { name: 'Романчикова Любов Іванівна', position: 'Учитель вищої категорії, старший вчитель, вчитель світової літератури, відмінник освіти України' },
-            { name: 'Федорів Марія Любомирівна', position: 'Учитель української мови та літератури' },
+            { name: 'Федорів Марія Любомирівна', position: 'Учитель української мови та літератури', photo: '/staff/fedoriv-mariia.jpg' },
             { name: 'Риженко Світлана Олександрівна', position: 'Учитель зарубіжної літератури' },
             { name: 'Заболотня Олена Федорівна', position: 'Директор ліцею, учитель вищої категорії, учитель-методист, відмінник освіти, учитель української мови та літератури', photo: '/staff/zabolotnya.jpg' },
         ],
@@ -51,14 +50,14 @@ const DEPARTMENTS: Department[] = [
             { name: 'Сагайдак Тетяна Василівна', position: 'Старший учитель, учитель вищої категорії, вчитель математики', photo: '/staff/sagaydak.jpg' },
             { name: 'Сидоренко Ірина Володимирівна', position: 'Учитель вищої категорії, вчитель математики, випускниця ліцею 1977 року', photo: '/staff/sydorenko.jpg' },
             { name: 'Бохонова Тетяна Юріївна', position: 'Учитель математики', photo: '/staff/bokhonova.jpg' },
-            { name: 'Мороз Микола Петрович', position: 'Доктор філософії (PhD) з математики, вчитель вищої категорії, вчитель математики' },
-            { name: 'Єлагін Володимир Олексійович', position: 'Вчитель математики' },
+            { name: 'Мороз Микола Петрович', position: 'Доктор філософії (PhD) з математики, вчитель вищої категорії, вчитель математики', photo: '/staff/moroz.jpg' },
+            { name: 'Єлагін Володимир Олексійович', position: 'Вчитель математики', photo: '/staff/yelagin.jpg' },
         ],
     },
     {
         title: 'Кафедра фізики',
         members: [
-            { name: 'Перга Вікторія Віталіївна', position: 'Методист, нагороджена знаком "Відмінник освіти", знаком "Сухомлинський", учитель фізики' },
+            { name: 'Перга Вікторія Віталіївна', position: 'Методист, нагороджена знаком "Відмінник освіти", знаком "Сухомлинський", учитель фізики', photo: '/staff/perga.jpg' },
             { name: 'Розенвайн Олексій Григорович', position: 'Методист, Заслужений учитель України, вчитель фізики', photo: '/staff/rozenvain.jpg' },
             { name: 'Гудзь Олександр Якович', position: 'Учитель фізики, практикуму, нагороджений знаком "Відмінник освіти"', photo: '/staff/gudz.jpg' },
             { name: 'Янковська Марія Миколаївна', position: 'Учителька фізики і астрономії, методист, вища категорія' },
@@ -79,30 +78,26 @@ const DEPARTMENTS: Department[] = [
         title: 'Кафедра англійської мови',
         members: [
             { name: 'Муринська Вікторія Вікторівна', position: 'Учитель англійської мови', photo: '/staff/murynska.jpg' },
-            { name: 'Махрова Ольга Василівна', position: 'Учитель англійської мови' },
+            { name: 'Махрова Ольга Василівна', position: 'Учитель англійської мови', photo: '/staff/makhrova.jpg' },
         ],
     },
     {
         title: 'Кафедра природничих наук',
         members: [
             { name: 'Рустамова Віра Петрівна', position: 'Учитель-методист, учитель географії', photo: '/staff/rustamova.jpg' },
-            { name: 'Ковальчук Оксана Петрівна', position: 'Учитель вищої категорії, вчитель біології' },
+            { name: 'Ковальчук Оксана Петрівна', position: 'Учитель вищої категорії, вчитель біології', photo: '/staff/kovalchuk.jpg' },
             { name: 'Ястребцова Наталія Іванівна', position: 'Заслужений учитель України, учитель-методист, учитель біології', photo: '/staff/yastrebtsova.jpg' },
             { name: 'Махоткіна Наталія Станіславівна', position: 'Заслужений учитель України, учитель-методист, учитель хімії' },
-            { name: 'Зубченко Володимир Петрович', position: 'Вчитель економіки' },
+            { name: 'Зубченко Володимир Петрович', position: 'Вчитель економіки', photo: '/staff/zubchenko.jpg' },
             { name: 'Бодюл Наталія Сергіївна', position: 'Кандидат хімічних наук, учитель вищої категорії, старший вчитель, вчитель хімії', photo: '/staff/bodyul.jpg' },
-            { name: 'Євдокименко Олексій Михайлович', position: 'Учитель біології' },
+            { name: 'Євдокименко Олексій Михайлович', position: 'Учитель біології', photo: '/staff/yevdokymenko.jpg' },
         ],
-    },
-    {
-        title: 'Кафедра захисту України',
-        members: [],
     },
     {
         title: 'Кафедра фізичної культури',
         members: [
-            { name: 'Атаманенко Олексій Павлович', position: 'Учитель фізичної культури' },
-            { name: 'Ржанська Тетяна Петрівна', position: 'Учитель фізичної культури' },
+            { name: 'Атаманенко Олексій Павлович', position: 'Учитель фізичної культури', photo: '/staff/atamanenko.jpg' },
+            { name: 'Ржанська Тетяна Миколаївна', position: 'Учитель фізичної культури', photo: '/staff/rzhanska.jpg' },
         ],
     },
     {
@@ -161,8 +156,8 @@ export default function StaffDirectory() {
             <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-start">
                 {/* Кафедри — бічне меню, як на старому сайті */}
                 <nav aria-label="Кафедри" className="lg:sticky lg:top-28" data-no-reveal>
-                    <p className="flex items-center gap-2 mb-3 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep">
-                        <span className="w-6 h-px bg-secondary" />
+                    <p className="flex items-center gap-2 mb-3 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep">
+                        <span className="w-10 h-0.5 bg-secondary" />
                         Кафедри
                     </p>
 
@@ -178,7 +173,7 @@ export default function StaffDirectory() {
                         ))}
                     </select>
 
-                    <ul className="hidden lg:flex flex-col border border-secondary/30 bg-white">
+                    <ul className="hidden lg:flex flex-col border border-secondary/70 bg-white">
                         {DEPARTMENTS.map((d, i) => {
                             const active = i === deptIndex;
                             return (
@@ -190,7 +185,7 @@ export default function StaffDirectory() {
                                         className={`w-full text-left px-4 py-3 text-sm font-semibold border-l-4 transition-colors ${
                                             active
                                                 ? 'border-l-secondary bg-secondary/15 text-primary'
-                                                : 'border-l-transparent text-primary/85 hover:bg-secondary/[0.07] hover:text-primary'
+                                                : 'border-l-transparent text-primary/85 hover:bg-secondary/[0.3] hover:text-primary'
                                         }`}
                                     >
                                         {d.title}

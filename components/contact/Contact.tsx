@@ -60,8 +60,8 @@ export default function Contact({
     
     return (
         <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.85, ease: smoothOut }} className="w-full max-w-7xl mx-auto flex flex-col items-center md:items-start gap-8 md:gap-12 px-5 md:px-6 py-10 md:py-24" id="contact">
-            <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep">
-                <span className="w-6 h-px bg-secondary" />
+            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep">
+                <span className="w-10 h-0.5 bg-secondary" />
                 Контакти
             </span>
 

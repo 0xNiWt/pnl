@@ -16,7 +16,7 @@ export default async function Header() {
     return (
         <header className="sticky top-0 z-50 border-b border-secondary/40 border-t-4 border-t-secondary bg-background">
             <div className="mx-auto max-w-7xl px-5 md:px-10">
-                <div className="flex items-center justify-between gap-6 py-3.5 md:gap-12">
+                <div className="flex items-center justify-between gap-6 py-3.5 lg:gap-8 xl:gap-12">
                     <Link href="/" className="group flex items-center gap-3">
                         <Image
                             src={gerb}
@@ -33,7 +33,7 @@ export default async function Header() {
                                 Природничо-науковий ліцей
                             </span>
                             {/* Номер закладу винесено в технічний рядок — як вихідні дані. */}
-                            <span className="mt-0.5 font-plex text-[9px] uppercase tracking-[0.22em] text-primary/60">
+                            <span className="mt-0.5 font-plex text-[11px] uppercase tracking-[0.22em] text-primary/60">
                                 № 145 · Київ · з 1962
                             </span>
                         </span>
@@ -41,7 +41,7 @@ export default async function Header() {
 
                     <Nav isLoggedIn={isLoggedIn} />
 
-                    <div className="hidden md:flex items-center gap-3">
+                    <div className="hidden lg:flex items-center gap-3">
                         <LanguageSwitch />
                         <AuthButtons isLoggedIn={isLoggedIn} />
                     </div>
