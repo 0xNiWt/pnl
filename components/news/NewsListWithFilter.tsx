@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, CalendarDays, X } from 'lucide-react';
 import NewsCard from './NewsCard';
+import type { ReactionId } from '@/lib/newsReactions';
 
 type NewsItem = {
     id: string;
@@ -11,6 +12,7 @@ type NewsItem = {
     excerpt: string | null;
     cover_url: string | null;
     published_at: string | null;
+    reactions: Record<ReactionId, number>;
 };
 
 const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
@@ -164,6 +166,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                             excerpt={item.excerpt}
                             coverUrl={item.cover_url}
                             publishedAt={item.published_at}
+                            reactions={item.reactions}
                         />
                     ))}
                 </div>

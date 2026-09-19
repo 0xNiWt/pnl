@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { REACTIONS, type ReactionId } from '@/lib/newsReactions';
 
 type NewsCardProps = {
     slug: string;
@@ -7,9 +8,10 @@ type NewsCardProps = {
     excerpt: string | null;
     coverUrl: string | null;
     publishedAt: string | null;
+    reactions?: Record<ReactionId, number>;
 };
 
-export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }: NewsCardProps) {
+export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt, reactions }: NewsCardProps) {
     const dateLabel = publishedAt
         ? new Date(publishedAt).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })
         : null;
@@ -56,6 +58,25 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
                     <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
             </div>
+
+            {/* Реакції читачів — лише показ; поставити реакцію можна на сторінці новини. */}
+            {reactions && (
+                <div
+                    className="flex items-center justify-between gap-1 border-t border-secondary/70 bg-background/60 px-4 py-2.5"
+                    aria-label="Реакції читачів"
+                >
+                    {REACTIONS.map((r) => (
+                        <span
+                            key={r.id}
+                            title={r.label}
+                            className={`inline-flex items-center gap-1.5 ${reactions[r.id] ? 'text-primary' : 'text-primary/45'}`}
+                        >
+                            <span className="text-lg leading-none" aria-hidden>{r.emoji}</span>
+                            <span className="font-plex text-sm font-bold tabular-nums">{reactions[r.id]}</span>
+                        </span>
+                    ))}
+                </div>
+            )}
         </Link>
     );
 }

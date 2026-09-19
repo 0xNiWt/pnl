@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import ContactWithData from '@/components/contact/ContactWithData';
+import NewsReactions from '@/components/news/NewsReactions';
 export const revalidate = 300;
 export const dynamicParams = true;
 type PageParams = { params: Promise<{ slug: string }> };
@@ -15,7 +16,7 @@ async function getArticle(slug: string) {
 
     const { data } = await supabase
         .from('news')
-        .select('title, excerpt, content, cover_url, images, published, published_at')
+        .select('id, title, excerpt, content, cover_url, images, published, published_at')
         .eq('slug', normalizedSlug)
         .single();
 
@@ -119,6 +120,8 @@ export default async function NewsArticlePage({ params }: PageParams) {
                         ))}
                     </div>
                 )}
+
+                <NewsReactions newsId={article.id} />
             </article>
 
             <ContactWithData />
