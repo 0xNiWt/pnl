@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 const STATUS_STYLES: Record<OrderStatus, string> = {
     new: 'bg-accent/12 text-accent',
     issued: 'bg-accent/15 text-accent',
-    cancelled: 'bg-primary/8 text-primary/40',
+    cancelled: 'bg-primary/8 text-primary/60',
 };
 
 export default async function MyOrdersPage() {
@@ -36,7 +36,7 @@ export default async function MyOrdersPage() {
             <div className="w-full max-w-3xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -53,15 +53,15 @@ export default async function MyOrdersPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-8">
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
-                        <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+                        <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             <Coins size={12} className="text-accent" />
                             Баланс
                         </p>
                         <p className="text-2xl font-manrope font-bold text-primary mt-1">{balance}</p>
                     </div>
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
-                        <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+                        <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             <ShoppingBag size={12} className="text-accent" />
                             Витрачено
                         </p>
@@ -70,8 +70,8 @@ export default async function MyOrdersPage() {
                 </div>
 
                 {rows.length === 0 ? (
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-12 text-center">
-                        <p className="text-sm text-primary/50 mb-4">Ви ще нічого не замовляли.</p>
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-12 text-center">
+                        <p className="text-sm text-primary/70 mb-4">Ви ще нічого не замовляли.</p>
                         <Link
                             href="/shop"
                             className="inline-flex items-center gap-2 bg-primary text-background font-manrope font-semibold text-sm rounded-none px-5 py-2.5 hover:bg-primary/90 transition-colors"
@@ -85,13 +85,13 @@ export default async function MyOrdersPage() {
                         {rows.map((order) => (
                             <div
                                 key={order.id}
-                                className="flex items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-none p-4"
+                                className="flex items-center gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none p-4"
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="text-sm font-semibold text-primary truncate">
                                         {order.product_title}
                                     </p>
-                                    <p className="text-xs text-primary/45 mt-1">
+                                    <p className="text-xs text-primary/65 mt-1">
                                         {new Date(order.created_at).toLocaleDateString('uk-UA', {
                                             day: 'numeric',
                                             month: 'long',
@@ -112,7 +112,7 @@ export default async function MyOrdersPage() {
                     </div>
                 )}
 
-                <p className="text-xs text-primary/40 mt-6 px-1">
+                <p className="text-xs text-primary/60 mt-6 px-1">
                     Скасоване замовлення повертає бали на баланс. Мерч видає актив ліцею.
                 </p>
             </div>

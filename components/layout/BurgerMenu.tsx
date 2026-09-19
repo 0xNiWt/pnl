@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Bi from "./Bi";
 import { ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-type LinkItem = { label: string; href: string };
+type LinkItem = { label: string; en: string; href: string };
 
 type BurgerMenuProps = {
     isOpen: boolean;
@@ -65,7 +66,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                         onClick={onLinkClick}
                                         className="block px-3 py-2.5 rounded-none text-primary font-inter font-bold text-base hover:bg-primary/5 active:bg-primary/10 transition-colors"
                                     >
-                                        {item.label}
+                                        <Bi uk={item.label} en={item.en} />
                                     </Link>
                                 </motion.li>
                             ))}
@@ -83,7 +84,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                 className="w-full flex items-center justify-center gap-2 rounded-none border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
                             >
                                 <ShoppingCart size={16} />
-                                Магазин
+                                <Bi uk="Магазин" en="Shop" />
                             </Link>
 
                             {isLoggedIn ? (
@@ -92,7 +93,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                     onClick={onLinkClick}
                                     className="w-full text-center rounded-none border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
                                 >
-                                    Кабінет
+                                    <Bi uk="Кабінет" en="My account" />
                                 </Link>
                             ) : (
                                 <>
@@ -101,14 +102,14 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                                         onClick={onLinkClick}
                                         className="w-full text-center rounded-none border-2 border-primary font-inter font-bold text-sm text-primary tracking-wide py-2.5 hover:bg-primary hover:text-background active:scale-[0.98] transition-all"
                                     >
-                                        Вхід
+                                        <Bi uk="Вхід" en="Log in" />
                                     </Link>
                                     <Link
                                         href="/auth/register"
                                         onClick={onLinkClick}
                                         className="w-full text-center rounded-none border-2 border-primary bg-primary font-inter font-bold text-sm text-background tracking-wide py-2.5 active:scale-[0.98] transition-all hover:bg-primary/90"
                                     >
-                                        Реєстрація
+                                        <Bi uk="Реєстрація" en="Sign up" />
                                     </Link>
                                 </>
                             )}

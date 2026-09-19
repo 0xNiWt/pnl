@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { Manrope, Inter, Cormorant_Garamond, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
+// Inter, Manrope і Cormorant — змінні шрифти: один файл на всі товщини
+// замість окремого файлу на кожну, тож сторінка вантажить менше.
 const inter = Inter({
-  weight: ["400", "500", "600", "700"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
 });
 
 const manrope = Manrope({
-  weight: ["400", "500", "600", "700"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-manrope",
 });
@@ -17,8 +18,6 @@ const manrope = Manrope({
 // Заголовки по всьому сайту набрані антиквою, технічні підписи — моношрифтом,
 // суцільний текст — Inter. Manrope лишився на дрібних елементах інтерфейсу.
 const cormorant = Cormorant_Garamond({
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-cormorant-garamond",
 });
@@ -27,6 +26,7 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin", "cyrillic"],
   variable: "--font-plex-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -50,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-background">
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );

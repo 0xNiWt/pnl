@@ -144,7 +144,7 @@ function MemberRow({ member }: { member: StaffMember }) {
                     {member.name}
                 </h3>
                 <span className="block w-10 h-0.5 bg-secondary my-3 mx-auto sm:mx-0" />
-                <p className="text-[15px] text-primary/70 leading-relaxed max-w-2xl">
+                <p className="text-[15px] text-primary/85 leading-relaxed max-w-2xl">
                     {member.position}
                 </p>
             </div>
@@ -190,7 +190,7 @@ export default function StaffDirectory() {
                                         className={`w-full text-left px-4 py-3 text-sm font-semibold border-l-4 transition-colors ${
                                             active
                                                 ? 'border-l-secondary bg-secondary/15 text-primary'
-                                                : 'border-l-transparent text-primary/70 hover:bg-secondary/[0.07] hover:text-primary'
+                                                : 'border-l-transparent text-primary/85 hover:bg-secondary/[0.07] hover:text-primary'
                                         }`}
                                     >
                                         {d.title}
@@ -215,7 +215,7 @@ export default function StaffDirectory() {
                             </h2>
 
                             {dept.members.length === 0 ? (
-                                <p className="py-14 text-center text-primary/45 text-sm">
+                                <p className="py-14 text-center text-primary/65 text-sm">
                                     Інформація про кафедру з&apos;явиться найближчим часом.
                                 </p>
                             ) : (

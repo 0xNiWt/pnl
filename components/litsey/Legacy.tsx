@@ -40,7 +40,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="legacy"
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-8 md:gap-14 items-center">
@@ -56,7 +56,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
 
                     <div className="flex flex-col gap-4 max-w-xl">
                         {PARAGRAPHS.map((p) => (
-                            <p key={p.slice(0, 24)} className="text-base text-primary/70 leading-relaxed">
+                            <p key={p.slice(0, 24)} className="text-base text-primary/85 leading-relaxed">
                                 {p}
                             </p>
                         ))}
@@ -68,7 +68,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
 
             {tables.length > 0 && (
                 <>
-                    <p className="mt-12 mb-5 font-plex text-xs font-semibold uppercase tracking-[0.18em] text-primary/45">
+                    <p className="mt-12 mb-5 font-plex text-xs font-semibold uppercase tracking-[0.18em] text-primary/65">
                         Перемоги на олімпіадах
                     </p>
 
@@ -79,7 +79,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                             return (
                                 <div
                                     key={table.id}
-                                    className="rounded-none border border-primary/10 bg-primary/[0.03] p-6 flex flex-col"
+                                    className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 flex flex-col"
                                 >
                                     <span className="font-cormorant text-5xl leading-none text-accent">
                                         {total > 0 ? total : '—'}
@@ -89,7 +89,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                                         {table.title}
                                     </h3>
 
-                                    <p className="mt-1.5 text-sm text-primary/55 leading-relaxed">
+                                    <p className="mt-1.5 text-sm text-primary/75 leading-relaxed">
                                         {total > 0
                                             ? `${total} ${pluralWins(total)} за всі роки`
                                             : 'Дані готуються'}

@@ -32,7 +32,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.85, ease: smoothOut }}
-                className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
+                className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20"
                 id="memory-intro"
             >
                 <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -44,7 +44,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                     {MEMORY_BOOK_TITLE}
                 </h1>
 
-                <p className="mt-5 text-base text-primary/65 max-w-2xl leading-relaxed">
+                <p className="mt-5 text-base text-primary/80 max-w-2xl leading-relaxed">
                     Прадіди, діди й батьки наших учнів та вчителів — учасники Другої
                     світової війни. Кожну історію принесла до ліцею родина: хтось
                     зберіг фронтові фото, хтось — нагородні листи й спогади.
@@ -55,7 +55,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                         href={MEMORY_BOOK_PDF}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-none border border-primary/15 px-5 py-2.5 font-manrope text-sm font-semibold text-primary/75 hover:bg-primary hover:text-background hover:border-primary transition-colors"
+                        className="inline-flex items-center gap-2 rounded-none border border-primary/15 px-5 py-2.5 font-manrope text-sm font-semibold text-primary/85 hover:bg-primary hover:text-background hover:border-primary transition-colors"
                     >
                         <ExternalLink size={15} />
                         Відкрити презентацію
@@ -106,7 +106,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                     </div>
 
                     {query && (
-                        <p className="text-sm text-primary/50 mb-5">
+                        <p className="text-sm text-primary/70 mb-5">
                             {found.length === 0
                                 ? 'Нічого не знайдено'
                                 : `Знайдено ${found.length} ${found.length === 1 ? 'запис' : 'записів'}`}
@@ -123,10 +123,10 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                         <div className="mt-8 text-center">
                             <button
                                 onClick={() => setShown(shown + PAGE_SIZE)}
-                                className="inline-flex items-center gap-2 rounded-none border border-primary/15 px-6 py-3 font-manrope text-sm font-semibold text-primary/75 hover:bg-primary/5 hover:text-primary transition-colors"
+                                className="inline-flex items-center gap-2 rounded-none border border-primary/15 px-6 py-3 font-manrope text-sm font-semibold text-primary/85 hover:bg-primary/5 hover:text-primary transition-colors"
                             >
                                 Показати ще
-                                <span className="text-primary/40">
+                                <span className="text-primary/60">
                                     {found.length - shown}
                                 </span>
                             </button>
@@ -146,8 +146,8 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
     const shortText = isLong && !expanded ? text.slice(0, 260).trimEnd() + '…' : text;
 
     return (
-        <article className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-hidden flex flex-col">
-            <div className="relative w-full aspect-[3/4] bg-primary/[0.05]">
+        <article className="rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-hidden flex flex-col">
+            <div className="relative w-full aspect-[3/4] bg-secondary/[0.08]">
                 {entry.photo_url ? (
                     <Image
                         src={entry.photo_url}
@@ -178,7 +178,7 @@ function MemoryCard({ entry }: { entry: MemoryEntry }) {
 
                 {text && (
                     <>
-                        <p className="mt-3 text-sm text-primary/65 leading-relaxed">
+                        <p className="mt-3 text-sm text-primary/80 leading-relaxed">
                             {shortText}
                         </p>
 

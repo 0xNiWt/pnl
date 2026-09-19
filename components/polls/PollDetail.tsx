@@ -155,7 +155,7 @@ export default function PollDetail({
                     {poll.title}
                 </h1>
                 {poll.description && (
-                    <p className="text-sm text-primary/60 mt-2">{poll.description}</p>
+                    <p className="text-sm text-primary/78 mt-2">{poll.description}</p>
                 )}
             </div>
 
@@ -170,15 +170,15 @@ export default function PollDetail({
             )}
 
             {/* Явка */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
                 <div className="flex items-center justify-between gap-3 mb-2">
-                    <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70">
                         <Users size={13} />
                         Явка
                     </p>
-                    <p className="text-sm text-primary/60">
+                    <p className="text-sm text-primary/78">
                         <b className="text-primary">{turnout.voted}</b> з {turnout.eligible}
-                        <span className="text-primary/40"> · {percent}%</span>
+                        <span className="text-primary/60"> · {percent}%</span>
                     </p>
                 </div>
 
@@ -190,7 +190,7 @@ export default function PollDetail({
                     />
                 </div>
 
-                <p className="text-xs text-primary/45 mt-2">
+                <p className="text-xs text-primary/65 mt-2">
                     Потрібно щонайменше {Math.round(QUORUM[poll.scope] * 100)}% (п. 3.6 Статуту).{' '}
                     {quorumReached ? (
                         <b className="text-accent">Кворум набрано.</b>
@@ -203,7 +203,7 @@ export default function PollDetail({
             {/* Голосування */}
             {!isClosed && !hasVoted && (
                 <div className="bg-white/40 border border-primary/10 rounded-none p-5 flex flex-col gap-3">
-                    <p className="flex items-start gap-2 text-xs text-primary/70 bg-accent/[0.08] border border-accent/25 rounded-none px-3.5 py-2.5">
+                    <p className="flex items-start gap-2 text-xs text-primary/85 bg-accent/[0.08] border border-accent/25 rounded-none px-3.5 py-2.5">
                         <EyeOff size={14} className="shrink-0 mt-0.5 text-accent" />
                         Голосування таємне: твій вибір не зберігається поруч з іменем, тому
                         побачити, за що саме ти проголосував, не зможе ніхто.
@@ -216,7 +216,7 @@ export default function PollDetail({
                                 onClick={() => setChosen(option.id)}
                                 className={`flex items-center gap-3 text-left px-4 py-3 rounded-none border text-sm transition-colors ${chosen === option.id
                                     ? 'border-accent bg-accent/10 text-primary'
-                                    : 'border-primary/10 bg-white/60 hover:bg-primary/5 text-primary/80'
+                                    : 'border-primary/10 bg-white/60 hover:bg-primary/5 text-primary/90'
                                     }`}
                             >
                                 <span
@@ -238,7 +238,7 @@ export default function PollDetail({
                         {busy ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                         Проголосувати
                     </button>
-                    <p className="text-xs text-primary/40">
+                    <p className="text-xs text-primary/60">
                         Голос можна віддати лише один раз — змінити його потім не вийде.
                     </p>
                 </div>
@@ -247,7 +247,7 @@ export default function PollDetail({
             {!isClosed && hasVoted && (
                 <div className="flex items-start gap-2.5 bg-accent/[0.08] border border-accent/25 rounded-none px-5 py-4">
                     <Check size={16} className="shrink-0 mt-0.5 text-accent" />
-                    <p className="text-sm text-primary/75">
+                    <p className="text-sm text-primary/85">
                         Твій голос зараховано. Результати з&apos;являться тут, коли організатор
                         завершить голосування.
                     </p>
@@ -256,8 +256,8 @@ export default function PollDetail({
 
             {/* Результати */}
             {isClosed && results && (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
-                    <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/50 mb-4">
+                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+                    <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-4">
                         <Trophy size={13} />
                         Результати · {totalVotes} {totalVotes === 1 ? 'голос' : 'голосів'}
                     </p>
@@ -280,7 +280,7 @@ export default function PollDetail({
                                         </p>
                                         <p className="text-sm shrink-0">
                                             <b className="font-manrope text-primary">{share}%</b>
-                                            <span className="text-primary/40"> · {r.votes}</span>
+                                            <span className="text-primary/60"> · {r.votes}</span>
                                         </p>
                                     </div>
 
@@ -297,7 +297,7 @@ export default function PollDetail({
                     </div>
 
                     {totalVotes === 0 && (
-                        <p className="text-sm text-primary/40 mt-3">
+                        <p className="text-sm text-primary/60 mt-3">
                             Ніхто не проголосував — рахувати нічого.
                         </p>
                     )}
@@ -314,7 +314,7 @@ export default function PollDetail({
             )}
 
             {isClosed && (
-                <p className="flex items-start gap-2 text-xs text-primary/50 px-1">
+                <p className="flex items-start gap-2 text-xs text-primary/70 px-1">
                     <Lock size={13} className="shrink-0 mt-0.5" />
                     {poll.is_anonymous
                         ? 'Голосування таємне — зв’язок «хто за що» не зберігався в базі, тому поіменного списку не існує ні в організатора, ні в адміністрації.'
@@ -339,7 +339,7 @@ export default function PollDetail({
                     <button
                         onClick={removePoll}
                         disabled={busy}
-                        className="text-xs font-semibold text-primary/45 hover:text-accent transition-colors disabled:opacity-50"
+                        className="text-xs font-semibold text-primary/65 hover:text-accent transition-colors disabled:opacity-50"
                     >
                         Видалити голосування
                     </button>
@@ -347,7 +347,7 @@ export default function PollDetail({
             )}
 
             {isOrganizer && !isClosed && (
-                <p className="text-xs text-primary/40 px-1">
+                <p className="text-xs text-primary/60 px-1">
                     Поки голосування триває, результатів не бачить ніхто — навіть ти. Так
                     проміжні цифри не впливають на тих, хто ще не голосував.
                 </p>
@@ -391,11 +391,11 @@ function ResultsDonut({
     });
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
-            <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/50 mb-4">
+        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
+            <p className="flex items-center gap-2 text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-4">
                 <PieChart size={13} />
                 Розподіл голосів
-                <span className="ml-auto normal-case tracking-normal font-medium text-primary/40">
+                <span className="ml-auto normal-case tracking-normal font-medium text-primary/60">
                     видно лише організатору
                 </span>
             </p>
@@ -462,7 +462,7 @@ function ResultsDonut({
                             </span>
                             <span className="text-sm shrink-0">
                                 <b className="font-manrope text-primary">{s.percent}%</b>
-                                <span className="text-primary/40">
+                                <span className="text-primary/60">
                                     {' · '}
                                     {s.votes} {s.votes === 1 ? 'голос' : 'голосів'}
                                 </span>
@@ -486,7 +486,7 @@ function Badge({
 }) {
     return (
         <span
-            className={`inline-flex items-center gap-1.5 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${tone === 'active' ? 'bg-accent/15 text-accent' : 'bg-primary/5 text-primary/50'
+            className={`inline-flex items-center gap-1.5 text-[11px] font-manrope font-semibold uppercase tracking-wider px-2.5 py-1 rounded-none ${tone === 'active' ? 'bg-accent/15 text-accent' : 'bg-primary/5 text-primary/70'
                 }`}
         >
             {icon}

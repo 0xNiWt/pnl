@@ -24,7 +24,7 @@ export default async function StudentsListPage() {
 
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -38,7 +38,7 @@ export default async function StudentsListPage() {
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Весь список учнів
                     </h1>
-                    <p className="text-sm text-primary/50 mt-2 max-w-2xl">
+                    <p className="text-sm text-primary/70 mt-2 max-w-2xl">
                         Учні згруповані за класами. Біля імені — посада в активі, якщо вона є.
                         Щоб призначити або зняти посаду, відкрий «Учні та посади» в блоці
                         «Керування».

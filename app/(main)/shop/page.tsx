@@ -38,7 +38,7 @@ export default async function ShopPage() {
                     <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)]">
                         Мерч <span className="text-accent">ліцею</span>
                     </h1>
-                    <p className="mt-5 text-base text-primary/70 max-w-[560px]">
+                    <p className="mt-5 text-base text-primary/85 max-w-[560px]">
                         Купуйте за бали, зароблені активністю в житті ліцею, або за гроші.
                         Бали списуються одразу, а мерч видає актив. Місце в рейтингу від
                         покупок не змінюється — він рахує зароблене.

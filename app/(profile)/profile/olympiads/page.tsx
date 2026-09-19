@@ -20,7 +20,7 @@ export default async function OlympiadStatsPage() {
 
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -34,7 +34,7 @@ export default async function OlympiadStatsPage() {
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Перемоги на олімпіадах
                     </h1>
-                    <p className="mt-3 text-sm text-primary/60 max-w-2xl leading-relaxed">
+                    <p className="mt-3 text-sm text-primary/78 max-w-2xl leading-relaxed">
                         Ці таблиці показуються на сторінці «Про ліцей». Можна змінювати
                         числа, додавати предмети та навчальні роки. Зміни зберігаються
                         окремо для кожної таблиці.

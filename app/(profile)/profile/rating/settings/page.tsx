@@ -15,7 +15,7 @@ export default async function ProfileRatingPage() {
             <div className="w-full flex flex-col max-w-7xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю

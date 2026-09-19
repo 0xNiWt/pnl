@@ -21,7 +21,7 @@ export default function AboutHero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="about-hero"
         >
             <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] items-start md:items-center gap-8 md:gap-12">
@@ -35,7 +35,7 @@ export default function AboutHero() {
                         Школа, де наука<br />стає <span className="text-accent">покликанням</span>
                     </h2>
 
-                    <p className="mt-5 text-base text-primary/70 max-w-[480px] mx-auto md:mx-0">
+                    <p className="mt-5 text-base text-primary/85 max-w-[480px] mx-auto md:mx-0">
                         Київський природничо-науковий ліцей №145 створено на базі
                         фізико-математичної школи, педколектив якої має шістдесятип’ятирічний досвід
                         роботи з обдарованими дітьми. Поглиблені фізика, математика,
@@ -63,7 +63,6 @@ export default function AboutHero() {
                     className="w-full h-auto"
                     sizes="(max-width: 768px) 100vw, 1200px"
                     placeholder="blur"
-                    priority
                 />
 
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/80 to-transparent" />
@@ -73,7 +72,7 @@ export default function AboutHero() {
                 </figcaption>
             </figure>
 
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 rounded-none border border-primary/10 bg-primary/[0.03] overflow-hidden">
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-hidden">
                 {STATS.map((stat, i) => (
                     <div
                         key={stat.label}
@@ -85,7 +84,7 @@ export default function AboutHero() {
                         `}
                     >
                         <h4 className="font-cormorant font-bold text-primary text-[clamp(2rem,1.2rem+2.6vw,3.5rem)] leading-[1.02] tracking-[-0.02em]">{stat.value}</h4>
-                        <p className="font-inter text-primary/60 text-sm max-w-[160px] leading-snug">{stat.label}</p>
+                        <p className="font-inter text-primary/78 text-sm max-w-[160px] leading-snug">{stat.label}</p>
                     </div>
                 ))}
             </div>

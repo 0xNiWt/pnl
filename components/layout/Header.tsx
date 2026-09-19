@@ -3,11 +3,15 @@ import Link from "next/link";
 import gerb from '@/public/gerb.png';
 import Nav from './Nav';
 import AuthButtons from './AuthButtons';
+import LanguageSwitch from './LanguageSwitch';
 import { createClient } from '@/lib/server';
 
 export default async function Header() {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    // Лише щоб показати «Вхід» чи «Кабінет»: сесію вже перевірив і оновив
+    // proxy.ts, тож тут читаємо її з cookie без запиту до Supabase.
+    const { data: { session } } = await supabase.auth.getSession();
+    const isLoggedIn = !!session;
 
     return (
         <header className="sticky top-0 z-50 border-b border-secondary/40 border-t-4 border-t-secondary bg-background">
@@ -29,15 +33,18 @@ export default async function Header() {
                                 Природничо-науковий ліцей
                             </span>
                             {/* Номер закладу винесено в технічний рядок — як вихідні дані. */}
-                            <span className="mt-0.5 font-plex text-[9px] uppercase tracking-[0.22em] text-primary/40">
+                            <span className="mt-0.5 font-plex text-[9px] uppercase tracking-[0.22em] text-primary/60">
                                 № 145 · Київ · з 1962
                             </span>
                         </span>
                     </Link>
 
-                    <Nav isLoggedIn={!!user} />
+                    <Nav isLoggedIn={isLoggedIn} />
 
-                    <AuthButtons isLoggedIn={!!user} />
+                    <div className="hidden md:flex items-center gap-3">
+                        <LanguageSwitch />
+                        <AuthButtons isLoggedIn={isLoggedIn} />
+                    </div>
                 </div>
             </div>
         </header>

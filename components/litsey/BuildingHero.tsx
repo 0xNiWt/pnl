@@ -39,7 +39,7 @@ export default function BuildingHero() {
                     <h1 className="mt-5 font-cormorant font-bold leading-[0.92] tracking-[-0.02em] text-background text-[clamp(2.15rem,1rem+5.2vw,6.2rem)]">
                         <span className="block">Природничо-науковий</span>
                         <span className="block">
-                            ліцей <span className="text-secondary">№&nbsp;145</span>
+                            ліцей <span className="text-accent">№&nbsp;145</span>
                         </span>
                     </h1>
 

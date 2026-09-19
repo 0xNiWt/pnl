@@ -24,7 +24,7 @@ export default async function ProfileRatingPage() {
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 pt-10 md:pt-16">
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -38,7 +38,7 @@ export default async function ProfileRatingPage() {
                     <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)]">
                         Рейтинг <span className="text-accent">ліцею</span>
                     </h1>
-                    <p className="mt-5 text-base text-primary/70 max-w-[520px]">
+                    <p className="mt-5 text-base text-primary/85 max-w-[520px]">
                         Бали учнів і класів за активність у житті ліцею.
                     </p>
                 </div>

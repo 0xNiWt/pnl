@@ -72,9 +72,9 @@ export default function ShopGrid({
 
     if (products.length === 0) {
         return (
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-16 text-center">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-16 text-center">
                 <PackageX size={28} className="mx-auto text-primary/25 mb-3" />
-                <p className="text-sm text-primary/50">
+                <p className="text-sm text-primary/70">
                     Товарів поки немає. Зазирніть пізніше — мерч ось-ось буде.
                 </p>
             </div>
@@ -88,13 +88,13 @@ export default function ShopGrid({
                 {currentBalance !== null && (
                     <span className="inline-flex items-center gap-2 rounded-none bg-accent/10 border border-accent/25 px-4 py-2 text-sm">
                         <Coins size={15} className="text-accent" />
-                        <span className="text-primary/60">Ваш баланс:</span>
+                        <span className="text-primary/78">Ваш баланс:</span>
                         <b className="font-manrope text-primary">{formatPoints(currentBalance)}</b>
                     </span>
                 )}
 
                 {!isLoggedIn && (
-                    <span className="text-sm text-primary/50">
+                    <span className="text-sm text-primary/70">
                         <Link href="/auth/login" className="font-semibold text-accent hover:text-primary">
                             Увійдіть
                         </Link>
@@ -114,7 +114,7 @@ export default function ShopGrid({
             )}
 
             {bought && (
-                <div className="flex items-start gap-2 bg-accent/[0.08] border border-accent/25 text-primary/80 text-sm rounded-none px-4 py-3">
+                <div className="flex items-start gap-2 bg-accent/[0.08] border border-accent/25 text-primary/90 text-sm rounded-none px-4 py-3">
                     <Check size={16} className="shrink-0 mt-0.5 text-accent" />
                     <span>
                         Замовлено <b className="text-primary">{bought}</b>. Бали списано — по мерч
@@ -166,7 +166,7 @@ function ProductCard({
         forPoints && balance !== null && product.price_points !== null && balance < product.price_points;
 
     return (
-        <div className="flex flex-col bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
+        <div className="flex flex-col bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
             <div className="relative w-full aspect-[4/3] bg-primary/5">
                 {product.image_url ? (
                     <Image
@@ -202,7 +202,7 @@ function ProductCard({
                 <h3 className="font-manrope font-bold text-primary">{product.title}</h3>
 
                 {product.description && (
-                    <p className="text-sm text-primary/60 mt-1.5 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm text-primary/78 mt-1.5 leading-relaxed whitespace-pre-line">
                         {product.description}
                     </p>
                 )}
@@ -221,7 +221,7 @@ function ProductCard({
                         </span>
                     )}
                     {product.stock !== null && !soldOut && (
-                        <span className="text-xs text-primary/40">лишилось {product.stock}</span>
+                        <span className="text-xs text-primary/60">лишилось {product.stock}</span>
                     )}
                 </div>
 
@@ -257,7 +257,7 @@ function ProductCard({
                     )}
 
                     {!forPoints && !forMoney && (
-                        <p className="text-xs text-primary/40 text-center py-1">
+                        <p className="text-xs text-primary/60 text-center py-1">
                             {soldOut ? 'Товар закінчився' : 'Купівля тимчасово недоступна'}
                         </p>
                     )}

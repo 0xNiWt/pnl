@@ -169,14 +169,14 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             <div className="inline-flex self-start rounded-none border border-primary/15 p-1">
                 <button
                     onClick={() => setTab('students')}
-                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'students' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'students' ? 'bg-primary text-background' : 'text-primary/78'
                         }`}
                 >
                     Список учнів
                 </button>
                 <button
                     onClick={() => setTab('positions')}
-                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'positions' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${tab === 'positions' ? 'bg-primary text-background' : 'text-primary/78'
                         }`}
                 >
                     Усі посади
@@ -197,7 +197,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                 <div className="flex items-start gap-2 bg-accent/10 border border-accent/30 text-primary text-sm rounded-none px-4 py-3">
                     <TriangleAlert size={16} className="shrink-0 mt-0.5 text-accent" />
                     <span>{warning}</span>
-                    <button onClick={() => setWarning(null)} className="ml-auto shrink-0 text-primary/40">
+                    <button onClick={() => setWarning(null)} className="ml-auto shrink-0 text-primary/60">
                         <X size={14} />
                     </button>
                 </div>
@@ -206,7 +206,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
             {tab === 'students' ? (
                 <>
                     {/* Фільтри */}
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
                         <div className="relative">
                             <Search
                                 size={15}
@@ -275,7 +275,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                             </Filter>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-primary/50">
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-primary/70">
                             <span>
                                 Показано <b className="text-primary">{filtered.length}</b> з {profiles.length}
                             </span>
@@ -291,9 +291,9 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                     </div>
 
                     {/* Список учнів */}
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
                         {filtered.length === 0 ? (
-                            <p className="px-6 py-10 text-sm text-primary/40 text-center">
+                            <p className="px-6 py-10 text-sm text-primary/60 text-center">
                                 За такими умовами нікого не знайдено.
                             </p>
                         ) : (
@@ -306,13 +306,13 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                         <div key={profile.id}>
                                             <button
                                                 onClick={() => setOpenId(isOpen ? null : profile.id)}
-                                                className="w-full text-left px-5 py-4 flex items-center gap-4 hover:bg-primary/[0.03] transition-colors"
+                                                className="w-full text-left px-5 py-4 flex items-center gap-4 hover:bg-secondary/[0.1] transition-colors"
                                             >
                                                 <div className="min-w-0 flex-1">
                                                     <p className="text-sm font-semibold text-primary truncate">
                                                         {profile.full_name || 'Без імені'}
                                                     </p>
-                                                    <p className="text-xs text-primary/40 mt-0.5">
+                                                    <p className="text-xs text-primary/60 mt-0.5">
                                                         {profile.class || 'Клас не вказано'}
                                                     </p>
                                                 </div>
@@ -344,10 +344,10 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                             )}
 
                                             {isOpen && (
-                                                <div className="px-5 pb-5 pt-1 flex flex-col gap-4 bg-primary/[0.02]">
+                                                <div className="px-5 pb-5 pt-1 flex flex-col gap-4 bg-secondary/[0.08]">
                                                     {POSITION_SCOPES.map((scope) => (
                                                         <div key={scope.id}>
-                                                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-2">
+                                                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-2">
                                                                 {scope.label}
                                                             </p>
                                                             <div className="flex flex-wrap gap-2">
@@ -372,7 +372,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                                                             }
                                                                             className={`flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-50 ${has
                                                                                 ? 'bg-accent/15 text-accent'
-                                                                                : 'bg-primary/5 text-primary/40 hover:bg-primary/10'
+                                                                                : 'bg-primary/5 text-primary/60 hover:bg-primary/10'
                                                                                 }`}
                                                                         >
                                                                             {has ? <Check size={12} /> : <X size={12} />}
@@ -388,7 +388,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                                                         </div>
                                                     ))}
 
-                                                    <p className="text-xs text-primary/40">
+                                                    <p className="text-xs text-primary/60">
                                                         Крапка <span className="inline-block w-1.5 h-1.5 rounded-none bg-accent align-middle" />{' '}
                                                         означає, що посаду вже хтось займає
                                                         {' '}(у класі — для класних посад, у ліцеї — для ліцейських).
@@ -409,7 +409,7 @@ export default function StudentsDirectory({ initialProfiles }: { initialProfiles
                         <ScopeCard key={scope.id} scope={scope} holdersOf={holdersOf} />
                     ))}
 
-                    <p className="text-xs text-primary/40 px-1">
+                    <p className="text-xs text-primary/60 px-1">
                         Усього посад у Статуті: {POSITIONS.length}. Класні посади повторюються
                         в кожному класі, ліцейські — одні на весь ліцей.
                     </p>
@@ -427,10 +427,10 @@ function ScopeCard({
     holdersOf: (id: string) => Profile[];
 }) {
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
-            <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
+        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
+            <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.08]">
                 <p className="font-manrope font-bold text-sm text-primary">{scope.label}</p>
-                <p className="text-xs text-primary/40 mt-0.5">{scope.hint}</p>
+                <p className="text-xs text-primary/60 mt-0.5">{scope.hint}</p>
             </div>
 
             <div className="flex flex-col divide-y divide-primary/10">
@@ -455,7 +455,7 @@ function ScopeCard({
                                         >
                                             {h.full_name ?? 'Без імені'}
                                             {h.class && (
-                                                <span className="text-primary/40">{h.class}</span>
+                                                <span className="text-primary/60">{h.class}</span>
                                             )}
                                         </span>
                                     ))
@@ -480,7 +480,7 @@ function PositionBadge({ id }: { id: string }) {
 function Filter({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div>
-            <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+            <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                 {label}
             </label>
             {children}

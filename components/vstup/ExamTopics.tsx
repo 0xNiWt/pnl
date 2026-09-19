@@ -16,7 +16,7 @@ export default function ExamTopics() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="topics"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -28,7 +28,7 @@ export default function ExamTopics() {
                 Перелік тем для випробувань
             </h2>
 
-            <p className="text-base text-primary/65 max-w-2xl mb-8 leading-relaxed">
+            <p className="text-base text-primary/80 max-w-2xl mb-8 leading-relaxed">
                 Завдання відповідають навчальній програмі загальноосвітньої школи за
                 попередній клас. Оберіть, до якого класу вступаєте.
             </p>
@@ -40,7 +40,7 @@ export default function ExamTopics() {
                         onClick={() => setActiveId(topic.id)}
                         className={`rounded-none px-5 py-2.5 font-inter text-sm font-medium transition-colors ${topic.id === active.id
                             ? "bg-primary text-background"
-                            : "text-primary/70 bg-primary/5 hover:bg-primary/10 hover:text-primary"
+                            : "text-primary/85 bg-primary/5 hover:bg-primary/10 hover:text-primary"
                             }`}
                     >
                         {topic.label}
@@ -52,7 +52,7 @@ export default function ExamTopics() {
                 {active.subjects.map((subject) => (
                     <div
                         key={subject.title}
-                        className="rounded-none border border-primary/10 bg-primary/[0.02] p-6 md:p-7"
+                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 md:p-7"
                     >
                         <div className="flex items-baseline justify-between gap-3 mb-5 pb-4 border-b border-primary/10">
                             <h3 className="font-cormorant font-bold text-primary text-2xl leading-[1.15]">
@@ -76,7 +76,7 @@ export default function ExamTopics() {
                                         {group.topics.map((topic, i) => (
                                             <li
                                                 key={topic}
-                                                className="flex gap-3 py-2 border-b border-primary/[0.06] last:border-0 text-sm text-primary/70 leading-relaxed"
+                                                className="flex gap-3 py-2 border-b border-primary/[0.06] last:border-0 text-sm text-primary/85 leading-relaxed"
                                             >
                                                 <span className="font-manrope text-xs text-primary/30 tabular-nums shrink-0 pt-0.5 w-5">
                                                     {i + 1}

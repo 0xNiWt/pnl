@@ -17,7 +17,7 @@ export default function AdmissionRules() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="rules"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -29,7 +29,7 @@ export default function AdmissionRules() {
                 Правила конкурсного відбору, прийому та зарахування
             </h2>
 
-            <p className="text-sm text-primary/55 max-w-3xl leading-relaxed mb-8">
+            <p className="text-sm text-primary/75 max-w-3xl leading-relaxed mb-8">
                 {RULES_INTRO}
             </p>
 
@@ -41,12 +41,12 @@ export default function AdmissionRules() {
                         return (
                             <div
                                 key={section.id}
-                                className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-hidden"
+                                className="rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-hidden"
                             >
                                 <button
                                     onClick={() => setOpen(isOpen ? null : section.id)}
                                     aria-expanded={isOpen}
-                                    className="w-full flex items-center gap-4 px-5 md:px-6 py-4 text-left hover:bg-primary/[0.03] transition-colors"
+                                    className="w-full flex items-center gap-4 px-5 md:px-6 py-4 text-left hover:bg-secondary/[0.1] transition-colors"
                                 >
                                     <span className="font-cormorant text-2xl text-accent leading-none w-6 shrink-0">
                                         {section.number}
@@ -63,7 +63,7 @@ export default function AdmissionRules() {
                                     <motion.span
                                         animate={{ rotate: isOpen ? 180 : 0 }}
                                         transition={{ duration: 0.25, ease: smoothOut }}
-                                        className="text-primary/40 shrink-0"
+                                        className="text-primary/60 shrink-0"
                                     >
                                         <ChevronDown size={18} />
                                     </motion.span>
@@ -84,7 +84,7 @@ export default function AdmissionRules() {
                                                         <span className="font-manrope text-xs font-bold text-accent tabular-nums shrink-0 pt-0.5 w-8">
                                                             {section.number}.{i + 1}
                                                         </span>
-                                                        <span className="text-sm text-primary/70 leading-relaxed">
+                                                        <span className="text-sm text-primary/85 leading-relaxed">
                                                             {item}
                                                         </span>
                                                     </li>

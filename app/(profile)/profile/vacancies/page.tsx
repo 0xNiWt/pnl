@@ -23,7 +23,7 @@ export default async function VacanciesAdminPage() {
                 <div className="flex flex-col mb-8">
                     <Link
                         href="/profile"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                     >
                         <ArrowLeft size={15} />
                         Назад до профілю
@@ -35,7 +35,7 @@ export default async function VacanciesAdminPage() {
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Вакансії
                     </h1>
-                    <p className="text-sm text-primary/60 mt-2">
+                    <p className="text-sm text-primary/78 mt-2">
                         Ці вакансії показуються в блоці &quot;Вакансії&quot; на головній сторінці сайту.
                     </p>
                 </div>

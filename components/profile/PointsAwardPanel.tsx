@@ -298,14 +298,14 @@ export default function PointsAwardPanel() {
             <div className="inline-flex rounded-none border border-primary/15 p-1">
                 <button
                     onClick={() => switchMode('student')}
-                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${mode === 'student' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${mode === 'student' ? 'bg-primary text-background' : 'text-primary/78'
                         }`}
                 >
                     Учням
                 </button>
                 <button
                     onClick={() => switchMode('event')}
-                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${mode === 'event' ? 'bg-primary text-background' : 'text-primary/60'
+                    className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${mode === 'event' ? 'bg-primary text-background' : 'text-primary/78'
                         }`}
                 >
                     Учням за коефіцієнтами
@@ -315,7 +315,7 @@ export default function PointsAwardPanel() {
             {mode === 'event' && (
                 <div className="flex gap-3 rounded-none border border-accent/25 bg-accent/[0.07] p-4">
                     <Info size={16} className="shrink-0 mt-0.5 text-accent" />
-                    <p className="text-xs leading-relaxed text-primary/70">
+                    <p className="text-xs leading-relaxed text-primary/85">
                         Бюджет заходу ділиться на загальну суму коефіцієнтів усіх учасників — так
                         визначається базова ставка. Далі ставка множиться на особистий коефіцієнт
                         кожного учня (п. 12.2.5 Статуту). Залишок від округлення роздається по
@@ -327,7 +327,7 @@ export default function PointsAwardPanel() {
 
             {/* Ситуації зі Статуту */}
             <div>
-                <h2 className="font-plex font-semibold text-sm text-primary/70 uppercase tracking-wide mb-3">
+                <h2 className="font-plex font-semibold text-sm text-primary/85 uppercase tracking-wide mb-3">
                     {mode === 'student' ? 'Ситуація зі Статуту' : 'Захід'}
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-2">
@@ -341,7 +341,7 @@ export default function PointsAwardPanel() {
                                 }`}
                         >
                             <div className="font-medium text-primary">{s.title}</div>
-                            <div className="text-xs text-primary/50 mt-0.5">
+                            <div className="text-xs text-primary/70 mt-0.5">
                                 {CATEGORY_LABELS[s.category]}
                                 {s.points !== null
                                     ? ` · ${s.points > 0 ? '+' : ''}${s.points} балів`
@@ -351,7 +351,7 @@ export default function PointsAwardPanel() {
                         </button>
                     ))}
                 </div>
-                <button onClick={resetForm} className="mt-2 text-xs text-primary/50 underline">
+                <button onClick={resetForm} className="mt-2 text-xs text-primary/70 underline">
                     {mode === 'student'
                         ? 'Або ввести довільне нарахування вручну'
                         : 'Або ввести свій захід вручну'}
@@ -362,7 +362,7 @@ export default function PointsAwardPanel() {
             {mode === 'event' && (
                 <div className="grid sm:grid-cols-[1fr_180px] gap-4">
                     <div>
-                        <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                        <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                             Назва заходу
                         </label>
                         <input
@@ -373,7 +373,7 @@ export default function PointsAwardPanel() {
                         />
                     </div>
                     <div>
-                        <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                        <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                             Бюджет, балів
                         </label>
                         <input
@@ -388,7 +388,7 @@ export default function PointsAwardPanel() {
 
             {/* Пошук учнів */}
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                     {mode === 'student' ? 'Кому нараховуємо' : 'Учасники заходу'}
                 </label>
 
@@ -431,7 +431,7 @@ export default function PointsAwardPanel() {
                                     className="w-full text-left px-4 py-2.5 text-sm hover:bg-primary/5 flex justify-between"
                                 >
                                     <span>{s.full_name}</span>
-                                    <span className="text-primary/40">{s.class}</span>
+                                    <span className="text-primary/60">{s.class}</span>
                                 </button>
                             ))}
                         </div>
@@ -439,7 +439,7 @@ export default function PointsAwardPanel() {
                 </div>
 
                 {mode === 'student' && selectedStudents.length > 1 && (
-                    <p className="text-xs text-primary/50 mt-1.5">
+                    <p className="text-xs text-primary/70 mt-1.5">
                         Усім {selectedStudents.length} учням буде нараховано однакову кількість
                         балів з однаковим поясненням.
                     </p>
@@ -449,8 +449,8 @@ export default function PointsAwardPanel() {
             {/* Таблиця учасників із коефіцієнтами */}
             {mode === 'event' && (
                 <div className="border border-primary/10 rounded-none overflow-hidden bg-white/40">
-                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-primary/[0.04]">
-                        <span className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                    <div className="flex items-center justify-between gap-3 px-4 py-2.5 bg-secondary/[0.08]">
+                        <span className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                             Учасники — рівень, категорія та пояснення
                         </span>
                         {participants.length > 0 && (
@@ -466,7 +466,7 @@ export default function PointsAwardPanel() {
                     </div>
 
                     {participants.length === 0 ? (
-                        <p className="px-4 py-6 text-sm text-primary/40 text-center">
+                        <p className="px-4 py-6 text-sm text-primary/60 text-center">
                             Список учасників порожній. Знайди учнів у полі пошуку вище.
                         </p>
                     ) : (
@@ -481,7 +481,7 @@ export default function PointsAwardPanel() {
                                         <p className="text-sm font-medium text-primary truncate">
                                             {p.student.full_name}
                                         </p>
-                                        <p className="text-xs text-primary/40">
+                                        <p className="text-xs text-primary/60">
                                             {p.student.class ?? '—'}
                                         </p>
                                     </div>
@@ -498,7 +498,7 @@ export default function PointsAwardPanel() {
                                                 }
                                                 className={`w-9 h-9 rounded-none text-sm font-manrope font-bold transition-colors ${p.coefficient === level.value
                                                     ? 'bg-primary text-background'
-                                                    : 'bg-primary/5 text-primary/50 hover:bg-primary/10'
+                                                    : 'bg-primary/5 text-primary/70 hover:bg-primary/10'
                                                     }`}
                                             >
                                                 {level.value}
@@ -549,7 +549,7 @@ export default function PointsAwardPanel() {
                                     />
                                 </div>
 
-                                <p className="text-[11px] text-primary/40">
+                                <p className="text-[11px] text-primary/60">
                                     {COEFFICIENT_LEVELS.find((l) => l.value === p.coefficient)?.title}
                                 </p>
                             </div>
@@ -557,7 +557,7 @@ export default function PointsAwardPanel() {
                     )}
 
                     {participants.length > 0 && (
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-3 border-t border-primary/10 bg-primary/[0.03]">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-3 border-t border-primary/10 bg-secondary/[0.08]">
                             <Summary label="Учасників" value={String(participants.length)} />
                             <Summary label="Сума коефіцієнтів" value={String(distribution.totalCoefficient)} />
                             <Summary
@@ -581,7 +581,7 @@ export default function PointsAwardPanel() {
             <div className="border border-primary/10 rounded-none p-5 bg-white/40 space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                        <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                             {mode === 'student' ? 'Категорія' : 'Категорія за замовчуванням'}
                         </label>
                         <select
@@ -599,7 +599,7 @@ export default function PointsAwardPanel() {
 
                     {mode === 'student' && (
                         <div>
-                            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                                 Бали (можна від&apos;ємні — штраф)
                             </label>
                             <input
@@ -613,7 +613,7 @@ export default function PointsAwardPanel() {
                 </div>
 
                 <div>
-                    <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                    <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                         {mode === 'student'
                             ? 'Пояснення (видно редактору та учню-отримувачу)'
                             : 'Пояснення за замовчуванням'}
@@ -625,7 +625,7 @@ export default function PointsAwardPanel() {
                         className="w-full px-3.5 py-2.5 rounded-none border border-primary/15 bg-white text-sm resize-none"
                     />
                     {mode === 'event' && (
-                        <p className="text-xs text-primary/50 mt-1.5">
+                        <p className="text-xs text-primary/70 mt-1.5">
                             Ці значення підставляються кожному новому учаснику. Персональні
                             категорію та пояснення міняй у списку вище — до пояснення кожного
                             учня автоматично додасться назва заходу, коефіцієнт і бюджет.
@@ -655,7 +655,7 @@ export default function PointsAwardPanel() {
 function Summary({ label, value }: { label: string; value: string }) {
     return (
         <div>
-            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                 {label}
             </p>
             <p className="text-sm font-manrope font-bold text-primary mt-0.5">{value}</p>

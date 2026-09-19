@@ -54,7 +54,7 @@ export default function EruditeRosterPanel({
                 Заявки моєї команди на ігри
             </h2>
 
-            <p className="text-sm text-primary/55 -mt-1">
+            <p className="text-sm text-primary/75 -mt-1">
                 Оберіть до {TEAM_SIZE} гравців зі свого класу (п. 9.3.1). Заявку підтверджує президент клубу —
                 після цього гравці автоматично стають учасниками клубу «Ерудит».
             </p>
@@ -89,7 +89,7 @@ export default function EruditeRosterPanel({
 
 function Notice({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 px-5 py-6 text-sm text-primary/50">
+        <div className="bg-secondary/[0.08] border border-primary/10 px-5 py-6 text-sm text-primary/70">
             {children}
         </div>
     );
@@ -156,11 +156,11 @@ function RosterCard({
                 : 'bg-accent/10 text-accent border-accent/30';
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 p-5 flex flex-col gap-3">
+        <div className="bg-secondary/[0.08] border border-primary/10 p-5 flex flex-col gap-3">
             <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                     <p className="font-semibold text-primary">{game.title}</p>
-                    <p className="text-xs text-primary/50">
+                    <p className="text-xs text-primary/70">
                         {new Date(game.played_on).toLocaleDateString('uk-UA', { day: 'numeric', month: 'long' })}
                         {' · '}команда «{team.name}»
                     </p>
@@ -178,7 +178,7 @@ function RosterCard({
 
             {!editing && roster ? (
                 <div className="flex flex-wrap items-center gap-3">
-                    <p className="text-sm text-primary/70 flex-1 min-w-0">
+                    <p className="text-sm text-primary/85 flex-1 min-w-0">
                         {roster.players.map((id) => personNames[id] ?? '—').join(', ')}
                     </p>
                     <button
@@ -194,7 +194,7 @@ function RosterCard({
             ) : (
                 <>
                     {candidates.length === 0 ? (
-                        <p className="text-sm text-primary/50">У вашому класі ще немає зареєстрованих учнів.</p>
+                        <p className="text-sm text-primary/70">У вашому класі ще немає зареєстрованих учнів.</p>
                     ) : (
                         <div className="grid gap-1.5 sm:grid-cols-2">
                             {candidates.map((p) => {
@@ -202,7 +202,7 @@ function RosterCard({
                                 return (
                                     <label
                                         key={p.id}
-                                        className={`flex items-center gap-2 px-3 py-2 text-sm border cursor-pointer transition-colors ${checked ? 'border-accent/50 bg-accent/[0.07] text-primary' : 'border-primary/10 text-primary/65'
+                                        className={`flex items-center gap-2 px-3 py-2 text-sm border cursor-pointer transition-colors ${checked ? 'border-accent/50 bg-accent/[0.07] text-primary' : 'border-primary/10 text-primary/80'
                                             }`}
                                     >
                                         <input type="checkbox" checked={checked} onChange={() => toggle(p.id)} />
@@ -238,7 +238,7 @@ function RosterCard({
                                     setEditing(false);
                                     setError(null);
                                 }}
-                                className="inline-flex items-center gap-1 text-sm font-semibold text-primary/50 hover:text-primary transition-colors"
+                                className="inline-flex items-center gap-1 text-sm font-semibold text-primary/70 hover:text-primary transition-colors"
                             >
                                 <X size={14} />
                                 Скасувати
@@ -247,7 +247,7 @@ function RosterCard({
                     </div>
 
                     {roster?.status === 'approved' && (
-                        <p className="flex items-center gap-1.5 text-xs text-primary/50">
+                        <p className="flex items-center gap-1.5 text-xs text-primary/70">
                             <Check size={13} />
                             Після зміни заявка знову піде на підтвердження президенту.
                         </p>

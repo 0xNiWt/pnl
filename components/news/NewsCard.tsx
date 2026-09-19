@@ -17,7 +17,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
     return (
         <Link
             href={`/news/${slug}`}
-            className="group flex flex-col overflow-hidden rounded-none border border-primary/10 bg-primary/[0.02] hover:border-primary/20 transition-colors"
+            className="group flex flex-col overflow-hidden rounded-none border border-secondary/30 bg-secondary/[0.07] hover:border-secondary/60 transition-colors"
         >
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary/5">
                 {coverUrl ? (
@@ -46,12 +46,12 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt }
                 </h3>
 
                 {excerpt && (
-                    <p className="text-sm text-primary/60 leading-relaxed line-clamp-2">
+                    <p className="text-sm text-primary/78 leading-relaxed line-clamp-2">
                         {excerpt}
                     </p>
                 )}
 
-                <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-primary/70 group-hover:text-primary transition-colors">
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-primary/85 group-hover:text-primary transition-colors">
                     Читати
                     <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>

@@ -28,7 +28,7 @@ export default function Science() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="science"
         >
             <div className="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-14 items-center">
@@ -60,7 +60,7 @@ export default function Science() {
 
                     <ul className="flex flex-col gap-3.5 max-w-xl">
                         {SCIENCE_POINTS.map((p) => (
-                            <li key={p.slice(0, 24)} className="flex gap-3 text-base text-primary/70 leading-relaxed">
+                            <li key={p.slice(0, 24)} className="flex gap-3 text-base text-primary/85 leading-relaxed">
                                 <span className="mt-2.5 h-1.5 w-1.5 rounded-none bg-accent shrink-0" />
                                 {p}
                             </li>
@@ -69,13 +69,13 @@ export default function Science() {
                 </div>
             </div>
 
-            <div className="mt-12 rounded-none border border-primary/10 bg-primary/[0.03] p-6 md:p-8">
+            <div className="mt-12 rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-7">
                     <div>
                         <h3 className="font-cormorant font-bold text-primary text-[clamp(1.35rem,1.1rem+1.1vw,2rem)] leading-[1.1] tracking-[-0.01em]">
                             Позаурочна освіта
                         </h3>
-                        <p className="mt-1.5 text-sm text-primary/60 max-w-2xl leading-relaxed">
+                        <p className="mt-1.5 text-sm text-primary/78 max-w-2xl leading-relaxed">
                             Спецкурси й факультативи ведуть і вчителі ліцею, і наукові
                             працівники вищих навчальних та науково-дослідницьких установ
                             Києва. Поглибити шкільний курс можна на групових
@@ -88,12 +88,12 @@ export default function Science() {
                     {EXTRAS.map((e) => (
                         <div key={e.label} className="border-l-2 border-primary/10 pl-4">
                             <span className="font-cormorant text-4xl leading-none text-accent">{e.value}</span>
-                            <p className="mt-1.5 text-sm text-primary/60 leading-snug">{e.label}</p>
+                            <p className="mt-1.5 text-sm text-primary/78 leading-snug">{e.label}</p>
                         </div>
                     ))}
                 </div>
 
-                <p className="mt-7 pt-5 border-t border-primary/10 text-sm text-primary/55 leading-relaxed">
+                <p className="mt-7 pt-5 border-t border-primary/10 text-sm text-primary/75 leading-relaxed">
                     Вчителі активно застосовують новітні технології: систему «Hi Class»,
                     інтерактивні мультимедійні комплекси та доступ до мережі Інтернет для
                     інформаційного забезпечення й активізації роботи учнів.

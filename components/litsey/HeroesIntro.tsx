@@ -12,7 +12,7 @@ export default function HeroesIntro() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20"
             id="heroes-intro"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -24,11 +24,11 @@ export default function HeroesIntro() {
                 Герої ліцею
             </h1>
 
-            <p className="mt-4 font-manrope font-semibold text-lg md:text-xl text-primary/80 max-w-2xl">
+            <p className="mt-4 font-manrope font-semibold text-lg md:text-xl text-primary/90 max-w-2xl">
                 Випускники ліцею, які загинули, захищаючи незалежність України
             </p>
 
-            <p className="mt-5 text-base text-primary/65 max-w-2xl leading-relaxed">
+            <p className="mt-5 text-base text-primary/80 max-w-2xl leading-relaxed">
                 Вони сиділи за тими самими партами, писали ті самі контрольні й бігали
                 тими самими коридорами. Кожен обрав свою справу — науку, медицину,
                 інженерію, спорт — і кожен став на захист країни, коли це стало

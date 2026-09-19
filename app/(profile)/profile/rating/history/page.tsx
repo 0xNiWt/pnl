@@ -48,7 +48,7 @@ export default async function MyPointsHistoryPage() {
 
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -59,30 +59,30 @@ export default async function MyPointsHistoryPage() {
                         Мої бали та здобутки
                     </h1>
                     <div className="flex items-center gap-3 flex-wrap">
-                        <div className="flex items-center gap-3 bg-primary/[0.03] border border-primary/10 rounded-none px-5 py-3">
+                        <div className="flex items-center gap-3 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-3">
                             <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                 <Coins size={18} />
                             </span>
                             <div>
-                                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                     Активність
                                 </p>
                                 <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
-                                    {total} <span className="text-sm font-normal text-primary/50">балів</span>
+                                    {total} <span className="text-sm font-normal text-primary/70">балів</span>
                                 </p>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-3 bg-primary/[0.03] border border-primary/10 rounded-none px-5 py-3">
+                        <div className="flex items-center gap-3 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-3">
                             <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                 <Trophy size={18} />
                             </span>
                             <div>
-                                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                     Олімпіади
                                 </p>
                                 <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
-                                    {olympiadTotal} <span className="text-sm font-normal text-primary/50">балів</span>
+                                    {olympiadTotal} <span className="text-sm font-normal text-primary/70">балів</span>
                                 </p>
                             </div>
                         </div>
@@ -100,8 +100,8 @@ export default async function MyPointsHistoryPage() {
                 )}
 
                 {!error && (!transactions || transactions.length === 0) && (
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-8 text-center">
-                        <p className="text-sm text-primary/50">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-8 text-center">
+                        <p className="text-sm text-primary/70">
                             Поки що немає жодного нарахування балів.
                         </p>
                     </div>
@@ -112,7 +112,7 @@ export default async function MyPointsHistoryPage() {
                         {transactions.map((t) => (
                             <div
                                 key={t.id}
-                                className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
+                                className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
                             >
                                 <div>
                                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -120,7 +120,7 @@ export default async function MyPointsHistoryPage() {
                                             {CATEGORY_LABELS[t.category as PointCategory] ?? t.category}
                                         </span>
                                         {t.event_title && (
-                                            <span className="inline-block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/45">
+                                            <span className="inline-block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/65">
                                                 · {t.event_title}
                                             </span>
                                         )}
@@ -137,11 +137,11 @@ export default async function MyPointsHistoryPage() {
                                         {t.explanation}
                                     </p>
                                     {t.event_budget !== null && t.event_budget !== undefined && (
-                                        <p className="text-xs text-primary/40 mt-1">
+                                        <p className="text-xs text-primary/60 mt-1">
                                             Із загального бюджету заходу — {t.event_budget} балів
                                         </p>
                                     )}
-                                    <p className="text-xs text-primary/40 mt-1.5">
+                                    <p className="text-xs text-primary/60 mt-1.5">
                                         {new Date(t.created_at).toLocaleDateString('uk-UA', {
                                             day: 'numeric',
                                             month: 'long',
@@ -170,14 +170,14 @@ export default async function MyPointsHistoryPage() {
                 >
                     Олімпіадні здобутки
                 </h2>
-                <p className="text-sm text-primary/50 mb-4">
+                <p className="text-sm text-primary/70 mb-4">
                     За що нараховані олімпіадні бали: етап, місце й скільки це дало за
                     чинною шкалою.
                 </p>
 
                 {olympiads.length === 0 ? (
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-8 text-center">
-                        <p className="text-sm text-primary/50">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-8 text-center">
+                        <p className="text-sm text-primary/70">
                             Здобутків на олімпіадах і МАН поки не внесено.
                         </p>
                     </div>
@@ -186,7 +186,7 @@ export default async function MyPointsHistoryPage() {
                         {olympiads.map((o) => (
                             <div
                                 key={o.id}
-                                className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
+                                className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 flex items-start justify-between gap-4"
                             >
                                 <div>
                                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
@@ -198,7 +198,7 @@ export default async function MyPointsHistoryPage() {
                                         </span>
                                     </div>
                                     <p className="text-sm font-medium text-primary">{o.subject}</p>
-                                    <p className="text-xs text-primary/40 mt-1.5">
+                                    <p className="text-xs text-primary/60 mt-1.5">
                                         {new Date(o.created_at).toLocaleDateString('uk-UA', {
                                             day: 'numeric',
                                             month: 'long',
@@ -214,7 +214,7 @@ export default async function MyPointsHistoryPage() {
                     </div>
                 )}
 
-                <p className="text-xs text-primary/40 mt-4 max-w-2xl">
+                <p className="text-xs text-primary/60 mt-4 max-w-2xl">
                     Бали за кожен здобуток зафіксовані на момент внесення: якщо шкалу
                     (п. 10.7.6 Статуту) згодом змінять, уже нараховане не перерахується.
                 </p>

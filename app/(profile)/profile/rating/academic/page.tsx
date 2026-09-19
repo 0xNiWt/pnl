@@ -24,7 +24,7 @@ export default async function AcademicScoresPage() {
 
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -38,7 +38,7 @@ export default async function AcademicScoresPage() {
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Навчальний рейтинг
                     </h1>
-                    <p className="text-sm text-primary/50 mt-2 max-w-2xl">
+                    <p className="text-sm text-primary/70 mt-2 max-w-2xl">
                         Середній навчальний бал за підсумками семестру (п. 10.7.2 Статуту).
                         Шкала — від 0 до 12, можна з десятими: 10,85. Зміни зберігаються
                         одразу, як тільки прибираєш курсор з поля.

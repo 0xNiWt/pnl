@@ -54,7 +54,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
     return (
         <div>
             <div className="flex items-center justify-between gap-4 mb-8">
-                <p className="text-sm text-primary/50">
+                <p className="text-sm text-primary/70">
                     {selected
                         ? `Новини за ${selected.toLocaleDateString('uk-UA', { day: 'numeric', month: 'long', year: 'numeric' })}`
                         : `Усього новин: ${initialNews.length}`}
@@ -66,7 +66,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                         className={`flex items-center gap-2 rounded-none border px-4 py-2.5 text-sm font-semibold transition-colors ${
                             selected
                                 ? 'border-accent bg-accent/10 text-primary'
-                                : 'border-primary/10 bg-primary/[0.02] text-primary/70 hover:border-primary/20'
+                                : 'border-primary/10 bg-secondary/[0.08] text-primary/85 hover:border-secondary/60'
                         }`}
                     >
                         <CalendarDays size={16} />
@@ -81,7 +81,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                 <button
                                     type="button"
                                     onClick={goPrevMonth}
-                                    className="w-7 h-7 rounded-none hover:bg-primary/5 flex items-center justify-center text-primary/60"
+                                    className="w-7 h-7 rounded-none hover:bg-primary/5 flex items-center justify-center text-primary/78"
                                 >
                                     <ChevronLeft size={16} />
                                 </button>
@@ -91,7 +91,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                 <button
                                     type="button"
                                     onClick={goNextMonth}
-                                    className="w-7 h-7 rounded-none hover:bg-primary/5 flex items-center justify-center text-primary/60"
+                                    className="w-7 h-7 rounded-none hover:bg-primary/5 flex items-center justify-center text-primary/78"
                                 >
                                     <ChevronRight size={16} />
                                 </button>
@@ -99,7 +99,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
 
                             <div className="grid grid-cols-7 gap-1 mb-1">
                                 {WEEKDAYS.map((d) => (
-                                    <span key={d} className="text-center text-[10px] font-semibold uppercase text-primary/40 py-1">
+                                    <span key={d} className="text-center text-[10px] font-semibold uppercase text-primary/60 py-1">
                                         {d}
                                     </span>
                                 ))}
@@ -143,7 +143,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                                         setSelected(null);
                                         setOpen(false);
                                     }}
-                                    className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-none bg-primary/5 hover:bg-primary/10 py-2 text-xs font-semibold text-primary/60 transition-colors"
+                                    className="mt-3 w-full flex items-center justify-center gap-1.5 rounded-none bg-primary/5 hover:bg-primary/10 py-2 text-xs font-semibold text-primary/78 transition-colors"
                                 >
                                     <X size={13} />
                                     Скинути фільтр
@@ -168,7 +168,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                     ))}
                 </div>
             ) : (
-                <p className="text-center text-primary/50 py-16">
+                <p className="text-center text-primary/70 py-16">
                     {selected ? 'На цю дату новин немає.' : 'Поки що немає опублікованих новин. Зазирніть пізніше.'}
                 </p>
             )}

@@ -30,7 +30,7 @@ function Block({ block }: { block: RulesBlock }) {
 
         case "paragraph":
             return (
-                <p className="text-base text-primary/70 leading-relaxed mt-5 first:mt-0">
+                <p className="text-base text-primary/85 leading-relaxed mt-5 first:mt-0">
                     {block.text}
                 </p>
             );
@@ -44,7 +44,7 @@ function Block({ block }: { block: RulesBlock }) {
                             {item.items && (
                                 <ul className="mt-2.5 space-y-2">
                                     {item.items.map((sub, j) => (
-                                        <li key={j} className={`${BULLET} text-primary/60`}>
+                                        <li key={j} className={`${BULLET} text-primary/78`}>
                                             {sub}
                                         </li>
                                     ))}
@@ -60,4 +60,4 @@ function Block({ block }: { block: RulesBlock }) {
 // Маркер малюємо псевдоелементом: так довгий пункт переноситься рівно під
 // текстом, а не під крапкою, як це робить звичайний list-style.
 const BULLET =
-    "relative pl-5 text-base text-primary/70 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1.5 before:h-1.5 before:rounded-none before:bg-accent";
+    "relative pl-5 text-base text-primary/85 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.65em] before:w-1.5 before:h-1.5 before:rounded-none before:bg-accent";

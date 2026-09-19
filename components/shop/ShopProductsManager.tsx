@@ -206,15 +206,15 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
             )}
 
             {products.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-10 text-center">
-                    <p className="text-sm text-primary/40">Товарів ще немає.</p>
+                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-10 text-center">
+                    <p className="text-sm text-primary/60">Товарів ще немає.</p>
                 </div>
             ) : (
                 <div className="flex flex-col gap-3">
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="flex items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-none p-4"
+                            className="flex items-center gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none p-4"
                         >
                             <div className="relative w-16 h-16 rounded-none overflow-hidden bg-primary/5 shrink-0">
                                 {product.image_url ? (
@@ -237,12 +237,12 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                 <p className="text-sm font-semibold text-primary truncate">
                                     {product.title}
                                     {!product.active && (
-                                        <span className="ml-2 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-0.5 rounded-none bg-primary/10 text-primary/50">
+                                        <span className="ml-2 text-[10px] font-plex font-bold uppercase tracking-wider px-2 py-0.5 rounded-none bg-primary/10 text-primary/70">
                                             прихований
                                         </span>
                                     )}
                                 </p>
-                                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-primary/50 mt-1">
+                                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-primary/70 mt-1">
                                     {product.price_points !== null && (
                                         <span className="inline-flex items-center gap-1">
                                             <Coins size={11} className="text-accent" />
@@ -266,7 +266,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                     onClick={() => toggleActive(product)}
                                     disabled={busy}
                                     title={product.active ? 'Сховати з вітрини' : 'Показати на вітрині'}
-                                    className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
+                                    className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/78 hover:text-primary transition-colors disabled:opacity-50"
                                 >
                                     {product.active ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>
@@ -274,7 +274,7 @@ export default function ShopProductsManager({ initialProducts }: { initialProduc
                                     onClick={() => startEdit(product)}
                                     disabled={busy}
                                     title="Редагувати"
-                                    className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
+                                    className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/78 hover:text-primary transition-colors disabled:opacity-50"
                                 >
                                     <Pencil size={16} />
                                 </button>
@@ -314,7 +314,7 @@ function ProductForm({
         setDraft({ ...draft, [key]: value });
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 md:p-6 flex flex-col gap-4">
+        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 md:p-6 flex flex-col gap-4">
             <h3 className="font-manrope font-bold text-primary text-sm">
                 {isEdit ? 'Редагування товару' : 'Новий товар'}
             </h3>
@@ -391,7 +391,7 @@ function ProductForm({
                 />
             </Field>
 
-            <label className="flex items-center gap-2.5 text-sm text-primary/80 cursor-pointer">
+            <label className="flex items-center gap-2.5 text-sm text-primary/90 cursor-pointer">
                 <input
                     type="checkbox"
                     checked={draft.active}
@@ -413,7 +413,7 @@ function ProductForm({
                 <button
                     onClick={onCancel}
                     disabled={busy}
-                    className="text-sm font-semibold text-primary/50 hover:text-primary transition-colors disabled:opacity-50"
+                    className="text-sm font-semibold text-primary/70 hover:text-primary transition-colors disabled:opacity-50"
                 >
                     Скасувати
                 </button>
@@ -433,11 +433,11 @@ function Field({
 }) {
     return (
         <div>
-            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                 {label}
             </label>
             {children}
-            {hint && <p className="text-xs text-primary/40 mt-1">{hint}</p>}
+            {hint && <p className="text-xs text-primary/60 mt-1">{hint}</p>}
         </div>
     );
 }

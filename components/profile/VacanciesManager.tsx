@@ -108,7 +108,7 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                 </div>
             )}
 
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
                 <div className="flex flex-col divide-y divide-primary/10">
                     {vacancies.map((v) => (
                         <div key={v.id} className="flex items-center gap-3 px-5 py-3.5">
@@ -137,7 +137,7 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                                     </button>
                                     <button
                                         onClick={() => setEditingId(null)}
-                                        className="w-8 h-8 rounded-none bg-primary/5 text-primary/50 flex items-center justify-center hover:opacity-80"
+                                        className="w-8 h-8 rounded-none bg-primary/5 text-primary/70 flex items-center justify-center hover:opacity-80"
                                     >
                                         <X size={15} />
                                     </button>
@@ -146,11 +146,11 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                                 <>
                                     <div className="flex-1">
                                         <p className="text-sm font-semibold text-primary">{v.title}</p>
-                                        <p className="text-xs text-primary/50">{v.url}</p>
+                                        <p className="text-xs text-primary/70">{v.url}</p>
                                     </div>
                                     <button
                                         onClick={() => startEdit(v)}
-                                        className="w-8 h-8 rounded-none bg-primary/5 text-primary/50 flex items-center justify-center hover:text-primary hover:bg-primary/10"
+                                        className="w-8 h-8 rounded-none bg-primary/5 text-primary/70 flex items-center justify-center hover:text-primary hover:bg-primary/10"
                                     >
                                         <Pencil size={14} />
                                     </button>
@@ -167,12 +167,12 @@ export default function VacanciesManager({ initialVacancies }: { initialVacancie
                     ))}
 
                     {vacancies.length === 0 && (
-                        <p className="text-sm text-primary/40 text-center py-8">Вакансій ще немає</p>
+                        <p className="text-sm text-primary/60 text-center py-8">Вакансій ще немає</p>
                     )}
                 </div>
             </div>
 
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5">
                 <h3 className="text-sm font-manrope font-bold text-primary mb-3">Додати вакансію</h3>
                 <div className="flex flex-col gap-2">
                     <input

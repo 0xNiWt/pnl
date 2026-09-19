@@ -29,8 +29,8 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
 
     if (tables.length === 0) {
         return (
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-8 text-center">
-                <p className="text-sm text-primary/50">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-8 text-center">
+                <p className="text-sm text-primary/70">
                     Таблиць ще немає — застосуйте міграцію sql/0008_olympiad_stats.sql.
                 </p>
             </div>
@@ -177,7 +177,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                         onClick={() => setActiveId(t.id)}
                         className={`rounded-none px-4 py-2 font-inter text-sm font-medium transition-colors ${t.id === table.id
                             ? 'bg-primary text-background'
-                            : 'text-primary/70 bg-primary/5 hover:bg-primary/10'
+                            : 'text-primary/85 bg-primary/5 hover:bg-primary/10'
                             }`}
                     >
                         {t.title}
@@ -202,19 +202,19 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     Додати рік
                 </button>
 
-                <p className="ml-auto text-sm text-primary/50">
+                <p className="ml-auto text-sm text-primary/70">
                     Разом: <b className="font-manrope text-primary">{total}</b>
                 </p>
             </div>
 
-            <div className="rounded-none border border-primary/10 bg-primary/[0.02] overflow-x-auto">
+            <div className="rounded-none border border-secondary/30 bg-secondary/[0.07] overflow-x-auto">
                 <table className="w-full border-collapse text-sm">
                     <thead>
-                        <tr className="bg-primary/[0.04]">
-                            <th className="text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-3 py-2.5 min-w-[190px] border-b border-primary/10">
+                        <tr className="bg-secondary/[0.08]">
+                            <th className="text-left font-plex text-xs font-semibold uppercase tracking-wider text-primary/78 px-3 py-2.5 min-w-[190px] border-b border-primary/10">
                                 Предмет
                             </th>
-                            <th className="font-plex text-xs font-semibold uppercase tracking-wider text-primary/60 px-2 py-2.5 border-b border-primary/10 whitespace-nowrap">
+                            <th className="font-plex text-xs font-semibold uppercase tracking-wider text-primary/78 px-2 py-2.5 border-b border-primary/10 whitespace-nowrap">
                                 Всього
                             </th>
                             {draft.years.map((year, index) => (
@@ -241,7 +241,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
 
                     <tbody>
                         {draft.rows.map((row, rowIndex) => (
-                            <tr key={rowIndex} className="hover:bg-primary/[0.02]">
+                            <tr key={rowIndex} className="hover:bg-secondary/[0.1]">
                                 <td className="px-3 py-1.5 border-b border-primary/[0.07]">
                                     <input
                                         value={row.subject}
@@ -289,7 +289,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                             <tr>
                                 <td
                                     colSpan={draft.years.length + 3}
-                                    className="px-4 py-8 text-center text-sm text-primary/40"
+                                    className="px-4 py-8 text-center text-sm text-primary/60"
                                 >
                                     Предметів ще немає — додайте перший.
                                 </td>
@@ -298,7 +298,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     </tbody>
 
                     <tfoot>
-                        <tr className="bg-primary/[0.04]">
+                        <tr className="bg-secondary/[0.08]">
                             <th className="text-left font-manrope font-bold text-primary px-3 py-2.5">
                                 Загалом
                             </th>
@@ -308,7 +308,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                             {draft.years.map((year) => (
                                 <td
                                     key={year}
-                                    className="text-center font-manrope font-semibold text-primary/60 px-1.5 py-2.5 tabular-nums"
+                                    className="text-center font-manrope font-semibold text-primary/78 px-1.5 py-2.5 tabular-nums"
                                 >
                                     {yearTotal(draft.rows, year)}
                                 </td>
@@ -333,7 +333,7 @@ export default function OlympiadStatsManager({ tables }: { tables: OlympiadTable
                     <span className="text-sm text-accent font-semibold">Збережено</span>
                 )}
 
-                <p className="text-xs text-primary/40 basis-full">
+                <p className="text-xs text-primary/60 basis-full">
                     Колонка «Всього» порожня — рахується як сума по роках. Заповнюйте її
                     лише тоді, коли частина перемог припадає на роки, яких немає в
                     колонках.

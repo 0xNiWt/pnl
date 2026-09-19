@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
+import Bi from "./Bi";
 
 // Кнопки набрані моношрифтом і мають волосяні межі замість жирних рамок:
 // та сама мова, що й у решті інтерфейсу.
@@ -15,7 +16,7 @@ export default function AuthButtons({ isLoggedIn }: { isLoggedIn: boolean }) {
                 href="/shop"
                 aria-label="Магазин мерчу"
                 title="Магазин мерчу"
-                className="border border-primary/25 p-2.5 text-primary/70 transition-colors hover:border-primary hover:bg-primary hover:text-background"
+                className="border border-primary/25 p-2.5 text-primary/85 transition-colors hover:border-primary hover:bg-primary hover:text-background"
             >
                 <ShoppingCart size={17} />
             </Link>
@@ -25,21 +26,21 @@ export default function AuthButtons({ isLoggedIn }: { isLoggedIn: boolean }) {
                     href="/profile"
                     className={`${BASE} border-primary bg-primary text-background hover:bg-accent hover:border-accent hover:text-primary`}
                 >
-                    Кабінет
+                    <Bi uk="Кабінет" en="My account" />
                 </Link>
             ) : (
                 <>
                     <Link
                         href="/auth/login"
-                        className={`${BASE} border-primary/25 text-primary/70 hover:border-primary hover:text-primary`}
+                        className={`${BASE} border-primary/25 text-primary/85 hover:border-primary hover:text-primary`}
                     >
-                        Вхід
+                        <Bi uk="Вхід" en="Log in" />
                     </Link>
                     <Link
                         href="/auth/register"
                         className={`${BASE} border-primary bg-primary text-background hover:bg-accent hover:border-accent hover:text-primary`}
                     >
-                        Реєстрація
+                        <Bi uk="Реєстрація" en="Sign up" />
                     </Link>
                 </>
             )}

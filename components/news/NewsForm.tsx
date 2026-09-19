@@ -96,11 +96,11 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             )}
 
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/85 mb-1.5">
                     Заголовок
                 </label>
                 <div className="relative">
-                    <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
+                    <Type className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/60" />
                     <input
                         type="text"
                         required
@@ -113,11 +113,11 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             </div>
 
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/85 mb-1.5">
                     Короткий опис
                 </label>
                 <div className="relative">
-                    <AlignLeft className="absolute left-3.5 top-3 w-4 h-4 text-primary/40" />
+                    <AlignLeft className="absolute left-3.5 top-3 w-4 h-4 text-primary/60" />
                     <textarea
                         value={excerpt}
                         onChange={(e) => setExcerpt(e.target.value)}
@@ -129,7 +129,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
             </div>
 
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/85 mb-1.5">
                     Текст новини
                 </label>
                 <textarea
@@ -144,7 +144,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
 
             <div>
                 <div className="flex items-center justify-between mb-1.5">
-                    <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/70">
+                    <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/85">
                         Фото (перше — обкладинка картки)
                     </label>
                     <button
@@ -161,7 +161,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                     {images.map((img, index) => (
                         <div key={index} className="relative flex items-center gap-2">
                             <div className="relative flex-1">
-                                <ImageIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
+                                <ImageIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/60" />
                                 <input
                                     type="url"
                                     value={img}
@@ -182,7 +182,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                         </div>
                     ))}
                 </div>
-                <p className="mt-1.5 text-xs text-primary/40">
+                <p className="mt-1.5 text-xs text-primary/60">
                     Посилання має вести напряму на файл зображення (.jpg, .png, .webp)
                 </p>
             </div>
@@ -194,7 +194,7 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                     onChange={(e) => setPublished(e.target.checked)}
                     className="rounded-none border-primary/20 text-primary focus:ring-accent/20 accent-primary"
                 />
-                <span className="text-sm text-primary/70">Опублікувати одразу</span>
+                <span className="text-sm text-primary/85">Опублікувати одразу</span>
             </label>
 
             <button

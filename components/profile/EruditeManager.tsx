@@ -280,7 +280,7 @@ export default function EruditeManager({
                 </Field>
             </div>
 
-            <p className="text-xs text-primary/50">
+            <p className="text-xs text-primary/70">
                 Вносьте ігрові очки — місця й бали за місця рахуються самі. Склад підставлено із
                 заявки капітана; якщо грали інші люди, виправте, а за неправильну заявку можна
                 нарахувати штраф нижче.
@@ -296,12 +296,12 @@ export default function EruditeManager({
                                 <p className="font-semibold text-primary flex-1 min-w-[180px]">
                                     №{i + 1} · {team.name}
                                     {roster && (
-                                        <span className="ml-2 text-xs font-normal text-primary/45">
+                                        <span className="ml-2 text-xs font-normal text-primary/65">
                                             заявка: {ROSTER_STATUS_LABELS[roster.status].toLowerCase()}
                                         </span>
                                     )}
                                 </p>
-                                <label className="inline-flex items-center gap-2 text-sm text-primary/70">
+                                <label className="inline-flex items-center gap-2 text-sm text-primary/85">
                                     <input
                                         type="checkbox"
                                         checked={!r.attended}
@@ -322,7 +322,7 @@ export default function EruditeManager({
 
                             {r.attended && (
                                 <div>
-                                    <p className="font-plex text-[10px] uppercase tracking-[0.14em] text-primary/40 mb-2">
+                                    <p className="font-plex text-[10px] uppercase tracking-[0.14em] text-primary/60 mb-2">
                                         Хто грав · {r.players.length}
                                     </p>
                                     <PeoplePicker
@@ -364,7 +364,7 @@ export default function EruditeManager({
                     )}
                 </SectionHeader>
 
-                <p className="text-sm text-primary/55 -mt-2">
+                <p className="text-sm text-primary/75 -mt-2">
                     Після того як гру заплановано, капітани подають заявки — до {TEAM_SIZE} гравців зі складу
                     класу. Ви підтверджуєте або відхиляєте їх, а після гри вносите результати. Підтверджені гравці автоматично додаються до складу команди й отримують посаду «Учасник клубу «Ерудит»».
                 </p>
@@ -396,15 +396,15 @@ export default function EruditeManager({
                 {gameDraft?.id && planned.some((g) => g.id === gameDraft.id) && gameForm}
 
                 {planned.length === 0 && !planDraft && (
-                    <p className="text-sm text-primary/45">Запланованих ігор немає.</p>
+                    <p className="text-sm text-primary/65">Запланованих ігор немає.</p>
                 )}
 
                 {planned.map((game) => (
-                    <div key={game.id} className="bg-primary/[0.02] border border-primary/10">
+                    <div key={game.id} className="bg-secondary/[0.08] border border-primary/10">
                         <div className="flex flex-wrap items-center gap-3 px-5 py-3.5 border-b border-primary/10">
                             <div className="flex-1 min-w-0">
                                 <p className="font-semibold text-primary truncate">{game.title}</p>
-                                <p className="text-xs text-primary/50">{formatDate(game.played_on)}</p>
+                                <p className="text-xs text-primary/70">{formatDate(game.played_on)}</p>
                             </div>
                             <button
                                 onClick={() => editGame(game)}
@@ -423,7 +423,7 @@ export default function EruditeManager({
                                     <div key={team.id} className="flex flex-wrap items-center gap-3 px-5 py-3">
                                         <div className="min-w-[160px] flex-1">
                                             <p className="text-sm font-semibold text-primary">{team.name}</p>
-                                            <p className="text-xs text-primary/50">
+                                            <p className="text-xs text-primary/70">
                                                 {roster
                                                     ? roster.players.map((id) => personName.get(id) ?? '—').join(', ')
                                                     : 'Заявку ще не подано'}
@@ -479,12 +479,12 @@ export default function EruditeManager({
 
                 {gameDraft && !planned.some((g) => g.id === gameDraft.id) && gameForm}
 
-                {played.length === 0 && <p className="text-sm text-primary/45">Зіграних ігор ще немає.</p>}
+                {played.length === 0 && <p className="text-sm text-primary/65">Зіграних ігор ще немає.</p>}
 
                 <div className="flex flex-col gap-2">
                     {[...played].reverse().map((game) => (
-                        <div key={game.id} className="bg-primary/[0.02] border border-primary/10 px-5 py-3.5 flex items-center gap-4">
-                            <span className="font-plex text-[11px] text-primary/45 tabular-nums w-24 shrink-0">
+                        <div key={game.id} className="bg-secondary/[0.08] border border-primary/10 px-5 py-3.5 flex items-center gap-4">
+                            <span className="font-plex text-[11px] text-primary/65 tabular-nums w-24 shrink-0">
                                 {new Date(game.played_on).toLocaleDateString('uk-UA')}
                             </span>
                             <p className="font-semibold text-primary flex-1 min-w-0 truncate">{game.title}</p>
@@ -510,7 +510,7 @@ export default function EruditeManager({
                     )}
                 </SectionHeader>
 
-                <p className="text-sm text-primary/55 -mt-2">
+                <p className="text-sm text-primary/75 -mt-2">
                     Штраф за неявки понад дві на рік (п. 9.5.2) рахується автоматично. Тут — додаткові
                     штрафи: за неявку чи за неправильно заявлених гравців.
                 </p>
@@ -577,14 +577,14 @@ export default function EruditeManager({
 
                 <div className="flex flex-col gap-2">
                     {penalties.map((p) => (
-                        <div key={p.id} className="bg-primary/[0.02] border border-primary/10 px-5 py-3 flex items-center gap-4">
+                        <div key={p.id} className="bg-secondary/[0.08] border border-primary/10 px-5 py-3 flex items-center gap-4">
                             <span className="font-manrope font-bold text-red-600 tabular-nums w-10 shrink-0">−{p.points}</span>
                             <div className="min-w-0 flex-1">
                                 <p className="text-sm font-semibold text-primary">
                                     {teamName.get(p.team_id) ?? '—'} · {PENALTY_REASONS[p.reason]}
                                 </p>
                                 {(p.note || p.game_id) && (
-                                    <p className="text-xs text-primary/50">
+                                    <p className="text-xs text-primary/70">
                                         {[games.find((g) => g.id === p.game_id)?.title, p.note].filter(Boolean).join(' — ')}
                                     </p>
                                 )}
@@ -628,7 +628,7 @@ export default function EruditeManager({
                                     ))}
                                 </select>
                                 {teamDraft.className && (
-                                    <p className="text-xs text-primary/45 mt-1.5">
+                                    <p className="text-xs text-primary/65 mt-1.5">
                                         Додаткові бали команди: +{ageBonus(teamDraft.className)} за кожну зіграну гру.
                                     </p>
                                 )}
@@ -673,18 +673,18 @@ export default function EruditeManager({
                 )}
 
                 {teams.length === 0 && !teamDraft ? (
-                    <p className="text-sm text-primary/45">Команд цього року ще немає.</p>
+                    <p className="text-sm text-primary/65">Команд цього року ще немає.</p>
                 ) : (
                     <div className="flex flex-col gap-2">
                         {teams.map((team, i) => (
-                            <div key={team.id} className="bg-primary/[0.02] border border-primary/10 px-5 py-3.5 flex items-start gap-4">
-                                <span className="font-manrope font-bold text-primary/40 w-8 shrink-0">№{i + 1}</span>
+                            <div key={team.id} className="bg-secondary/[0.08] border border-primary/10 px-5 py-3.5 flex items-start gap-4">
+                                <span className="font-manrope font-bold text-primary/60 w-8 shrink-0">№{i + 1}</span>
                                 <div className="min-w-0 flex-1">
                                     <p className="font-semibold text-primary">
                                         {team.name}
-                                        {team.class_name && <span className="ml-2 text-xs font-normal text-primary/45">{team.class_name}</span>}
+                                        {team.class_name && <span className="ml-2 text-xs font-normal text-primary/65">{team.class_name}</span>}
                                     </p>
-                                    <p className="text-xs text-primary/50 mt-0.5">
+                                    <p className="text-xs text-primary/70 mt-0.5">
                                         Капітан: {team.captain_id ? personName.get(team.captain_id) ?? '—' : 'не призначено'}
                                         {' · '}склад: {team.members.length}
                                     </p>
@@ -748,7 +748,7 @@ function PeoplePicker({
     compact?: boolean;
 }) {
     if (people.length === 0) {
-        return <p className="text-xs text-primary/45">У цьому класі немає зареєстрованих учнів.</p>;
+        return <p className="text-xs text-primary/65">У цьому класі немає зареєстрованих учнів.</p>;
     }
 
     return (
@@ -759,7 +759,7 @@ function PeoplePicker({
                 return (
                     <label
                         key={p.id}
-                        className={`flex items-center gap-2 px-3 py-2 text-sm border transition-colors ${checked ? 'border-accent/50 bg-accent/[0.07] text-primary' : 'border-primary/10 text-primary/65'
+                        className={`flex items-center gap-2 px-3 py-2 text-sm border transition-colors ${checked ? 'border-accent/50 bg-accent/[0.07] text-primary' : 'border-primary/10 text-primary/80'
                             } ${isLocked ? 'opacity-80' : 'cursor-pointer'}`}
                     >
                         <input
@@ -780,7 +780,7 @@ function PeoplePicker({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div>
-            <label className="block font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/55 mb-1.5">
+            <label className="block font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/75 mb-1.5">
                 {label}
             </label>
             {children}
@@ -809,7 +809,7 @@ function FormActions({
                 {busy ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                 {label}
             </button>
-            <button onClick={onCancel} className="text-sm font-semibold text-primary/50 hover:text-primary transition-colors">
+            <button onClick={onCancel} className="text-sm font-semibold text-primary/70 hover:text-primary transition-colors">
                 Скасувати
             </button>
         </div>
@@ -823,7 +823,7 @@ function RowButtons({ onEdit, onDelete, busy }: { onEdit?: () => void; onDelete:
                 <button
                     onClick={onEdit}
                     aria-label="Редагувати"
-                    className="w-8 h-8 flex items-center justify-center text-primary/40 hover:text-primary hover:bg-primary/5 transition-colors"
+                    className="w-8 h-8 flex items-center justify-center text-primary/60 hover:text-primary hover:bg-primary/5 transition-colors"
                 >
                     <Pencil size={15} />
                 </button>

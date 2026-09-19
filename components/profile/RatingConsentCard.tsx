@@ -48,7 +48,7 @@ export default function RatingConsentCard() {
                 Згода на участь у рейтингах
             </h3>
 
-            <p className="text-sm text-primary/70 leading-relaxed mb-4">
+            <p className="text-sm text-primary/85 leading-relaxed mb-4">
                 Ваш акаунт створено до того, як з&apos;явилася ця вимога. За п. 10.1.2
                 Положення учня можна враховувати в ліцейських рейтингах лише за його
                 добровільною згодою.
@@ -68,7 +68,7 @@ export default function RatingConsentCard() {
                     onChange={(e) => setAgreed(e.target.checked)}
                     className="mt-0.5 w-4 h-4 shrink-0 rounded-none border-primary/25 accent-primary cursor-pointer"
                 />
-                <span className="text-xs text-primary/75 leading-relaxed">
+                <span className="text-xs text-primary/85 leading-relaxed">
                     {CONSENT_LABEL}{' '}
                     <Link
                         href={POLOZHENNIA_URL}
@@ -77,7 +77,7 @@ export default function RatingConsentCard() {
                     >
                         Читати Положення
                     </Link>
-                    <span className="mt-1.5 block text-[11px] text-primary/45">
+                    <span className="mt-1.5 block text-[11px] text-primary/65">
                         {CONSENT_NOTE}
                     </span>
                 </span>

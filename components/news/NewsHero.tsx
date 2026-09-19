@@ -11,7 +11,7 @@ export default function NewsHero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-16"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-16"
             id="news-hero"
         >
             <div className="flex flex-col items-center md:items-start">
@@ -24,7 +24,7 @@ export default function NewsHero() {
                     Що відбувається в <span className="text-accent">ліцеї</span>
                 </h1>
 
-                <p className="mt-5 text-base text-primary/70 max-w-[520px]">
+                <p className="mt-5 text-base text-primary/85 max-w-[520px]">
                     Оголошення, події та досягнення учнів ПНЛ №145.
                 </p>
             </div>

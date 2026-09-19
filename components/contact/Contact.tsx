@@ -75,7 +75,7 @@ export default function Contact({
                             <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
                                 <User size={18} className="text-primary" />
                             </span>
-                            <p className="text-sm text-primary/70 text-left leading-6">
+                            <p className="text-sm text-primary/85 text-left leading-6">
                                 {vacancies.length > 0 ? (
                                     vacancies.map((v, i) => (
                                         <span key={v.id}>
@@ -86,7 +86,7 @@ export default function Contact({
                                         </span>
                                     ))
                                 ) : (
-                                    <span className="text-primary/40">Наразі вакансій немає</span>
+                                    <span className="text-primary/60">Наразі вакансій немає</span>
                                 )}
                             </p>
                         </div>
@@ -102,7 +102,7 @@ export default function Contact({
                             <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
                                 <Phone size={18} className="text-primary" />
                             </span>
-                            <p className="text-sm text-primary/70 text-left leading-6">
+                            <p className="text-sm text-primary/85 text-left leading-6">
                                 287-11-49 · 287-47-35<br />287-46-96 · 287-30-38
                             </p>
                         </div>
@@ -112,10 +112,10 @@ export default function Contact({
                                 <Mail size={18} className="text-primary" />
                             </span>
                             <span>
-                                <a href="mailto:kpnl145.62@gmail.com" className="text-sm text-primary/70 text-left leading-6">
+                                <a href="mailto:kpnl145.62@gmail.com" className="text-sm text-primary/85 text-left leading-6">
                                     Адміністрація: <span className="hover:text-primary transition-colors">kpnl145.62@gmail.com</span><br />
                                 </a>
-                                <a href="mailto:tanlukian@gmail.com" className="text-sm text-primary/70 text-left leading-6">
+                                <a href="mailto:tanlukian@gmail.com" className="text-sm text-primary/85 text-left leading-6">
                                     Адміністратор сайту: <span className="hover:text-primary transition-colors">tanlukian@gmail.com</span>
                                 </a>
                             </span>
@@ -135,7 +135,7 @@ export default function Contact({
                     className="flex flex-col gap-4"
                     >
                     <div className="text-left">
-                        <label className="text-sm text-primary/70 mb-1.5 block">
+                        <label className="text-sm text-primary/85 mb-1.5 block">
                         Як до Вас звертатися{" "}
                         <span className="text-accent">*</span>
                         </label>
@@ -150,7 +150,7 @@ export default function Contact({
                     </div>
 
                     <div className="text-left">
-                        <label className="text-sm text-primary/70 mb-1.5 block">
+                        <label className="text-sm text-primary/85 mb-1.5 block">
                         Ваш email <span className="text-accent">*</span>
                         </label>
 
@@ -164,7 +164,7 @@ export default function Contact({
                     </div>
 
                     <div className="text-left">
-                        <label className="text-sm text-primary/70 mb-1.5 block">
+                        <label className="text-sm text-primary/85 mb-1.5 block">
                         Повідомлення <span className="text-accent">*</span>
                         </label>
 

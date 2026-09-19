@@ -73,12 +73,12 @@ export default function UsersRoleManager({
                 </div>
             )}
 
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
-                <div className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr] gap-4 px-6 py-3 border-b border-primary/10 bg-primary/[0.03]">
-                    <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
+                <div className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr] gap-4 px-6 py-3 border-b border-primary/10 bg-secondary/[0.08]">
+                    <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                         Користувач
                     </p>
-                    <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                    <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                         Ролі
                     </p>
                 </div>
@@ -97,7 +97,7 @@ export default function UsersRoleManager({
                                     <p className="text-sm font-semibold text-primary">
                                         {profile.full_name || 'Без імені'}
                                         {isSelf && (
-                                            <span className="ml-2 text-xs font-normal text-primary/40">
+                                            <span className="ml-2 text-xs font-normal text-primary/60">
                                                 (це ви)
                                             </span>
                                         )}
@@ -120,7 +120,7 @@ export default function UsersRoleManager({
                                                 className={`flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-semibold transition-colors
                                                     ${has
                                                         ? 'bg-accent/15 text-accent'
-                                                        : 'bg-primary/5 text-primary/40'}
+                                                        : 'bg-primary/5 text-primary/60'}
                                                     ${canToggle ? 'hover:opacity-80 cursor-pointer' : 'cursor-not-allowed opacity-60'}
                                                 `}
                                             >
@@ -137,7 +137,7 @@ export default function UsersRoleManager({
                 </div>
             </div>
 
-            <p className="text-xs text-primary/40 px-1">
+            <p className="text-xs text-primary/60 px-1">
                 Роль учня видається автоматично під час реєстрації. Модератор може призначати ролі
                 учня, педагога та редактора, але не роль модератора чи адміністрації. Ці дві ролі
                 може призначати лише адміністрація.

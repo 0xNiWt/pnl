@@ -147,7 +147,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                             placeholder="/memory/p002.jpg"
                             className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/70 text-sm focus:outline-none focus:border-accent"
                         />
-                        <p className="text-xs text-primary/40 mt-1.5">
+                        <p className="text-xs text-primary/60 mt-1.5">
                             Файл фото треба покласти в папку <b>public/memory</b> проєкту й
                             вказати тут шлях до нього. Без фото запис теж збережеться.
                         </p>
@@ -165,7 +165,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
 
                         <button
                             onClick={() => { setDraft(null); setError(null); }}
-                            className="text-sm font-semibold text-primary/50 hover:text-primary transition-colors"
+                            className="text-sm font-semibold text-primary/70 hover:text-primary transition-colors"
                         >
                             Скасувати
                         </button>
@@ -191,7 +191,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                         />
                     </div>
 
-                    <p className="text-sm text-primary/45">
+                    <p className="text-sm text-primary/65">
                         {found.length} із {entries.length}
                     </p>
                 </div>
@@ -201,7 +201,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                 {found.slice(0, shown).map((entry) => (
                     <div
                         key={entry.id}
-                        className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 flex items-start gap-4"
+                        className="bg-secondary/[0.08] border border-primary/10 rounded-none p-4 flex items-start gap-4"
                     >
                         <div className="relative w-14 h-16 shrink-0 rounded-none overflow-hidden bg-primary/5">
                             {entry.photo_url ? (
@@ -226,7 +226,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                                 <p className="text-xs text-accent mt-0.5">{entry.relation}</p>
                             )}
                             {entry.biography && (
-                                <p className="text-xs text-primary/45 mt-1 line-clamp-2">
+                                <p className="text-xs text-primary/65 mt-1 line-clamp-2">
                                     {entry.biography}
                                 </p>
                             )}
@@ -244,7 +244,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                                     })
                                 }
                                 aria-label="Редагувати"
-                                className="w-8 h-8 rounded-none flex items-center justify-center text-primary/40 hover:text-primary hover:bg-primary/5 transition-colors"
+                                className="w-8 h-8 rounded-none flex items-center justify-center text-primary/60 hover:text-primary hover:bg-primary/5 transition-colors"
                             >
                                 <Pencil size={15} />
                             </button>
@@ -262,8 +262,8 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                 ))}
 
                 {found.length === 0 && (
-                    <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-8 text-center">
-                        <p className="text-sm text-primary/40">
+                    <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-8 text-center">
+                        <p className="text-sm text-primary/60">
                             {entries.length === 0
                                 ? 'Записів ще немає — застосуйте міграцію sql/0010_memory_book.sql або додайте людину вручну.'
                                 : 'Нічого не знайдено.'}
@@ -275,10 +275,10 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
             {shown < found.length && (
                 <button
                     onClick={() => setShown(shown + PAGE_SIZE)}
-                    className="self-center inline-flex items-center gap-2 rounded-none border border-primary/15 px-5 py-2.5 font-manrope text-sm font-semibold text-primary/70 hover:bg-primary/5 transition-colors"
+                    className="self-center inline-flex items-center gap-2 rounded-none border border-primary/15 px-5 py-2.5 font-manrope text-sm font-semibold text-primary/85 hover:bg-primary/5 transition-colors"
                 >
                     Показати ще
-                    <span className="text-primary/40">{found.length - shown}</span>
+                    <span className="text-primary/60">{found.length - shown}</span>
                 </button>
             )}
         </div>
@@ -288,7 +288,7 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
     return (
         <div>
-            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+            <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                 {label}
             </label>
             {children}

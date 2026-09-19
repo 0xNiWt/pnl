@@ -40,7 +40,7 @@ export default async function RatingVisibilityPage() {
             <div className="w-full flex flex-col max-w-3xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -58,7 +58,7 @@ export default async function RatingVisibilityPage() {
                 <h2 className="font-manrope font-bold text-2xl text-primary tracking-tight mt-12 mb-2">
                     Згода на участь у рейтингах
                 </h2>
-                <p className="text-sm text-primary/60 mb-6 max-w-2xl">
+                <p className="text-sm text-primary/78 mb-6 max-w-2xl">
                     П. 10.1.2 Положення: обробка даних і включення учня до будь-яких
                     ліцейських рейтингів можливі лише за його добровільною згодою.
                 </p>

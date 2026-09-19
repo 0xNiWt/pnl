@@ -44,7 +44,7 @@ export default function NotFound() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.45, ease: smoothOut }}
-                    className="mt-2 text-[clamp(1.25rem,1.0563rem_+_0.8264vw,1.8rem)] font-cormorant tracking-wide text-primary/70"
+                    className="mt-2 text-[clamp(1.25rem,1.0563rem_+_0.8264vw,1.8rem)] font-cormorant tracking-wide text-primary/85"
                 >
                     Сторінку не знайдено
                 </motion.h2>
@@ -53,7 +53,7 @@ export default function NotFound() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.55, ease: smoothOut }}
-                    className="mt-3 text-sm text-primary/50 max-w-sm"
+                    className="mt-3 text-sm text-primary/70 max-w-sm"
                 >
                     Можливо, сторінку перенесено або її ніколи не існувало.
                     Перевірте адресу або поверніться на головну.

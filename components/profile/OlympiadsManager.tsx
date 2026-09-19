@@ -186,24 +186,24 @@ export default function OlympiadsManager({
             )}
 
             {/* Додати здобуток */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-5 flex flex-col gap-4">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-5 flex flex-col gap-4">
                 <h2 className="font-manrope font-bold text-sm text-primary">Додати здобуток</h2>
 
                 <div>
-                    <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                    <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                         Учень
                     </label>
 
                     {student ? (
                         <div className="inline-flex items-center gap-2 bg-accent/10 text-primary text-sm font-medium px-3.5 py-2 rounded-none">
                             {student.full_name ?? 'Без імені'}
-                            <span className="text-primary/40 text-xs">{student.class ?? '—'}</span>
+                            <span className="text-primary/60 text-xs">{student.class ?? '—'}</span>
                             <button
                                 onClick={() => {
                                     setStudent(null);
                                     setStudentQuery('');
                                 }}
-                                className="text-primary/40 hover:text-accent"
+                                className="text-primary/60 hover:text-accent"
                             >
                                 <X size={13} />
                             </button>
@@ -229,7 +229,7 @@ export default function OlympiadsManager({
                                             className="w-full text-left px-4 py-2.5 text-sm hover:bg-primary/5 flex justify-between"
                                         >
                                             <span>{p.full_name ?? 'Без імені'}</span>
-                                            <span className="text-primary/40">{p.class}</span>
+                                            <span className="text-primary/60">{p.class}</span>
                                         </button>
                                     ))}
                                 </div>
@@ -240,7 +240,7 @@ export default function OlympiadsManager({
 
                 <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                             Предмет або тема
                         </label>
                         <input
@@ -252,7 +252,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                             Етап
                         </label>
                         <select
@@ -269,7 +269,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                             Результат
                         </label>
                         <select
@@ -286,7 +286,7 @@ export default function OlympiadsManager({
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50 mb-1.5">
+                        <label className="block text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
                             Бали (порожньо — зі шкали)
                         </label>
                         <input
@@ -308,15 +308,15 @@ export default function OlympiadsManager({
                         {adding ? <Loader2 size={15} className="animate-spin" /> : <Plus size={15} />}
                         Додати
                     </button>
-                    <span className="text-xs text-primary/50">
+                    <span className="text-xs text-primary/70">
                         Нарахується <b className="text-primary">{Number.isFinite(previewPoints) ? previewPoints : 0}</b> балів
                     </span>
                 </div>
             </div>
 
             {/* Список здобутків */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
-                <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03] flex items-center gap-2">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
+                <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.08] flex items-center gap-2">
                     <Trophy size={15} className="text-accent" />
                     <p className="font-manrope font-bold text-sm text-primary">
                         Здобутки ({results.length})
@@ -324,7 +324,7 @@ export default function OlympiadsManager({
                 </div>
 
                 {results.length === 0 ? (
-                    <p className="px-6 py-10 text-sm text-primary/40 text-center">
+                    <p className="px-6 py-10 text-sm text-primary/60 text-center">
                         Поки що жодного здобутку не внесено.
                     </p>
                 ) : (
@@ -336,11 +336,11 @@ export default function OlympiadsManager({
                                     <div className="min-w-0 flex-1">
                                         <p className="text-sm font-semibold text-primary truncate">
                                             {profile?.full_name ?? 'Невідомий учень'}
-                                            <span className="ml-2 text-xs font-normal text-primary/40">
+                                            <span className="ml-2 text-xs font-normal text-primary/60">
                                                 {profile?.class ?? ''}
                                             </span>
                                         </p>
-                                        <p className="text-xs text-primary/50 mt-0.5">
+                                        <p className="text-xs text-primary/70 mt-0.5">
                                             {r.subject} · {olympiadLevelLabel(r.level)} ·{' '}
                                             {olympiadPlaceLabel(r.place)}
                                         </p>
@@ -368,10 +368,10 @@ export default function OlympiadsManager({
             </div>
 
             {/* Шкала */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
-                <div className="px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
+                <div className="px-5 py-3 border-b border-primary/10 bg-secondary/[0.08]">
                     <p className="font-manrope font-bold text-sm text-primary">Шкала балів</p>
-                    <p className="text-xs text-primary/40 mt-0.5">
+                    <p className="text-xs text-primary/60 mt-0.5">
                         П. 10.7.6 Статуту поки позначений як «ДОРОБИТИ» — це тимчасові значення.
                         Зміна шкали не перераховує вже внесені здобутки.
                     </p>
@@ -380,7 +380,7 @@ export default function OlympiadsManager({
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead>
-                            <tr className="bg-primary/[0.02] text-left font-plex text-[11px] uppercase tracking-wider text-primary/50">
+                            <tr className="bg-secondary/[0.08] text-left font-plex text-[11px] uppercase tracking-wider text-primary/70">
                                 <th className="px-5 py-2.5">Етап</th>
                                 {OLYMPIAD_PLACES.map((p) => (
                                     <th key={p.value} className="px-3 py-2.5 w-28 text-right">

@@ -53,7 +53,7 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
 
     if (items.length === 0) {
         return (
-            <p className="text-sm text-primary/50 py-10 text-center">
+            <p className="text-sm text-primary/70 py-10 text-center">
                 Новин ще немає. Створіть першу.
             </p>
         );
@@ -77,12 +77,12 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                                     className={`text-[10px] font-manrope font-bold uppercase tracking-wider px-2 py-0.5 rounded-none ${
                                         item.published
                                             ? 'bg-accent/15 text-accent'
-                                            : 'bg-primary/10 text-primary/50'
+                                            : 'bg-primary/10 text-primary/70'
                                     }`}
                                 >
                                     {item.published ? 'Опубліковано' : 'Чернетка'}
                                 </span>
-                                <span className="text-xs text-primary/40">{dateLabel}</span>
+                                <span className="text-xs text-primary/60">{dateLabel}</span>
                             </div>
                             <p className="font-manrope font-bold text-primary truncate">{item.title}</p>
                         </div>
@@ -92,14 +92,14 @@ export default function NewsAdminList({ items }: { items: NewsItem[] }) {
                                 onClick={() => handleTogglePublish(item)}
                                 disabled={isPending}
                                 title={item.published ? 'Зняти з публікації' : 'Опублікувати'}
-                                className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors disabled:opacity-50"
+                                className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/78 hover:text-primary transition-colors disabled:opacity-50"
                             >
                                 {item.published ? <EyeOff size={16} /> : <Eye size={16} />}
                             </button>
 
                             <Link
                                 href={`/profile/news/${item.id}/edit`}
-                                className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/60 hover:text-primary transition-colors"
+                                className="w-9 h-9 rounded-none bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary/78 hover:text-primary transition-colors"
                             >
                                 <FileEdit size={16} />
                             </Link>

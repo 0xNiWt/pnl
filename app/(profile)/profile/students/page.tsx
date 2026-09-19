@@ -24,7 +24,7 @@ export default async function StudentsPage() {
 
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -38,7 +38,7 @@ export default async function StudentsPage() {
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Учні та посади
                     </h1>
-                    <p className="text-sm text-primary/50 mt-2 max-w-2xl">
+                    <p className="text-sm text-primary/70 mt-2 max-w-2xl">
                         Посади активу за п. 1.2 Статуту. Вони не дають жодних прав у системі —
                         це позначка про те, хто чим займається в активі. Права роздаються
                         ролями на сторінці «Управління ролями».

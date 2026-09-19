@@ -24,7 +24,7 @@ export default async function ProfileShopPage() {
             <div className="w-full max-w-4xl mx-auto px-5 py-10 md:py-16">
                 <Link
                     href="/profile"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     Назад до профілю
@@ -39,7 +39,7 @@ export default async function ProfileShopPage() {
                         <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                             Товари магазину
                         </h1>
-                        <p className="text-sm text-primary/50 mt-2 max-w-xl">
+                        <p className="text-sm text-primary/70 mt-2 max-w-xl">
                             Товар може продаватися за бали, за гроші або двома способами
                             одразу. Порожня ціна означає, що цим способом товар не продається.
                         </p>

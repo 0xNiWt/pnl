@@ -35,7 +35,7 @@ export default function Values() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="values"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -51,14 +51,14 @@ export default function Values() {
                 {VALUES.map(({ icon: Icon, title, text }) => (
                     <div
                         key={title}
-                        className="rounded-none border border-primary/10 bg-primary/[0.03] p-6 flex flex-col gap-4"
+                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 flex flex-col gap-4"
                     >
                         <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center">
                             <Icon size={20} className="text-primary" />
                         </span>
                         <div>
                             <h3 className="font-cormorant font-bold text-primary text-lg mb-1.5">{title}</h3>
-                            <p className="text-sm text-primary/60 leading-relaxed">{text}</p>
+                            <p className="text-sm text-primary/78 leading-relaxed">{text}</p>
                         </div>
                     </div>
                 ))}

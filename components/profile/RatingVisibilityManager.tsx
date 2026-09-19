@@ -63,7 +63,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                     return (
                         <div
                             key={kind}
-                            className="flex items-center justify-between gap-4 bg-primary/[0.02] border border-primary/10 rounded-none px-5 py-4"
+                            className="flex items-center justify-between gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-4"
                         >
                             <div className="min-w-0">
                                 <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">
@@ -75,7 +75,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                                         </span>
                                     )}
                                 </p>
-                                <p className="text-xs text-primary/50 mt-1">{RATING_NOTES[kind]}</p>
+                                <p className="text-xs text-primary/70 mt-1">{RATING_NOTES[kind]}</p>
                             </div>
 
                             <button
@@ -83,7 +83,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                                 disabled={busy !== null}
                                 className={`shrink-0 inline-flex items-center gap-2 rounded-none px-4 py-2 text-sm font-manrope font-semibold transition-colors disabled:opacity-50 ${isHidden
                                     ? 'bg-primary text-background hover:bg-primary/90'
-                                    : 'bg-primary/5 text-primary/70 hover:bg-primary/10'
+                                    : 'bg-primary/5 text-primary/85 hover:bg-primary/10'
                                     }`}
                             >
                                 {busy === kind ? (
@@ -100,7 +100,7 @@ export default function RatingVisibilityManager({ initial }: { initial: RatingVi
                 })}
             </div>
 
-            <p className="text-xs text-primary/45 max-w-2xl">
+            <p className="text-xs text-primary/65 max-w-2xl">
                 Прихований рейтинг зникає зі сторінки «Рейтинг» і з блоку «Мій рейтинг» у
                 кабінеті. Адміністрація та модератори бачать його далі — з позначкою
                 «приховано». Підрахунок не зупиняється: загальний рейтинг за п. 10.7.4

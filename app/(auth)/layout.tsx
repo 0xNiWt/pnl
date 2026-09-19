@@ -14,7 +14,7 @@ export default function AuthLayout({
                 <div className="max-w-5xl mx-auto flex items-center justify-between">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-primary/60 hover:text-primary transition-colors text-sm font-semibold"
+                        className="inline-flex items-center gap-2 text-primary/78 hover:text-primary transition-colors text-sm font-semibold"
                     >
                         <ArrowLeft size={16} />
                         На сайт

@@ -37,7 +37,7 @@ export default function VstupHero() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20"
             id="vstup-hero"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -49,7 +49,7 @@ export default function VstupHero() {
                 Як вступити до ліцею
             </h1>
 
-            <p className="mt-5 text-base text-primary/65 max-w-2xl leading-relaxed">
+            <p className="mt-5 text-base text-primary/80 max-w-2xl leading-relaxed">
                 Прийом до ПНЛ №145 — тільки на конкурсній основі. Брати участь можуть
                 діти з Києва та приміської зони незалежно від місця проживання. Нижче —
                 правила конкурсу, перелік тем для підготовки, список документів і
@@ -61,7 +61,7 @@ export default function VstupHero() {
                     <a
                         key={anchor.href}
                         href={anchor.href}
-                        className="rounded-none border border-primary/15 px-4 py-2 font-inter text-sm text-primary/70 hover:bg-primary/5 hover:text-primary transition-colors"
+                        className="rounded-none border border-primary/15 px-4 py-2 font-inter text-sm text-primary/85 hover:bg-primary/5 hover:text-primary transition-colors"
                     >
                         {anchor.label}
                     </a>
@@ -72,7 +72,7 @@ export default function VstupHero() {
                 {FACTS.map(({ icon: Icon, title, text }) => (
                     <div
                         key={title}
-                        className="rounded-none border border-primary/10 bg-primary/[0.03] p-6"
+                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6"
                     >
                         <span className="w-11 h-11 rounded-none bg-primary/5 flex items-center justify-center mb-4">
                             <Icon size={20} className="text-primary" />
@@ -80,7 +80,7 @@ export default function VstupHero() {
                         <h2 className="font-cormorant font-bold text-primary text-lg mb-1.5">
                             {title}
                         </h2>
-                        <p className="text-sm text-primary/60 leading-relaxed">{text}</p>
+                        <p className="text-sm text-primary/78 leading-relaxed">{text}</p>
                     </div>
                 ))}
             </div>

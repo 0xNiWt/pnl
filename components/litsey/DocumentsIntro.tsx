@@ -14,7 +14,7 @@ export default function DocumentsIntro() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20"
             id="documents-intro"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -26,7 +26,7 @@ export default function DocumentsIntro() {
                 Нормативна база
             </h1>
 
-            <p className="mt-5 text-base text-primary/65 max-w-2xl leading-relaxed">
+            <p className="mt-5 text-base text-primary/80 max-w-2xl leading-relaxed">
                 Статут і ліцензія, положення про протидію булінгу, алгоритм дій під
                 час повітряної тривоги, кошториси та звіти про надходження. Кожен
                 документ можна відкрити просто в браузері або завантажити до себе.
@@ -37,7 +37,7 @@ export default function DocumentsIntro() {
                     <a
                         key={group.id}
                         href={`#${group.id}`}
-                        className="rounded-none border border-primary/15 px-4 py-2 font-inter text-sm text-primary/70 hover:bg-primary/5 hover:text-primary transition-colors"
+                        className="rounded-none border border-primary/15 px-4 py-2 font-inter text-sm text-primary/85 hover:bg-primary/5 hover:text-primary transition-colors"
                     >
                         {group.title}
                     </a>

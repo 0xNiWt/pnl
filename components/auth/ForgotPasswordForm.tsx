@@ -54,12 +54,12 @@ export default function ForgotPasswordForm() {
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Забули пароль?
                     </h1>
-                    <p className="mt-2 text-sm text-primary/60">
+                    <p className="mt-2 text-sm text-primary/78">
                         Введіть пошту — надішлемо посилання для відновлення
                     </p>
                 </div>
 
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-6 md:p-8 shadow-none">
+                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6 md:p-8 shadow-none">
 
                     {error && (
                         <div className="mb-6 p-3.5 rounded-none bg-accent/10 border border-accent/30 flex items-center gap-2.5 text-xs font-medium text-accent">
@@ -75,11 +75,11 @@ export default function ForgotPasswordForm() {
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                                <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/85 mb-1.5">
                                     Email
                                 </label>
                                 <div className="relative">
-                                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
+                                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/60" />
                                     <input
                                         type="text"
                                         inputMode="email"
@@ -92,7 +92,7 @@ export default function ForgotPasswordForm() {
                                         className="w-full rounded-none border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent/20"
                                     />
                                 </div>
-                                <p className="mt-1 text-[11px] text-primary/45">
+                                <p className="mt-1 text-[11px] text-primary/65">
                                     Достатньо імені акаунта — <b className="font-semibold">{LYCEUM_EMAIL_SUFFIX}</b> допишемо самі
                                 </p>
                             </div>
@@ -110,7 +110,7 @@ export default function ForgotPasswordForm() {
                     <div className="mt-6 pt-5 border-t border-primary/10 text-center">
                         <Link
                             href="/auth/login"
-                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary/70 hover:text-primary transition-colors"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary/85 hover:text-primary transition-colors"
                         >
                             <ArrowLeft size={14} />
                             Повернутися до входу

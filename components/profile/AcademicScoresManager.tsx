@@ -143,7 +143,7 @@ export default function AcademicScoresManager({
             )}
 
             {/* Фільтри */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-4">
                 <div className="relative">
                     <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary/30" />
                     <input
@@ -185,7 +185,7 @@ export default function AcademicScoresManager({
                     </select>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-primary/50">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-primary/70">
                     <span>
                         Учнів: <b className="text-primary">{filtered.length}</b>
                     </span>
@@ -202,9 +202,9 @@ export default function AcademicScoresManager({
             </div>
 
             {/* Список */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden">
                 {filtered.length === 0 ? (
-                    <p className="px-6 py-10 text-sm text-primary/40 text-center">
+                    <p className="px-6 py-10 text-sm text-primary/60 text-center">
                         За такими умовами нікого не знайдено.
                     </p>
                 ) : (
@@ -215,7 +215,7 @@ export default function AcademicScoresManager({
                                     <p className="text-sm font-semibold text-primary truncate">
                                         {p.full_name || 'Без імені'}
                                     </p>
-                                    <p className="text-xs text-primary/40 mt-0.5">
+                                    <p className="text-xs text-primary/60 mt-0.5">
                                         {p.class || 'Клас не вказано'}
                                     </p>
                                 </div>
@@ -244,7 +244,7 @@ export default function AcademicScoresManager({
                 )}
             </div>
 
-            <p className="text-xs text-primary/40 px-1">
+            <p className="text-xs text-primary/60 px-1">
                 Порожнє поле означає «оцінку ще не внесено». Такі учні опиняються в кінці
                 навчального рейтингу, але не заважають рахувати місця решті.
             </p>

@@ -8,7 +8,7 @@ export default function PolozhenniaText() {
         <article className="w-full max-w-3xl mx-auto px-5 md:px-6 pb-14 md:pb-20">
             <nav
                 aria-label="Зміст документа"
-                className="rounded-none border border-primary/10 bg-primary/[0.03] p-5 md:p-6 mb-10"
+                className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-5 md:p-6 mb-10"
             >
                 <h2 className="font-plex font-bold text-primary text-sm uppercase tracking-[0.14em] mb-4">
                     Зміст
@@ -18,7 +18,7 @@ export default function PolozhenniaText() {
                         <li key={section.id}>
                             <a
                                 href={`#${section.id}`}
-                                className="text-sm text-primary/70 hover:text-primary transition-colors leading-snug"
+                                className="text-sm text-primary/85 hover:text-primary transition-colors leading-snug"
                             >
                                 {section.text}
                             </a>
@@ -60,14 +60,14 @@ function Node({ node }: { node: PolozhenniaNode }) {
 
         case "li":
             return (
-                <p className="relative mt-2.5 pl-5 text-base text-primary/70 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.7em] before:w-1.5 before:h-1.5 before:rounded-none before:bg-accent">
+                <p className="relative mt-2.5 pl-5 text-base text-primary/85 leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.7em] before:w-1.5 before:h-1.5 before:rounded-none before:bg-accent">
                     {node.text}
                 </p>
             );
 
         case "p":
             return (
-                <p className="mt-4 text-base text-primary/70 leading-relaxed">
+                <p className="mt-4 text-base text-primary/85 leading-relaxed">
                     {node.text}
                 </p>
             );

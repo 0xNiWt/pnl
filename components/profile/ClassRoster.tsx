@@ -66,7 +66,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
         <div className="flex flex-col gap-4">
 
             {/* Пошук і коротка статистика */}
-            <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-3">
+            <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-4 md:p-5 flex flex-col gap-3">
                 <div className="relative">
                     <Search
                         size={15}
@@ -80,7 +80,7 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                     />
                 </div>
 
-                <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-primary/50">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-primary/70">
                     <span>
                         Учнів: <b className="text-primary">{filtered.length}</b>
                         {filtered.length !== profiles.length && ` з ${profiles.length}`}
@@ -100,16 +100,16 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
             </div>
 
             {groups.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-10 text-center">
-                    <p className="text-sm text-primary/40">За таким запитом нікого не знайдено.</p>
+                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-10 text-center">
+                    <p className="text-sm text-primary/60">За таким запитом нікого не знайдено.</p>
                 </div>
             ) : (
                 groups.map((group) => (
                     <div
                         key={group.className}
-                        className="bg-primary/[0.02] border border-primary/10 rounded-none overflow-hidden"
+                        className="bg-secondary/[0.08] border border-primary/10 rounded-none overflow-hidden"
                     >
-                        <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-primary/10 bg-primary/[0.03]">
+                        <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-primary/10 bg-secondary/[0.08]">
                             <div className="flex items-center gap-2.5">
                                 <span className="w-8 h-8 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                                     <Users size={15} />
@@ -119,13 +119,13 @@ export default function ClassRoster({ profiles }: { profiles: Profile[] }) {
                                         {group.className}
                                     </p>
                                     {parallelOf(group.className) && (
-                                        <p className="text-[11px] text-primary/40 mt-1">
+                                        <p className="text-[11px] text-primary/60 mt-1">
                                             {parallelOf(group.className)} паралель
                                         </p>
                                     )}
                                 </div>
                             </div>
-                            <span className="text-xs text-primary/40 shrink-0">
+                            <span className="text-xs text-primary/60 shrink-0">
                                 {group.students.length} {plural(group.students.length)}
                             </span>
                         </div>

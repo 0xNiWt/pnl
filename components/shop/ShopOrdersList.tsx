@@ -16,7 +16,7 @@ export type OrderRow = ShopOrder & { student_name: string; student_class: string
 const STATUS_STYLES: Record<OrderStatus, string> = {
     new: 'bg-accent/12 text-accent',
     issued: 'bg-accent/15 text-accent',
-    cancelled: 'bg-primary/8 text-primary/40',
+    cancelled: 'bg-primary/8 text-primary/60',
 };
 
 export default function ShopOrdersList({ initialOrders }: { initialOrders: OrderRow[] }) {
@@ -83,7 +83,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                         key={key}
                         onClick={() => setFilter(key)}
                         className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${
-                            filter === key ? 'bg-primary text-background' : 'text-primary/60 hover:text-primary'
+                            filter === key ? 'bg-primary text-background' : 'text-primary/78 hover:text-primary'
                         }`}
                     >
                         {key === 'all' ? 'Усі' : ORDER_STATUS_LABELS[key]}
@@ -93,8 +93,8 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
             </div>
 
             {shown.length === 0 ? (
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-none px-6 py-10 text-center">
-                    <p className="text-sm text-primary/40">
+                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none px-6 py-10 text-center">
+                    <p className="text-sm text-primary/60">
                         {filter === 'new' ? 'Замовлень, що чекають видачі, немає.' : 'Тут порожньо.'}
                     </p>
                 </div>
@@ -106,13 +106,13 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                         return (
                             <div
                                 key={order.id}
-                                className="flex flex-wrap items-center gap-4 bg-primary/[0.02] border border-primary/10 rounded-none p-4"
+                                className="flex flex-wrap items-center gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none p-4"
                             >
                                 <div className="min-w-0 flex-1">
                                     <p className="text-sm font-semibold text-primary truncate">
                                         {order.product_title}
                                     </p>
-                                    <p className="text-xs text-primary/50 mt-1">
+                                    <p className="text-xs text-primary/70 mt-1">
                                         {order.student_name}
                                         {order.student_class ? ` · ${order.student_class}` : ''}
                                         {' · '}
@@ -136,7 +136,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                 </span>
 
                                 <div className="flex items-center gap-2 shrink-0">
-                                    {busy && <Loader2 size={15} className="animate-spin text-primary/40" />}
+                                    {busy && <Loader2 size={15} className="animate-spin text-primary/60" />}
 
                                     {order.status === 'new' && (
                                         <>
@@ -151,7 +151,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                             <button
                                                 onClick={() => setStatus(order, 'cancelled')}
                                                 disabled={busy}
-                                                className="text-xs font-semibold text-primary/45 hover:text-accent transition-colors disabled:opacity-50"
+                                                className="text-xs font-semibold text-primary/65 hover:text-accent transition-colors disabled:opacity-50"
                                             >
                                                 Скасувати
                                             </button>
@@ -163,7 +163,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                             onClick={() => setStatus(order, 'new')}
                                             disabled={busy}
                                             title="Повернути в чергу"
-                                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary/45 hover:text-primary transition-colors disabled:opacity-50"
+                                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary/65 hover:text-primary transition-colors disabled:opacity-50"
                                         >
                                             <Undo2 size={13} />
                                             У чергу
@@ -175,7 +175,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                                             onClick={() => setStatus(order, 'new')}
                                             disabled={busy}
                                             title="Відновити замовлення — бали спишуться знову"
-                                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary/45 hover:text-primary transition-colors disabled:opacity-50"
+                                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary/65 hover:text-primary transition-colors disabled:opacity-50"
                                         >
                                             <RotateCcw size={13} />
                                             Відновити
@@ -188,7 +188,7 @@ export default function ShopOrdersList({ initialOrders }: { initialOrders: Order
                 </div>
             )}
 
-            <p className="text-xs text-primary/40 px-1">
+            <p className="text-xs text-primary/60 px-1">
                 Скасування повертає бали учню автоматично: баланс рахує лише незаскасовані
                 замовлення.
             </p>

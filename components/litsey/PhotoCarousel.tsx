@@ -63,7 +63,7 @@ export default function PhotoCarousel({
                         sizes="(max-width: 768px) 100vw, 520px"
                         className="object-cover"
                         placeholder="blur"
-                        priority={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
                     />
                 </motion.div>
             </AnimatePresence>

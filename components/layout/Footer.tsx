@@ -9,7 +9,7 @@ export default function Footer() {
                         Природничо-науковий ліцей №145
                     </p>
 
-                    <p className="mt-1 font-inter text-xs text-primary/40">
+                    <p className="mt-1 font-inter text-xs text-primary/60">
                         © {new Date().getFullYear()} · Всі права захищені
                     </p>
                 </div>
@@ -23,7 +23,7 @@ export default function Footer() {
                         href="https://ghoststudio.online"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-1 font-manrope text-sm font-semibold text-primary/60 transition-colors hover:text-primary"
+                        className="group inline-flex items-center gap-1 font-manrope text-sm font-semibold text-primary/78 transition-colors hover:text-primary"
                     >
                         GhostStudio
 

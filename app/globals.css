@@ -74,3 +74,18 @@ html {
     font-weight: 700;
   }
 }
+
+/* Google Translate (перемикач UA/EN): ховаємо його панель і підсвічування,
+   щоб англійська версія виглядала як звичайний сайт. */
+.goog-te-banner-frame,
+iframe.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+#google_translate_element { display: none !important; }
+body { top: 0 !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+
+/* Підписи меню у двох мовах (components/layout/Bi.tsx). */
+.i18n-en { display: none; }
+html[lang="en"] .i18n-en { display: inline; }
+html[lang="en"] .i18n-uk { display: none; }

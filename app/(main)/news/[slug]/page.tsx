@@ -67,7 +67,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                 <div className="flex justify-between items-center mb-6 md:mb-8">
                     <Link
                         href="/news"
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary/60 hover:text-primary transition-colors"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary/78 hover:text-primary transition-colors"
                     >
                         <ArrowLeft size={15} />
                         Усі новини
@@ -98,7 +98,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                     />
                 )}
 
-                <div className="flex flex-col gap-3.5 md:gap-4 text-[15px] md:text-base text-primary/80 leading-relaxed">
+                <div className="flex flex-col gap-3.5 md:gap-4 text-[15px] md:text-base text-primary/90 leading-relaxed">
                     {paragraphs.map((paragraph: string, i: number) => (
                         <p key={i}>{paragraph}</p>
                     ))}

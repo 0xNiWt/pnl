@@ -16,7 +16,7 @@ export default function PolozhenniaPage() {
             <section className="w-full max-w-3xl mx-auto px-5 md:px-6 pt-10 md:pt-16 pb-8 md:pb-10">
                 <Link
                     href="/litsey/documents"
-                    className="inline-flex items-center gap-1.5 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-primary/50 hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-1.5 font-plex text-xs font-semibold uppercase tracking-[0.14em] text-primary/70 hover:text-primary transition-colors"
                 >
                     <ArrowLeft size={14} />
                     Нормативна база
@@ -26,7 +26,7 @@ export default function PolozhenniaPage() {
                     Положення про учнівське самоврядування
                 </h1>
 
-                <p className="mt-4 text-base text-primary/65 leading-relaxed">
+                <p className="mt-4 text-base text-primary/80 leading-relaxed">
                     Документ, на який спирається робота активу: структура посад, вибори,
                     рейтинги, система балів, нагороди та щорічні події ліцею. Саме з ним
                     погоджуються учні під час реєстрації на сайті.

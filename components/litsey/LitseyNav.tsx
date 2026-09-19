@@ -38,7 +38,7 @@ export default function LitseyNav() {
     const active = SECTIONS.find((s) => s.href === pathname) ?? SECTIONS[0];
 
     return (
-        <div className="w-full border-b border-primary/15 bg-background">
+        <div className="w-full border-b border-secondary/30 bg-background">
             <div className="max-w-7xl mx-auto px-5 md:px-6 py-3 relative">
 
                 {/* Десктоп — розділи поруч */}
@@ -57,7 +57,7 @@ export default function LitseyNav() {
                                 title={section.description}
                                 className={`rounded-none px-4 py-2 font-inter text-sm font-medium transition-colors ${isActive
                                     ? "bg-primary text-background"
-                                    : "text-primary/70 hover:bg-primary/5 hover:text-primary"
+                                    : "text-primary/85 hover:bg-primary/5 hover:text-primary"
                                     }`}
                             >
                                 {section.label}
@@ -89,7 +89,7 @@ export default function LitseyNav() {
                     <motion.span
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.25, ease: smoothOut }}
-                        className="shrink-0 text-primary/40"
+                        className="shrink-0 text-primary/60"
                     >
                         <ChevronDown size={18} />
                     </motion.span>
@@ -124,7 +124,7 @@ export default function LitseyNav() {
                                                 <span className="block font-inter font-bold text-primary">
                                                     {section.label}
                                                 </span>
-                                                <span className="block text-xs text-primary/50 leading-snug mt-0.5">
+                                                <span className="block text-xs text-primary/70 leading-snug mt-0.5">
                                                     {section.description}
                                                 </span>
                                             </Link>

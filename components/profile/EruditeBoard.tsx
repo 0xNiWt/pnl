@@ -64,7 +64,7 @@ export default function EruditeBoard({
 
                 {seasons.length > 1 && (
                     <div className="flex flex-wrap items-center gap-1.5">
-                        <span className="font-plex text-[10px] uppercase tracking-[0.18em] text-primary/40 mr-1">
+                        <span className="font-plex text-[10px] uppercase tracking-[0.18em] text-primary/60 mr-1">
                             Рік
                         </span>
                         {seasons.map((s) => (
@@ -73,7 +73,7 @@ export default function EruditeBoard({
                                 href={`/profile/erudite?season=${encodeURIComponent(s)}`}
                                 className={`px-3 py-1.5 text-xs font-semibold transition-colors ${s === season
                                     ? 'bg-primary text-background'
-                                    : 'bg-primary/5 text-primary/60 hover:bg-primary/10 hover:text-primary'
+                                    : 'bg-primary/5 text-primary/78 hover:bg-primary/10 hover:text-primary'
                                     }`}
                             >
                                 {s}
@@ -131,15 +131,15 @@ function Tile({
     small?: boolean;
 }) {
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 px-5 py-4">
-            <p className="flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.16em] text-primary/45">
+        <div className="bg-secondary/[0.08] border border-primary/10 px-5 py-4">
+            <p className="flex items-center gap-2 font-plex text-[10px] uppercase tracking-[0.16em] text-primary/65">
                 <span className="text-accent">{icon}</span>
                 {label}
             </p>
             <p className={`mt-2 font-manrope font-bold text-primary leading-tight ${small ? 'text-lg' : 'text-3xl'}`}>
                 {value}
             </p>
-            {hint && <p className="text-xs text-primary/40 mt-0.5">{hint}</p>}
+            {hint && <p className="text-xs text-primary/60 mt-0.5">{hint}</p>}
         </div>
     );
 }
@@ -154,19 +154,19 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
     }
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 overflow-x-auto">
+        <div className="bg-secondary/[0.08] border border-primary/10 overflow-x-auto">
             <table className="w-full text-sm border-collapse">
                 <thead>
                     <tr className="border-b border-primary/10">
-                        <th className="sticky left-0 z-10 bg-[#f7f2e6] px-4 py-3 text-left font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/45 min-w-[170px]">
+                        <th className="sticky left-0 z-10 bg-[#f7f2e6] px-4 py-3 text-left font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/65 min-w-[170px]">
                             Гра
                         </th>
                         {standings.map((s) => (
                             <th key={s.team.id} className="px-2 py-3 text-center align-bottom min-w-[76px]">
                                 <span className="block font-manrope font-bold text-primary">№{s.number}</span>
-                                <span className="block text-[11px] font-normal text-primary/60 leading-tight">{s.team.name}</span>
+                                <span className="block text-[11px] font-normal text-primary/78 leading-tight">{s.team.name}</span>
                                 {s.team.class_name && (
-                                    <span className="block text-[10px] font-normal text-primary/40">{s.team.class_name}</span>
+                                    <span className="block text-[10px] font-normal text-primary/60">{s.team.class_name}</span>
                                 )}
                             </th>
                         ))}
@@ -176,7 +176,7 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
                 <tbody>
                     {games.length === 0 && (
                         <tr>
-                            <td colSpan={standings.length + 1} className="px-4 py-6 text-center text-primary/45">
+                            <td colSpan={standings.length + 1} className="px-4 py-6 text-center text-primary/65">
                                 Зіграних ігор ще немає.
                             </td>
                         </tr>
@@ -186,7 +186,7 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
                         <tr key={game.id} className="border-b border-primary/[0.06]">
                             <RowHead>
                                 <span className="font-semibold text-primary">{i + 1}. {game.title}</span>
-                                <span className="block text-[11px] text-primary/40">
+                                <span className="block text-[11px] text-primary/60">
                                     {new Date(game.played_on).toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}
                                 </span>
                             </RowHead>
@@ -202,7 +202,7 @@ function RatingMatrix({ standings, games }: { standings: TeamStanding[]; games: 
                 <tfoot>
                     <SummaryRow label="Додаткові бали" hint="п. 9.5.1">
                         {standings.map((s) => (
-                            <td key={s.team.id} className="px-2 py-2.5 text-center tabular-nums text-primary/70">
+                            <td key={s.team.id} className="px-2 py-2.5 text-center tabular-nums text-primary/85">
                                 {s.bonus > 0 ? `+${s.bonus}` : <span className="text-primary/25">0</span>}
                             </td>
                         ))}
@@ -265,10 +265,10 @@ function SummaryRow({
     children: React.ReactNode;
 }) {
     return (
-        <tr className={`border-t ${strong ? 'border-primary/15 bg-primary/[0.04]' : 'border-primary/10'}`}>
+        <tr className={`border-t ${strong ? 'border-primary/15 bg-secondary/[0.08]' : 'border-primary/10'}`}>
             <th scope="row" className={`sticky left-0 z-10 px-4 py-2.5 text-left ${strong ? 'bg-[#efe9dc]' : 'bg-[#f7f2e6]'}`}>
-                <span className={`${strong ? 'font-bold text-primary' : 'font-semibold text-primary/75'}`}>{label}</span>
-                {hint && <span className="block text-[10px] font-normal text-primary/40">{hint}</span>}
+                <span className={`${strong ? 'font-bold text-primary' : 'font-semibold text-primary/85'}`}>{label}</span>
+                {hint && <span className="block text-[10px] font-normal text-primary/60">{hint}</span>}
             </th>
             {children}
         </tr>
@@ -288,7 +288,7 @@ function PlaceCell({ cell }: { cell?: { attended: boolean; place: number | null;
     return (
         <span className="inline-flex flex-col items-center gap-0.5">
             <PlaceBadge place={cell.place ?? 0} small />
-            <span className="text-[10px] text-primary/45 tabular-nums">+{cell.points}</span>
+            <span className="text-[10px] text-primary/65 tabular-nums">+{cell.points}</span>
         </span>
     );
 }
@@ -299,7 +299,7 @@ function PlaceBadge({ place, small }: { place: number; small?: boolean }) {
             ? 'bg-accent text-background'
             : place > 0 && place <= 3
                 ? 'bg-accent/15 text-accent'
-                : 'bg-primary/5 text-primary/55';
+                : 'bg-primary/5 text-primary/75';
     return (
         <span
             className={`inline-flex items-center justify-center font-manrope font-bold tabular-nums ${small ? 'w-7 h-7 text-xs' : 'w-8 h-8 text-sm'} ${tone}`}
@@ -322,18 +322,18 @@ function PenaltyList({
     const gameTitle = new Map(games.map((g) => [g.id, g.title]));
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 px-5 py-4">
-            <p className="font-plex text-[10px] uppercase tracking-[0.16em] text-primary/45 mb-3">Штрафи від президента клубу</p>
+        <div className="bg-secondary/[0.08] border border-primary/10 px-5 py-4">
+            <p className="font-plex text-[10px] uppercase tracking-[0.16em] text-primary/65 mb-3">Штрафи від президента клубу</p>
             <ul className="flex flex-col gap-2 text-sm">
                 {penalties.map((p) => (
                     <li key={p.id} className="flex flex-wrap items-baseline gap-x-2">
                         <span className="font-semibold text-red-600 tabular-nums">−{p.points}</span>
                         <span className="font-semibold text-primary">{teamNames[p.team_id] ?? '—'}</span>
-                        <span className="text-primary/60">· {PENALTY_REASONS[p.reason]}</span>
+                        <span className="text-primary/78">· {PENALTY_REASONS[p.reason]}</span>
                         {p.game_id && gameTitle.get(p.game_id) && (
-                            <span className="text-primary/45">· {gameTitle.get(p.game_id)}</span>
+                            <span className="text-primary/65">· {gameTitle.get(p.game_id)}</span>
                         )}
-                        {p.note && <span className="text-primary/45">— {p.note}</span>}
+                        {p.note && <span className="text-primary/65">— {p.note}</span>}
                     </li>
                 ))}
             </ul>
@@ -351,7 +351,7 @@ function PersonalTable({ rows, currentUserId }: { rows: PersonStanding[]; curren
     }
 
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 overflow-x-auto">
+        <div className="bg-secondary/[0.08] border border-primary/10 overflow-x-auto">
             <table className="w-full min-w-[560px] text-sm">
                 <thead>
                     <tr className="border-b border-primary/10 text-left">
@@ -376,12 +376,12 @@ function PersonalTable({ rows, currentUserId }: { rows: PersonStanding[]; curren
                                         {r.person.full_name ?? 'Без імені'}
                                         {me && <span className="ml-2 font-plex text-[10px] uppercase tracking-wider text-accent">це ви</span>}
                                     </p>
-                                    <p className="text-xs text-primary/45">
+                                    <p className="text-xs text-primary/65">
                                         {[r.person.class, r.teams.join(', ')].filter(Boolean).join(' · ')}
                                     </p>
                                 </td>
-                                <td className="px-4 py-3 text-right tabular-nums text-primary/70">{r.games}</td>
-                                <td className="px-4 py-3 text-right tabular-nums text-primary/70">{r.firsts}</td>
+                                <td className="px-4 py-3 text-right tabular-nums text-primary/85">{r.games}</td>
+                                <td className="px-4 py-3 text-right tabular-nums text-primary/85">{r.firsts}</td>
                                 <td className="px-4 py-3 text-right font-manrope font-bold text-lg text-primary tabular-nums">
                                     {r.points}
                                 </td>
@@ -412,7 +412,7 @@ function TabButton({
     return (
         <button
             onClick={onClick}
-            className={`inline-flex items-center gap-2 px-4 py-2 font-plex text-[11px] uppercase tracking-[0.14em] transition-colors ${active ? 'bg-primary text-background' : 'text-primary/60 hover:text-primary'
+            className={`inline-flex items-center gap-2 px-4 py-2 font-plex text-[11px] uppercase tracking-[0.14em] transition-colors ${active ? 'bg-primary text-background' : 'text-primary/78 hover:text-primary'
                 }`}
         >
             {icon}
@@ -423,8 +423,8 @@ function TabButton({
 
 function Empty({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 px-6 py-10 text-center">
-            <p className="text-sm text-primary/45">{children}</p>
+        <div className="bg-secondary/[0.08] border border-primary/10 px-6 py-10 text-center">
+            <p className="text-sm text-primary/65">{children}</p>
         </div>
     );
 }
@@ -432,7 +432,7 @@ function Empty({ children }: { children: React.ReactNode }) {
 function Th({ children, right }: { children: React.ReactNode; right?: boolean }) {
     return (
         <th
-            className={`px-4 py-3 font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/45 ${right ? 'text-right' : ''}`}
+            className={`px-4 py-3 font-plex text-[10px] font-semibold uppercase tracking-[0.14em] text-primary/65 ${right ? 'text-right' : ''}`}
         >
             {children}
         </th>
@@ -465,26 +465,26 @@ function GameHistory({
                     const winners = game.rows.filter((r) => r.place === 1);
 
                     return (
-                        <div key={game.id} className="bg-primary/[0.02] border border-primary/10">
+                        <div key={game.id} className="bg-secondary/[0.08] border border-primary/10">
                             <button
                                 onClick={() => setOpen(isOpen ? null : game.id)}
                                 aria-expanded={isOpen}
-                                className="w-full flex items-center gap-4 px-5 py-3.5 text-left hover:bg-primary/[0.03] transition-colors"
+                                className="w-full flex items-center gap-4 px-5 py-3.5 text-left hover:bg-secondary/[0.1] transition-colors"
                             >
-                                <span className="font-plex text-[11px] text-primary/45 tabular-nums w-20 shrink-0">
+                                <span className="font-plex text-[11px] text-primary/65 tabular-nums w-20 shrink-0">
                                     {new Date(game.played_on).toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}
                                 </span>
                                 <span className="flex-1 min-w-0">
                                     <span className="block font-semibold text-primary truncate">{game.title}</span>
                                     {winners.length > 0 && (
-                                        <span className="block text-xs text-primary/45 truncate">
+                                        <span className="block text-xs text-primary/65 truncate">
                                             Перемога: {winners.map((w) => teamNames[w.team_id] ?? '—').join(', ')}
                                         </span>
                                     )}
                                 </span>
                                 <ChevronDown
                                     size={16}
-                                    className={`shrink-0 text-primary/40 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                                    className={`shrink-0 text-primary/60 transition-transform ${isOpen ? 'rotate-180' : ''}`}
                                 />
                             </button>
 
@@ -502,14 +502,14 @@ function GameHistory({
                                         <tbody>
                                             {game.rows.map((row) => (
                                                 <tr key={row.team_id} className="border-b border-primary/[0.05] last:border-0 align-top">
-                                                    <td className="px-4 py-2.5 tabular-nums text-primary/70">
+                                                    <td className="px-4 py-2.5 tabular-nums text-primary/85">
                                                         {row.attended ? row.place : '—'}
                                                     </td>
                                                     <td className="px-4 py-2.5">
                                                         <p className="font-medium text-primary">{teamNames[row.team_id] ?? '—'}</p>
                                                         {row.attended ? (
                                                             row.players.length > 0 && (
-                                                                <p className="text-xs text-primary/45">
+                                                                <p className="text-xs text-primary/65">
                                                                     {row.players.map((id) => personNames[id] ?? '—').join(', ')}
                                                                 </p>
                                                             )
@@ -517,7 +517,7 @@ function GameHistory({
                                                             <p className="text-xs text-red-600">Неявка</p>
                                                         )}
                                                     </td>
-                                                    <td className="px-4 py-2.5 text-right tabular-nums text-primary/70">{row.attended ? row.score : '—'}</td>
+                                                    <td className="px-4 py-2.5 text-right tabular-nums text-primary/85">{row.attended ? row.score : '—'}</td>
                                                     <td className="px-4 py-2.5 text-right tabular-nums font-manrope font-bold text-primary">{row.points}</td>
                                                 </tr>
                                             ))}
@@ -535,7 +535,7 @@ function GameHistory({
 
 function Rules() {
     return (
-        <details className="bg-primary/[0.02] border border-primary/10 px-5 py-4 text-sm text-primary/65">
+        <details className="bg-secondary/[0.08] border border-primary/10 px-5 py-4 text-sm text-primary/80">
             <summary className="cursor-pointer font-semibold text-primary">Як рахується рейтинг</summary>
             <ul className="mt-3 flex flex-col gap-2 leading-relaxed list-disc pl-5">
                 <li>

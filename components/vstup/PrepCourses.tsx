@@ -13,7 +13,7 @@ export default function PrepCourses() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="courses"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -25,7 +25,7 @@ export default function PrepCourses() {
                 Підготовчі курси ліцею
             </h2>
 
-            <p className="text-base text-primary/65 max-w-2xl mb-8 leading-relaxed">
+            <p className="text-base text-primary/80 max-w-2xl mb-8 leading-relaxed">
                 Заняття ведуть учителі ліцею. Курси не дають переваг на конкурсі, але
                 показують рівень задач, яких варто очікувати.
             </p>
@@ -34,7 +34,7 @@ export default function PrepCourses() {
                 {PREP_COURSES.map((course) => (
                     <div
                         key={course.id}
-                        className="rounded-none border border-primary/10 bg-primary/[0.02] p-6 md:p-7 flex flex-col"
+                        className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-6 md:p-7 flex flex-col"
                     >
                         <span className="inline-flex self-start items-center font-plex text-[11px] font-bold uppercase tracking-[0.14em] text-accent bg-accent/10 rounded-none px-3 py-1 mb-4">
                             {course.audience}
@@ -44,7 +44,7 @@ export default function PrepCourses() {
                             {course.title}
                         </h3>
 
-                        <p className="mt-2 text-sm text-primary/60 leading-relaxed">
+                        <p className="mt-2 text-sm text-primary/78 leading-relaxed">
                             {course.lead}
                         </p>
 
@@ -54,10 +54,10 @@ export default function PrepCourses() {
                                     key={detail.label}
                                     className="flex flex-col sm:flex-row sm:gap-4 py-2.5 border-b border-primary/[0.07]"
                                 >
-                                    <dt className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/40 sm:w-28 shrink-0 pt-0.5">
+                                    <dt className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/60 sm:w-28 shrink-0 pt-0.5">
                                         {detail.label}
                                     </dt>
-                                    <dd className="text-sm text-primary/75 leading-relaxed">
+                                    <dd className="text-sm text-primary/85 leading-relaxed">
                                         {detail.value}
                                     </dd>
                                 </div>
@@ -65,13 +65,13 @@ export default function PrepCourses() {
                         </dl>
 
                         <div className="mt-5">
-                            <p className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/40 mb-2">
+                            <p className="font-plex text-[11px] font-semibold uppercase tracking-wider text-primary/60 mb-2">
                                 Викладачі
                             </p>
                             <ul className="flex flex-col gap-1.5">
                                 {course.teachers.map((teacher) => (
-                                    <li key={teacher.subject} className="text-sm text-primary/75">
-                                        <span className="text-primary/45">{teacher.subject}: </span>
+                                    <li key={teacher.subject} className="text-sm text-primary/85">
+                                        <span className="text-primary/65">{teacher.subject}: </span>
                                         {teacher.name}
                                     </li>
                                 ))}
@@ -83,12 +83,12 @@ export default function PrepCourses() {
                                 {course.contacts.phone && (
                                     <a
                                         href={`tel:${course.contacts.phone}`}
-                                        className="inline-flex items-center gap-2 text-sm text-primary/70 hover:text-primary transition-colors"
+                                        className="inline-flex items-center gap-2 text-sm text-primary/85 hover:text-primary transition-colors"
                                     >
-                                        <Phone size={14} className="text-primary/40" />
+                                        <Phone size={14} className="text-primary/60" />
                                         {course.contacts.phone}
                                         {course.contacts.phoneNote && (
-                                            <span className="text-primary/40">
+                                            <span className="text-primary/60">
                                                 · {course.contacts.phoneNote}
                                             </span>
                                         )}
@@ -98,9 +98,9 @@ export default function PrepCourses() {
                                 {course.contacts.email && (
                                     <a
                                         href={`mailto:${course.contacts.email}`}
-                                        className="inline-flex items-center gap-2 text-sm text-primary/70 hover:text-primary transition-colors"
+                                        className="inline-flex items-center gap-2 text-sm text-primary/85 hover:text-primary transition-colors"
                                     >
-                                        <Mail size={14} className="text-primary/40" />
+                                        <Mail size={14} className="text-primary/60" />
                                         {course.contacts.email}
                                     </a>
                                 )}

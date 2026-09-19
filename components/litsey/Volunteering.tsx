@@ -39,7 +39,7 @@ export default function Volunteering() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="volunteering"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -51,7 +51,7 @@ export default function Volunteering() {
                 Волонтерство: разом до перемоги
             </h2>
 
-            <p className="text-base text-primary/70 max-w-2xl mb-10 leading-relaxed">
+            <p className="text-base text-primary/85 max-w-2xl mb-10 leading-relaxed">
                 З перших днів повномасштабної війни ліцей допомагає тим, хто нас захищає.
                 Учні, батьки й учителі щороку організовують благодійний ярмарок для ЗСУ
                 та окремо збирають кошти й допомогу для лікування поранених у Військовому госпіталі.
@@ -82,7 +82,7 @@ export default function Volunteering() {
                     <h3 className="mt-2 font-cormorant font-bold text-primary text-3xl leading-tight">
                         Благодійний ярмарок для ЗСУ
                     </h3>
-                    <p className="mt-3 text-sm text-primary/70 leading-relaxed">
+                    <p className="mt-3 text-sm text-primary/85 leading-relaxed">
                         Кожен клас готує свою локацію: випічку й бургери, bubble tea, вироби
                         власноруч, майстер-класи. Додають шахові сеанси одночасної гри,
                         благодійні тенісні матчі та виступ вокального гурту «Співочі ліцеїсти».
@@ -95,7 +95,7 @@ export default function Volunteering() {
                                 <span className="font-plex text-xs font-bold text-secondary-deep pt-1 w-10 shrink-0">{r.year}</span>
                                 <span>
                                     <span className="block font-cormorant font-bold text-2xl text-primary leading-none">{r.value}</span>
-                                    <span className="block mt-1 text-sm text-primary/65 leading-snug">{r.text}</span>
+                                    <span className="block mt-1 text-sm text-primary/80 leading-snug">{r.text}</span>
                                 </span>
                             </li>
                         ))}
@@ -105,7 +105,7 @@ export default function Volunteering() {
 
             {/* Госпіталь */}
             <div className="mt-6 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 items-stretch">
-                <div className="border border-primary/10 bg-primary/[0.03] p-6 md:p-8 flex flex-col order-2 lg:order-1">
+                <div className="border border-secondary/30 bg-secondary/[0.07] p-6 md:p-8 flex flex-col order-2 lg:order-1">
                     <p className="flex items-center gap-2 font-plex text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary-deep">
                         <Hospital size={16} />
                         Окремий щорічний збір
@@ -113,7 +113,7 @@ export default function Volunteering() {
                     <h3 className="mt-2 font-cormorant font-bold text-primary text-3xl leading-tight">
                         Лікування поранених у Військовому госпіталі
                     </h3>
-                    <p className="mt-3 text-sm text-primary/70 leading-relaxed">
+                    <p className="mt-3 text-sm text-primary/85 leading-relaxed">
                         Крім ярмарку, ліцей щороку окремо збирає кошти на волонтерські збори
                         для лікування захисників у Головному військовому клінічному госпіталі.
                         Волонтерський загін ліцею передає медикам коробки з необхідним і

@@ -132,16 +132,16 @@ export default async function ProfilePage() {
                         </h1>
                     </div>
 
-                    <div className="flex items-center gap-3 bg-primary/[0.03] border border-primary/10 rounded-none px-5 py-3">
+                    <div className="flex items-center gap-3 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-3">
                         <span className="w-9 h-9 rounded-none bg-accent/15 flex items-center justify-center text-accent">
                             <Coins size={18} />
                         </span>
                         <div>
-                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                            <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                 Баланс
                             </p>
                             <p className="text-lg font-manrope font-bold text-primary leading-none mt-0.5">
-                                {pointsBalance} <span className="text-sm font-normal text-primary/50">балів</span>
+                                {pointsBalance} <span className="text-sm font-normal text-primary/70">балів</span>
                             </p>
                         </div>
                     </div>
@@ -178,7 +178,7 @@ export default async function ProfilePage() {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-6">
+                        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6">
                             <h3 className="font-manrope font-bold text-primary text-sm mb-4">
                                 Дані акаунту
                             </h3>
@@ -229,7 +229,7 @@ function StudentSection({
     return (
         <SectionCard title="Мій рейтинг" icon={<TrendingUp size={16} />}>
             {kinds.length === 0 ? (
-                <p className="flex items-center gap-2 text-sm text-primary/50 py-2">
+                <p className="flex items-center gap-2 text-sm text-primary/70 py-2">
                     <EyeOff size={15} />
                     Рейтинги тимчасово приховані адміністрацією.
                 </p>
@@ -240,7 +240,7 @@ function StudentSection({
                             <p className="text-3xl font-manrope font-bold text-primary">
                                 {rating && headline ? rating.places[headline] : '—'}
                             </p>
-                            <p className="text-sm text-primary/50 mt-1">
+                            <p className="text-sm text-primary/70 mt-1">
                                 {headline === 'overall'
                                     ? 'місце в загальному рейтингу ліцею'
                                     : `місце · ${headline ? RATING_LABELS[headline].toLowerCase() : ''}`}
@@ -260,7 +260,7 @@ function StudentSection({
                                 key={kind}
                                 className="rounded-none bg-primary/5 px-3.5 py-2.5"
                             >
-                                <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                                <p className="flex items-center gap-1.5 text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                                     {RATING_LABELS[kind]}
                                     {hidden[kind] && <EyeOff size={11} className="text-accent" />}
                                 </p>
@@ -268,7 +268,7 @@ function StudentSection({
                                     {rating ? (
                                         <>
                                             {rating.places[kind]}
-                                            <span className="text-xs font-normal text-primary/40"> місце</span>
+                                            <span className="text-xs font-normal text-primary/60"> місце</span>
                                         </>
                                     ) : (
                                         '—'
@@ -291,7 +291,7 @@ function StudentSection({
 function VotesSection({ mayCreate }: { mayCreate: boolean }) {
     return (
         <SectionCard title="Голосування" icon={<Vote size={16} />}>
-            <p className="text-sm text-primary/60 mb-4">
+            <p className="text-sm text-primary/78 mb-4">
                 Голосування класу, ліцею та груп активу. Створювати їх можуть староста
                 й представник РСЛ (у своєму класі), ПРСЛ (ліцей і будь-яка група),
                 а голови старостату, фізоргів і пресцентру — у своїй групі.
@@ -317,7 +317,7 @@ function VotesSection({ mayCreate }: { mayCreate: boolean }) {
 function ShopSection({ balance }: { balance: number }) {
     return (
         <SectionCard title="Магазин мерчу" icon={<ShoppingCart size={16} />}>
-            <p className="text-sm text-primary/60 mb-4">
+            <p className="text-sm text-primary/78 mb-4">
                 Мерч ліцею за бали активності або за гроші. Зараз на балансі{' '}
                 <b className="text-primary">{balance}</b>. Покупки не впливають на місце
                 в рейтингу.
@@ -333,7 +333,7 @@ function ShopSection({ balance }: { balance: number }) {
 function RatingSection() {
     return (
         <SectionCard title="Рейтинг ліцею" icon={<TrendingUp size={16} />}>
-            <p className="text-sm text-primary/60 mb-4">
+            <p className="text-sm text-primary/78 mb-4">
                 Бали учнів і класів за активність у житті ліцею.
             </p>
             <QuickAction label="Переглянути рейтинг" href="/profile/rating" icon={<TrendingUp size={15} />} />
@@ -353,7 +353,7 @@ function EruditeSection({ stats, canManage, isCaptain }: { stats: EruditeStats; 
                 <MiniStat value={String(stats.participants)} label="учасників з капітанами" />
                 <div className="text-center">
                     <p className="text-sm font-manrope font-bold text-primary leading-tight pt-1.5">{leader}</p>
-                    <p className="text-xs text-primary/50 mt-1">лідер рейтингу</p>
+                    <p className="text-xs text-primary/70 mt-1">лідер рейтингу</p>
                 </div>
             </div>
             <div className="flex flex-col gap-2">
@@ -376,7 +376,7 @@ function TeacherSection() {
 function EditorSection() {
     return (
         <SectionCard title="Керування новинами" icon={<Newspaper size={16} />}>
-            <p className="text-sm text-primary/60 mb-4">
+            <p className="text-sm text-primary/78 mb-4">
                 Публікуйте, редагуйте та видаляйте новини сайту.
             </p>
             <div className="flex flex-col gap-2">
@@ -423,7 +423,7 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
 
 function SectionCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
     return (
-        <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-6">
+        <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6">
             <h3 className="flex items-center gap-2 font-manrope font-bold text-primary text-sm mb-4">
                 <span className="text-accent">{icon}</span>
                 {title}
@@ -437,7 +437,7 @@ function QuickAction({ label, href, icon }: { label: string; href: string; icon?
     return (
         <Link
             href={href}
-            className="flex items-center gap-2.5 rounded-none px-4 py-2.5 text-sm font-semibold text-primary/70 bg-primary/5 hover:bg-primary/10 hover:text-primary transition-colors"
+            className="flex items-center gap-2.5 rounded-none px-4 py-2.5 text-sm font-semibold text-primary/85 bg-primary/5 hover:bg-primary/10 hover:text-primary transition-colors"
         >
             {icon}
             {label}
@@ -449,7 +449,7 @@ function MiniStat({ value, label }: { value: string; label: string }) {
     return (
         <div className="text-center">
             <p className="text-2xl font-manrope font-bold text-primary">{value}</p>
-            <p className="text-xs text-primary/50 mt-0.5">{label}</p>
+            <p className="text-xs text-primary/70 mt-0.5">{label}</p>
         </div>
     );
 }
@@ -457,11 +457,11 @@ function MiniStat({ value, label }: { value: string; label: string }) {
 function ProfileRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
     return (
         <div className="flex items-center gap-3 py-2.5 border-b border-primary/10 last:border-0">
-            <div className="w-8 h-8 rounded-none bg-primary/5 flex items-center justify-center text-primary/50 flex-shrink-0">
+            <div className="w-8 h-8 rounded-none bg-primary/5 flex items-center justify-center text-primary/70 flex-shrink-0">
                 {icon}
             </div>
             <div>
-                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/50">
+                <p className="text-[11px] font-plex font-semibold uppercase tracking-wider text-primary/70">
                     {label}
                 </p>
                 <p className="text-sm font-medium text-primary">{value}</p>

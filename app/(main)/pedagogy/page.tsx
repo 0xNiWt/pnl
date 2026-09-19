@@ -14,7 +14,7 @@ export default function PedagogyPage() {
                 <h1 className="font-cormorant font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[clamp(2.3rem,1.4rem+3.6vw,4.6rem)]">
                     Педагогічний колектив
                 </h1>
-                <p className="mt-5 text-base text-primary/70 max-w-[560px] mx-auto md:mx-0">
+                <p className="mt-5 text-base text-primary/85 max-w-[560px] mx-auto md:mx-0">
                     Досвідчені вчителі, методисти та заслужені педагоги України, які щодня працюють
                     заради якісної освіти учнів ліцею.
                 </p>

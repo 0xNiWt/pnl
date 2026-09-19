@@ -66,7 +66,7 @@ export default function Symbols() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="symbols"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -80,7 +80,7 @@ export default function Symbols() {
 
             <div className="grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-5 items-start">
                 {/* Герб */}
-                <div className="md:sticky md:top-28 rounded-none border border-primary/10 bg-primary/[0.03] p-7 md:p-9 flex flex-col items-center text-center">
+                <div className="md:sticky md:top-28 rounded-none border border-secondary/30 bg-secondary/[0.07] p-7 md:p-9 flex flex-col items-center text-center">
                     <div className="relative flex items-center justify-center mb-6">
                         <Image
                             src={gerb}
@@ -92,7 +92,7 @@ export default function Symbols() {
 
                     <h3 className="font-cormorant font-bold text-primary text-xl">Герб ліцею</h3>
 
-                    <p className="mt-2 text-sm text-primary/60 leading-relaxed max-w-[280px]">
+                    <p className="mt-2 text-sm text-primary/78 leading-relaxed max-w-[280px]">
                         Офіційний знак закладу: він супроводжує документи й бланки ліцею,
                         стоїть у шапці цього сайту та на формі команд, які представляють
                         ліцей на змаганнях.

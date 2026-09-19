@@ -27,7 +27,7 @@ export default async function EruditeManagePage({
 
                 <Link
                     href={`/profile/erudite?season=${encodeURIComponent(season)}`}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/60 hover:text-primary transition-colors mb-6"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-primary/78 hover:text-primary transition-colors mb-6"
                 >
                     <ArrowLeft size={15} />
                     До рейтингу
@@ -41,7 +41,7 @@ export default async function EruditeManagePage({
                     <h1 className="font-manrope font-bold text-3xl md:text-4xl text-primary tracking-tight">
                         Керування клубом
                     </h1>
-                    <p className="mt-3 text-sm text-primary/60 max-w-2xl leading-relaxed">
+                    <p className="mt-3 text-sm text-primary/78 max-w-2xl leading-relaxed">
                         Плануйте ігри, підтверджуйте заявки капітанів, вносьте результати й штрафи.
                         Місця, додаткові бали, штрафи за неявки й обидва рейтинги рахуються автоматично.
                     </p>

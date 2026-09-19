@@ -121,7 +121,7 @@ export default function RatingBoard({
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-8 md:py-12">
                 <div className="border border-primary/10 rounded-none bg-white/40 px-6 py-12 text-center">
                     <EyeOff size={22} className="mx-auto mb-3 text-primary/30" />
-                    <p className="text-sm text-primary/55">
+                    <p className="text-sm text-primary/75">
                         Рейтинги тимчасово приховані адміністрацією ліцею.
                     </p>
                 </div>
@@ -149,7 +149,7 @@ export default function RatingBoard({
                 </button>
 
                 <div className="relative w-full sm:w-64">
-                    <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary/40" />
+                    <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary/60" />
                     <input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
@@ -166,7 +166,7 @@ export default function RatingBoard({
                         onClick={() => setRating(kind)}
                         className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-none border text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${activeRating === kind
                             ? 'bg-primary text-background border-primary'
-                            : 'border-primary/15 text-primary/60 hover:bg-primary/5'
+                            : 'border-primary/15 text-primary/78 hover:bg-primary/5'
                             }`}
                     >
                         {RATING_LABELS[kind]}
@@ -182,7 +182,7 @@ export default function RatingBoard({
                 </p>
             )}
 
-            <p className="flex items-start gap-2 text-xs text-primary/50 mb-6 max-w-2xl">
+            <p className="flex items-start gap-2 text-xs text-primary/70 mb-6 max-w-2xl">
                 <Info size={14} className="shrink-0 mt-0.5 text-accent" />
                 {RATING_HINTS[activeRating]}
             </p>
@@ -190,7 +190,7 @@ export default function RatingBoard({
             <div className="border border-primary/10 rounded-none overflow-x-auto bg-white/40">
                 <table className="w-full text-sm">
                     <thead>
-                        <tr className="bg-primary/5 text-left font-plex text-xs uppercase tracking-wide text-primary/60">
+                        <tr className="bg-primary/5 text-left font-plex text-xs uppercase tracking-wide text-primary/78">
                             <th className="px-4 py-3 w-14">№</th>
                             <th className="px-4 py-3">{scope === 'student' ? 'ПІБ' : 'Клас'}</th>
                             {scope === 'student' && <th className="px-4 py-3 w-20">Клас</th>}
@@ -224,7 +224,7 @@ export default function RatingBoard({
                     <tbody>
                         {rows.length === 0 && (
                             <tr>
-                                <td colSpan={colCount} className="px-4 py-6 text-center text-primary/50">
+                                <td colSpan={colCount} className="px-4 py-6 text-center text-primary/70">
                                     Нічого не знайдено
                                 </td>
                             </tr>
@@ -236,31 +236,31 @@ export default function RatingBoard({
 
                             return (
                                 <tr key={key} className="border-t border-primary/10">
-                                    <td className="px-4 py-3 text-primary/50">
+                                    <td className="px-4 py-3 text-primary/70">
                                         {row.places[activeRating]}
                                     </td>
                                     <td className="px-4 py-3 text-primary font-medium">{name}</td>
 
                                     {isStudent(row) ? (
-                                        <td className="px-4 py-3 text-primary/50 text-xs">
+                                        <td className="px-4 py-3 text-primary/70 text-xs">
                                             {row.class ?? '—'}
                                         </td>
                                     ) : (
-                                        <td className="px-4 py-3 text-right text-primary/50 text-xs">
+                                        <td className="px-4 py-3 text-right text-primary/70 text-xs">
                                             {row.students_count}
                                         </td>
                                     )}
 
                                     {activeRating === 'points' &&
                                         CATEGORY_ORDER.map((cat) => (
-                                            <td key={cat} className="px-3 py-3 text-right text-primary/70">
+                                            <td key={cat} className="px-3 py-3 text-right text-primary/85">
                                                 {row.categories[cat]}
                                             </td>
                                         ))}
 
                                     {activeRating === 'overall' &&
                                         overallColumns.map((kind) => (
-                                            <td key={kind} className="px-3 py-3 text-right text-primary/60">
+                                            <td key={kind} className="px-3 py-3 text-right text-primary/78">
                                                 {row.places[kind]}
                                             </td>
                                         ))}
@@ -282,7 +282,7 @@ export default function RatingBoard({
             </div>
 
             {activeRating === 'olympiad' && (
-                <p className="text-xs text-primary/40 mt-3 max-w-2xl">
+                <p className="text-xs text-primary/60 mt-3 max-w-2xl">
                     Бали за етапи олімпіад і конкурсу-захисту МАН нараховуються за шкалою
                     з пп. 10.1.10.1 та 10.1.10.2 Положення. Окрему клітинку шкали
                     адміністрація може виправити в кабінеті.

@@ -31,13 +31,13 @@ export default function DocumentsList() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.85, ease: smoothOut }}
-                    className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-16"
+                    className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-16"
                     id={group.id}
                 >
                     <h2 className="font-cormorant font-bold text-primary text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.05] tracking-[-0.015em]">
                         {group.title}
                     </h2>
-                    <p className="mt-2 mb-8 text-base text-primary/60 max-w-2xl leading-relaxed">
+                    <p className="mt-2 mb-8 text-base text-primary/78 max-w-2xl leading-relaxed">
                         {group.description}
                     </p>
 
@@ -57,7 +57,7 @@ function DocumentCard({ item }: { item: DocItem }) {
     const multiple = item.files.length > 1;
 
     return (
-        <article className="rounded-none border border-primary/10 bg-primary/[0.03] p-5 flex flex-col">
+        <article className="rounded-none border border-secondary/30 bg-secondary/[0.07] p-5 flex flex-col">
             <div className="flex items-start gap-3.5">
                 <span className="w-11 h-11 shrink-0 rounded-none bg-primary/5 flex items-center justify-center">
                     <Icon size={19} className="text-primary" />
@@ -65,7 +65,7 @@ function DocumentCard({ item }: { item: DocItem }) {
 
                 <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                        <span className="font-plex text-[10px] font-bold uppercase tracking-[0.14em] text-primary/40">
+                        <span className="font-plex text-[10px] font-bold uppercase tracking-[0.14em] text-primary/60">
                             {label}
                         </span>
                         {item.year && (
@@ -80,7 +80,7 @@ function DocumentCard({ item }: { item: DocItem }) {
                     </h3>
 
                     {item.note && (
-                        <p className="mt-1.5 text-xs text-primary/50 leading-relaxed">{item.note}</p>
+                        <p className="mt-1.5 text-xs text-primary/70 leading-relaxed">{item.note}</p>
                     )}
                 </div>
             </div>
@@ -97,7 +97,7 @@ function DocumentCard({ item }: { item: DocItem }) {
                     return (
                         <div key={file.href} className="flex flex-wrap items-center gap-2">
                             {multiple && (
-                                <span className="text-xs text-primary/45 mr-auto">{file.label}</span>
+                                <span className="text-xs text-primary/65 mr-auto">{file.label}</span>
                             )}
 
                             {viewHref && (
@@ -105,7 +105,7 @@ function DocumentCard({ item }: { item: DocItem }) {
                                     href={viewHref}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`inline-flex items-center gap-1.5 rounded-none border border-primary/15 px-3.5 py-1.5 font-manrope text-xs font-semibold text-primary/75 hover:bg-primary hover:text-background hover:border-primary transition-colors ${multiple ? "" : "flex-1 justify-center"
+                                    className={`inline-flex items-center gap-1.5 rounded-none border border-primary/15 px-3.5 py-1.5 font-manrope text-xs font-semibold text-primary/85 hover:bg-primary hover:text-background hover:border-primary transition-colors ${multiple ? "" : "flex-1 justify-center"
                                         }`}
                                 >
                                     <ExternalLink size={13} />

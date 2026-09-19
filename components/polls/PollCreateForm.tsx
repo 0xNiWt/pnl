@@ -115,7 +115,7 @@ export default function PollCreateForm({
 
             {/* Для кого */}
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                     Для кого голосування
                 </label>
 
@@ -124,7 +124,7 @@ export default function PollCreateForm({
                         <button
                             key={s}
                             onClick={() => setScope(s)}
-                            className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${scope === s ? 'bg-primary text-background' : 'text-primary/60'
+                            className={`px-4 py-1.5 rounded-none text-xs font-manrope font-semibold uppercase tracking-wide transition-colors ${scope === s ? 'bg-primary text-background' : 'text-primary/78'
                                 }`}
                         >
                             {POLL_SCOPE_LABELS[s]}
@@ -147,7 +147,7 @@ export default function PollCreateForm({
                                 ))}
                             </select>
                         ) : (
-                            <p className="text-sm text-primary/60">
+                            <p className="text-sm text-primary/78">
                                 Клас <b className="text-primary">{className || '—'}</b> — голосувати
                                 зможуть лише його учні.
                             </p>
@@ -170,7 +170,7 @@ export default function PollCreateForm({
                                 ))}
                             </select>
                         ) : (
-                            <p className="text-sm text-primary/60">
+                            <p className="text-sm text-primary/78">
                                 Група{' '}
                                 <b className="text-primary">
                                     {positionId ? positionGroupLabel(positionId) : '—'}
@@ -181,9 +181,9 @@ export default function PollCreateForm({
                     </div>
                 )}
 
-                <p className="text-xs text-primary/45 mt-2">
+                <p className="text-xs text-primary/65 mt-2">
                     Мінімальна явка за п. 3.6 Статуту:{' '}
-                    <b className="text-primary/70">{Math.round(QUORUM[scope] * 100)}%</b>
+                    <b className="text-primary/85">{Math.round(QUORUM[scope] * 100)}%</b>
                     {scope === 'class'
                         ? ' для голосувань класу.'
                         : scope === 'position'
@@ -194,7 +194,7 @@ export default function PollCreateForm({
 
             {/* Питання */}
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                     Питання
                 </label>
                 <input
@@ -206,7 +206,7 @@ export default function PollCreateForm({
             </div>
 
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                     Пояснення (необов&apos;язково)
                 </label>
                 <textarea
@@ -220,7 +220,7 @@ export default function PollCreateForm({
 
             {/* Варіанти */}
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                     Варіанти відповіді
                 </label>
 
@@ -259,7 +259,7 @@ export default function PollCreateForm({
             {/* Таємність. Вибору немає навмисно: відкритих голосувань у ліцеї
                 більше не проводимо, тому кожне створене тут — таємне. */}
             <div>
-                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/60 mb-1.5">
+                <label className="block text-xs font-plex font-semibold uppercase tracking-wide text-primary/78 mb-1.5">
                     Тип голосування
                 </label>
 
@@ -268,7 +268,7 @@ export default function PollCreateForm({
                         <EyeOff size={14} className="text-accent" />
                         Таємне — інакше не буває
                     </p>
-                    <p className="text-xs text-primary/55 mt-1 leading-relaxed">
+                    <p className="text-xs text-primary/75 mt-1 leading-relaxed">
                         Хто за що голосував, не зберігається взагалі: ні організатор, ні
                         адміністрація не побачать поіменного списку. Видно лише відсотки
                         та явку — так вимагає п. 3.6 Статуту.
@@ -285,7 +285,7 @@ export default function PollCreateForm({
                     {saving ? <Loader2 size={15} className="animate-spin" /> : <Check size={15} />}
                     Створити
                 </button>
-                <p className="text-xs text-primary/40 mt-2">
+                <p className="text-xs text-primary/60 mt-2">
                     Після створення варіанти змінити не можна — тільки видалити голосування
                     й зробити нове.
                 </p>

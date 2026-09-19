@@ -53,7 +53,7 @@ export default function ResetPasswordForm() {
                     </h1>
                 </div>
 
-                <div className="bg-primary/[0.02] border border-primary/10 rounded-none p-6 md:p-8 shadow-none">
+                <div className="bg-secondary/[0.08] border border-primary/10 rounded-none p-6 md:p-8 shadow-none">
 
                     {error && (
                         <div className="mb-6 p-3.5 rounded-none bg-accent/10 border border-accent/30 flex items-center gap-2.5 text-xs font-medium text-accent">
@@ -64,11 +64,11 @@ export default function ResetPasswordForm() {
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/70 mb-1.5">
+                            <label className="block text-xs font-plex font-semibold uppercase tracking-wider text-primary/85 mb-1.5">
                                 Новий пароль
                             </label>
                             <div className="relative">
-                                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
+                                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/60" />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     required
@@ -81,7 +81,7 @@ export default function ResetPasswordForm() {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-primary/40 hover:text-primary transition-colors"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-primary/60 hover:text-primary transition-colors"
                                 >
                                     {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                                 </button>

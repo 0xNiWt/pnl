@@ -45,7 +45,7 @@ export default function LifeGallery() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.85, ease: smoothOut }}
-            className="w-full max-w-7xl mx-auto border-b border-primary/15 px-5 md:px-6 py-10 md:py-24"
+            className="w-full max-w-7xl mx-auto border-b border-secondary/30 px-5 md:px-6 py-10 md:py-24"
             id="life"
         >
             <span className="inline-flex items-center gap-2 font-plex text-[10px] font-semibold uppercase tracking-[0.22em] text-secondary-deep mb-4">
@@ -57,7 +57,7 @@ export default function LifeGallery() {
                 Не тільки формули
             </h2>
 
-            <p className="text-base text-primary/70 max-w-xl mb-10">
+            <p className="text-base text-primary/85 max-w-xl mb-10">
                 Турзлети, спортивні турніри, толоки й ліцейські свята — те, через що
                 клас стає командою, а чотири роки згадуються не лише за оцінками.
             </p>
@@ -66,7 +66,7 @@ export default function LifeGallery() {
                 {SHOTS.map((shot) => (
                     <figure
                         key={shot.tag}
-                        className={`group relative overflow-hidden rounded-none-[20px] bg-primary/[0.03] ${shot.wide ? "md:col-span-2" : ""
+                        className={`group relative overflow-hidden rounded-none-[20px] bg-secondary/[0.08] ${shot.wide ? "md:col-span-2" : ""
                             }`}
                     >
                         <div className={`relative w-full ${shot.wide ? "aspect-[5/3]" : "aspect-[4/3]"}`}>

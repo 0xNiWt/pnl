@@ -58,13 +58,13 @@ export default function RatingConsentPolicy({
                 </div>
             )}
 
-            <div className="flex items-center justify-between gap-4 bg-primary/[0.02] border border-primary/10 rounded-none px-5 py-4">
+            <div className="flex items-center justify-between gap-4 bg-secondary/[0.08] border border-primary/10 rounded-none px-5 py-4">
                 <div className="min-w-0">
                     <p className="flex items-center gap-2 font-manrope font-bold text-primary text-sm">
                         <ShieldCheck size={15} className="text-accent" />
                         Враховувати лише учнів зі згодою
                     </p>
-                    <p className="text-xs text-primary/50 mt-1">
+                    <p className="text-xs text-primary/70 mt-1">
                         {enforced
                             ? 'Увімкнено: у рейтингах лише ті, хто дав згоду.'
                             : 'Вимкнено: у рейтингах поки що всі учні.'}
@@ -75,7 +75,7 @@ export default function RatingConsentPolicy({
                     onClick={toggle}
                     disabled={busy}
                     className={`shrink-0 inline-flex items-center gap-2 rounded-none px-4 py-2 text-sm font-manrope font-semibold transition-colors disabled:opacity-50 ${enforced
-                        ? 'bg-primary/5 text-primary/70 hover:bg-primary/10'
+                        ? 'bg-primary/5 text-primary/85 hover:bg-primary/10'
                         : 'bg-primary text-background hover:bg-primary/90'
                         }`}
                 >
@@ -89,7 +89,7 @@ export default function RatingConsentPolicy({
                 <Stat value={without} label="ще не дали" tone={without > 0 ? 'warn' : 'calm'} />
             </div>
 
-            <p className="text-xs text-primary/45 max-w-2xl">
+            <p className="text-xs text-primary/65 max-w-2xl">
                 Учні без згоди не потрапляють ані до індивідуальних рейтингів, ані до
                 показників свого класу (пп. 10.1.2 і 10.2.2 Положення) і не можуть
                 претендувати на нагороди, критерії яких спираються на рейтинги
@@ -97,7 +97,7 @@ export default function RatingConsentPolicy({
                 погодилася: решта побачить прохання про згоду в кабінеті.
             </p>
 
-            <p className="text-xs text-primary/45 max-w-2xl">
+            <p className="text-xs text-primary/65 max-w-2xl">
                 Відкликати згоду через сайт не можна: за п. 10.1.4 це робиться
                 виключно письмовою заявою на ім&apos;я директора.
             </p>
@@ -115,14 +115,14 @@ function Stat({
     tone?: 'calm' | 'warn';
 }) {
     return (
-        <div className="rounded-none border border-primary/10 bg-primary/[0.02] px-5 py-4">
+        <div className="rounded-none border border-secondary/30 bg-secondary/[0.07] px-5 py-4">
             <p
                 className={`font-manrope font-bold text-2xl ${tone === 'warn' ? 'text-accent' : 'text-primary'
                     }`}
             >
                 {value}
             </p>
-            <p className="text-xs text-primary/50 mt-0.5">{label}</p>
+            <p className="text-xs text-primary/70 mt-0.5">{label}</p>
         </div>
     );
 }
