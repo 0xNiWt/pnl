@@ -55,6 +55,11 @@ export function canManageShop(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');
 }
 
+// Хто редагує педагогічний колектив на сторінці «Педагоги».
+export function canManageStaff(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
 // Хто редагує книгу пам'яті на сторінці «Ліцей».
 export function canManageMemoryBook(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');

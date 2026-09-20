@@ -71,7 +71,7 @@ export default function NewsReactions({ newsId }: { newsId: string }) {
     };
 
     return (
-        <section className="mt-8 md:mt-10 pt-6 border-t border-secondary/70" aria-label="Реакції на новину" data-no-reveal>
+        <section className="mt-8 md:mt-10 pt-6 border-t border-primary/15" aria-label="Реакції на новину" data-no-reveal>
             <p className="mb-3 font-plex text-[13px] font-semibold uppercase tracking-[0.14em] text-secondary-deep">
                 Ваша реакція
             </p>
@@ -93,7 +93,7 @@ export default function NewsReactions({ newsId }: { newsId: string }) {
                             className={`inline-flex items-center gap-2 border px-3.5 py-2 transition-colors disabled:opacity-60 ${
                                 active
                                     ? 'border-primary bg-primary text-background'
-                                    : 'border-secondary/70 bg-secondary/[0.3] text-primary hover:border-primary'
+                                    : 'border-primary/10 bg-primary/[0.02] text-primary hover:border-primary'
                             }`}
                         >
                             <span className="text-2xl leading-none" aria-hidden>{r.emoji}</span>

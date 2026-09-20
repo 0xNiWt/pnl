@@ -68,7 +68,7 @@ export default function NewsListWithFilter({ initialNews }: { initialNews: NewsI
                         className={`flex items-center gap-2 rounded-none border px-4 py-2.5 text-sm font-semibold transition-colors ${
                             selected
                                 ? 'border-accent bg-accent/10 text-primary'
-                                : 'border-primary/10 bg-secondary/[0.3] text-primary/85 hover:border-secondary/60'
+                                : 'border-primary/10 bg-primary/[0.02] text-primary/85 hover:border-primary/20'
                         }`}
                     >
                         <CalendarDays size={16} />

@@ -1,9 +1,12 @@
 import ContactWithData from "@/components/contact/ContactWithData";
 import StaffDirectory from "@/components/profile/StaffDirectory";
+import { getStaffDepartments } from "@/lib/staffData";
 
 // export const dynamic = 'force-dynamic';
 
-export default function PedagogyPage() {
+export default async function PedagogyPage() {
+    const departments = await getStaffDepartments();
+
     return (
         <main className="paper-grid bg-background min-h-screen flex flex-col">
             <section className="w-full max-w-7xl mx-auto px-5 md:px-6 pt-10 md:pt-16 text-center md:text-left">
@@ -20,7 +23,7 @@ export default function PedagogyPage() {
                 </p>
             </section>
 
-            <StaffDirectory />
+            <StaffDirectory departments={departments} />
 
             <ContactWithData />
         </main>

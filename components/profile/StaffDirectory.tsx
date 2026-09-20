@@ -3,110 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-
-type StaffMember = {
-    name: string;
-    position: string;
-    photo?: string;
-};
-
-type Department = {
-    title: string;
-    members: StaffMember[];
-};
-
-const DEPARTMENTS: Department[] = [
-    {
-        title: 'Адміністрація',
-        members: [
-            { name: 'Заболотня Олена Федорівна', position: 'Директор ліцею, учитель вищої категорії, учитель-методист, відмінник освіти, учитель української мови та літератури', photo: '/staff/zabolotnya.jpg' },
-            { name: 'Федорів Любомир Атанасійович', position: 'Заступник директора з навчально-виховної роботи, методист, Заслужений вчитель України, вчитель інформатики', photo: '/staff/fedoriv-lyubomyr.jpg' },
-            { name: 'Пономарьова Надія Анатоліївна', position: 'Заступник директора, Заслужений вчитель України', photo: '/staff/ponomarova.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра української мови та літератури',
-        members: [
-            { name: 'Бондаренко Людмила Петрівна', position: 'Учитель вищої категорії, учитель української мови та літератури, старший учитель', photo: '/staff/bondarenko.jpg' },
-            { name: 'Медведенко Оксана Анатоліївна', position: 'Учитель вищої категорії, старший учитель, учитель української мови та літератури, поетеса, член Спілки журналістів України', photo: '/staff/medvedenko.jpg' },
-            { name: 'Федорів Марія Любомирівна', position: 'Учитель української мови та літератури', photo: '/staff/fedoriv-mariia.jpg' },
-            { name: 'Риженко Світлана Олександрівна', position: 'Учитель зарубіжної літератури' },
-            { name: 'Заболотня Олена Федорівна', position: 'Директор ліцею, учитель вищої категорії, учитель-методист, відмінник освіти, учитель української мови та літератури', photo: '/staff/zabolotnya.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра історії та правознавства',
-        members: [
-            { name: 'Торчило Олена Петрівна', position: 'Методист, учитель історії України і всесвітньої історії та права', photo: '/staff/torchylo.jpg' },
-            { name: 'Фурсова Олена Юріївна', position: 'Учитель історії України та всесвітньої історії', photo: '/staff/fursova.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра математики',
-        members: [
-            { name: 'Виннишин Ярослав Федорович', position: 'Кандидат фізико-математичних наук, вчитель математики', photo: '/staff/vynnyshyn.jpg' },
-            { name: 'Кушнір Юрій Анатолійович', position: 'Старший вчитель, відмінник освіти, учитель вищої категорії, вчитель математики', photo: '/staff/kushnir.jpg' },
-            { name: 'Савченко Ігор Олександрович', position: 'Кандидат фізико-математичних наук, учитель вищої категорії, вчитель математики', photo: '/staff/savchenko.jpg' },
-            { name: 'Сагайдак Тетяна Василівна', position: 'Старший учитель, учитель вищої категорії, вчитель математики', photo: '/staff/sagaydak.jpg' },
-            { name: 'Сидоренко Ірина Володимирівна', position: 'Учитель вищої категорії, вчитель математики, випускниця ліцею 1977 року', photo: '/staff/sydorenko.jpg' },
-            { name: 'Бохонова Тетяна Юріївна', position: 'Учитель математики', photo: '/staff/bokhonova.jpg' },
-            { name: 'Мороз Микола Петрович', position: 'Доктор філософії (PhD) з математики, вчитель вищої категорії, вчитель математики', photo: '/staff/moroz.jpg' },
-            { name: 'Єлагін Володимир Олексійович', position: 'Вчитель математики', photo: '/staff/yelagin.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра фізики',
-        members: [
-            { name: 'Перга Вікторія Віталіївна', position: 'Методист, нагороджена знаком "Відмінник освіти", знаком "Сухомлинський", учитель фізики', photo: '/staff/perga.jpg' },
-            { name: 'Розенвайн Олексій Григорович', position: 'Методист, Заслужений учитель України, вчитель фізики', photo: '/staff/rozenvain.jpg' },
-            { name: 'Гудзь Олександр Якович', position: 'Учитель фізики, практикуму, нагороджений знаком "Відмінник освіти"', photo: '/staff/gudz.jpg' },
-            { name: 'Янковська Марія Миколаївна', position: 'Учителька фізики і астрономії, методист, вища категорія' },
-            { name: 'Яковенко Ігор Сергійович', position: 'Учитель фізики' },
-            { name: 'Лєньков Станіслав Сергійович', position: 'Учитель фізики' },
-            { name: 'Левтік Микола Миколайович', position: 'Почесний директор ліцею, Заслужений працівник освіти України, вчитель-методист, відмінник освіти, вчитель фізики та практикуму', photo: '/staff/levtik.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра інформатики',
-        members: [
-            { name: "Лук'янчикова Тетяна Володимирівна", position: 'Учитель інформатики', photo: '/staff/lukyanchykova.jpg' },
-            { name: 'Скляр Ірина Вільївна', position: 'Методист, Заслужений вчитель України, вчитель інформатики', photo: '/staff/sklyar.jpg' },
-            { name: 'Федорів Любомир Атанасійович', position: 'Заступник директора з навчально-виховної роботи, методист, Заслужений вчитель України, вчитель інформатики', photo: '/staff/fedoriv-lyubomyr.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра англійської мови',
-        members: [
-            { name: 'Муринська Вікторія Вікторівна', position: 'Учитель англійської мови', photo: '/staff/murynska.jpg' },
-            { name: 'Махрова Ольга Василівна', position: 'Учитель англійської мови', photo: '/staff/makhrova.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра природничих наук',
-        members: [
-            { name: 'Рустамова Віра Петрівна', position: 'Учитель-методист, учитель географії', photo: '/staff/rustamova.jpg' },
-            { name: 'Ковальчук Оксана Петрівна', position: 'Учитель вищої категорії, вчитель біології', photo: '/staff/kovalchuk.jpg' },
-            { name: 'Ястребцова Наталія Іванівна', position: 'Заслужений учитель України, учитель-методист, учитель біології', photo: '/staff/yastrebtsova.jpg' },
-            { name: 'Махоткіна Наталія Станіславівна', position: 'Заслужений учитель України, учитель-методист, учитель хімії' },
-            { name: 'Зубченко Володимир Петрович', position: 'Вчитель економіки', photo: '/staff/zubchenko.jpg' },
-            { name: 'Бодюл Наталія Сергіївна', position: 'Кандидат хімічних наук, учитель вищої категорії, старший вчитель, вчитель хімії', photo: '/staff/bodyul.jpg' },
-            { name: 'Євдокименко Олексій Михайлович', position: 'Учитель біології', photo: '/staff/yevdokymenko.jpg' },
-        ],
-    },
-    {
-        title: 'Кафедра фізичної культури',
-        members: [
-            { name: 'Атаманенко Олексій Павлович', position: 'Учитель фізичної культури', photo: '/staff/atamanenko.jpg' },
-            { name: 'Ржанська Тетяна Миколаївна', position: 'Учитель фізичної культури', photo: '/staff/rzhanska.jpg' },
-        ],
-    },
-    {
-        title: 'Психологічна служба',
-        members: [
-            { name: 'Ільїнський Анісім Андрійович', position: 'Практичний психолог, соціальний педагог', photo: '/staff/ilyinskyy.jpg' },
-        ],
-    },
-];
+import type { StaffDepartment, StaffRow } from '@/lib/staff';
 
 const smoothOut = [0.16, 1, 0.3, 1] as const;
 
@@ -116,13 +13,13 @@ function initials(fullName: string) {
 }
 
 // Рядок педагога як на старому сайті ліцею: фото ліворуч, ім'я та посада праворуч.
-function MemberRow({ member }: { member: StaffMember }) {
+function MemberRow({ member }: { member: StaffRow }) {
     return (
         <article className="flex flex-col sm:flex-row gap-5 sm:gap-7 py-7 border-b border-primary/10 last:border-b-0">
             <div className="relative w-36 h-48 sm:w-40 sm:h-52 shrink-0 overflow-hidden bg-secondary/10 ring-1 ring-secondary/25 mx-auto sm:mx-0">
-                {member.photo ? (
+                {member.photo_url ? (
                     <Image
-                        src={member.photo}
+                        src={member.photo_url}
                         alt={member.name}
                         fill
                         sizes="160px"
@@ -147,9 +44,9 @@ function MemberRow({ member }: { member: StaffMember }) {
     );
 }
 
-export default function StaffDirectory() {
+export default function StaffDirectory({ departments }: { departments: StaffDepartment[] }) {
     const [deptIndex, setDeptIndex] = useState(0);
-    const dept = DEPARTMENTS[deptIndex];
+    const dept = departments[deptIndex] ?? { title: "", members: [] };
 
     return (
         <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-10 md:py-16" id="staff">
@@ -168,13 +65,13 @@ export default function StaffDirectory() {
                         className="lg:hidden w-full bg-white border border-secondary/40 rounded-none px-4 py-3 font-manrope font-semibold text-primary"
                         aria-label="Оберіть кафедру"
                     >
-                        {DEPARTMENTS.map((d, i) => (
+                        {departments.map((d, i) => (
                             <option key={d.title} value={i}>{d.title}</option>
                         ))}
                     </select>
 
                     <ul className="hidden lg:flex flex-col border border-secondary/70 bg-white">
-                        {DEPARTMENTS.map((d, i) => {
+                        {departments.map((d, i) => {
                             const active = i === deptIndex;
                             return (
                                 <li key={d.title} className="border-b border-secondary/15 last:border-b-0">

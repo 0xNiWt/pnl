@@ -19,7 +19,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt, 
     return (
         <Link
             href={`/news/${slug}`}
-            className="group flex flex-col overflow-hidden rounded-none border border-secondary/70 bg-secondary/[0.3] hover:border-secondary/60 transition-colors"
+            className="group flex flex-col overflow-hidden rounded-none border border-primary/10 bg-primary/[0.02] hover:border-primary/20 transition-colors"
         >
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary/5">
                 {coverUrl ? (
@@ -62,7 +62,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt, 
             {/* Реакції читачів — лише показ; поставити реакцію можна на сторінці новини. */}
             {reactions && (
                 <div
-                    className="flex items-center justify-between gap-1 border-t border-secondary/70 bg-background/60 px-4 py-2.5"
+                    className="flex items-center justify-between gap-1 border-t border-primary/10 bg-primary/[0.01] px-4 py-2.5"
                     aria-label="Реакції читачів"
                 >
                     {REACTIONS.map((r) => (
