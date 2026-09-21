@@ -1,18 +1,9 @@
-'use client';
-
 import Image from "next/image";
-import { motion } from "motion/react";
-import svyato from "@/public/about/svyato.jpg";
+import microscope from "@/public/about/microscope.jpg";
 
 export default function AboutHero() {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
-
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="about-hero"
         >
@@ -50,8 +41,8 @@ export default function AboutHero() {
 
             <figure className="relative mt-10 md:mt-16 overflow-hidden rounded-none-[20px]">
                 <Image
-                    src={svyato}
-                    alt="Урочистість у ліцеї: учні та вчителі в актовій залі"
+                    src={microscope}
+                    alt="Ліцеїст у білому халаті працює з мікроскопом на лабораторному практикумі"
                     className="w-full h-auto"
                     sizes="(max-width: 768px) 100vw, 1200px"
                     placeholder="blur"
@@ -60,9 +51,9 @@ export default function AboutHero() {
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-primary/80 to-transparent" />
 
                 <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-7 font-plex text-xs md:text-sm font-semibold uppercase tracking-[0.14em] text-background/90">
-                    Ліцейські урочистості · зустрічі поколінь ліцеїстів
+                    Лабораторний практикум · робота з мікроскопом
                 </figcaption>
             </figure>
-        </motion.section>
+        </section>
     );
 }
