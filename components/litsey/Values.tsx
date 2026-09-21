@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from "motion/react";
 import { FlaskConical, BookOpen, Users, Trophy } from "lucide-react";
 
 const VALUES = [
@@ -27,14 +24,8 @@ const VALUES = [
 ];
 
 export default function Values() {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
-
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="values"
         >
@@ -63,6 +54,6 @@ export default function Values() {
                     </div>
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 }

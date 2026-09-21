@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
 import { Download, ExternalLink, Search, User, X } from "lucide-react";
 import {
     MEMORY_BOOK_PDF,
@@ -10,8 +9,6 @@ import {
     matchesQuery,
     type MemoryEntry,
 } from "@/lib/memory";
-
-const smoothOut = [0.16, 1, 0.3, 1] as const;
 const PAGE_SIZE = 24;
 
 export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
@@ -27,11 +24,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
 
     return (
         <>
-            <motion.section
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, ease: smoothOut }}
+            <section
                 className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20"
                 id="memory-intro"
             >
@@ -76,7 +69,7 @@ export default function MemoryBook({ entries }: { entries: MemoryEntry[] }) {
                         {entries.length} імен у книзі
                     </p>
                 )}
-            </motion.section>
+            </section>
 
             {entries.length > 0 && (
                 <section className="w-full max-w-7xl mx-auto px-5 md:px-6 py-10 md:py-16" id="memory-list">

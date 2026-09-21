@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from "motion/react";
 import {
     Download,
     ExternalLink,
@@ -10,9 +7,6 @@ import {
     Music,
 } from "lucide-react";
 import { DOC_GROUPS, type DocItem, type DocKind } from "./documentsData";
-
-const smoothOut = [0.16, 1, 0.3, 1] as const;
-
 const KIND_META: Record<DocKind, { icon: typeof FileText; label: string }> = {
     pdf: { icon: FileText, label: "PDF" },
     doc: { icon: FileText, label: "DOCX" },
@@ -25,12 +19,8 @@ export default function DocumentsList() {
     return (
         <>
             {DOC_GROUPS.map((group) => (
-                <motion.section
+                <section
                     key={group.id}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.85, ease: smoothOut }}
                     className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-16"
                     id={group.id}
                 >
@@ -46,7 +36,7 @@ export default function DocumentsList() {
                             <DocumentCard key={item.id} item={item} />
                         ))}
                     </div>
-                </motion.section>
+                </section>
             ))}
         </>
     );

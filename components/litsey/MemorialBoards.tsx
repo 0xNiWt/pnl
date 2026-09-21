@@ -1,20 +1,10 @@
-'use client';
-
 import Image from "next/image";
-import { motion } from "motion/react";
 import { CalendarDays } from "lucide-react";
 import memorialBoards from "@/public/heroes/memorial-boards.jpg";
 import { HEROES } from "./heroesData";
-
-const smoothOut = [0.16, 1, 0.3, 1] as const;
-
 export default function MemorialBoards() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto px-5 md:px-6 pb-14 md:pb-24"
             id="memorial-boards"
         >
@@ -66,6 +56,6 @@ export default function MemorialBoards() {
                     </p>
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

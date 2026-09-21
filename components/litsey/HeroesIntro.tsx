@@ -1,17 +1,8 @@
-'use client';
-
-import { motion } from "motion/react";
 import { HEROES } from "./heroesData";
 
 export default function HeroesIntro() {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
-
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20"
             id="heroes-intro"
         >
@@ -38,6 +29,6 @@ export default function HeroesIntro() {
             <p className="mt-8 font-cormorant text-2xl text-accent tracking-wide">
                 {HEROES.length} імен · вічна пам’ять
             </p>
-        </motion.section>
+        </section>
     );
 }

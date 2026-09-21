@@ -1,11 +1,5 @@
-'use client';
-
 import Image from "next/image";
-import { motion } from "motion/react";
 import { HEROES, type Hero } from "./heroesData";
-
-const smoothOut = [0.16, 1, 0.3, 1] as const;
-
 export default function HeroesRoll() {
     return (
         <section className="w-full max-w-7xl mx-auto px-5 md:px-6" id="heroes">
@@ -15,28 +9,20 @@ export default function HeroesRoll() {
                 ))}
             </div>
 
-            <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, ease: smoothOut }}
+            <p
                 className="border-t border-secondary/70 py-14 md:py-20 text-center font-manrope font-bold text-xl md:text-2xl text-primary tracking-tight"
             >
                 Повік не забудемо безмежний геройський чин.
                 <br />
                 <span className="text-accent">Вічна слава і пам’ять Героям!</span>
-            </motion.p>
+            </p>
         </section>
     );
 }
 
 function HeroCard({ hero }: { hero: Hero }) {
     return (
-        <motion.article
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <article
             className="border-b border-secondary/70 py-10 md:py-16 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-7 md:gap-12"
             id={hero.id}
         >
@@ -101,6 +87,6 @@ function HeroCard({ hero }: { hero: Hero }) {
                     </div>
                 )}
             </div>
-        </motion.article>
+        </article>
     );
 }

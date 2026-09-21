@@ -24,13 +24,8 @@ export default function Nav({ isLoggedIn }: { isLoggedIn: boolean }) {
         <>
             <nav>
                 <ul className="hidden items-center gap-7 lg:flex">
-                    {LINKS.map((item, i) => (
-                        <motion.li
-                            key={item.label}
-                            initial={{ opacity: 0, y: -6 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.15 + i * 0.05, ease: smoothOut }}
-                        >
+                    {LINKS.map((item) => (
+                        <li key={item.label}>
                             <Link
                                 href={item.href}
                                 // Колір посилань не змінюється ніколи — ні при наведенні,
@@ -39,7 +34,7 @@ export default function Nav({ isLoggedIn }: { isLoggedIn: boolean }) {
                             >
                                 <Bi uk={item.label} en={item.en} />
                             </Link>
-                        </motion.li>
+                        </li>
                     ))}
                 </ul>
 

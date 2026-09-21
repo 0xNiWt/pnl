@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from "motion/react";
 import { Trophy } from "lucide-react";
 import {
     formatShare,
@@ -10,9 +7,6 @@ import {
     yearTotal,
     type OlympiadTable,
 } from "@/lib/olympiads";
-
-const smoothOut = [0.16, 1, 0.3, 1] as const;
-
 export default function OlympiadStats({ tables }: { tables: OlympiadTable[] }) {
     if (tables.length === 0) {
         return (
@@ -27,17 +21,13 @@ export default function OlympiadStats({ tables }: { tables: OlympiadTable[] }) {
     return (
         <>
             {tables.map((table) => (
-                <motion.section
+                <section
                     key={table.id}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.85, ease: smoothOut }}
                     className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-16 scroll-mt-28"
                     id={table.id}
                 >
                     <TableCard table={table} />
-                </motion.section>
+                </section>
             ))}
         </>
     );

@@ -12,11 +12,7 @@ export default function AdmissionRules() {
     const [open, setOpen] = useState<string | null>(RULES[0].id);
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="rules"
         >
@@ -129,6 +125,6 @@ export default function AdmissionRules() {
                     </div>
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

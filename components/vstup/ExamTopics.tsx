@@ -1,21 +1,15 @@
 'use client';
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { TOPICS } from "./topicsData";
 
 export default function ExamTopics() {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
     const [activeId, setActiveId] = useState(TOPICS[0].id);
 
     const active = TOPICS.find((t) => t.id === activeId) ?? TOPICS[0];
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="topics"
         >
@@ -91,6 +85,6 @@ export default function ExamTopics() {
                     </div>
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 }

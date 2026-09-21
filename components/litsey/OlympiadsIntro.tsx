@@ -1,18 +1,10 @@
-'use client';
-
-import { motion } from "motion/react";
 import { tableTotal, type OlympiadTable } from "@/lib/olympiads";
 
 export default function OlympiadsIntro({ tables }: { tables: OlympiadTable[] }) {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
     const grandTotal = tables.reduce((sum, t) => sum + tableTotal(t.rows), 0);
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20"
             id="olympiads-intro"
         >
@@ -48,6 +40,6 @@ export default function OlympiadsIntro({ tables }: { tables: OlympiadTable[] }) 
                     {grandTotal} перемог усього
                 </p>
             )}
-        </motion.section>
+        </section>
     );
 }

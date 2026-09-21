@@ -1,19 +1,10 @@
-'use client';
-
-import { motion } from "motion/react";
 import { DOC_GROUPS } from "./documentsData";
 
 export default function DocumentsIntro() {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
-
     const total = DOC_GROUPS.reduce((sum, g) => sum + g.items.length, 0);
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20"
             id="documents-intro"
         >
@@ -47,6 +38,6 @@ export default function DocumentsIntro() {
             <p className="mt-6 font-cormorant text-2xl text-accent tracking-wide">
                 {total} документів у відкритому доступі
             </p>
-        </motion.section>
+        </section>
     );
 }

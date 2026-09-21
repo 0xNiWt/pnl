@@ -1,7 +1,4 @@
-'use client';
-
 import Link from "next/link";
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import international from "@/public/about/international.jpg";
 import olympiadTeam from "@/public/about/international/olympiad-team.jpg";
@@ -32,14 +29,8 @@ const PARAGRAPHS = [
 ];
 
 export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
-
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="legacy"
         >
@@ -111,7 +102,7 @@ export default function Legacy({ tables }: { tables: OlympiadTable[] }) {
                     </div>
                 </>
             )}
-        </motion.section>
+        </section>
     );
 }
 

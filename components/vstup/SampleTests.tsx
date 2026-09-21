@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { FileText, Download } from "lucide-react";
 
 type Sample = { title: string; year: string; href: string; note?: string };
@@ -95,16 +94,11 @@ function SampleList({ title, items }: { title: string; items: Sample[] }) {
 }
 
 export default function SampleTests() {
-    const smoothOut = [0.16, 1, 0.3, 1] as const;
     const [activeId, setActiveId] = useState(GRADES[0].id);
     const active = GRADES.find((g) => g.id === activeId) ?? GRADES[0];
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-20 scroll-mt-24"
             id="samples"
         >
@@ -141,6 +135,6 @@ export default function SampleTests() {
                 <SampleList title="Математика" items={active.math} />
                 <SampleList title="Фізика" items={active.physics} />
             </div>
-        </motion.section>
+        </section>
     );
 }

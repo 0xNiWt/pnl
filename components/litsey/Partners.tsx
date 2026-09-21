@@ -1,15 +1,9 @@
-'use client';
-
 import Image, { type StaticImageData } from "next/image";
-import { motion } from "motion/react";
 import { FlaskConical, GraduationCap } from "lucide-react";
 import cybernetics from "@/public/about/partners/cybernetics.jpg";
 import knu from "@/public/about/partners/knu.jpg";
 import kpi from "@/public/about/partners/kpi.jpg";
 import ntu from "@/public/about/partners/ntu.jpg";
-
-const smoothOut = [0.16, 1, 0.3, 1] as const;
-
 const INSTITUTES = [
     "Інститут кібернетики імені В. М. Глушкова",
     "Інститут фізики напівпровідників",
@@ -47,11 +41,7 @@ function List({ items }: { items: string[] }) {
 
 export default function Partners() {
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, ease: smoothOut }}
+        <section
             className="w-full max-w-7xl mx-auto border-b border-secondary/70 px-5 md:px-6 py-10 md:py-24"
             id="partners"
         >
@@ -113,6 +103,6 @@ export default function Partners() {
                     <List items={UNIVERSITIES} />
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

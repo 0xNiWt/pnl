@@ -94,7 +94,7 @@ export default function StaffDirectory({ departments }: { departments: StaffDepa
                 </nav>
 
                 <div className="bg-white/70 border border-primary/10 px-5 md:px-8 py-2" data-no-reveal>
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                         <motion.div
                             key={dept.title}
                             initial={{ opacity: 0, y: 12 }}
