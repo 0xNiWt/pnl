@@ -39,13 +39,17 @@ export default function BuildingHero() {
                     <h1 className="mt-5 font-cormorant font-bold leading-[0.92] tracking-[-0.02em] text-background text-[clamp(2.15rem,1rem+5.2vw,6.2rem)]">
                         <span className="block">Природничо-науковий</span>
                         <span className="block">
-                            ліцей <span className="text-accent">№&nbsp;145</span>
+                            ліцей <span className="text-accent [-webkit-text-stroke:0.022em_currentColor]">№&nbsp;145</span>
                         </span>
                     </h1>
 
                     <p className="mt-5 max-w-[520px] font-inter text-[15px] leading-[1.75] text-background/75">
                         Поглиблені фізика, математика, хімія
                         та інформатика, лабораторні практикуми й наукова робота учнів.
+                        Ліцей співпрацює з провідними закладами вищої освіти України
+                        та світу — від Київського університету імені Тараса Шевченка,
+                        КПІ й авіаційного інституту до Національного Тайванського
+                        університету.
                     </p>
 
                     {/* Технічний рядок унизу обкладинки — як вихідні дані видання. */}

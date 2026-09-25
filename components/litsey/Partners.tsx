@@ -4,6 +4,7 @@ import cybernetics from "@/public/about/partners/cybernetics.jpg";
 import knu from "@/public/about/partners/knu.jpg";
 import kpi from "@/public/about/partners/kpi.jpg";
 import ntu from "@/public/about/partners/ntu.jpg";
+import kai from "@/public/about/partners/kai.jpg";
 const INSTITUTES = [
     "Інститут кібернетики імені В. М. Глушкова",
     "Інститут фізики напівпровідників",
@@ -16,6 +17,7 @@ const INSTITUTES = [
 const UNIVERSITIES = [
     "Київський національний університет імені Тараса Шевченка",
     "Національний технічний університет України «Київський політехнічний інститут»",
+    "Київський авіаційний інститут (колишній Національний авіаційний університет)",
     "Національний Тайванський університет",
 ];
 
@@ -23,6 +25,7 @@ const PHOTOS: { photo: StaticImageData; caption: string; alt: string }[] = [
     { photo: cybernetics, caption: "Інститут кібернетики НАН України", alt: "Будівля Інституту кібернетики імені В. М. Глушкова НАН України" },
     { photo: knu, caption: "КНУ імені Тараса Шевченка", alt: "Червоний корпус Київського національного університету імені Тараса Шевченка" },
     { photo: kpi, caption: "Київський політехнічний інститут", alt: "Головний корпус Київського політехнічного інституту" },
+    { photo: kai, caption: "Київський авіаційний інститут", alt: "Головний корпус Київського авіаційного інституту з висоти" },
     { photo: ntu, caption: "Національний Тайванський університет", alt: "Корпус Національного Тайванського університету" },
 ];
 
@@ -61,14 +64,14 @@ export default function Partners() {
             </p>
 
             {/* Фото — усі однакового розміру */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 mb-6">
                 {PHOTOS.map((p) => (
                     <figure key={p.caption} className="group relative aspect-[4/3] overflow-hidden bg-primary">
                         <Image
                             src={p.photo}
                             alt={p.alt}
                             fill
-                            sizes="(max-width: 1024px) 50vw, 300px"
+                            sizes="(max-width: 1024px) 50vw, 260px"
                             className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                             placeholder="blur"
                         />

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { REACTIONS, type ReactionId } from '@/lib/newsReactions';
+import { SHOW_NEWS_REACTIONS } from '@/components/layout/siteConfig';
 
 type NewsCardProps = {
     slug: string;
@@ -60,7 +61,7 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt, 
             </div>
 
             {/* Реакції читачів — лише показ; поставити реакцію можна на сторінці новини. */}
-            {reactions && (
+            {SHOW_NEWS_REACTIONS && reactions && (
                 <div
                     className="flex items-center justify-between gap-1 border-t border-primary/10 bg-primary/[0.01] px-4 py-2.5"
                     aria-label="Реакції читачів"

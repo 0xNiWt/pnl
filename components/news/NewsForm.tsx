@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AlertCircle, Image as ImageIcon, Type, AlignLeft, Plus, X } from 'lucide-react';
+import UploadButton from '@/components/profile/UploadButton';
 
 type NewsFormProps = {
     mode: 'create' | 'edit';
@@ -170,6 +171,14 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                                     className="w-full rounded-none border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent/20"
                                 />
                             </div>
+                            <UploadButton
+                                folder="news"
+                                kind="image"
+                                label="Файл"
+                                onUploaded={(url) => updateImage(index, url)}
+                                onError={setError}
+                            />
+
                             {images.length > 1 && (
                                 <button
                                     type="button"
@@ -183,7 +192,8 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                     ))}
                 </div>
                 <p className="mt-1.5 text-xs text-primary/60">
-                    Посилання має вести напряму на файл зображення (.jpg, .png, .webp)
+                    Натисніть «Файл», щоб завантажити фото з компʼютера, або вставте
+                    пряме посилання на зображення (.jpg, .png, .webp).
                 </p>
             </div>
 

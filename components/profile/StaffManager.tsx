@@ -7,6 +7,7 @@ import {
     ArrowDown, ArrowUp, Check, Loader2, Pencil, Plus, Trash2, TriangleAlert, User, X,
 } from 'lucide-react';
 import type { StaffDepartment, StaffRow } from '@/lib/staff';
+import UploadButton from './UploadButton';
 
 type Draft = {
     id: string | null;
@@ -198,10 +199,18 @@ export default function StaffManager({ departments }: { departments: StaffDepart
                             className="border border-primary/15 bg-white rounded-none px-3 py-2 text-primary outline-none focus:border-primary/40"
                         />
                         <span className="text-xs text-primary/60">
-                            Шлях до файлу на сайті або повне посилання. Можна лишити порожнім —
-                            тоді покажемо ініціали.
+                            Оберіть файл кнопкою нижче або вставте посилання. Можна лишити
+                            порожнім — тоді покажемо ініціали.
                         </span>
                     </label>
+
+                    <UploadButton
+                        folder="staff"
+                        kind="image"
+                        label="Обрати фото з компʼютера"
+                        onUploaded={(url) => setDraft((d) => (d ? { ...d, photoUrl: url } : d))}
+                        onError={setError}
+                    />
 
                     <div className="flex gap-2">
                         <button

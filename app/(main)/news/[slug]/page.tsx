@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 import { createClient } from '@/lib/server';
 import ContactWithData from '@/components/contact/ContactWithData';
 import NewsReactions from '@/components/news/NewsReactions';
+import { SHOW_NEWS_REACTIONS } from '@/components/layout/siteConfig';
 export const revalidate = 300;
 export const dynamicParams = true;
 type PageParams = { params: Promise<{ slug: string }> };
@@ -121,7 +122,7 @@ export default async function NewsArticlePage({ params }: PageParams) {
                     </div>
                 )}
 
-                <NewsReactions newsId={article.id} />
+                {SHOW_NEWS_REACTIONS && <NewsReactions newsId={article.id} />}
             </article>
 
             <ContactWithData />

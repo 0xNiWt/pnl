@@ -7,6 +7,7 @@ import {
     Check, Loader2, Pencil, Plus, Search, Trash2, TriangleAlert, User, X,
 } from 'lucide-react';
 import { matchesQuery, type MemoryEntry } from '@/lib/memory';
+import UploadButton from './UploadButton';
 
 type Draft = {
     id: string | null;
@@ -140,17 +141,25 @@ export default function MemoryBookManager({ entries }: { entries: MemoryEntry[] 
                         />
                     </Field>
 
-                    <Field label="Фото — шлях або посилання (необовʼязково)">
+                    <Field label="Фото (необовʼязково)">
                         <input
                             value={draft.photoUrl}
                             onChange={(e) => setDraft({ ...draft, photoUrl: e.target.value })}
                             placeholder="/memory/p002.jpg"
                             className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/70 text-sm focus:outline-none focus:border-accent"
                         />
-                        <p className="text-xs text-primary/60 mt-1.5">
-                            Файл фото треба покласти в папку <b>public/memory</b> проєкту й
-                            вказати тут шлях до нього. Без фото запис теж збережеться.
-                        </p>
+                        <div className="mt-2 flex flex-col gap-1.5">
+                            <UploadButton
+                                folder="memory"
+                                kind="image"
+                                label="Обрати фото з компʼютера"
+                                onUploaded={(url) => setDraft((d) => (d ? { ...d, photoUrl: url } : d))}
+                                onError={setError}
+                            />
+                            <p className="text-xs text-primary/60">
+                                Можна також вставити посилання вручну. Без фото запис теж збережеться.
+                            </p>
+                        </div>
                     </Field>
 
                     <div className="flex flex-wrap items-center gap-3">

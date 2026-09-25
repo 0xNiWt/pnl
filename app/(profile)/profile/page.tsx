@@ -414,6 +414,7 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Перемоги на олімпіадах (сайт)" href="/profile/olympiads" icon={<BarChart3 size={15} />} />
                     <QuickAction label="Книга пам'яті" href="/profile/memory" icon={<BookOpen size={15} />} />
                     <QuickAction label="Педагоги (сайт)" href="/profile/staff" icon={<Users size={15} />} />
+                    <QuickAction label="Роботи МАН" href="/profile/man" icon={<BookOpen size={15} />} />
                     <QuickAction label="Видимість рейтингів" href="/profile/rating/visibility" icon={<EyeOff size={15} />} />
                     <QuickAction label="Вакансії" href="/profile/vacancies" icon={<ClipboardList size={15} />} />
                 </div>

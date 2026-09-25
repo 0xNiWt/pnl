@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import UploadButton from '@/components/profile/UploadButton';
 import {
     Check,
     Coins,
@@ -338,13 +339,21 @@ function ProductForm({
                 />
             </Field>
 
-            <Field label="Посилання на фото" hint="Будь-яке посилання на картинку — http:// або https://">
+            <Field label="Фото товару" hint="Оберіть файл кнопкою або вставте посилання">
                 <input
                     value={draft.imageUrl}
                     onChange={(e) => set('imageUrl', e.target.value)}
                     placeholder="https://kpnl145.kyiv.ua/merch/hoodie.jpg"
                     className="w-full px-4 py-2.5 rounded-none border border-primary/15 bg-white/60 text-sm focus:outline-none focus:border-accent"
                 />
+                <div className="mt-2">
+                    <UploadButton
+                        folder="shop"
+                        kind="image"
+                        label="Обрати фото з компʼютера"
+                        onUploaded={(url) => set('imageUrl', url)}
+                    />
+                </div>
             </Field>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

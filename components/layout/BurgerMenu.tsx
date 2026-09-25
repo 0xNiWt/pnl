@@ -53,7 +53,7 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                     // ні під меню.
                     className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-background border-t border-primary/10 overflow-y-auto overscroll-contain"
                 >
-                    <div className="min-h-full py-4 px-3 flex flex-col gap-4">
+                    <div className="py-4 px-3 flex flex-col gap-4">
                         <ul className="flex flex-col gap-1">
                             {links.map((item, i) => (
                                 <motion.li
@@ -77,7 +77,9 @@ export default function BurgerMenu({ isOpen, links, isLoggedIn, onLinkClick }: B
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: links.length * 0.035 + 0.05, duration: 0.25, ease: smoothOut }}
-                            className="mt-auto pt-4 border-t border-primary/10 flex flex-col gap-2 px-1"
+                            // Кнопки входу одразу під пунктами меню, а не внизу екрана:
+                            // так до «Кабінету» дотягуєшся великим пальцем без прокрутки.
+                            className="pt-4 border-t border-primary/10 flex flex-col gap-2 px-1"
                         >
                             {SHOW_SHOP && (
                                 <Link
