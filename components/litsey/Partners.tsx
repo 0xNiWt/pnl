@@ -66,7 +66,10 @@ export default function Partners() {
             {/* Фото — усі однакового розміру */}
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 mb-6">
                 {PHOTOS.map((p) => (
-                    <figure key={p.caption} className="group relative aspect-[4/3] overflow-hidden bg-primary">
+                    <figure
+                        key={p.caption}
+                        className="group relative aspect-[4/3] overflow-hidden bg-primary [&:last-child:nth-child(odd)]:col-span-2 [&:last-child:nth-child(odd)]:w-[calc(50%-0.5rem)] [&:last-child:nth-child(odd)]:justify-self-center lg:[&:last-child:nth-child(odd)]:col-span-1 lg:[&:last-child:nth-child(odd)]:w-auto"
+                    >
                         <Image
                             src={p.photo}
                             alt={p.alt}

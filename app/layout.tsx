@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter, Cormorant_Garamond, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import PageTransition from "@/components/layout/PageTransition";
 
 // Inter, Manrope і Cormorant — змінні шрифти: один файл на всі товщини
 // замість окремого файлу на кожну, тож сторінка вантажить менше.
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-background">
         {children}
         <ScrollToTop />
+        <PageTransition />
       </body>
     </html>
   );

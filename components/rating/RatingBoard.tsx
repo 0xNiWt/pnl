@@ -187,7 +187,87 @@ export default function RatingBoard({
                 {RATING_HINTS[activeRating]}
             </p>
 
-            <div className="border border-primary/10 rounded-none overflow-x-auto bg-white/40">
+            {/* На телефоні таблиця з десятком колонок не вміщається, тож
+                показуємо кожен рядок карткою — гортати вбік не треба. */}
+            <div className="sm:hidden flex flex-col gap-2.5">
+                {rows.length === 0 && (
+                    <p className="border border-primary/10 rounded-none bg-white/40 px-4 py-6 text-center text-sm text-primary/70">
+                        Нічого не знайдено
+                    </p>
+                )}
+
+                {rows.map((row) => {
+                    const key = isStudent(row) ? row.student_id : row.class_name;
+                    const name = isStudent(row) ? row.full_name : row.class_name;
+
+                    const cells: { label: string; value: string | number }[] =
+                        activeRating === "points"
+                            ? CATEGORY_ORDER.map((cat) => ({ label: CATEGORY_LABELS[cat], value: row.categories[cat] }))
+                            : activeRating === "overall"
+                                ? overallColumns.map((kind) => ({
+                                    label: kind === "academic" ? "Навч." : kind === "olympiad" ? "Олімп." : "Бали",
+                                    value: row.places[kind],
+                                }))
+                                : [];
+
+                    const totalLabel =
+                        activeRating === "points"
+                            ? "Разом"
+                            : activeRating === "academic"
+                                ? "Середній бал"
+                                : activeRating === "olympiad"
+                                    ? "Олімп. бали"
+                                    : "Сума місць";
+
+                    const totalValue =
+                        activeRating === "points"
+                            ? row.total_points
+                            : activeRating === "academic"
+                                ? (row.academic_score === null ? "—" : row.academic_score.toFixed(2).replace(".", ","))
+                                : activeRating === "olympiad"
+                                    ? row.olympiad_points
+                                    : row.overall_sum;
+
+                    return (
+                        <article key={key} className="border border-primary/10 rounded-none bg-white/40 px-4 py-3">
+                            <div className="flex items-start gap-3">
+                                <span className="font-manrope font-bold text-lg text-primary/70 w-8 shrink-0">
+                                    {row.places[activeRating]}
+                                </span>
+
+                                <span className="min-w-0 flex-1">
+                                    <span className="block font-semibold text-primary">{name}</span>
+                                    <span className="block text-xs text-primary/70 mt-0.5">
+                                        {isStudent(row) ? (row.class ?? "—") : `Учнів: ${row.students_count}`}
+                                    </span>
+                                </span>
+
+                                <span className="text-right shrink-0">
+                                    <span className="block font-plex text-[11px] uppercase tracking-wide text-primary/60">
+                                        {totalLabel}
+                                    </span>
+                                    <span className="block font-manrope font-bold text-primary">{totalValue}</span>
+                                </span>
+                            </div>
+
+                            {cells.length > 0 && (
+                                <dl className="mt-3 pt-3 border-t border-primary/10 grid grid-cols-3 gap-x-3 gap-y-2">
+                                    {cells.map((cell) => (
+                                        <div key={cell.label}>
+                                            <dt className="font-plex text-[11px] uppercase tracking-wide text-primary/60">
+                                                {cell.label}
+                                            </dt>
+                                            <dd className="text-sm text-primary/85">{cell.value}</dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            )}
+                        </article>
+                    );
+                })}
+            </div>
+
+            <div className="hidden sm:block border border-primary/10 rounded-none overflow-x-auto bg-white/40">
                 <table className="w-full text-sm">
                     <thead>
                         <tr className="bg-primary/5 text-left font-plex text-xs uppercase tracking-wide text-primary/78">
