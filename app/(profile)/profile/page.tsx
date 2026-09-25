@@ -4,6 +4,7 @@ import { createClient } from '@/lib/server';
 import LogoutButton from '@/components/profile/LogoutButton';
 import { positionLabel } from '@/lib/positions';
 import { canCreatePolls } from '@/lib/voting';
+import { SHOW_SHOP } from '@/components/layout/siteConfig';
 import { canManageErudite, canViewErudite, currentSeason, eruditeStats, teamStandings, type EruditeStats } from '@/lib/erudite';
 import { getEruditeSeason } from '@/lib/eruditeData';
 import { getMyRatingRow, type StudentRatingRow } from '@/lib/points';
@@ -161,7 +162,7 @@ export default async function ProfilePage() {
                         {(roles.includes('student') || mayCreatePolls) && (
                             <VotesSection mayCreate={mayCreatePolls} />
                         )}
-                        {roles.includes('student') && <ShopSection balance={pointsBalance} />}
+                        {SHOW_SHOP && roles.includes('student') && <ShopSection balance={pointsBalance} />}
                         {/* Клуб «Ерудит» бачать лише учасники, капітани команд і президент клубу. */}
                         {eruditeSummary && (
                             <EruditeSection
@@ -292,9 +293,7 @@ function VotesSection({ mayCreate }: { mayCreate: boolean }) {
     return (
         <SectionCard title="Голосування" icon={<Vote size={16} />}>
             <p className="text-sm text-primary/78 mb-4">
-                Голосування класу, ліцею та груп активу. Створювати їх можуть староста
-                й представник РСЛ (у своєму класі), ПРСЛ (ліцей і будь-яка група),
-                а голови старостату, фізоргів і пресцентру — у своїй групі.
+                Таємні голосування класу, ліцею та груп активу.
             </p>
             <div className="flex flex-col gap-2">
                 <QuickAction
@@ -406,8 +405,12 @@ function OwnerSection({ stats }: { stats: { students: number; teachers: number; 
                     <QuickAction label="Управління ролями" href="/profile/users" icon={<ShieldCheck size={15} />} />
                     <QuickAction label="Учні та посади" href="/profile/students" icon={<Award size={15} />} />
                     <QuickAction label="Керування новинами" href="/profile/news" icon={<Newspaper size={15} />} />
-                    <QuickAction label="Товари магазину" href="/profile/shop" icon={<ShoppingCart size={15} />} />
-                    <QuickAction label="Замовлення мерчу" href="/profile/shop/orders" icon={<Package size={15} />} />
+                    {SHOW_SHOP && (
+                        <>
+                            <QuickAction label="Товари магазину" href="/profile/shop" icon={<ShoppingCart size={15} />} />
+                            <QuickAction label="Замовлення мерчу" href="/profile/shop/orders" icon={<Package size={15} />} />
+                        </>
+                    )}
                     <QuickAction label="Нарахування балів" href="/profile/rating/settings" icon={<TrendingUp size={15} />} />
                     <QuickAction label="Навчальний рейтинг" href="/profile/rating/academic" icon={<GraduationCap size={15} />} />
                     <QuickAction label="Олімпіадний рейтинг" href="/profile/rating/olympiads" icon={<Trophy size={15} />} />
