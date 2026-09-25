@@ -2,6 +2,20 @@
 
 html {
   scrollbar-gutter: stable;
+  /* Переходи за якорями («Пробники», «Перелік тем») гортають сторінку
+     плавно, а не стрибком. */
+  scroll-behavior: smooth;
+}
+
+/* Щоб заголовок розділу не ховався під липкою шапкою. */
+[id] {
+  scroll-margin-top: 6.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @theme {
