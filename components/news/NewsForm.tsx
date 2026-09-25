@@ -160,7 +160,8 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
 
                 <div className="flex flex-col gap-2">
                     {images.map((img, index) => (
-                        <div key={index} className="relative flex items-center gap-2">
+                        <div key={index} className="flex flex-col gap-2">
+                            <div className="relative flex items-center gap-2">
                             <div className="relative flex-1">
                                 <ImageIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/60" />
                                 <input
@@ -171,14 +172,6 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                                     className="w-full rounded-none border border-primary/10 bg-primary/5 pl-10 pr-4 py-2.5 text-sm text-primary placeholder:text-primary/30 outline-none transition-all focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent/20"
                                 />
                             </div>
-                            <UploadButton
-                                folder="news"
-                                kind="image"
-                                label="Файл"
-                                onUploaded={(url) => updateImage(index, url)}
-                                onError={setError}
-                            />
-
                             {images.length > 1 && (
                                 <button
                                     type="button"
@@ -188,6 +181,15 @@ export default function NewsForm({ mode, newsId, initialData }: NewsFormProps) {
                                     <X size={16} />
                                 </button>
                             )}
+                            </div>
+
+                            <UploadButton
+                                folder="news"
+                                kind="image"
+                                label="Обрати фото з компʼютера"
+                                onUploaded={(url) => updateImage(index, url)}
+                                onError={setError}
+                            />
                         </div>
                     ))}
                 </div>

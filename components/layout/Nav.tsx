@@ -12,6 +12,7 @@ const LINKS = [
     { label: 'Ліцей', en: 'Lyceum', href: '/' },
     { label: 'Вступ', en: 'Admission', href: '/vstup' },
     { label: 'Педагоги', en: 'Teachers', href: '/pedagogy' },
+    { label: 'Випускники', en: 'Alumni', href: '/alumni' },
     { label: 'Новини', en: 'News', href: '/news' },
 ];
 

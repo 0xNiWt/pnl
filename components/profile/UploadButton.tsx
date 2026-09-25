@@ -15,7 +15,7 @@ export default function UploadButton({
     onUploaded,
     onError,
 }: {
-    folder: 'man' | 'staff' | 'memory' | 'news' | 'shop';
+    folder: 'man' | 'staff' | 'memory' | 'news' | 'shop' | 'alumni';
     kind?: 'image' | 'any';
     label?: string;
     onUploaded: (url: string) => void;

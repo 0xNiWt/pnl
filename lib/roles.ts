@@ -55,6 +55,11 @@ export function canManageShop(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');
 }
 
+// Хто веде список випускників.
+export function canManageAlumni(roles: Role[]) {
+  return roles.includes('owner') || roles.includes('moderator');
+}
+
 // Хто веде збірку робіт МАН у розділі «Ліцей».
 export function canManageManWorks(roles: Role[]) {
   return roles.includes('owner') || roles.includes('moderator');

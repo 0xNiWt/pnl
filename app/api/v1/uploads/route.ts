@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
+  canManageAlumni,
   canManageManWorks,
   canManageMemoryBook,
   canManageNews,
@@ -10,7 +11,7 @@ import {
 } from '@/lib/roles';
 
 // Куди складаємо файли всередині бакета. Нові теки додавати сюди ж.
-const FOLDERS = ['man', 'staff', 'memory', 'news', 'shop'] as const;
+const FOLDERS = ['man', 'staff', 'memory', 'news', 'shop', 'alumni'] as const;
 type Folder = (typeof FOLDERS)[number];
 
 // Хто має право класти файли в кожну теку — ті самі ролі, що ведуть
@@ -21,6 +22,7 @@ const MAY_UPLOAD: Record<Folder, (roles: Role[]) => boolean> = {
   memory: canManageMemoryBook,
   news: canManageNews,
   shop: canManageShop,
+  alumni: canManageAlumni,
 };
 
 const MAX_BYTES = 15 * 1024 * 1024;
