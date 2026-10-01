@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { REACTIONS, type ReactionId } from '@/lib/newsReactions';
 import { SHOW_NEWS_REACTIONS } from '@/components/layout/siteConfig';
 
@@ -54,10 +53,6 @@ export default function NewsCard({ slug, title, excerpt, coverUrl, publishedAt, 
                     </p>
                 )}
 
-                <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold text-primary/85 group-hover:text-primary transition-colors">
-                    Читати
-                    <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </span>
             </div>
 
             {/* Реакції читачів — лише показ; поставити реакцію можна на сторінці новини. */}

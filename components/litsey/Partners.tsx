@@ -21,12 +21,12 @@ const UNIVERSITIES = [
     "Національний Тайванський університет",
 ];
 
-const PHOTOS: { photo: StaticImageData; caption: string; alt: string }[] = [
-    { photo: cybernetics, caption: "Інститут кібернетики НАН України", alt: "Будівля Інституту кібернетики імені В. М. Глушкова НАН України" },
-    { photo: knu, caption: "КНУ імені Тараса Шевченка", alt: "Червоний корпус Київського національного університету імені Тараса Шевченка" },
-    { photo: kpi, caption: "Київський політехнічний інститут", alt: "Головний корпус Київського політехнічного інституту" },
-    { photo: kai, caption: "Київський авіаційний інститут", alt: "Головний корпус Київського авіаційного інституту з висоти" },
-    { photo: ntu, caption: "Національний Тайванський університет", alt: "Корпус Національного Тайванського університету" },
+const PHOTOS: { photo: StaticImageData; caption: string; alt: string; url: string }[] = [
+    { photo: cybernetics, caption: "Інститут кібернетики НАН України", alt: "Будівля Інституту кібернетики імені В. М. Глушкова НАН України", url: "https://incyb.kiev.ua/" },
+    { photo: knu, caption: "КНУ імені Тараса Шевченка", alt: "Червоний корпус Київського національного університету імені Тараса Шевченка", url: "https://knu.ua/" },
+    { photo: kpi, caption: "Київський політехнічний інститут", alt: "Головний корпус Київського політехнічного інституту", url: "https://kpi.ua/" },
+    { photo: kai, caption: "Київський авіаційний інститут", alt: "Головний корпус Київського авіаційного інституту з висоти", url: "https://nau.edu.ua/" },
+    { photo: ntu, caption: "Національний Тайванський університет", alt: "Корпус Національного Тайванського університету", url: "https://www.ntu.edu.tw/english/" },
 ];
 
 function List({ items }: { items: string[] }) {
@@ -66,8 +66,12 @@ export default function Partners() {
             {/* Фото — усі однакового розміру */}
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 mb-6">
                 {PHOTOS.map((p) => (
-                    <figure
+                    <a
                         key={p.caption}
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={`Сайт: ${p.caption}`}
                         className="group relative aspect-[4/3] overflow-hidden bg-primary [&:last-child:nth-child(odd)]:col-span-2 [&:last-child:nth-child(odd)]:w-[calc(50%-0.5rem)] [&:last-child:nth-child(odd)]:justify-self-center lg:[&:last-child:nth-child(odd)]:col-span-1 lg:[&:last-child:nth-child(odd)]:w-auto"
                     >
                         <Image
@@ -79,10 +83,10 @@ export default function Partners() {
                             placeholder="blur"
                         />
                         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-primary/90 to-transparent" />
-                        <figcaption className="absolute bottom-0 left-0 right-0 p-3 md:p-4 font-plex text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.12em] text-background leading-snug">
+                        <span className="absolute bottom-0 left-0 right-0 p-3 md:p-4 font-plex text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.12em] text-background leading-snug">
                             {p.caption}
-                        </figcaption>
-                    </figure>
+                        </span>
+                    </a>
                 ))}
             </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { User, Mail, Phone } from "lucide-react";
+import { User, Mail, MapPin, Phone } from "lucide-react";
 
 type Vacancy = {
   id: string;
@@ -15,7 +15,7 @@ export default function Contact({
   vacancies?: Vacancy[];
 }) {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -56,11 +56,6 @@ export default function Contact({
     
     return (
         <section className="w-full max-w-7xl mx-auto flex flex-col items-center md:items-start gap-8 md:gap-12 px-5 md:px-6 py-10 md:py-24" id="contact">
-            <span className="inline-flex items-center gap-2 font-plex text-[clamp(1rem,0.7rem+1vw,1.5rem)] font-bold uppercase tracking-[0.14em] text-secondary-deep">
-                <span className="w-10 h-0.5 bg-secondary" />
-                Контакти
-            </span>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full">
                 {/* ВАКАНСІЇ */}
                 <div className="text-center md:text-left">
@@ -89,11 +84,20 @@ export default function Contact({
                     </div>
                 </div>
 
-                {/* АДРЕСИ */}
+                {/* КОНТАКТИ */}
                 <div className="text-center md:text-left">
-                    <h3 className="font-cormorant font-bold text-primary text-xl mb-5">Адреси</h3>
+                    <h3 className="font-cormorant font-bold text-primary text-xl mb-5">Контакти</h3>
 
                     <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-3 justify-center md:justify-start">
+                            <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
+                                <MapPin size={18} className="text-primary" />
+                            </span>
+                            <p className="text-sm text-primary/85 text-left leading-6">
+                                вул. Шота Руставелі, 46<br />Київ, 01023
+                            </p>
+                        </div>
+
                         <div className="flex items-center gap-3 justify-center md:justify-start">
                             <span className="flex-shrink-0 w-10 h-10 rounded-none bg-primary/5 flex items-center justify-center">
                                 <Phone size={18} className="text-primary" />
